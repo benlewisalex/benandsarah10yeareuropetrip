@@ -19,7 +19,8 @@ var CORE = [
   "./data.js",
   "./app.js",
   "./manifest.webmanifest",
-  "./favicon.svg"
+  "./favicon.svg",
+  "./robots.txt"
 ];
 
 /* Cross-origin scenery. Cached opportunistically and individually: any of
