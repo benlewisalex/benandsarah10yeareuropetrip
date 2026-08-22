@@ -12,6 +12,37 @@
 
   var D = window.TRIP;
 
+  /* A CDN edge, a captive-portal wifi, or a half-loaded page can hand back an
+     error for data.js or styles.css while index.html itself loads fine. That
+     used to leave a silent white screen. Say what happened and offer the fix.
+     Deliberately styled inline: styles.css may be the thing that failed. */
+  if (!D || !D.meta) {
+    document.getElementById("main").innerHTML =
+      '<div style="max-width:34rem;margin:2rem auto;padding:1.25rem;border:2px solid #A83A17;' +
+      'border-radius:4px;background:#FBE7E0;color:#12171A;font:16px/1.5 system-ui,sans-serif">' +
+      '<p style="font-weight:700;font-size:1.15rem;margin:0 0 .5rem">The trip content did not load.</p>' +
+      '<p style="margin:0 0 .75rem">The page loaded but <code>data.js</code> did not. This is almost ' +
+      'always a network hiccup or a stale cache, not lost data - nothing you have entered is affected.</p>' +
+      '<p style="margin:0 0 1rem">Reload. If it happens twice, pull down to hard-refresh, or open the ' +
+      'site once on wifi to re-cache it.</p>' +
+      '<button id="reloadBtn" style="min-height:48px;padding:0 1.25rem;font:600 16px system-ui,sans-serif;' +
+      'background:#12171A;color:#fff;border:0;border-radius:4px;cursor:pointer">Reload the page</button>' +
+      "</div>";
+    var rb = document.getElementById("reloadBtn");
+    if (rb) rb.addEventListener("click", function () { location.reload(true); });
+    return;
+  }
+
+  /* Content is fine but the stylesheet is not - readable, just unstyled. */
+  if (window.__cssFail) {
+    var warn = document.createElement("div");
+    warn.setAttribute("role", "status");
+    warn.style.cssText = "padding:12px;background:#FBF0DC;border-bottom:2px solid #8A5A0B;" +
+      "color:#12171A;font:600 15px/1.4 system-ui,sans-serif";
+    warn.textContent = "The stylesheet did not load, so this looks plain. Everything still works. Reload to fix it.";
+    document.body.insertBefore(warn, document.body.firstChild);
+  }
+
   /* ------------------------------------------------------------ persistence */
   /* Everything the user types stays on the device. Nothing is ever sent
      anywhere - there is no server in this app.                              */

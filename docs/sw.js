@@ -8,7 +8,7 @@
    copy. That is the one maintenance chore this file has.
    ========================================================================== */
 
-var CACHE = "london-iceland-v1";
+var CACHE = "london-iceland-v2";
 
 /* Same-origin. These MUST cache or the install fails - that is intentional,
    a half-installed offline app is worse than none. */
@@ -43,7 +43,13 @@ var PHOTOS = [
 self.addEventListener("install", function (e) {
   e.waitUntil(
     caches.open(CACHE).then(function (c) {
-      return c.addAll(CORE).then(function () {
+      return c.addAll(CORE).catch(function () {
+        /* One bad response would otherwise abort the whole install and leave
+           no offline support. Retry each file on its own instead. */
+        return Promise.all(CORE.map(function (u) {
+          return c.add(u).catch(function () {});
+        }));
+      }).then(function () {
         /* fire and forget - never block or fail the install on these */
         PHOTOS.forEach(function (url) {
           c.add(new Request(url, { mode: "no-cors" })).catch(function () {});
