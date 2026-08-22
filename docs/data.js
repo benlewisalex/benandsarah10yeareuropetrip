@@ -52,7 +52,7 @@ const TRIP = {
       grad: "radial-gradient(60% 40% at 70% 22%,rgba(255,255,255,.16),transparent 70%),linear-gradient(180deg,#93A3B1 0%,#788A99 44%,#3F4C58 46%,#212A32 100%)"
     },
     towerbridge: {
-      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Tower%20Bridge%20from%20London%20Tower.jpg?width=1600",
+      src: "img/towerbridge.jpg",
       alt: "Tower Bridge over the Thames, seen from the Tower of London side.",
       credit: "Historywriter / Wikimedia Commons",
       grad: "linear-gradient(180deg,#8EA3B4 0%,#647D90 46%,#2F4758 48%,#162530 100%)"
@@ -94,10 +94,10 @@ const TRIP = {
       grad: "linear-gradient(180deg,#9AA2AA 0%,#767F87 33%,#E6EAEC 36%,#CFD6DA 39%,#33393E 42%,#14171A 100%)"
     },
     horses: {
-      src: "https://commons.wikimedia.org/wiki/Special:FilePath/09%20Icelandic%20horses%20in%20Iceland%20-%20tourists%20riding%20Icelandic%20horses.jpg?width=1600",
-      alt: "Icelandic horses with thick manes standing in an autumn pasture of tan grass.",
-      credit: "Marek Slusarczyk / Wikimedia Commons",
-      pos: "center 78%",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Icelandic%20Horse%20Face.jpg?width=1600",
+      alt: "Close-up of an Icelandic horse with a thick mane.",
+      credit: "Carl Young / Wikimedia Commons",
+      pos: "center 45%",
       grad: "radial-gradient(70% 40% at 25% 20%,rgba(255,235,200,.24),transparent 70%),linear-gradient(180deg,#A9B4BC 0%,#8D8064 38%,#6B5334 40%,#33291A 100%)"
     },
     aurora: {
@@ -119,15 +119,16 @@ const TRIP = {
       grad: "radial-gradient(48% 35% at 70% 18%,rgba(232,113,54,.34),transparent 64%),linear-gradient(180deg,#5F6462 0%,#3D403D 43%,#1E201E 45%,#080A09 100%)"
     },
     seljalandsfoss: {
-      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Seljalandsfoss%20%281%29.jpg?width=1600",
+      src: "img/seljalandsfoss.jpg",
       alt: "Seljalandsfoss dropping from a green cliff into mist.",
       credit: "Chmee2 / Wikimedia Commons",
       grad: "linear-gradient(180deg,#9DB0A0 0%,#667B63 42%,#DCE8E8 45%,#8CA2A0 58%,#26322C 100%)"
     },
     skogafoss: {
-      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Sk%C3%B3gafoss%20%28183587415%29.jpeg?width=1600",
+      src: "img/skogafoss.jpg",
       alt: "Skogafoss waterfall falling in a wide white sheet against dark green cliffs.",
       credit: "Luis Ascenso / Wikimedia Commons",
+      ratio: "4 / 5",            /* the file is portrait; 16/9 cropped the falls away */
       grad: "linear-gradient(180deg,#82918A 0%,#52665A 40%,#E5EEEE 42%,#9AB0AE 55%,#1F2C28 100%)"
     }
   },

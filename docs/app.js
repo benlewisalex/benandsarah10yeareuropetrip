@@ -325,7 +325,9 @@
   }
 
   function imageStyle(im) {
-    return "--grad:" + im.grad + (im.pos ? ";--pos:" + im.pos : "");
+    return "--grad:" + im.grad +
+      (im.pos ? ";--pos:" + im.pos : "") +
+      (im.ratio ? ";--ratio:" + im.ratio : "");
   }
 
   function shot(key, cls) {
@@ -1591,7 +1593,7 @@
     h.push('<div class="foot">');
     h.push("<p><b>" + esc(D.meta.who) + "</b> &middot; " + esc(D.meta.title) +
       ", October 10 to 17, 2026 &middot; " + D.meta.nights + " nights.</p>");
-    h.push("<p><b>Photos</b> are pulled from Unsplash at run time. Where a photo has not loaded you are seeing " +
+    h.push("<p><b>Photos</b> are local files where practical and Wikimedia Commons URLs elsewhere. Where a photo has not loaded you are seeing " +
       "the card&rsquo;s own gradient, which is the intended fallback, not an error.</p>");
     h.push("<p><b>Content</b> comes from ITINERARY.md by way of <code>data.js</code>. " +
       "Sunrise and sunset times are shown only for the days the itinerary lists them.</p>");

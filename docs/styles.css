@@ -424,7 +424,7 @@ code { font-family: var(--mono); font-size: .92em; }
   object-fit: cover; object-position: var(--pos, center);
   opacity: 0; transition: opacity var(--slow) var(--ease);
 }
-.shot.is-loaded img { opacity: 1; }
+.shot.is-loaded img, .itx__scene.is-loaded img { opacity: 1; }
 .shot__credit {
   position: absolute; right: 6px; bottom: 6px; z-index: 3;
   padding: 2px 7px; border-radius: var(--r-pill);
@@ -726,7 +726,7 @@ code { font-family: var(--mono); font-size: .92em; }
 .itx__d { color: var(--ink-2); font-size: var(--t-15); }
 .itx__scene {
   position: relative; margin: 0 0 var(--s4);
-  aspect-ratio: 16 / 9; overflow: hidden;
+  aspect-ratio: var(--ratio, 16 / 9); overflow: hidden;
   background-image: var(--grad); background-size: cover; background-position: var(--pos, center);
   border-radius: var(--r-md);
   box-shadow: var(--sh-2);

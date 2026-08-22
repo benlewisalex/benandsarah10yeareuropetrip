@@ -263,11 +263,10 @@ your own content.
 
 ### Change the photos
 
-The site uses Unsplash source URLs. **That endpoint is currently returning 503**,
-so what you'll actually see is each card's CSS gradient. Those gradients are
-designed as the real fallback, not a broken-image placeholder - they're built as
-sky/horizon/land abstractions of each location, so the layout and the mood hold
-up with no network at all.
+The site uses a mix of local `docs/img/` files and Wikimedia Commons image URLs.
+Each image still has a CSS gradient fallback. The fallback is intentional, not a
+broken-image placeholder - it is built as a sky/horizon/land abstraction of the
+location, so the layout and mood hold up with no network at all.
 
 To use your own photos instead, which is the better end state:
 
@@ -278,7 +277,8 @@ To use your own photos instead, which is the better end state:
    cached for offline use.
 4. Bump `CACHE` in `sw.js`.
 
-Every image keeps its `grad` as the fallback either way.
+Every image keeps its `grad` as the fallback either way. For best offline
+behavior, prefer local files in `docs/img/` for your own photos.
 
 ---
 
