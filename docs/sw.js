@@ -8,7 +8,7 @@
    copy. That is the one maintenance chore this file has.
    ========================================================================== */
 
-var CACHE = "london-iceland-v3";
+var CACHE = "london-iceland-v5";
 
 /* Same-origin. These MUST cache or the install fails - that is intentional,
    a half-installed offline app is worse than none. */
@@ -17,6 +17,7 @@ var CORE = [
   "./index.html",
   "./styles.css",
   "./data.js",
+  "./geo.js",
   "./app.js",
   "./manifest.webmanifest",
   "./favicon.svg",

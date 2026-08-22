@@ -180,7 +180,11 @@ const TRIP = {
         { time: "Afternoon", name: "Sundhnúkur / Fagradalsfjall lava fields",
           detail: "Marked trails cross lava from the 2021-2025 eruptions; some of it still radiates heat.",
           maps: "Fagradalsfjall, Reykjanes, Iceland", ll: "63.8958,-22.2725",
-          headsUp: "Check safetravel.is and almannavarnir.is before driving out - exclusion zones move." },
+          headsUp: "Check safetravel.is and almannavarnir.is before driving out - exclusion zones move.",
+          links: [
+            { label: "safetravel.is", url: "https://safetravel.is/" },
+            { label: "almannavarnir.is", url: "https://www.almannavarnir.is/" }
+          ] },
         { name: "Bridge Between Continents", detail: "Footbridge over a rift between the North American and Eurasian plates. Ten minutes, on the way.", maps: "Bridge Between Continents, Reykjanes, Iceland", ll: "63.8686,-22.6752" },
         { name: "Gunnuhver", detail: "Violently boiling mud pots and steam vents.", maps: "Gunnuhver, Reykjanes, Iceland", ll: "63.8189,-22.6836" },
         { name: "Check into Reykjavík", detail: "Dinner: Messinn for fish, or Bæjarins Beztu for the hot dog.", maps: "Reykjavik, Iceland", ll: "64.1466,-21.9426", area: true }
@@ -227,7 +231,8 @@ const TRIP = {
           headsUp: "You will get drenched. Rain shells mandatory." },
         { name: "Skógafoss", detail: "200 feet, walk right to the base.", maps: "Skogafoss, Iceland", ll: "63.5321,-19.5114" },
         { name: "Dyrhólaey", detail: "Headland arch with the whole black coastline below.", maps: "Dyrholaey, Vik, Iceland", ll: "63.4020,-19.1290" },
-        { name: "Reynisfjara black sand beach, Vík", detail: "Basalt columns and sea stacks.", maps: "Reynisfjara beach, Vik, Iceland", ll: "63.4033,-19.0447" },
+        { name: "Reynisfjara black sand beach, Vík", detail: "Basalt columns and sea stacks.", maps: "Reynisfjara beach, Vik, Iceland", ll: "63.4033,-19.0447",
+          links: [{ label: "safetravel.is conditions", url: "https://safetravel.is/" }] },
         { time: "Evening", name: "Lava Show, Vík", detail: "About 1 hour. They superheat real basalt to 1,100C and pour glowing lava into the room in front of you. You feel the heat on your face. With no eruption running, this is the closest you'll get, and it stands on its own merits.", maps: "Lava Show, Vik, Iceland", ll: "63.4186,-19.0060" },
         { name: "Back to the guesthouse." }
       ],

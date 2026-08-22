@@ -599,6 +599,139 @@ code { font-family: var(--mono); font-size: .92em; }
 .mustdo__i b { font-weight: 650; }
 .mustdo__i span { color: var(--ink-3); font-family: var(--mono); font-size: var(--t-12); }
 
+
+/* ==================================================== 9b. DAY ACCORDION */
+/* Two collapsible levels so all eight days fit on one screen. A life-safety
+   hazard is the one thing that never collapses. */
+
+.daylist { display: grid; gap: var(--s3); }
+.dayx__tools { display: flex; gap: var(--s2); margin-bottom: var(--s4); }
+
+.dayx {
+  background: var(--card);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  overflow: hidden;
+  transition: box-shadow var(--fast) var(--ease);
+}
+.dayx.is-open { box-shadow: var(--sh-2); border-color: var(--line); }
+.dayx--bare { border: 0; box-shadow: none; background: none; overflow: visible; }
+
+.dayx__h {
+  width: 100%;
+  display: flex; align-items: stretch; gap: 0;
+  padding: 0; background: none; border: 0;
+  cursor: pointer; text-align: left;
+}
+.dayx__h:hover { background: var(--card-2); }
+.dayx__spine { width: 8px; flex: 0 0 8px; }
+.dayx__thumb {
+  flex: 0 0 62px; align-self: stretch; min-height: 88px;
+  background-image: var(--grad, none);
+  background-size: cover; background-position: center;
+}
+.dayx__thumb--london  { background-image: linear-gradient(150deg,#5B7791,#26394A); }
+.dayx__thumb--iceland { background-image: linear-gradient(150deg,#35606B,#0E2026); }
+
+.dayx__t { flex: 1 1 auto; min-width: 0; display: block; padding: var(--s4); }
+.dayx__meta {
+  display: block;
+  font-family: var(--mono); font-size: var(--t-11); font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--half);
+}
+.dayx__today {
+  display: inline-block; margin-left: var(--s1); padding: 1px 7px;
+  background: var(--ink); color: var(--page);
+  border-radius: var(--r-pill); font-style: normal; letter-spacing: .07em;
+}
+.dayx__t b {
+  display: block; margin-top: 2px;
+  font-size: var(--t-19); font-weight: 680; letter-spacing: -.015em; line-height: 1.25;
+}
+.dayx__sum {
+  display: block; margin-top: 3px;
+  font-family: var(--mono); font-size: var(--t-12); color: var(--ink-3);
+}
+.dayx__warn {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-left: var(--s1); padding: 1px 7px;
+  background: var(--hazard-wash); color: var(--hazard);
+  border-radius: var(--r-pill); font-weight: 700;
+}
+.dayx__warn svg { width: 12px; height: 12px; }
+.dayx__chev {
+  flex: 0 0 46px; display: grid; place-items: center; color: var(--ink-3);
+  transition: transform var(--fast) var(--ease);
+}
+.dayx.is-open .dayx__chev { transform: rotate(90deg); }
+
+.dayx__body { display: none; border-top: 1px solid var(--line-2); }
+.dayx.is-open > .dayx__body { display: block; }
+.day__hero--band { min-height: 118px; }
+.dayx__intro { padding: var(--s4) var(--s5) 0; color: var(--ink-2); font-size: var(--t-15); }
+.dayx__intro p + p { margin-top: var(--s2); }
+.dayx__haz { padding: var(--s4) var(--s5) 0; }
+.dayx__notes { padding: 0 var(--s5) var(--s4); }
+.dayx--bare .dayx__body { border-top: 0; }
+
+/* ---- level two: a single activity ---- */
+.itxlist { padding: var(--s3) var(--s5) var(--s4); }
+.itx { border-top: 1px solid var(--line-2); }
+.itx:first-child { border-top: 0; }
+
+.itx__h {
+  width: 100%; display: flex; align-items: flex-start; gap: var(--s3);
+  min-height: 54px; padding: var(--s3) 0;
+  background: none; border: 0; cursor: pointer; text-align: left;
+}
+.itx--flat { display: flex; gap: var(--s3); padding: var(--s3) 0; }
+.itx__time {
+  flex: 0 0 52px; padding-top: 2px;
+  font-family: var(--mono); font-size: var(--t-12); font-weight: 700;
+  color: var(--ink-3); letter-spacing: -.02em;
+}
+.itx__n {
+  flex: 1 1 auto; min-width: 0;
+  font-size: var(--t-17); font-weight: 620; letter-spacing: -.01em; line-height: 1.35;
+}
+.itx--flat .itx__n { font-weight: 550; color: var(--ink-2); }
+.itx__flags { display: inline-flex; gap: 5px; margin-left: var(--s2); vertical-align: 1px; }
+.itx__flag { display: inline-grid; place-items: center; color: var(--ink-3); }
+.itx__flag svg { width: 14px; height: 14px; }
+.itx__flag--warn { color: var(--amber); }
+.itx__chev {
+  flex: 0 0 26px; display: grid; place-items: center; color: var(--ink-3);
+  transition: transform var(--fast) var(--ease);
+}
+.itx__chev svg { width: 15px; height: 15px; }
+.itx.is-open .itx__chev { transform: rotate(90deg); }
+
+.itx__body { display: none; padding: 0 0 var(--s4) 64px; }
+.itx.is-open > .itx__body { display: block; }
+.itx__d { color: var(--ink-2); font-size: var(--t-15); }
+
+/* hot buttons: big, obvious, glove-sized */
+.hotrow { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
+.hot {
+  display: inline-flex; align-items: center; gap: 7px;
+  min-height: 46px; padding: 0 var(--s4);
+  background: var(--card-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  font-size: var(--t-14); font-weight: 650; text-decoration: none;
+  transition: all var(--fast) var(--ease);
+}
+.hot:hover { background: var(--sunk); border-color: var(--ink-3); }
+.hot:active { transform: scale(.98); }
+.hot svg { width: 16px; height: 16px; flex: 0 0 auto; color: var(--ink-3); }
+.hot:hover svg { color: var(--ink); }
+.aurora-cue .hot { background: var(--card); }
+
+@media (min-width: 560px) {
+  .dayx__thumb { flex-basis: 84px; }
+  .itx__body { padding-left: 68px; }
+}
+
 /* ============================================================== 10. THE MAP */
 /* A schematic route diagram, not a real basemap. Drawn from the same
    coordinates the maps links use, projected to SVG. Zero dependencies, so it
@@ -633,6 +766,19 @@ code { font-family: var(--mono); font-size: .92em; }
   font-size: var(--t-12); color: rgba(242,247,248,.5);
 }
 .routemap { display: block; width: 100%; height: auto; }
+/* real geography: basalt land, glacier ice, cold sea */
+.rm-sea  { fill: #05121A; }
+.rm-land { fill: #2A4A54; stroke: #7FB2BE; stroke-width: 1.1; stroke-linejoin: round; }
+.rm-ice  { fill: #C3E2EA; fill-opacity: .46; stroke: #DCF0F5; stroke-width: .9; stroke-opacity: .55; }
+.rm-grat { stroke: rgba(255,255,255,.09); stroke-width: 1; stroke-dasharray: 2 5; }
+.rm-gratT { font-family: var(--mono); font-size: 9px; fill: rgba(242,247,248,.34); }
+.rm-halo { fill: rgba(6,14,18,.55); }
+.rm-badge { fill: #F2F7F8; }
+.rm-badgeT {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  fill: #0A1418; text-anchor: middle;
+}
+.rm-dim { opacity: .32; }
 .rm-g { cursor: pointer; }
 .rm-n--on { fill: #08181C; }
 .routemap .rm-stop--dim { opacity: .3; }
@@ -654,8 +800,9 @@ code { font-family: var(--mono); font-size: .92em; }
 }
 .routemap .rm-stop--active + .rm-n { fill: #0A1418; }
 .routemap .rm-label {
-  font-family: var(--sans); font-size: 11px; font-weight: 600;
-  fill: rgba(242,247,248,.86); pointer-events: none;
+  font-family: var(--sans); font-size: 11px; font-weight: 650;
+  fill: #EAF4F7; pointer-events: none;
+  paint-order: stroke; stroke: rgba(4,12,16,.85); stroke-width: 3px; stroke-linejoin: round;
 }
 .routemap .rm-region {
   font-family: var(--sans); font-size: 11px; font-weight: 700;
@@ -970,9 +1117,9 @@ body.is-offline .offline-banner { display: flex; }
   .dash__main, .dash__side { min-width: 0; }
   .dash__main > .section-head:first-child, .dash__side > .section-head:first-child { margin-top: 0; }
 
-  /* itinerary as a card grid */
-  .grid-days { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); align-items: start; }
-  .grid-days > .card { margin-bottom: 0; }
+  /* Days is a list now, so one readable column beats a card grid */
+  .daylist { max-width: 880px; }
+  .daylist .dayx__t { padding: var(--s5); }
 
   .card:hover, .day:hover { box-shadow: var(--sh-2); }
 

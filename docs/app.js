@@ -53,6 +53,8 @@
     conf:    "et26.conf",       // { "bookingId::Field": "value" }
     tonight: "et26.tonight",    // { cloud: true, ... }
     open:    "et26.open",       // { groupId: false }  (collapsed state)
+    dayOpen: "et26.dayopen",    // { dayId: true }
+    itemOpen:"et26.itemopen",   // { "dayId:index": true }
     override:"et26.override",   // "2026-10-14"
     theme:   "et26.theme"       // "light" | "dark"
   };
@@ -75,6 +77,8 @@
     conf:    load(K.conf, {}),
     tonight: load(K.tonight, {}),
     open:    load(K.open, {}),
+    dayOpen: load(K.dayOpen, {}),
+    itemOpen:load(K.itemOpen, {}),
     override:load(K.override, null)
   };
 
@@ -156,6 +160,7 @@
     sundn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9V3M5.6 9.6 4.2 8.2M18.4 9.6l1.4-1.4M2 18h20M6 18a6 6 0 0 1 12 0"/><path d="M9 6l3 3 3-3"/></svg>',
     trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
     pencil:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4Z"/></svg>',
+    mapicon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3.5 3 6v15l6-2.5 6 2.5 6-2.5V3.5L15 6 9 3.5Z"/><path d="M9 3.5v15M15 6v15"/></svg>',
     money: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M12 3v18M8 7h6a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h7"/></svg>'
   };
 
@@ -335,32 +340,100 @@
   }
 
   /* -------------------------------------------------------------- DAY CARD */
+  /* Two levels, both collapsed by default. Level one is a day: date, title and
+     a one-line summary, so all eight days fit on one screen. Level two is a
+     single activity, opening to its detail plus hot buttons for maps and links.
 
-  function dayCard(day, isToday, headless) {
-    var half = day.half === "london" ? "var(--london)" : "var(--iceland)";
+     One thing never collapses: a life-safety hazard. The collapsed day row
+     carries a warning chip, and expanding the day shows the hazard in full
+     before any activity. Hiding a sneaker-wave warning behind two taps would
+     defeat the entire point of it. */
+
+  function itemFlags(it) {
+    var f = [];
+    if (it.headsUp) f.push('<span class="itx__flag itx__flag--warn" title="Heads up">' + ICON.alert + "</span>");
+    if (it.maps) f.push('<span class="itx__flag" title="Has a map location">' + ICON.pin + "</span>");
+    if (it.links) f.push('<span class="itx__flag" title="Has links">' + ICON.ext + "</span>");
+    return f.length ? '<span class="itx__flags">' + f.join("") + "</span>" : "";
+  }
+
+  function itemRow(day, it, idx) {
+    var key = day.id + ":" + idx;
+    var open = !!S.itemOpen[key];
+    var hasBody = it.detail || it.sub || it.headsUp || it.maps || it.links;
     var h = [];
 
-    h.push('<article class="card day" id="day-' + day.id + '" style="--half:' + half + '">');
-    h.push('<div class="spine day__spine" aria-hidden="true"></div>');
-    h.push('<div class="day__b">');
+    if (!hasBody) {
+      /* nothing to expand into - render it as a plain line, not a dead button */
+      h.push('<div class="itx itx--flat"><span class="itx__time">' +
+        (it.time ? esc(it.time) : "") + '</span><span class="itx__n">' + esc(it.name) + "</span></div>");
+      return h.join("");
+    }
 
-    if (!headless) {
+    h.push('<div class="itx' + (open ? " is-open" : "") + '">');
+    h.push('<button class="itx__h" data-itemopen="' + esc(key) + '" aria-expanded="' + open + '">');
+    h.push('<span class="itx__time">' + (it.time ? esc(it.time) : "") + "</span>");
+    h.push('<span class="itx__n">' + esc(it.name) + itemFlags(it) + "</span>");
+    h.push('<span class="itx__chev">' + ICON.chev + "</span>");
+    h.push("</button>");
+
+    h.push('<div class="itx__body">');
+    if (it.detail) h.push('<p class="itx__d">' + esc(it.detail) + "</p>");
+    if (it.sub) {
+      h.push('<ul class="tl__sub">');
+      it.sub.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
+      h.push("</ul>");
+    }
+    if (it.headsUp) h.push('<div class="headsup">' + ICON.alert + "<span>" + esc(it.headsUp) + "</span></div>");
+
+    /* hot buttons: big, obvious, glove-sized */
+    var hot = [];
+    if (it.maps) {
+      hot.push('<a class="hot" href="' + esc(mapsUrl(it.maps, it.ll)) + '" target="_blank" rel="noopener">' +
+        ICON.pin + "<span>Open in maps</span></a>");
+    }
+    if (it.ll) {
+      hot.push('<a class="hot" href="#/map/' + esc(day.id) + '">' + ICON.mapicon + "<span>Show on trip map</span></a>");
+    }
+    (it.links || []).forEach(function (l) {
+      hot.push('<a class="hot" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
+        ICON.ext + "<span>" + esc(l.label) + "</span></a>");
+    });
+    if (hot.length) h.push('<div class="hotrow">' + hot.join("") + "</div>");
+    h.push("</div></div>");
+    return h.join("");
+  }
+
+  /* the expanded content of a day, used by the accordion and by Today */
+  function dayBody(day, withHero) {
+    var h = [];
+
+    if (withHero) {
       var key = (day.images && day.images[0]) || null;
       var im = key ? D.images[key] : null;
-      h.push('<div class="day__hero' + (im ? "" : " day__hero--" + day.half) + '"' +
+      h.push('<div class="day__hero day__hero--band' + (im ? "" : " day__hero--" + day.half) + '"' +
         (im ? ' style="--grad:' + im.grad + '"' : "") + ">");
       if (im) {
         h.push('<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy" decoding="async" data-shot>');
         h.push('<figcaption class="shot__credit">Photo: Unsplash</figcaption>');
       }
-      h.push('<div class="day__heroT">');
-      h.push('<p class="day__date"><span>' + esc(day.dow) + " &middot; " + esc(prettyDate(day.date)) + "</span>" +
-        "<span>&middot; " + (day.half === "london" ? "England" : "Iceland") + "</span>" +
-        (isToday ? '<span class="day__is-today">Today</span>' : "") + "</p>");
-      h.push('<h3 class="day__title">' + esc(day.title) + "</h3>");
-      h.push("</div></div>");
-      h.push(sunRow(day));
+      h.push("</div>");
     }
+
+    /* hazards first, always, never collapsed */
+    (day.hazards || []).forEach(function (hz) {
+      h.push('<div class="dayx__haz">' + hazardBlock(hz) + "</div>");
+    });
+
+    if ((day.intro || []).length) {
+      h.push('<div class="dayx__intro">');
+      day.intro.forEach(function (pp) { h.push("<p>" + esc(pp) + "</p>"); });
+      h.push("</div>");
+    }
+
+    h.push('<div class="itxlist">');
+    (day.items || []).forEach(function (it, idx) { h.push(itemRow(day, it, idx)); });
+    h.push("</div>");
 
     if (day.images && day.images.length > 1) {
       h.push('<div class="shot-strip">');
@@ -368,49 +441,68 @@
       h.push("</div>");
     }
 
-    h.push('<div class="tl">');
-    (day.intro || []).forEach(function (p) {
-      h.push('<p class="tl__intro">' + esc(p) + "</p>");
-    });
-
-    (day.items || []).forEach(function (it) {
-      h.push('<div class="tl__i">');
-      h.push('<div class="tl__t">' + (it.time ? esc(it.time) : "") + "</div>");
-      h.push('<div class="tl__c">');
-      h.push('<p class="tl__n">' + esc(it.name) + "</p>");
-      if (it.detail) h.push('<p class="tl__d">' + esc(it.detail) + "</p>");
-      if (it.sub) {
-        h.push('<ul class="tl__sub">');
-        it.sub.forEach(function (s) { h.push("<li>" + esc(s) + "</li>"); });
-        h.push("</ul>");
-      }
-      if (it.headsUp) {
-        h.push('<div class="headsup">' + ICON.alert + "<span>" + esc(it.headsUp) + "</span></div>");
-      }
-      if (it.maps) h.push(mapsChip(it.maps, "Open in maps", it.ll));
-      h.push("</div></div>");
-    });
-
-    (day.notes || []).forEach(function (n) {
-      h.push('<div class="note"><b>' + esc(n.label) + "</b><span>" + esc(n.text) + "</span></div>");
-    });
-    h.push("</div>");
-
-    (day.hazards || []).forEach(function (hz) {
-      h.push('<div style="padding:0 16px">' + hazardBlock(hz) + "</div>");
-    });
+    if ((day.notes || []).length) {
+      h.push('<div class="dayx__notes">');
+      day.notes.forEach(function (n) {
+        h.push('<div class="note"><b>' + esc(n.label) + "</b><span>" + esc(n.text) + "</span></div>");
+      });
+      h.push("</div>");
+    }
 
     if (day.aurora) {
       h.push('<div class="aurora-cue">');
       h.push("<b>Aurora night " + day.aurora.night + "</b>");
       h.push("<p><strong>" + esc(day.aurora.spot) + "</strong> &middot; " + esc(day.aurora.text) + "</p>");
-      h.push('<div style="display:flex;gap:8px;flex-wrap:wrap">');
-      if (day.aurora.maps) h.push(mapsChip(day.aurora.maps, "Directions", day.aurora.ll));
-      h.push('<a class="maps" href="#/aurora">Aurora plan</a>');
+      h.push('<div class="hotrow">');
+      if (day.aurora.maps) {
+        h.push('<a class="hot" href="' + esc(mapsUrl(day.aurora.maps, day.aurora.ll)) +
+          '" target="_blank" rel="noopener">' + ICON.pin + "<span>Directions</span></a>");
+      }
+      h.push('<a class="hot" href="#/aurora">' + ICON.info + "<span>Aurora plan</span></a>");
       h.push("</div></div>");
     }
+    return h.join("");
+  }
 
-    h.push("</div></article>");
+  /* the one-line summary on a collapsed day */
+  function daySummary(day) {
+    var bits = [];
+    var n = (day.items || []).length;
+    if (n) bits.push(n + " stop" + (n === 1 ? "" : "s"));
+    if (day.sun && (day.sun.sunrise || day.sun.sunset)) {
+      bits.push([day.sun.sunrise, day.sun.sunset].filter(Boolean).join(" to "));
+    }
+    if (day.aurora) bits.push("aurora night " + day.aurora.night);
+    return bits.join(" &middot; ");
+  }
+
+  function dayAccordion(day, isToday) {
+    var half = day.half === "london" ? "var(--london)" : "var(--iceland)";
+    var im = (day.images && day.images[0]) ? D.images[day.images[0]] : null;
+    var open = S.dayOpen[day.id];
+    if (open === undefined) open = !!isToday;      /* today opens itself */
+    var hz = (day.hazards || []).length;
+    var h = [];
+
+    h.push('<article class="dayx' + (open ? " is-open" : "") + '" id="day-' + day.id +
+      '" style="--half:' + half + '">');
+    h.push('<button class="dayx__h" data-dayopen="' + esc(day.id) + '" aria-expanded="' + open + '">');
+    h.push('<span class="spine dayx__spine" aria-hidden="true"></span>');
+    h.push('<span class="dayx__thumb' + (im ? "" : " dayx__thumb--" + day.half) + '"' +
+      (im ? ' style="--grad:' + im.grad + '"' : "") + ' aria-hidden="true"></span>');
+    h.push('<span class="dayx__t">');
+    h.push('<span class="dayx__meta">' + esc(day.dow.slice(0, 3)) + " &middot; " + esc(prettyDate(day.date)) +
+      " &middot; " + (day.half === "london" ? "England" : "Iceland") +
+      (isToday ? ' <em class="dayx__today">Today</em>' : "") + "</span>");
+    h.push("<b>" + esc(day.title) + "</b>");
+    h.push('<span class="dayx__sum">' + daySummary(day) +
+      (hz ? ' <span class="dayx__warn">' + ICON.alert + hz + " safety note" + (hz === 1 ? "" : "s") + "</span>" : "") +
+      "</span>");
+    h.push("</span>");
+    h.push('<span class="dayx__chev">' + ICON.chev + "</span>");
+    h.push("</button>");
+    h.push('<div class="dayx__body">' + dayBody(day, true) + "</div>");
+    h.push("</article>");
     return h.join("");
   }
 
@@ -534,7 +626,9 @@
         '<span class="linkout__i">' + ICON.chev + "</span></a>");
     }
 
-    h.push(dayCard(day, true, true));   /* headless - the hero above says it all */
+    h.push('<article class="dayx is-open dayx--bare" style="--half:' +
+      (day.half === "london" ? "var(--london)" : "var(--iceland)") + '">' +
+      '<div class="dayx__body">' + dayBody(day, false) + "</div></article>");
 
     if (next) {
       h.push('<div class="section-head"><h2>Tomorrow</h2></div>');
@@ -597,8 +691,11 @@
     var h = [];
     h.push('<div class="section-head"><h1>Full itinerary</h1>' +
       '<a href="#/map">See it on the map</a></div>');
-    h.push('<div class="grid-days">');
-    D.days.forEach(function (day) { h.push(dayCard(day, day.date === c.t)); });
+    h.push('<div class="dayx__tools">' +
+      '<button class="chip" data-days="open">Expand all</button>' +
+      '<button class="chip" data-days="shut">Collapse all</button></div>');
+    h.push('<div class="daylist">');
+    D.days.forEach(function (day) { h.push(dayAccordion(day, day.date === c.t)); });
     h.push("</div>");
 
     h.push('<div class="section-head"><h2>Outside the main plan</h2></div>');
@@ -686,69 +783,56 @@
 
 
   /* ------------------------------------------------------- VIEW: THE MAP */
-  /* A schematic route diagram, not a basemap. Drawn from the same coordinates
-     the maps links use, so it needs no tiles, no library and no network -
-     which is the whole point, because the day you most want to know "where
-     are we going" is the day you have no signal.
+  /* A real map, drawn from real geography.
 
-     Two rules learned the hard way:
-     1. Each region gets its OWN projection. London and Iceland are 1,900 km
-        apart, so one shared scale collapses both clusters into a blob.
-     2. Stops are nudged apart after projecting. Four London landmarks inside
-        3 km would otherwise stack into one unreadable dot. Positions stay
-        approximately true; the caption says so rather than pretending.
+     geo.js carries Natural Earth 1:10m coastline and glacier outlines for the
+     two regions, clipped and simplified at build time to 19 KB. No tiles, no
+     map library, no network - which is the point, because the day you most
+     need to know where you are is the day you have no signal.
 
-     Coastlines are deliberately not drawn. Inventing them would be decoration
-     posing as data. */
+     Two rules that came out of getting this wrong:
+     1. Each region is projected into its OWN fixed bounds. England and Iceland
+        are 1,900 km apart; one shared scale collapses both into a blob.
+     2. Stops are CLUSTERED, never moved. An earlier version nudged overlapping
+        dots apart, which was fine on a blank grid and became a lie the moment
+        there was a coastline - it put pins in the sea. Six London landmarks
+        inside 5 km are honestly one dot at this scale. */
 
-  var STOP_R = 14;
+  var GEOD = (typeof window !== "undefined" && window.GEO) || {};
 
-  function project(stops, w, h) {
-    var lat = stops.map(function (x) { return +x.ll.split(",")[0]; });
-    var lng = stops.map(function (x) { return +x.ll.split(",")[1]; });
-    var la0 = Math.min.apply(null, lat), la1 = Math.max.apply(null, lat);
-    var lo0 = Math.min.apply(null, lng), lo1 = Math.max.apply(null, lng);
-    var kx = Math.cos((la0 + la1) / 2 * Math.PI / 180);   /* east-west squeeze */
-    var spanX = Math.max((lo1 - lo0) * kx, 1e-6);
-    var spanY = Math.max(la1 - la0, 1e-6);
-    var pad = STOP_R + 26;
-    /* one scale on both axes so the shape is not distorted */
-    var sc = Math.min((w - pad * 2) / spanX, (h - pad * 2) / spanY);
-    var ox = (w - spanX * sc) / 2, oy = (h - spanY * sc) / 2;
-    var pts = stops.map(function (st, k) {
-      return {
-        stop: st,
-        x: ox + ((lng[k] - lo0) * kx) * sc,
-        y: oy + (la1 - lat[k]) * sc                       /* north is up */
-      };
-    });
-    return { pts: pts, kmPerUnit: 111 / sc };
+  function regionFor(half) { return half === "london" ? GEOD.england : GEOD.iceland; }
+
+  /* A region projects into fixed bounds, so land fills the panel predictably
+     and the aspect ratio stays true. */
+  function projector(region, w) {
+    var b = region.bounds;                       /* [lat0, lat1, lng0, lng1] */
+    var kx = Math.cos((b[0] + b[1]) / 2 * Math.PI / 180);
+    var spanX = (b[3] - b[2]) * kx;
+    var sc = w / spanX;
+    var h = (b[1] - b[0]) * sc;
+    return {
+      w: w, h: h, sc: sc, kx: kx, b: b,
+      kmPerPx: 111 / sc,
+      xy: function (lng, lat) {
+        return [(lng - b[2]) * kx * sc, (b[1] - lat) * sc];
+      },
+      ll: function (str) {
+        var q = str.split(",");
+        return this.xy(+q[1], +q[0]);
+      }
+    };
   }
 
-  /* iterative repulsion so no two dots overlap */
-  function spread(pts, w, h) {
-    var min = STOP_R * 2.05;
-    for (var pass = 0; pass < 90; pass++) {
-      var moved = false;
-      for (var a = 0; a < pts.length; a++) {
-        for (var b = a + 1; b < pts.length; b++) {
-          var dx = pts[b].x - pts[a].x, dy = pts[b].y - pts[a].y;
-          var d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 0.01) { dx = (a % 2 ? 1 : -1) * 0.6; dy = 0.6; d = 0.85; }
-          if (d < min) {
-            var push = (min - d) / 2, ux = dx / d, uy = dy / d;
-            pts[a].x -= ux * push; pts[a].y -= uy * push;
-            pts[b].x += ux * push; pts[b].y += uy * push;
-            moved = true;
-          }
-        }
+  function ringsToPath(rings, pr) {
+    var d = [];
+    rings.forEach(function (ring) {
+      for (var k = 0; k < ring.length; k++) {
+        var q = pr.xy(ring[k][0], ring[k][1]);
+        d.push((k ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1));
       }
-      pts.forEach(function (q) {
-        q.x = Math.max(STOP_R + 8, Math.min(w - STOP_R - 8, q.x));
-        q.y = Math.max(STOP_R + 26, Math.min(h - STOP_R - 30, q.y));
-      });
-      if (!moved) break;
-    }
+      d.push("Z");
+    });
+    return d.join("");
   }
 
   function kmBetween(a, b) {
@@ -760,74 +844,188 @@
     return 2 * R * Math.asin(Math.min(1, Math.sqrt(x)));
   }
 
-  /* one region = one independently scaled panel */
-  function panel(regionStops, allStopsList, highlightDay, title) {
-    if (!regionStops.length) return "";
+  /* Same-day stops that land within CLUSTER_R of each other become one pin.
+     Honest at this scale, and it keeps every pin on dry land. */
+  var CLUSTER_R = 27;
+
+  function clusterStops(stops, pr) {
+    var out = [];
+    stops.forEach(function (st) {
+      var q = pr.ll(st.ll);
+      var hit = null;
+      for (var k = 0; k < out.length; k++) {
+        var c = out[k];
+        if (c.dayId !== st.day.id) continue;
+        if (Math.sqrt(Math.pow(c.x - q[0], 2) + Math.pow(c.y - q[1], 2)) < CLUSTER_R) { hit = c; break; }
+      }
+      if (hit) {
+        hit.x = (hit.x * hit.items.length + q[0]) / (hit.items.length + 1);
+        hit.y = (hit.y * hit.items.length + q[1]) / (hit.items.length + 1);
+        hit.items.push(st);
+      } else {
+        out.push({
+          dayId: st.day.id, day: st.day, dayIndex: st.dayIndex, half: st.half,
+          x: q[0], y: q[1], items: [st]
+        });
+      }
+    });
+    return out;
+  }
+
+  var MAX_NUDGE = 16;
+
+  /* Pins must not hide each other. This moves CLUSTERS only, never more than
+     MAX_NUDGE px from true position, so nothing lands on the wrong side of a
+     coastline. Anything further apart than that stays exactly where it is. */
+  function unhide(cl) {
+    cl.forEach(function (c) { c.x0 = c.x; c.y0 = c.y; });
+    var min = 30;
+    for (var pass = 0; pass < 60; pass++) {
+      var moved = false;
+      for (var a = 0; a < cl.length; a++) {
+        for (var b = a + 1; b < cl.length; b++) {
+          var dx = cl[b].x - cl[a].x, dy = cl[b].y - cl[a].y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 0.01) { dx = 0.7; dy = -0.7; d = 1; }
+          if (d < min) {
+            var push = (min - d) / 2, ux = dx / d, uy = dy / d;
+            cl[a].x -= ux * push; cl[a].y -= uy * push;
+            cl[b].x += ux * push; cl[b].y += uy * push;
+            moved = true;
+          }
+        }
+      }
+      cl.forEach(function (c) {
+        var ddx = c.x - c.x0, ddy = c.y - c.y0;
+        var dd = Math.sqrt(ddx * ddx + ddy * ddy);
+        if (dd > MAX_NUDGE) {
+          c.x = c.x0 + ddx / dd * MAX_NUDGE;
+          c.y = c.y0 + ddy / dd * MAX_NUDGE;
+        }
+      });
+      if (!moved) break;
+    }
+  }
+
+  function panel(regionStops, allStopsList, highlightDay, half) {
+    var region = regionFor(half);
+    if (!region || !regionStops.length) return "";
     var w = 620;
-    var h = regionStops.length > 12 ? 460 : regionStops.length > 6 ? 380 : 300;
-    var pr = project(regionStops, w, h);
-    var pts = pr.pts;
-    spread(pts, w, h);
+    var pr = projector(region, w);
+    var h = Math.round(pr.h);
+    var cl = clusterStops(regionStops, pr);
+    unhide(cl);
+    var label = cl.length <= 8;
+    var o = [];
 
-    var label = pts.length <= 6;
-    var h2 = [];
-    h2.push('<div class="panel">');
-    h2.push('<p class="panel__t">' + esc(title) + '<span>' + pts.length + ' stop' +
-      (pts.length === 1 ? "" : "s") + "</span></p>");
-    h2.push('<svg class="routemap" viewBox="0 0 ' + w + " " + h +
-      '" role="img" aria-label="Route through ' + esc(title) + ", " + pts.length + ' stops">');
+    o.push('<div class="panel">');
+    o.push('<p class="panel__t">' + esc(region.name) + "<span>" + regionStops.length +
+      " stop" + (regionStops.length === 1 ? "" : "s") + "</span></p>");
+    o.push('<svg class="routemap" viewBox="0 0 ' + w + " " + h +
+      '" role="img" aria-label="Map of ' + esc(region.name) + " showing " +
+      regionStops.length + ' trip stops">');
 
-    for (var gx = 40; gx < w; gx += 62) {
-      h2.push('<line class="rm-grid" x1="' + gx + '" y1="8" x2="' + gx + '" y2="' + (h - 8) + '"/>');
+    /* sea */
+    o.push('<rect class="rm-sea" x="0" y="0" width="' + w + '" height="' + h + '"/>');
+
+    /* graticule on whole degrees - reads as a map, not a chart */
+    var b = pr.b;
+    for (var la = Math.ceil(b[0]); la <= b[1]; la++) {
+      var y = pr.xy(b[2], la)[1];
+      o.push('<line class="rm-grat" x1="0" y1="' + y.toFixed(1) + '" x2="' + w + '" y2="' + y.toFixed(1) + '"/>');
+      o.push('<text class="rm-gratT" x="4" y="' + (y - 3).toFixed(1) + '">' + la + "°N</text>");
     }
-    for (var gy = 40; gy < h; gy += 62) {
-      h2.push('<line class="rm-grid" x1="8" y1="' + gy + '" x2="' + (w - 8) + '" y2="' + gy + '"/>');
+    var step = (b[3] - b[2]) > 5 ? 2 : 1;
+    for (var lo = Math.ceil(b[2]); lo <= b[3]; lo += step) {
+      var x = pr.xy(lo, b[1])[0];
+      o.push('<line class="rm-grat" x1="' + x.toFixed(1) + '" y1="0" x2="' + x.toFixed(1) + '" y2="' + h + '"/>');
+      o.push('<text class="rm-gratT" x="' + (x + 3).toFixed(1) + '" y="' + (h - 4) + '">' +
+        Math.abs(lo) + "°" + (lo < 0 ? "W" : "E") + "</text>");
     }
 
-    /* legs in trip order */
-    for (var i2 = 1; i2 < pts.length; i2++) {
-      var A = pts[i2 - 1], B = pts[i2];
-      var live = highlightDay && A.stop.day.id === highlightDay && B.stop.day.id === highlightDay;
-      h2.push('<line class="rm-leg' + (live ? " rm-leg--active" : "") +
+    /* land, then glacier on top of it */
+    if (region.land && region.land.length) {
+      o.push('<path class="rm-land" d="' + ringsToPath(region.land, pr) + '"/>');
+    }
+    if (region.glacier && region.glacier.length) {
+      o.push('<path class="rm-ice" d="' + ringsToPath(region.glacier, pr) + '"/>');
+    }
+
+    /* route legs between consecutive pins */
+    for (var n = 1; n < cl.length; n++) {
+      var A = cl[n - 1], B = cl[n];
+      var live = highlightDay && A.dayId === highlightDay && B.dayId === highlightDay;
+      o.push('<line class="rm-leg' + (live ? " rm-leg--active" : "") +
         '" x1="' + A.x.toFixed(1) + '" y1="' + A.y.toFixed(1) +
         '" x2="' + B.x.toFixed(1) + '" y2="' + B.y.toFixed(1) + '"/>');
     }
 
-    pts.forEach(function (pt) {
-      var st = pt.stop;
-      var on = highlightDay && st.day.id === highlightDay;
+    /* pins */
+    var placed = [];
+    cl.forEach(function (c) {
+      var on = highlightDay && c.dayId === highlightDay;
       var dim = highlightDay && !on;
-      var gi = allStopsList.indexOf(st);
-      h2.push('<g class="rm-g' + (dim ? " rm-stop--dim" : "") + '">');
-      h2.push('<circle class="rm-stop rm-stop--' + st.half + (on ? " rm-stop--active" : "") +
-        '" cx="' + pt.x.toFixed(1) + '" cy="' + pt.y.toFixed(1) + '" r="' + STOP_R +
+      var many = c.items.length > 1;
+      var r = many ? 15 : 12;
+      var gi = allStopsList.indexOf(c.items[0]);
+      var names = c.items.map(function (x) { return x.name; }).join(", ");
+
+      o.push('<g class="rm-g' + (dim ? " rm-dim" : "") + '">');
+      o.push('<circle class="rm-halo" cx="' + c.x.toFixed(1) + '" cy="' + c.y.toFixed(1) +
+        '" r="' + (r + 3) + '"/>');
+      o.push('<circle class="rm-stop rm-stop--' + c.half + (on ? " rm-stop--active" : "") +
+        '" cx="' + c.x.toFixed(1) + '" cy="' + c.y.toFixed(1) + '" r="' + r +
         '" tabindex="0" role="button" data-stop="' + gi + '">' +
-        "<title>" + esc(st.name) + " - " + esc(st.day.dow.slice(0, 3) + " " + prettyDate(st.day.date)) +
-        "</title></circle>");
-      h2.push('<text class="rm-n' + (on ? " rm-n--on" : "") + '" x="' + pt.x.toFixed(1) +
-        '" y="' + (pt.y + 4).toFixed(1) + '">' + (st.dayIndex + 1) + "</text>");
-      if (label) {
-        var short = st.name.length > 22 ? st.name.slice(0, 21) + "…" : st.name;
-        var right = pt.x < w / 2;
-        h2.push('<text class="rm-label" x="' + (pt.x + (right ? STOP_R + 7 : -(STOP_R + 7))).toFixed(1) +
-          '" y="' + (pt.y + 4).toFixed(1) + '" text-anchor="' + (right ? "start" : "end") + '">' +
-          esc(short) + "</text>");
+        "<title>Day " + (c.dayIndex + 1) + ", " + esc(prettyDate(c.day.date)) + ": " +
+        esc(names) + "</title></circle>");
+      o.push('<text class="rm-n' + (on ? " rm-n--on" : "") + '" x="' + c.x.toFixed(1) +
+        '" y="' + (c.y + 4).toFixed(1) + '">' + (c.dayIndex + 1) + "</text>");
+      if (many) {
+        o.push('<circle class="rm-badge" cx="' + (c.x + r - 2).toFixed(1) + '" cy="' + (c.y - r + 2).toFixed(1) + '" r="8"/>');
+        o.push('<text class="rm-badgeT" x="' + (c.x + r - 2).toFixed(1) + '" y="' + (c.y - r + 5).toFixed(1) + '">' +
+          c.items.length + "</text>");
       }
-      h2.push("</g>");
+      if (label && !dim) {
+        var nm = c.items[0].name;
+        if (many) nm += " +" + (c.items.length - 1);
+        if (nm.length > 22) nm = nm.slice(0, 21) + "…";
+        var right = c.x < w * 0.6;
+        var lx = c.x + (right ? r + 7 : -(r + 7));
+        var wid = nm.length * 6.1;                    /* 11px sans, measured */
+        var x0 = right ? lx : lx - wid;
+        var x1 = x0 + wid;
+        var ly = c.y + 4;
+        /* real overlap test on the text box, and only the label moves */
+        for (var t = 0; t < placed.length; t++) {
+          var q = placed[t];
+          if (Math.abs(q.y - ly) < 14 && x0 < q.x1 + 6 && x1 + 6 > q.x0) {
+            ly = q.y + 15; t = -1;
+          }
+        }
+        if (ly > h - 8) ly = c.y - 12;
+        placed.push({ x0: x0, x1: x1, y: ly });
+        o.push('<text class="rm-label" x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) +
+          '" text-anchor="' + (right ? "start" : "end") + '">' + esc(nm) + "</text>");
+      }
+      o.push("</g>");
     });
 
     /* scale bar from the real projection */
-    var target = [5, 10, 25, 50, 100, 200].reduce(function (best, v) {
-      return Math.abs(v / pr.kmPerUnit - 100) < Math.abs(best / pr.kmPerUnit - 100) ? v : best;
+    var target = [5, 10, 25, 50, 100].reduce(function (best, v) {
+      return Math.abs(v / pr.kmPerPx - 95) < Math.abs(best / pr.kmPerPx - 95) ? v : best;
     }, 50);
-    var barPx = Math.min(target / pr.kmPerUnit, w * 0.4);
-    var by = h - 14, bx = w - barPx - 16;
-    h2.push('<line class="rm-scale" x1="' + bx + '" y1="' + by + '" x2="' + (bx + barPx) + '" y2="' + by + '"/>');
-    h2.push('<line class="rm-scale" x1="' + bx + '" y1="' + (by - 4) + '" x2="' + bx + '" y2="' + (by + 4) + '"/>');
-    h2.push('<line class="rm-scale" x1="' + (bx + barPx) + '" y1="' + (by - 4) + '" x2="' + (bx + barPx) + '" y2="' + (by + 4) + '"/>');
-    h2.push('<text class="rm-scaleT" x="' + bx + '" y="' + (by - 8) + '">' + target + " km</text>");
-    h2.push("</svg></div>");
-    return h2.join("");
+    var barPx = target / pr.kmPerPx;
+    var by = h - 16, bx = w - barPx - 18;
+    o.push('<g class="rm-scaleG">');
+    o.push('<line class="rm-scale" x1="' + bx + '" y1="' + by + '" x2="' + (bx + barPx) + '" y2="' + by + '"/>');
+    o.push('<line class="rm-scale" x1="' + bx + '" y1="' + (by - 4) + '" x2="' + bx + '" y2="' + (by + 4) + '"/>');
+    o.push('<line class="rm-scale" x1="' + (bx + barPx) + '" y1="' + (by - 4) + '" x2="' + (bx + barPx) + '" y2="' + (by + 4) + '"/>');
+    o.push('<text class="rm-scaleT" x="' + (bx + barPx / 2).toFixed(1) + '" y="' + (by - 7) + '" text-anchor="middle">' +
+      target + " km</text>");
+    o.push("</g>");
+
+    o.push("</svg></div>");
+    return o.join("");
   }
 
   function dayForId(id) {
@@ -847,8 +1045,8 @@
     else if (scope === "iceland") shown = stops.filter(function (x) { return x.half === "iceland"; });
     else if (dayId) shown = stops.filter(function (x) { return x.day.id === dayId; });
 
-    /* a single day is hard to place in isolation, so keep its half on screen
-       and highlight the day within it */
+    /* one day alone has no context, so keep its region on screen and light up
+       just that day */
     var drawn = shown, hi = null;
     if (dayId && shown.length) {
       var half = shown[0].half;
@@ -861,32 +1059,34 @@
 
     var heading = dayId
       ? prettyDate(dayForId(dayId).date) + " · " + dayForId(dayId).title
-      : scope === "england" ? "England"
-      : scope === "iceland" ? "Iceland" : "The whole trip";
+      : scope === "england" ? "England" : scope === "iceland" ? "Iceland" : "The whole trip";
 
     h.push('<h1 class="sr-only">Route map</h1>');
     h.push('<div class="mapwrap">');
     h.push('<div class="mapwrap__head"><div><p class="eyebrow">Where, and when</p><b>' +
       esc(heading) + "</b></div>" +
       '<span class="mapwrap__legend">' + shown.length + " stop" + (shown.length === 1 ? "" : "s") +
-      (eng.length && ice.length ? " · 2 regions" : "") + "</span></div>");
+      "</span></div>");
 
     h.push('<div class="panels' + (eng.length && ice.length ? " panels--two" : "") + '">');
-    h.push(panel(eng, stops, hi, "England"));
-    h.push(panel(ice, stops, hi, "Iceland"));
+    h.push(panel(eng, stops, hi, "london"));
+    h.push(panel(ice, stops, hi, "iceland"));
     h.push("</div>");
-    if (eng.length && ice.length) {
-      h.push('<p class="mapwrap__note">Two regions, each drawn at its own scale, ' +
-        "they are 1,900 km apart. The flight between them is Tue Oct 13.</p>");
-    }
+
+    h.push('<p class="mapwrap__note">' +
+      (eng.length && ice.length
+        ? "Two regions at their own scales, 1,900 km apart. You fly between them on Tue Oct 13. "
+        : "") +
+      "Numbers are the day of the trip. A pin with a badge is several stops in one place, " +
+      "and pins that would hide each other are separated by a few pixels." +
+      (ice.length ? " Pale shapes are glaciers." : "") + "</p>");
 
     h.push('<div class="mapfilter">');
     [["all", "Whole trip"], ["england", "England"], ["iceland", "Iceland"]].forEach(function (f) {
       h.push('<button data-map="' + f[0] + '" aria-pressed="' + (scope === f[0]) + '">' + f[1] + "</button>");
     });
     D.days.forEach(function (d) {
-      var n = stops.filter(function (x) { return x.day.id === d.id; }).length;
-      if (!n) return;
+      if (!stops.filter(function (x) { return x.day.id === d.id; }).length) return;
       h.push('<button data-map="' + d.id + '" aria-pressed="' + (scope === d.id) + '">' +
         esc(d.dow.slice(0, 3) + " " + prettyDate(d.date)) + "</button>");
     });
@@ -934,13 +1134,15 @@
 
     h.push('<div class="card"><div class="card__body">' +
       '<p class="eyebrow">About this map</p>' +
-      '<p class="small muted" style="margin-top:6px">Drawn from the coordinates in ' +
-      "<code>data.js</code>, so it works with no signal. Each region has its own " +
-      "scale, and stops are nudged apart just enough to stay readable, so treat " +
-      "positions as approximate. Coastlines are left out rather than guessed at. " +
+      '<p class="small muted" style="margin-top:6px">Coastlines and glaciers are real: ' +
+      "Natural Earth 1:10m data, clipped to these two regions and shipped inside " +
+      "the app, so the map works with no signal. Pins come from the coordinates in " +
+      "<code>data.js</code>: same-day stops closer than about 5 km are grouped " +
+      "into one pin, and a pin is never shifted more than a few pixels from its " +
+      "true position, so nothing ends up on the wrong side of a coastline. " +
       'Stops marked <span class="approx">area</span> are a town centre, because ' +
-      "the itinerary only gives an area for those. Tap any dot to jump to it in " +
-      "the list.</p></div></div>");
+      "the itinerary only gives an area for those. Tap a pin to jump to it in the " +
+      "list.</p></div></div>");
 
     h.push("</div></div>");
     return h.join("");
@@ -1375,6 +1577,40 @@
         box.dispatchEvent(new Event("change", { bubbles: true }));
         return;
       }
+    }
+
+    var dayBtn = t.closest && t.closest("[data-dayopen]");
+    if (dayBtn) {
+      var did = dayBtn.dataset.dayopen;
+      var art = document.getElementById("day-" + did);
+      var now = !art.classList.contains("is-open");
+      art.classList.toggle("is-open", now);
+      dayBtn.setAttribute("aria-expanded", String(now));
+      S.dayOpen[did] = now;
+      save(K.dayOpen, S.dayOpen);
+      wireShots();
+      return;
+    }
+
+    var itBtn = t.closest && t.closest("[data-itemopen]");
+    if (itBtn) {
+      var ik = itBtn.dataset.itemopen;
+      var box = itBtn.parentNode;
+      var nowI = !box.classList.contains("is-open");
+      box.classList.toggle("is-open", nowI);
+      itBtn.setAttribute("aria-expanded", String(nowI));
+      if (nowI) S.itemOpen[ik] = true; else delete S.itemOpen[ik];
+      save(K.itemOpen, S.itemOpen);
+      return;
+    }
+
+    var daysAll = t.closest && t.closest("[data-days]");
+    if (daysAll) {
+      var wantOpen = daysAll.dataset.days === "open";
+      D.days.forEach(function (d) { S.dayOpen[d.id] = wantOpen; });
+      save(K.dayOpen, S.dayOpen);
+      render();
+      return;
     }
 
     var toggle = t.closest && t.closest("[data-toggle]");

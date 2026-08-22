@@ -1,5 +1,8 @@
 .shots/
 shots/
+.geo/
 *.png
+.t*.mjs
+.p*.py
 .DS_Store
 Thumbs.db
