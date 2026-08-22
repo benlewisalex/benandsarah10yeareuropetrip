@@ -113,10 +113,10 @@ const TRIP = {
         "Today is deliberately low-effort because she'll be wrecked. All walking, all free."
       ],
       items: [
-        { name: "Westminster & Big Ben", detail: "Then across Westminster Bridge for the classic view.", maps: "Big Ben, Westminster, London" },
-        { name: "Thames South Bank walk", detail: "East past the London Eye.", maps: "South Bank, London" },
-        { name: "Tower Bridge", detail: "And the Tower of London from outside.", maps: "Tower Bridge, London" },
-        { name: "Trafalgar Square and Buckingham Palace", detail: "If energy holds.", maps: "Trafalgar Square, London" }
+        { name: "Westminster & Big Ben", detail: "Then across Westminster Bridge for the classic view.", maps: "Big Ben, Westminster, London", ll: "51.5007,-0.1246" },
+        { name: "Thames South Bank walk", detail: "East past the London Eye.", maps: "South Bank, London", ll: "51.5033,-0.1196" },
+        { name: "Tower Bridge", detail: "And the Tower of London from outside.", maps: "Tower Bridge, London", ll: "51.5055,-0.0754" },
+        { name: "Trafalgar Square and Buckingham Palace", detail: "If energy holds.", maps: "Trafalgar Square, London", ll: "51.5080,-0.1281" }
       ],
       notes: [
         { label: "Jet lag", text: "Stay outside in daylight as long as possible - it's the only thing that actually fixes jet lag." },
@@ -132,10 +132,10 @@ const TRIP = {
       items: [
         { time: "Morning", name: "Sacrament meeting at the Hyde Park Chapel",
           detail: "64-68 Exhibition Road, South Kensington. South Kensington tube. The building also houses a visitors' center with exhibits on temples and the history of the Church in the British Isles - worth 30 minutes after the block.",
-          maps: "Hyde Park Chapel, 64-68 Exhibition Road, London SW7 2PA" },
+          maps: "Hyde Park Chapel, 64-68 Exhibition Road, London SW7 2PA", ll: "51.4956,-0.1745" },
         { time: "Afternoon", name: "London England Temple grounds",
           detail: "West Park Road, Newchapel, Lingfield, Surrey RH7 6HW.",
-          maps: "London England Temple, West Park Road, Newchapel, Lingfield, Surrey RH7 6HW",
+          maps: "London England Temple, West Park Road, Newchapel, Lingfield, Surrey RH7 6HW", ll: "51.1608,-0.0497",
           sub: [
             "Train from London Victoria or London Bridge toward East Grinstead or Lingfield, roughly 50 minutes.",
             "Grounds are open to all during daylight hours. Formal gardens, a large pond, and an oak on site that's over 450 years old - President McKay had it preserved when he chose the building site.",
@@ -144,7 +144,7 @@ const TRIP = {
           headsUp: "Lingfield station is 2 miles from the temple with no bus service - taxi or rideshare the last stretch. Arrange the return ride before you're dropped off; it's rural." },
         { time: "Evening", name: "Padella, Borough",
           detail: "Pasta - best cheap meal in the city. No reservations; go at 5pm.",
-          maps: "Padella, Borough Market, London" }
+          maps: "Padella, Borough Market, London", ll: "51.5054,-0.0905" }
       ],
       notes: [
         { label: "Alternate", text: "If you'd rather attend an actual session than walk the grounds, see the Tuesday Temple Session Variant at the bottom of the Days view." }
@@ -157,8 +157,8 @@ const TRIP = {
       images: ["stonehenge"],
       intro: ["The budget route beats the tour coaches."],
       items: [
-        { name: "Train London Waterloo to Salisbury", detail: "About 90 minutes. Book advance tickets; walk-up fare is several times higher.", maps: "Salisbury railway station, Salisbury" },
-        { name: "The Stonehenge Tour bus", detail: "Runs from Salisbury station, and the fare bundles site admission.", maps: "Stonehenge, Amesbury, Salisbury" },
+        { name: "Train London Waterloo to Salisbury", detail: "About 90 minutes. Book advance tickets; walk-up fare is several times higher.", maps: "Salisbury railway station, Salisbury", ll: "51.0698,-1.8060" },
+        { name: "The Stonehenge Tour bus", detail: "Runs from Salisbury station, and the fare bundles site admission.", maps: "Stonehenge, Amesbury, Salisbury", ll: "51.1789,-1.8262" },
         { name: "Back in London by early evening." }
       ],
       notes: [
@@ -176,14 +176,14 @@ const TRIP = {
         { time: "Morning", name: "Flight LHR to KEF", detail: "About 3 hours. Iceland is an hour behind London; you land around midday." },
         { name: "Pick up the rental car at KEF",
           detail: "A 2WD handles this entire route in mid-October and saves real money. Take the gravel and sand/ash damage waiver - that's a genuine Iceland risk, not an upsell.",
-          maps: "Keflavik International Airport, Iceland" },
+          maps: "Keflavik International Airport, Iceland", ll: "63.9850,-22.6056" },
         { time: "Afternoon", name: "Sundhnúkur / Fagradalsfjall lava fields",
           detail: "Marked trails cross lava from the 2021-2025 eruptions; some of it still radiates heat.",
-          maps: "Fagradalsfjall, Reykjanes, Iceland",
+          maps: "Fagradalsfjall, Reykjanes, Iceland", ll: "63.8958,-22.2725",
           headsUp: "Check safetravel.is and almannavarnir.is before driving out - exclusion zones move." },
-        { name: "Bridge Between Continents", detail: "Footbridge over a rift between the North American and Eurasian plates. Ten minutes, on the way.", maps: "Bridge Between Continents, Reykjanes, Iceland" },
-        { name: "Gunnuhver", detail: "Violently boiling mud pots and steam vents.", maps: "Gunnuhver, Reykjanes, Iceland" },
-        { name: "Check into Reykjavík", detail: "Dinner: Messinn for fish, or Bæjarins Beztu for the hot dog.", maps: "Reykjavik, Iceland" }
+        { name: "Bridge Between Continents", detail: "Footbridge over a rift between the North American and Eurasian plates. Ten minutes, on the way.", maps: "Bridge Between Continents, Reykjanes, Iceland", ll: "63.8686,-22.6752" },
+        { name: "Gunnuhver", detail: "Violently boiling mud pots and steam vents.", maps: "Gunnuhver, Reykjanes, Iceland", ll: "63.8189,-22.6836" },
+        { name: "Check into Reykjavík", detail: "Dinner: Messinn for fish, or Bæjarins Beztu for the hot dog.", maps: "Reykjavik, Iceland", ll: "64.1466,-21.9426", area: true }
       ],
       hazards: [
         { title: "Volcanic gas is what actually kills people here",
@@ -193,7 +193,7 @@ const TRIP = {
       ],
       aurora: { night: 1, spot: "Grótta lighthouse, Seltjarnarnes",
         text: "Fifteen minutes from downtown, free parking, dark enough to work.",
-        maps: "Grotta lighthouse, Seltjarnarnes, Iceland" },
+        maps: "Grotta lighthouse, Seltjarnarnes, Iceland", ll: "64.1655,-22.0208" },
       notes: [
         { label: "Variant", text: "Under the Tuesday temple session variant this becomes drive-and-aurora only, and the Reykjanes stops move to Friday afternoon. See the bottom of the Days view." }
       ]
@@ -205,16 +205,16 @@ const TRIP = {
       images: ["icetunnel", "thingvellir", "geysir", "gullfoss"],
       intro: ["Big day. Roll at 8:30."],
       items: [
-        { time: "9:00", name: "Þingvellir National Park", detail: "Walk the Almannagjá rift where the plates pull apart. This is the tectonic plates park. Parking fee applies.", maps: "Thingvellir National Park, Iceland" },
-        { time: "10:45", name: "Geysir", detail: "Strokkur erupts every 5-10 minutes, dependably.", maps: "Geysir, Haukadalur, Iceland" },
-        { time: "11:45", name: "Gullfoss", detail: "The two-tier falls. Quick stop; you're coming back here.", maps: "Gullfoss, Iceland" },
-        { time: "13:00", name: "Into the Glacier, departing Gullfoss", detail: "About 3.5 hours. Sleipnir monster truck up onto Langjökull, then an hour walking through 1,600 feet of blue ice tunnel carved into the glacier, including the ice chapel. Thermal suits and helmets provided. Book direct; the Gullfoss departure is far cheaper than the Reykjavík pickup version.", maps: "Into the Glacier, Klaki base camp, Iceland" },
-        { time: "17:15", name: "Secret Lagoon, Flúðir", detail: "Iceland's oldest swimming pool, built 1891, in a geothermal field with a small geyser erupting alongside. Your tourist hot spring, at a fraction of Blue Lagoon's price and with more character.", maps: "Secret Lagoon, Fludir, Iceland" },
-        { name: "Drive to the guesthouse near Hella or Hvolsvöllur", detail: "Two nights here.", maps: "Hvolsvollur, Iceland" }
+        { time: "9:00", name: "Þingvellir National Park", detail: "Walk the Almannagjá rift where the plates pull apart. This is the tectonic plates park. Parking fee applies.", maps: "Thingvellir National Park, Iceland", ll: "64.2558,-21.1297" },
+        { time: "10:45", name: "Geysir", detail: "Strokkur erupts every 5-10 minutes, dependably.", maps: "Geysir, Haukadalur, Iceland", ll: "64.3104,-20.3024" },
+        { time: "11:45", name: "Gullfoss", detail: "The two-tier falls. Quick stop; you're coming back here.", maps: "Gullfoss, Iceland", ll: "64.3271,-20.1199" },
+        { time: "13:00", name: "Into the Glacier, departing Gullfoss", detail: "About 3.5 hours. Sleipnir monster truck up onto Langjökull, then an hour walking through 1,600 feet of blue ice tunnel carved into the glacier, including the ice chapel. Thermal suits and helmets provided. Book direct; the Gullfoss departure is far cheaper than the Reykjavík pickup version.", maps: "Gullfoss departure point, Iceland", ll: "64.3271,-20.1199" },
+        { time: "17:15", name: "Secret Lagoon, Flúðir", detail: "Iceland's oldest swimming pool, built 1891, in a geothermal field with a small geyser erupting alongside. Your tourist hot spring, at a fraction of Blue Lagoon's price and with more character.", maps: "Secret Lagoon, Fludir, Iceland", ll: "64.1372,-20.3106" },
+        { name: "Drive to the guesthouse near Hella or Hvolsvöllur", detail: "Two nights here.", maps: "Hvolsvollur, Iceland", ll: "63.7494,-20.2225", area: true }
       ],
       aurora: { night: 2, spot: "Wherever you are - rural south Iceland",
         text: "Rural and dark. Statistically your best shot of the trip.",
-        maps: "Hvolsvollur, Iceland" }
+        maps: "Hvolsvollur, Iceland", ll: "63.7494,-20.2225", area: true }
     },
 
     { id: "oct15", date: "2026-10-15", dow: "Thursday", half: "iceland",
@@ -223,12 +223,12 @@ const TRIP = {
       images: ["reynisfjara"],
       intro: [],
       items: [
-        { name: "Seljalandsfoss", detail: "The waterfall you walk behind.", maps: "Seljalandsfoss, Iceland",
+        { name: "Seljalandsfoss", detail: "The waterfall you walk behind.", maps: "Seljalandsfoss, Iceland", ll: "63.6156,-19.9886",
           headsUp: "You will get drenched. Rain shells mandatory." },
-        { name: "Skógafoss", detail: "200 feet, walk right to the base.", maps: "Skogafoss, Iceland" },
-        { name: "Dyrhólaey", detail: "Headland arch with the whole black coastline below.", maps: "Dyrholaey, Vik, Iceland" },
-        { name: "Reynisfjara black sand beach, Vík", detail: "Basalt columns and sea stacks.", maps: "Reynisfjara beach, Vik, Iceland" },
-        { time: "Evening", name: "Lava Show, Vík", detail: "About 1 hour. They superheat real basalt to 1,100C and pour glowing lava into the room in front of you. You feel the heat on your face. With no eruption running, this is the closest you'll get, and it stands on its own merits.", maps: "Lava Show, Vik, Iceland" },
+        { name: "Skógafoss", detail: "200 feet, walk right to the base.", maps: "Skogafoss, Iceland", ll: "63.5321,-19.5114" },
+        { name: "Dyrhólaey", detail: "Headland arch with the whole black coastline below.", maps: "Dyrholaey, Vik, Iceland", ll: "63.4020,-19.1290" },
+        { name: "Reynisfjara black sand beach, Vík", detail: "Basalt columns and sea stacks.", maps: "Reynisfjara beach, Vik, Iceland", ll: "63.4033,-19.0447" },
+        { time: "Evening", name: "Lava Show, Vík", detail: "About 1 hour. They superheat real basalt to 1,100C and pour glowing lava into the room in front of you. You feel the heat on your face. With no eruption running, this is the closest you'll get, and it stands on its own merits.", maps: "Lava Show, Vik, Iceland", ll: "63.4186,-19.0060" },
         { name: "Back to the guesthouse." }
       ],
       hazards: [
@@ -237,7 +237,7 @@ const TRIP = {
       ],
       aurora: { night: 3, spot: "South coast, back at the guesthouse",
         text: "Same dark skies as night 2. The Milky Way with no effort.",
-        maps: "Hvolsvollur, Iceland" }
+        maps: "Hvolsvollur, Iceland", ll: "63.7494,-20.2225", area: true }
     },
 
     { id: "oct16", date: "2026-10-16", dow: "Friday", half: "iceland",
@@ -246,13 +246,13 @@ const TRIP = {
       images: ["reykjadalur", "horses"],
       intro: [],
       items: [
-        { time: "Morning", name: "Reykjadalur, Hveragerði", detail: "Park at the trailhead and hike about 2 miles uphill through a steaming geothermal valley, 45-60 minutes. At the top, a river you sit down in, with boardwalks and changing screens. The water gets hotter further upstream - find your spot. Your non-tourist hot spring. Free, and the most Icelandic thing on this itinerary.", maps: "Reykjadalur trailhead, Hveragerdi, Iceland" },
-        { time: "Afternoon", name: "Icelandic horse riding", detail: "1-2 hours at a farm near Hveragerði or Selfoss. Ask specifically for a ride that demonstrates the tölt - the fifth gait unique to the breed, smooth enough to hold a drink while riding. Beginners are fine; these horses are famously calm.", maps: "Selfoss, Iceland" },
-        { name: "Drive to lodging near Keflavík", detail: "About 1 hour, for the early flight.", maps: "Keflavik, Iceland" }
+        { time: "Morning", name: "Reykjadalur, Hveragerði", detail: "Park at the trailhead and hike about 2 miles uphill through a steaming geothermal valley, 45-60 minutes. At the top, a river you sit down in, with boardwalks and changing screens. The water gets hotter further upstream - find your spot. Your non-tourist hot spring. Free, and the most Icelandic thing on this itinerary.", maps: "Reykjadalur trailhead, Hveragerdi, Iceland", ll: "64.0225,-21.2103" },
+        { time: "Afternoon", name: "Icelandic horse riding", detail: "1-2 hours at a farm near Hveragerði or Selfoss. Ask specifically for a ride that demonstrates the tölt - the fifth gait unique to the breed, smooth enough to hold a drink while riding. Beginners are fine; these horses are famously calm.", maps: "Selfoss, Iceland", ll: "63.9333,-21.0000", area: true },
+        { name: "Drive to lodging near Keflavík", detail: "About 1 hour, for the early flight.", maps: "Keflavik, Iceland", ll: "64.0049,-22.5644", area: true }
       ],
       aurora: { night: 4, spot: "Reykjanes lava fields",
         text: "Dark, and ten minutes from the airport hotels. Last chance.",
-        maps: "Reykjanes peninsula, Iceland" }
+        maps: "Reykjanes peninsula, Iceland", ll: "63.8500,-22.4500", area: true }
     },
 
     { id: "oct17", date: "2026-10-17", dow: "Saturday", half: "iceland",
@@ -261,7 +261,7 @@ const TRIP = {
       images: [],
       intro: [],
       items: [
-        { name: "Early Icelandair KEF to Chicago O'Hare", detail: "Connect to Madison. Home early afternoon.", maps: "Keflavik International Airport, Iceland" }
+        { name: "Early Icelandair KEF to Chicago O'Hare", detail: "Connect to Madison. Home early afternoon.", maps: "Keflavik International Airport, Iceland", ll: "63.9850,-22.6056" }
       ]
     }
   ],
@@ -369,7 +369,9 @@ const TRIP = {
       { id: "tw5", text: "Check English Heritage for October Stone Circle Experience availability" },
       { id: "tw6", text: "Confirm both temple recommends are current" },
       { id: "tw7", text: "Check the London England Temple page for the October schedule and reservation link" },
-      { id: "tw8", text: "Verify passports are valid at least 6 months past Oct 17, 2026" }
+      { id: "tw8", text: "Verify passports are valid at least 6 months past Oct 17, 2026" },
+      { id: "tw9", text: "Apply for UK ETA for both of you - the UK has required an Electronic Travel Authorisation from US citizens since January 2025. Confirm the current fee and processing time on gov.uk before paying.", extra: true },
+      { id: "tw10", text: "Check whether ETIAS is live for Iceland by October 2026 - the EU has delayed it repeatedly. If it is in force by then, both of you need one for the Schengen area.", extra: true },
     ]},
     { id: "four-six", label: "Four to six weeks out", promoteAt: 42, overdueAt: 7, items: [
       { id: "fs1",  text: "Book Into the Glacier - Gullfoss departure, not Reykjavík", budgetIds: ["exc-glacier"] },
@@ -428,16 +430,18 @@ const TRIP = {
       { label: "Road conditions",              value: "road.is",                     url: "https://www.road.is/" },
       { label: "Weather + aurora forecast",    value: "vedur.is/en/weather/aurora",  url: "https://en.vedur.is/weather/forecasts/aurora/" },
       { label: "Travel safety and alerts",     value: "safetravel.is",               url: "https://safetravel.is/" },
-      { label: "Volcano access decisions",     value: "almannavarnir.is",            url: "https://www.almannavarnir.is/" }
+      { label: "Volcano access decisions",     value: "almannavarnir.is",            url: "https://www.almannavarnir.is/" },
+      { label: "UK ETA application",           value: "gov.uk/apply-eta",            url: "https://www.gov.uk/apply-eta" },
+      { label: "ETIAS status (Schengen)",      value: "travel-europe.europa.eu",     url: "https://travel-europe.europa.eu/etias_en" }
     ],
     embassies: [
-      { label: "US Embassy Reykjavík", address: "Engjateigur 7, 105 Reykjavík", maps: "US Embassy, Engjateigur 7, 105 Reykjavik, Iceland" },
-      { label: "US Embassy London",        address: "33 Nine Elms Lane, London SW11 7US", maps: "US Embassy, 33 Nine Elms Lane, London SW11 7US" }
+      { label: "US Embassy Reykjavík", address: "Engjateigur 7, 105 Reykjavík", maps: "US Embassy, Engjateigur 7, 105 Reykjavik, Iceland", ll: "64.1442,-21.8880" },
+      { label: "US Embassy London",        address: "33 Nine Elms Lane, London SW11 7US", maps: "US Embassy, 33 Nine Elms Lane, London SW11 7US", ll: "51.4805,-0.1300" }
     ],
     worship: [
       { label: "Hyde Park Chapel",
         address: "64-68 Exhibition Road, South Kensington, London SW7 2PA",
-        maps: "Hyde Park Chapel, 64-68 Exhibition Road, London SW7 2PA",
+        maps: "Hyde Park Chapel, 64-68 Exhibition Road, London SW7 2PA", ll: "51.4956,-0.1745",
         notes: [
           "South Kensington tube.",
           "Sacrament meeting Sunday Oct 11, morning.",
@@ -445,7 +449,7 @@ const TRIP = {
         ]},
       { label: "London England Temple",
         address: "West Park Road, Newchapel, Lingfield, Surrey RH7 6HW",
-        maps: "London England Temple, West Park Road, Newchapel, Lingfield, Surrey RH7 6HW",
+        maps: "London England Temple, West Park Road, Newchapel, Lingfield, Surrey RH7 6HW", ll: "51.1608,-0.0497",
         notes: [
           "Train from London Victoria or London Bridge toward East Grinstead or Lingfield, roughly 50 minutes.",
           "Lingfield station is 2 miles from the temple with no bus service. Taxi or rideshare the last stretch, and arrange the return ride before you're dropped off - it's rural.",

@@ -140,6 +140,24 @@ typing the private bits into the app, which is how it's already designed.
 have to open `index.html` or `app.js` to change a time, a price or a booking.
 The file is commented and organised in the order the app uses it.
 
+### Where checkmarks live (read this once)
+
+Every checkbox, actual cost and confirmation number is stored in **that browser
+on that device**, and nothing syncs. Verified behaviour: check two items, quit
+the browser, reopen - they are still checked. Open the same URL in a different
+browser or on a different phone - the list is empty.
+
+So your phone, your laptop and Sarah's phone are three independent lists. That
+is the cost of having no server and no accounts, and it is also why nothing
+private is ever at risk. Two practical consequences:
+
+- Pick **one device** to be the source of truth for working the pre-trip
+  checklist. Doing half on the laptop and half on the phone will read as
+  "nothing is done" on both.
+- On iOS, add the site to the Home Screen. A Home Screen web app gets its own
+  storage that Safari's 7-day script-storage eviction does not clear, which
+  matters when the trip is weeks out.
+
 ### Change a time or an activity
 
 Find the day in the `days:` array and edit it. Times are free text - `"9:00"`,
@@ -151,8 +169,15 @@ Find the day in the `days:` array and edit it. Times are free text - `"9:00"`,
   maps: "Into the Glacier, Klaki base camp, Iceland" },
 ```
 
-- `maps:` is a plain search string. The app turns it into an Apple Maps link on
-  iPhones and a Google Maps link everywhere else, so it opens the native app.
+- `maps:` is the pin's **label**; `ll:` is the actual target, `"lat,lng"`. The
+  app builds an Apple Maps link on iPhones and a Google Maps link everywhere
+  else, always pointing at the coordinate. This matters: a text-only search is
+  resolved against wherever the phone currently is, which is how "Padella,
+  Borough Market" once matched a similarly-named place in Wisconsin. If you add
+  a stop, give it an `ll` or it will have the same problem.
+- `area: true` marks a coordinate that is a town centre rather than an exact
+  venue, because the itinerary only specifies an area (the south Iceland
+  guesthouse, the horse farm near Selfoss). It renders an "area" badge.
 - `headsUp:` on an item renders an amber logistics warning.
 - `hazards:` on a **day** renders the hatched red block. That treatment is
   reserved for things that can actually hurt you (sneaker waves, volcanic gas,
@@ -200,10 +225,41 @@ Items live in `checklists`, grouped by the buckets from `ITINERARY.md`.
 - Items you add in the app itself are stored per-device and don't need a code
   change. `data.js` items are the shared ones.
 
+### Change the map
+
+The Map view has no configuration and no map library. It reads every itinerary
+item that has an `ll` and draws them in trip order. Add a stop with coordinates
+and it appears on the map automatically.
+
+It is a **schematic**, not a basemap: each region is projected at its own scale
+(England and Iceland are 1,900 km apart, so one shared scale collapses both into
+a blob), and stops are nudged apart so four London landmarks inside 3 km stay
+readable. Coastlines are deliberately not drawn - inventing them would be
+decoration posing as data. Every stop still deep-links to the real map, and
+"Open route in maps" builds a multi-waypoint driving route.
+
 ### Change the confirmations locker
 
 `confirmations` defines the labels and which fields each booking gets. The values
 you type are never stored here - only on the device.
+
+### Items I added that are not in ITINERARY.md
+
+Two checklist items carry an **"added"** badge because they did not come from
+your itinerary:
+
+- **UK ETA.** The UK has required an Electronic Travel Authorisation from US
+  citizens since January 2025, so you almost certainly need one for October
+  2026. I have not stated a fee, because it changed once already and my
+  information has a cutoff - confirm the current cost and processing time on
+  gov.uk.
+- **ETIAS** for Iceland (Schengen). Repeatedly delayed, and genuinely uncertain
+  for October 2026. The item asks you to check whether it is in force rather
+  than assuming.
+
+Both are in the "This week" bucket with links under Info. Delete them from
+`data.js` if you disagree - the badge exists so you can tell my additions from
+your own content.
 
 ### Change the photos
 

@@ -103,16 +103,45 @@
     return "$" + Number(n || 0).toLocaleString("en-US", { maximumFractionDigits: 0 });
   }
 
-  /* Opens the native maps app: Apple Maps on Apple platforms, Google elsewhere. */
-  function mapsUrl(q) {
-    var enc = encodeURIComponent(q);
-    var apple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);
-    return apple ? "https://maps.apple.com/?q=" + enc
-                 : "https://www.google.com/maps/search/?api=1&query=" + enc;
+  function isApple() { return /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent); }
+
+  /* Drop a pin at exact coordinates. A plain text query gets resolved against
+     wherever the phone currently is, which is how a London restaurant matched
+     a similarly-named place in Wisconsin. Coordinates cannot be misread.
+     `q` is carried along only as the pin's label. */
+  function mapsUrl(q, ll) {
+    var label = encodeURIComponent(q || "");
+    if (ll) {
+      var c = encodeURIComponent(ll);
+      return isApple()
+        ? "https://maps.apple.com/?ll=" + c + "&q=" + label + "&z=15"
+        : "https://www.google.com/maps/search/?api=1&query=" + c;
+    }
+    return isApple()
+      ? "https://maps.apple.com/?q=" + label
+      : "https://www.google.com/maps/search/?api=1&query=" + label;
   }
-  function mapsChip(q, label) {
-    if (!q) return "";
-    return '<a class="maps" href="' + esc(mapsUrl(q)) + '" target="_blank" rel="noopener">' +
+
+  /* Turn-by-turn for a whole day, in order. */
+  function routeUrl(stops) {
+    var pts = stops.filter(function (x) { return x.ll; }).map(function (x) { return x.ll; });
+    if (pts.length < 2) return null;
+    if (isApple()) {
+      return "https://maps.apple.com/?saddr=" + encodeURIComponent(pts[0]) +
+             "&daddr=" + encodeURIComponent(pts[pts.length - 1]) + "&dirflg=d";
+    }
+    var u = "https://www.google.com/maps/dir/?api=1&travelmode=driving" +
+      "&origin=" + encodeURIComponent(pts[0]) +
+      "&destination=" + encodeURIComponent(pts[pts.length - 1]);
+    if (pts.length > 2) {
+      u += "&waypoints=" + pts.slice(1, -1).map(encodeURIComponent).join("%7C");
+    }
+    return u;
+  }
+
+  function mapsChip(q, label, ll) {
+    if (!q && !ll) return "";
+    return '<a class="maps" href="' + esc(mapsUrl(q, ll)) + '" target="_blank" rel="noopener">' +
       ICON.pin + esc(label || "Maps") + "</a>";
   }
 
@@ -146,6 +175,30 @@
   function dayForDate(s) {
     for (var i = 0; i < D.days.length; i++) if (D.days[i].date === s) return D.days[i];
     return null;
+  }
+
+  /* ------------------------------------------------------------ the stops */
+  /* Every itinerary item that has a coordinate, in trip order. This is the
+     single source for both the route map and the stop list. */
+  function allStops() {
+    var out = [];
+    D.days.forEach(function (day, di) {
+      (day.items || []).forEach(function (it) {
+        if (!it.ll) return;
+        out.push({
+          ll: it.ll, name: it.name, maps: it.maps, area: !!it.area,
+          day: day, dayIndex: di, half: day.half, time: it.time || null
+        });
+      });
+      if (day.aurora && day.aurora.ll) {
+        out.push({
+          ll: day.aurora.ll, name: day.aurora.spot, maps: day.aurora.maps,
+          area: !!day.aurora.area, day: day, dayIndex: di, half: day.half,
+          time: "Night", aurora: day.aurora.night
+        });
+      }
+    });
+    return out;
   }
 
   /* ---------------------------------------------------- checklist urgency */
@@ -269,14 +322,16 @@
       "</figure>";
   }
 
-  function sunRow(day) {
+  /* cls lets the hero reuse this with light-on-dark styling */
+  function sunRow(day, cls) {
+    var k = cls || "day__sun";
     if (!day.sun) {
-      return '<div class="sunrow"><div class="muted tiny">Sunrise and sunset for this day are not listed in the itinerary.</div></div>';
+      return '<div class="' + k + '"><div class="tiny">Sunrise and sunset are not listed in the itinerary for this day.</div></div>';
     }
     var parts = [];
     if (day.sun.sunrise) parts.push("<div>" + ICON.sunup + "<span>" + esc(day.sun.sunrise) + "</span></div>");
     if (day.sun.sunset)  parts.push("<div>" + ICON.sundn + "<span>" + esc(day.sun.sunset) + "</span></div>");
-    return '<div class="sunrow">' + parts.join("") + "</div>";
+    return '<div class="' + k + '">' + parts.join("") + "</div>";
   }
 
   /* -------------------------------------------------------------- DAY CARD */
@@ -290,16 +345,23 @@
     h.push('<div class="day__b">');
 
     if (!headless) {
-      h.push('<div class="day__head">');
+      var key = (day.images && day.images[0]) || null;
+      var im = key ? D.images[key] : null;
+      h.push('<div class="day__hero' + (im ? "" : " day__hero--" + day.half) + '"' +
+        (im ? ' style="--grad:' + im.grad + '"' : "") + ">");
+      if (im) {
+        h.push('<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy" decoding="async" data-shot>');
+        h.push('<figcaption class="shot__credit">Photo: Unsplash</figcaption>');
+      }
+      h.push('<div class="day__heroT">');
       h.push('<p class="day__date"><span>' + esc(day.dow) + " &middot; " + esc(prettyDate(day.date)) + "</span>" +
-        "<span>" + (day.half === "london" ? "London" : "Iceland") + "</span>" +
+        "<span>&middot; " + (day.half === "london" ? "England" : "Iceland") + "</span>" +
         (isToday ? '<span class="day__is-today">Today</span>' : "") + "</p>");
       h.push('<h3 class="day__title">' + esc(day.title) + "</h3>");
+      h.push("</div></div>");
       h.push(sunRow(day));
-      h.push("</div>");
     }
 
-    if (day.images && day.images.length) h.push(shot(day.images[0]));
     if (day.images && day.images.length > 1) {
       h.push('<div class="shot-strip">');
       day.images.slice(1, 4).forEach(function (k) { h.push(shot(k, "shot--thumb")); });
@@ -308,7 +370,7 @@
 
     h.push('<div class="tl">');
     (day.intro || []).forEach(function (p) {
-      h.push('<p class="small muted" style="padding:12px 0 0">' + esc(p) + "</p>");
+      h.push('<p class="tl__intro">' + esc(p) + "</p>");
     });
 
     (day.items || []).forEach(function (it) {
@@ -325,7 +387,7 @@
       if (it.headsUp) {
         h.push('<div class="headsup">' + ICON.alert + "<span>" + esc(it.headsUp) + "</span></div>");
       }
-      if (it.maps) h.push(mapsChip(it.maps, "Open in maps"));
+      if (it.maps) h.push(mapsChip(it.maps, "Open in maps", it.ll));
       h.push("</div></div>");
     });
 
@@ -343,7 +405,7 @@
       h.push("<b>Aurora night " + day.aurora.night + "</b>");
       h.push("<p><strong>" + esc(day.aurora.spot) + "</strong> &middot; " + esc(day.aurora.text) + "</p>");
       h.push('<div style="display:flex;gap:8px;flex-wrap:wrap">');
-      if (day.aurora.maps) h.push(mapsChip(day.aurora.maps, "Directions"));
+      if (day.aurora.maps) h.push(mapsChip(day.aurora.maps, "Directions", day.aurora.ll));
       h.push('<a class="maps" href="#/aurora">Aurora plan</a>');
       h.push("</div></div>");
     }
@@ -370,14 +432,18 @@
     states.forEach(function (s) { totalItems += s.total; totalDone += s.done; });
     var b = budgetTotals();
 
+    h.push('<div class="dash">');
+    h.push('<div class="dash__wide">');
     h.push('<div class="hero">');
     h.push('<div class="spine spine--both hero__spine" aria-hidden="true"></div>');
     h.push('<div class="hero__b">');
+    h.push('<div class="hero__text">');
     h.push('<p class="eyebrow">Countdown</p>');
     h.push('<p class="countdown"><b>' + c.daysOut + "</b><span>day" + (c.daysOut === 1 ? "" : "s") +
       " to London</span></p>");
     h.push('<h1 class="hero__title">' + (od > 0 ? "You have overdue bookings." : "Booking phase.") + "</h1>");
     h.push('<p class="hero__sub">' + esc(D.meta.structure) + "</p>");
+    h.push("</div>");
 
     h.push('<div class="tally">');
     h.push('<div class="tally__i' + (od > 0 ? " tally__i--bad" : "") + '"><b>' + od + "</b><span>Overdue</span></div>");
@@ -385,8 +451,14 @@
     h.push('<div class="tally__i"><b>' + b.entered + "/" + b.count + "</b><span>Costs logged</span></div>");
     h.push("</div>");
 
-    h.push('<div style="margin-top:16px">' + meter(totalItems ? totalDone / totalItems * 100 : 0, false) + "</div>");
+    var pctAll = totalItems ? Math.round(totalDone / totalItems * 100) : 0;
+    h.push('<div class="heroprog">');
+    h.push('<p class="heroprog__l"><span>Prep progress</span><span class="num">' + pctAll + "%</span></p>");
+    h.push(meter(pctAll, false).replace('class="meter"', 'class="meter meter--onDark"'));
+    h.push("</div>");
     h.push("</div></div>");
+    h.push("</div>");                      /* /dash__wide */
+    h.push('<div class="dash__main">');
 
     /* Next few unchecked items, right here, checkable in place. */
     var nu = nextUp(5);
@@ -399,6 +471,9 @@
       nu.forEach(function (row) { h.push(checkRow(row.item, row.st, true)); });
     }
     h.push("</div>");
+
+    h.push("</div>");                      /* /dash__main */
+    h.push('<div class="dash__side">');
 
     /* Bucket status - shows which bucket is promoted and which is still shut */
     h.push('<div class="section-head"><h2>Where things stand</h2></div>');
@@ -428,7 +503,9 @@
       ' <span class="muted tiny">&middot; ' + money(b.actual) + " actually recorded</span></p>");
     h.push("</div></div>");
 
-    h.push(tripGlance());
+    h.push("</div>");                      /* /dash__side  */
+    h.push('<div class="dash__wide">' + tripGlance() + "</div>");
+    h.push("</div>");                      /* /dash        */
     return h.join("");
   }
 
@@ -447,7 +524,7 @@
     h.push('<p class="eyebrow">' + esc(day.dow) + " &middot; " + esc(prettyDate(day.date)) +
       " &middot; day " + (idx + 1) + " of " + D.days.length + "</p>");
     h.push('<h1 class="hero__title" style="font-size:var(--t-32);margin-top:8px">' + esc(day.title) + "</h1>");
-    h.push(sunRow(day));
+    h.push(sunRow(day, "sunrow"));
     h.push("</div></div>");
 
     if (day.aurora) {
@@ -518,8 +595,11 @@
   function viewDays() {
     var c = clock();
     var h = [];
-    h.push('<div class="section-head"><h1>Full itinerary</h1><span class="tiny muted">Oct 10&ndash;17</span></div>');
+    h.push('<div class="section-head"><h1>Full itinerary</h1>' +
+      '<a href="#/map">See it on the map</a></div>');
+    h.push('<div class="grid-days">');
     D.days.forEach(function (day) { h.push(dayCard(day, day.date === c.t)); });
+    h.push("</div>");
 
     h.push('<div class="section-head"><h2>Outside the main plan</h2></div>');
     h.push('<div class="card"><div class="card__body stack">');
@@ -585,7 +665,7 @@
       if (!d.aurora) return;
       h.push('<div class="kv__r"><div class="kv__k">Night ' + d.aurora.night + " &middot; " + esc(prettyDate(d.date)) +
         '</div><div class="kv__v"><b>' + esc(d.aurora.spot) + "</b><br>" + esc(d.aurora.text) +
-        (d.aurora.maps ? "<br>" + mapsChip(d.aurora.maps, "Directions") : "") + "</div></div>");
+        (d.aurora.maps ? "<br>" + mapsChip(d.aurora.maps, "Directions", d.aurora.ll) : "") + "</div></div>");
     });
     h.push("</div></div></div>");
 
@@ -604,6 +684,268 @@
     return h.join("");
   }
 
+
+  /* ------------------------------------------------------- VIEW: THE MAP */
+  /* A schematic route diagram, not a basemap. Drawn from the same coordinates
+     the maps links use, so it needs no tiles, no library and no network -
+     which is the whole point, because the day you most want to know "where
+     are we going" is the day you have no signal.
+
+     Two rules learned the hard way:
+     1. Each region gets its OWN projection. London and Iceland are 1,900 km
+        apart, so one shared scale collapses both clusters into a blob.
+     2. Stops are nudged apart after projecting. Four London landmarks inside
+        3 km would otherwise stack into one unreadable dot. Positions stay
+        approximately true; the caption says so rather than pretending.
+
+     Coastlines are deliberately not drawn. Inventing them would be decoration
+     posing as data. */
+
+  var STOP_R = 14;
+
+  function project(stops, w, h) {
+    var lat = stops.map(function (x) { return +x.ll.split(",")[0]; });
+    var lng = stops.map(function (x) { return +x.ll.split(",")[1]; });
+    var la0 = Math.min.apply(null, lat), la1 = Math.max.apply(null, lat);
+    var lo0 = Math.min.apply(null, lng), lo1 = Math.max.apply(null, lng);
+    var kx = Math.cos((la0 + la1) / 2 * Math.PI / 180);   /* east-west squeeze */
+    var spanX = Math.max((lo1 - lo0) * kx, 1e-6);
+    var spanY = Math.max(la1 - la0, 1e-6);
+    var pad = STOP_R + 26;
+    /* one scale on both axes so the shape is not distorted */
+    var sc = Math.min((w - pad * 2) / spanX, (h - pad * 2) / spanY);
+    var ox = (w - spanX * sc) / 2, oy = (h - spanY * sc) / 2;
+    var pts = stops.map(function (st, k) {
+      return {
+        stop: st,
+        x: ox + ((lng[k] - lo0) * kx) * sc,
+        y: oy + (la1 - lat[k]) * sc                       /* north is up */
+      };
+    });
+    return { pts: pts, kmPerUnit: 111 / sc };
+  }
+
+  /* iterative repulsion so no two dots overlap */
+  function spread(pts, w, h) {
+    var min = STOP_R * 2.05;
+    for (var pass = 0; pass < 90; pass++) {
+      var moved = false;
+      for (var a = 0; a < pts.length; a++) {
+        for (var b = a + 1; b < pts.length; b++) {
+          var dx = pts[b].x - pts[a].x, dy = pts[b].y - pts[a].y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 0.01) { dx = (a % 2 ? 1 : -1) * 0.6; dy = 0.6; d = 0.85; }
+          if (d < min) {
+            var push = (min - d) / 2, ux = dx / d, uy = dy / d;
+            pts[a].x -= ux * push; pts[a].y -= uy * push;
+            pts[b].x += ux * push; pts[b].y += uy * push;
+            moved = true;
+          }
+        }
+      }
+      pts.forEach(function (q) {
+        q.x = Math.max(STOP_R + 8, Math.min(w - STOP_R - 8, q.x));
+        q.y = Math.max(STOP_R + 26, Math.min(h - STOP_R - 30, q.y));
+      });
+      if (!moved) break;
+    }
+  }
+
+  function kmBetween(a, b) {
+    var p1 = a.split(",").map(Number), p2 = b.split(",").map(Number);
+    var R = 6371, toR = Math.PI / 180;
+    var dLa = (p2[0] - p1[0]) * toR, dLo = (p2[1] - p1[1]) * toR;
+    var x = Math.sin(dLa / 2) * Math.sin(dLa / 2) +
+      Math.cos(p1[0] * toR) * Math.cos(p2[0] * toR) * Math.sin(dLo / 2) * Math.sin(dLo / 2);
+    return 2 * R * Math.asin(Math.min(1, Math.sqrt(x)));
+  }
+
+  /* one region = one independently scaled panel */
+  function panel(regionStops, allStopsList, highlightDay, title) {
+    if (!regionStops.length) return "";
+    var w = 620;
+    var h = regionStops.length > 12 ? 460 : regionStops.length > 6 ? 380 : 300;
+    var pr = project(regionStops, w, h);
+    var pts = pr.pts;
+    spread(pts, w, h);
+
+    var label = pts.length <= 6;
+    var h2 = [];
+    h2.push('<div class="panel">');
+    h2.push('<p class="panel__t">' + esc(title) + '<span>' + pts.length + ' stop' +
+      (pts.length === 1 ? "" : "s") + "</span></p>");
+    h2.push('<svg class="routemap" viewBox="0 0 ' + w + " " + h +
+      '" role="img" aria-label="Route through ' + esc(title) + ", " + pts.length + ' stops">');
+
+    for (var gx = 40; gx < w; gx += 62) {
+      h2.push('<line class="rm-grid" x1="' + gx + '" y1="8" x2="' + gx + '" y2="' + (h - 8) + '"/>');
+    }
+    for (var gy = 40; gy < h; gy += 62) {
+      h2.push('<line class="rm-grid" x1="8" y1="' + gy + '" x2="' + (w - 8) + '" y2="' + gy + '"/>');
+    }
+
+    /* legs in trip order */
+    for (var i2 = 1; i2 < pts.length; i2++) {
+      var A = pts[i2 - 1], B = pts[i2];
+      var live = highlightDay && A.stop.day.id === highlightDay && B.stop.day.id === highlightDay;
+      h2.push('<line class="rm-leg' + (live ? " rm-leg--active" : "") +
+        '" x1="' + A.x.toFixed(1) + '" y1="' + A.y.toFixed(1) +
+        '" x2="' + B.x.toFixed(1) + '" y2="' + B.y.toFixed(1) + '"/>');
+    }
+
+    pts.forEach(function (pt) {
+      var st = pt.stop;
+      var on = highlightDay && st.day.id === highlightDay;
+      var dim = highlightDay && !on;
+      var gi = allStopsList.indexOf(st);
+      h2.push('<g class="rm-g' + (dim ? " rm-stop--dim" : "") + '">');
+      h2.push('<circle class="rm-stop rm-stop--' + st.half + (on ? " rm-stop--active" : "") +
+        '" cx="' + pt.x.toFixed(1) + '" cy="' + pt.y.toFixed(1) + '" r="' + STOP_R +
+        '" tabindex="0" role="button" data-stop="' + gi + '">' +
+        "<title>" + esc(st.name) + " - " + esc(st.day.dow.slice(0, 3) + " " + prettyDate(st.day.date)) +
+        "</title></circle>");
+      h2.push('<text class="rm-n' + (on ? " rm-n--on" : "") + '" x="' + pt.x.toFixed(1) +
+        '" y="' + (pt.y + 4).toFixed(1) + '">' + (st.dayIndex + 1) + "</text>");
+      if (label) {
+        var short = st.name.length > 22 ? st.name.slice(0, 21) + "…" : st.name;
+        var right = pt.x < w / 2;
+        h2.push('<text class="rm-label" x="' + (pt.x + (right ? STOP_R + 7 : -(STOP_R + 7))).toFixed(1) +
+          '" y="' + (pt.y + 4).toFixed(1) + '" text-anchor="' + (right ? "start" : "end") + '">' +
+          esc(short) + "</text>");
+      }
+      h2.push("</g>");
+    });
+
+    /* scale bar from the real projection */
+    var target = [5, 10, 25, 50, 100, 200].reduce(function (best, v) {
+      return Math.abs(v / pr.kmPerUnit - 100) < Math.abs(best / pr.kmPerUnit - 100) ? v : best;
+    }, 50);
+    var barPx = Math.min(target / pr.kmPerUnit, w * 0.4);
+    var by = h - 14, bx = w - barPx - 16;
+    h2.push('<line class="rm-scale" x1="' + bx + '" y1="' + by + '" x2="' + (bx + barPx) + '" y2="' + by + '"/>');
+    h2.push('<line class="rm-scale" x1="' + bx + '" y1="' + (by - 4) + '" x2="' + bx + '" y2="' + (by + 4) + '"/>');
+    h2.push('<line class="rm-scale" x1="' + (bx + barPx) + '" y1="' + (by - 4) + '" x2="' + (bx + barPx) + '" y2="' + (by + 4) + '"/>');
+    h2.push('<text class="rm-scaleT" x="' + bx + '" y="' + (by - 8) + '">' + target + " km</text>");
+    h2.push("</svg></div>");
+    return h2.join("");
+  }
+
+  function dayForId(id) {
+    var f = null;
+    D.days.forEach(function (d) { if (d.id === id) f = d; });
+    return f;
+  }
+
+  function viewMap(sub) {
+    var stops = allStops();
+    var scope = sub || "all";
+    var dayId = /^oct\d+$/.test(scope) ? scope : null;
+    var h = [];
+
+    var shown = stops;
+    if (scope === "england") shown = stops.filter(function (x) { return x.half === "london"; });
+    else if (scope === "iceland") shown = stops.filter(function (x) { return x.half === "iceland"; });
+    else if (dayId) shown = stops.filter(function (x) { return x.day.id === dayId; });
+
+    /* a single day is hard to place in isolation, so keep its half on screen
+       and highlight the day within it */
+    var drawn = shown, hi = null;
+    if (dayId && shown.length) {
+      var half = shown[0].half;
+      drawn = stops.filter(function (x) { return x.half === half; });
+      hi = dayId;
+    }
+
+    var eng = drawn.filter(function (x) { return x.half === "london"; });
+    var ice = drawn.filter(function (x) { return x.half === "iceland"; });
+
+    var heading = dayId
+      ? prettyDate(dayForId(dayId).date) + " · " + dayForId(dayId).title
+      : scope === "england" ? "England"
+      : scope === "iceland" ? "Iceland" : "The whole trip";
+
+    h.push('<h1 class="sr-only">Route map</h1>');
+    h.push('<div class="mapwrap">');
+    h.push('<div class="mapwrap__head"><div><p class="eyebrow">Where, and when</p><b>' +
+      esc(heading) + "</b></div>" +
+      '<span class="mapwrap__legend">' + shown.length + " stop" + (shown.length === 1 ? "" : "s") +
+      (eng.length && ice.length ? " · 2 regions" : "") + "</span></div>");
+
+    h.push('<div class="panels' + (eng.length && ice.length ? " panels--two" : "") + '">');
+    h.push(panel(eng, stops, hi, "England"));
+    h.push(panel(ice, stops, hi, "Iceland"));
+    h.push("</div>");
+    if (eng.length && ice.length) {
+      h.push('<p class="mapwrap__note">Two regions, each drawn at its own scale, ' +
+        "they are 1,900 km apart. The flight between them is Tue Oct 13.</p>");
+    }
+
+    h.push('<div class="mapfilter">');
+    [["all", "Whole trip"], ["england", "England"], ["iceland", "Iceland"]].forEach(function (f) {
+      h.push('<button data-map="' + f[0] + '" aria-pressed="' + (scope === f[0]) + '">' + f[1] + "</button>");
+    });
+    D.days.forEach(function (d) {
+      var n = stops.filter(function (x) { return x.day.id === d.id; }).length;
+      if (!n) return;
+      h.push('<button data-map="' + d.id + '" aria-pressed="' + (scope === d.id) + '">' +
+        esc(d.dow.slice(0, 3) + " " + prettyDate(d.date)) + "</button>");
+    });
+    h.push("</div></div>");
+
+    h.push('<div class="maplayout"><div>');
+    h.push('<div class="section-head"><h2>Stops in order</h2>');
+    var rl = routeUrl(shown);
+    if (rl) h.push('<a href="' + esc(rl) + '" target="_blank" rel="noopener">Open route in maps</a>');
+    h.push("</div>");
+
+    h.push('<div class="card">');
+    if (!shown.length) {
+      h.push('<p class="empty">Nothing mapped for this selection.</p>');
+    } else {
+      shown.forEach(function (st) {
+        h.push('<div class="stoplist__i stoplist__i--' + st.half + '" id="stop-' + stops.indexOf(st) + '">');
+        h.push('<span class="stoplist__n">' + (st.dayIndex + 1) + "</span>");
+        h.push('<div class="stoplist__t"><b>' + esc(st.name) +
+          (st.area ? '<span class="approx">area</span>' : "") + "</b>");
+        h.push("<span>" + esc(st.day.dow.slice(0, 3) + " " + prettyDate(st.day.date)) +
+          (st.time ? " &middot; " + esc(st.time) : "") +
+          (st.aurora ? " &middot; aurora night " + st.aurora : "") + "</span>");
+        h.push(mapsChip(st.maps, "Open in maps", st.ll));
+        h.push("</div></div>");
+      });
+    }
+    h.push("</div></div><div>");
+
+    h.push('<div class="section-head"><h2>How far</h2></div>');
+    h.push('<div class="card"><div class="card__body"><div class="kv">');
+    [["london", "England"], ["iceland", "Iceland"]].forEach(function (pair) {
+      var seg = stops.filter(function (x) { return x.half === pair[0]; });
+      var km = 0;
+      for (var i3 = 1; i3 < seg.length; i3++) km += kmBetween(seg[i3 - 1].ll, seg[i3].ll);
+      h.push('<div class="kv__r"><div class="kv__k">' + pair[1] + "</div>" +
+        '<div class="kv__v"><b class="num">' + Math.round(km) + " km</b> " +
+        '<span class="tiny">(' + Math.round(km * 0.621) + " mi)</span><br>" +
+        '<span class="tiny">' + seg.length + " mapped stops</span></div></div>");
+    });
+    h.push("</div>");
+    h.push('<p class="tiny" style="margin-top:14px">Straight-line, so real road mileage runs higher - ' +
+      "the south coast road bends a long way around. Use <b>Open route in maps</b> for driving times.</p>");
+    h.push("</div></div>");
+
+    h.push('<div class="card"><div class="card__body">' +
+      '<p class="eyebrow">About this map</p>' +
+      '<p class="small muted" style="margin-top:6px">Drawn from the coordinates in ' +
+      "<code>data.js</code>, so it works with no signal. Each region has its own " +
+      "scale, and stops are nudged apart just enough to stay readable, so treat " +
+      "positions as approximate. Coastlines are left out rather than guessed at. " +
+      'Stops marked <span class="approx">area</span> are a town centre, because ' +
+      "the itinerary only gives an area for those. Tap any dot to jump to it in " +
+      "the list.</p></div></div>");
+
+    h.push("</div></div>");
+    return h.join("");
+  }
+
   /* ---------------------------------------------------------- VIEW: PREP */
 
   function checkRow(item, st, compact) {
@@ -616,13 +958,14 @@
 
     var tags = [];
     if (!done && st && st.overdue) tags.push('<span class="tag tag--overdue">Overdue</span>');
+    if (item.extra) tags.push('<span class="tag tag--extra" title="Not from ITINERARY.md">added</span>');
     if (compact && st) tags.push('<span class="tag">' + esc(st.group.label) + "</span>");
     (item.budgetIds || []).forEach(function (bid) {
       var bl = lineById(bid);
       if (!bl) return;
       var a = actualOf(bid);
       tags.push('<a class="tag tag--money" href="#/prep/money" data-focus="' + esc(bid) + '">' +
-        ICON.money + esc(bl.line.label.length > 26 ? bl.line.label.slice(0, 24) + "…" : bl.line.label) +
+        ICON.money + esc(bl.line.label.length > 20 ? bl.line.label.slice(0, 19) + "…" : bl.line.label) +
         " &middot; " + (a === null ? "add actual" : money(a)) + "</a>");
     });
     if (tags.length) h.push('<div class="check__tags">' + tags.join("") + "</div>");
@@ -664,6 +1007,7 @@
       (c.phase === "before" ? " &middot; " + c.daysOut + " days out" : "") + ", not from the bucket names.</p>" +
       "</div></div>");
 
+    h.push('<div class="grid-2">');
     states.forEach(function (st) {
       var g = st.group;
       /* default open: anything not finished and not "later" */
@@ -697,6 +1041,7 @@
       }
       h.push("</div></section>");
     });
+    h.push("</div>");
     return h.join("");
   }
 
@@ -842,7 +1187,7 @@
       h.push('<div class="card"><div class="card__body">' +
         "<b>" + esc(e.label) + "</b>" +
         '<p class="small muted" style="margin-top:2px">' + esc(e.address) + "</p>" +
-        mapsChip(e.maps, "Open in maps") + "</div></div>");
+        mapsChip(e.maps, "Open in maps", e.ll) + "</div></div>");
     });
 
     h.push('<div class="section-head"><h2>Temple and church</h2></div>');
@@ -854,7 +1199,7 @@
       h.push('<ul class="tl__sub" style="margin-top:12px">');
       w.notes.forEach(function (n) { h.push("<li>" + esc(n) + "</li>"); });
       h.push("</ul>");
-      h.push(mapsChip(w.maps, "Open in maps"));
+      h.push(mapsChip(w.maps, "Open in maps", w.ll));
       h.push("</div></div>");
     });
 
@@ -914,7 +1259,7 @@
     var parts = hash.split("/");
     var view = parts[0] || "today";
     var sub = parts[1] || "";
-    if (["today", "days", "aurora", "prep", "info"].indexOf(view) === -1) { view = "today"; sub = ""; }
+    if (["today", "days", "map", "aurora", "prep", "info"].indexOf(view) === -1) { view = "today"; sub = ""; }
     return { view: view, sub: sub };
   }
 
@@ -924,6 +1269,7 @@
     var r = route();
     var html;
     if (r.view === "days") html = viewDays();
+    else if (r.view === "map") html = viewMap(r.sub);
     else if (r.view === "aurora") html = viewAurora();
     else if (r.view === "prep") html = viewPrep(r.sub);
     else if (r.view === "info") html = viewInfo(r.sub);
@@ -931,7 +1277,8 @@
 
     main.innerHTML = html;
     document.title = ({
-      today: "Today", days: "Itinerary", aurora: "Aurora", prep: "Prep", info: "Reference"
+      today: "Today", days: "Itinerary", map: "Map", aurora: "Aurora",
+      prep: "Prep", info: "Reference"
     }[r.view]) + " · London + Iceland";
 
     /* tab state */
@@ -1050,6 +1397,21 @@
 
     var ed = t.closest && t.closest("[data-edit]");
     if (ed) { editCustom(ed.dataset.edit); return; }
+
+    var mf = t.closest && t.closest("[data-map]");
+    if (mf) { location.hash = "#/map/" + mf.dataset.map; return; }
+
+    var stopEl = t.closest && t.closest("[data-stop]");
+    if (stopEl) {
+      var row = document.getElementById("stop-" + stopEl.dataset.stop);
+      if (row) {
+        row.scrollIntoView({ block: "center", behavior: "smooth" });
+        row.classList.remove("is-target");
+        void row.offsetWidth;                 /* restart the flash */
+        row.classList.add("is-target");
+      }
+      return;
+    }
 
     var sub = t.closest && t.closest("[data-sub]");
     if (sub) {
