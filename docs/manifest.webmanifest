@@ -1,0 +1,14 @@
+{
+  "name": "London + Iceland, Oct 2026",
+  "short_name": "LDN + ISL",
+  "description": "Trip companion for London and Iceland, October 10-17 2026. Works offline.",
+  "start_url": "./index.html#/today",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0A0D0F",
+  "theme_color": "#0A0D0F",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
