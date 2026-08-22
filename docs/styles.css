@@ -416,12 +416,13 @@ code { font-family: var(--mono); font-size: .92em; }
 
 .shot {
   position: relative; margin: 0; aspect-ratio: 16 / 9;
-  background-image: var(--grad); background-size: cover; overflow: hidden;
+  background-image: var(--grad); background-size: cover; background-position: var(--pos, center); overflow: hidden;
 }
 .shot--thumb { aspect-ratio: 4 / 3; border-radius: var(--r-sm); }
-.shot img, .day__hero img, .aurora-hero img {
+.shot img, .day__hero img, .aurora-hero img, .itx__pic img, .itx__scene img {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; opacity: 0; transition: opacity var(--slow) var(--ease);
+  object-fit: cover; object-position: var(--pos, center);
+  opacity: 0; transition: opacity var(--slow) var(--ease);
 }
 .shot.is-loaded img { opacity: 1; }
 .shot__credit {
@@ -430,7 +431,8 @@ code { font-family: var(--mono); font-size: .92em; }
   background: rgba(8,12,14,.6); color: #fff;
   font-size: 10px; letter-spacing: .04em; opacity: 0;
 }
-.shot.is-loaded .shot__credit, .day__hero.is-loaded .shot__credit { opacity: 1; }
+.shot.is-loaded .shot__credit, .day__hero.is-loaded .shot__credit,
+.aurora-hero.is-loaded .shot__credit, .itx__scene.is-loaded .shot__credit { opacity: 1; }
 .shot-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s2); padding: var(--s4) var(--s5) 0; }
 
 /* =============================================================== 8. HEROES */
@@ -516,7 +518,7 @@ code { font-family: var(--mono); font-size: .92em; }
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: var(--s5);
   background-image: var(--grad, none);
-  background-size: cover; background-position: center;
+  background-size: cover; background-position: var(--pos, center);
   color: #fff; overflow: hidden;
 }
 .day__hero--london  { background-image: linear-gradient(140deg,#5B7791 0%,#3F5D78 50%,#26394A 100%); }
@@ -685,7 +687,19 @@ code { font-family: var(--mono); font-size: .92em; }
   min-height: 54px; padding: var(--s3) 0;
   background: none; border: 0; cursor: pointer; text-align: left;
 }
-.itx--flat { display: flex; gap: var(--s3); padding: var(--s3) 0; }
+.itx--flat { display: flex; gap: var(--s3); padding: var(--s3) 0; align-items: flex-start; }
+.itx__pic {
+  position: relative; flex: 0 0 58px; width: 58px; height: 44px;
+  margin-top: -2px; overflow: hidden;
+  background-image: var(--grad); background-size: cover; background-position: var(--pos, center);
+  border-radius: var(--r-sm);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), var(--sh-1);
+}
+.itx__pic::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 42%, rgba(0,0,0,.34));
+}
+.itx__pic.is-loaded img { opacity: 1; }
 .itx__time {
   flex: 0 0 52px; padding-top: 2px;
   font-family: var(--mono); font-size: var(--t-12); font-weight: 700;
@@ -710,6 +724,20 @@ code { font-family: var(--mono); font-size: .92em; }
 .itx__body { display: none; padding: 0 0 var(--s4) 64px; }
 .itx.is-open > .itx__body { display: block; }
 .itx__d { color: var(--ink-2); font-size: var(--t-15); }
+.itx__scene {
+  position: relative; margin: 0 0 var(--s4);
+  aspect-ratio: 16 / 9; overflow: hidden;
+  background-image: var(--grad); background-size: cover; background-position: var(--pos, center);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-2);
+}
+.itx__scene::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(5,10,12,0) 42%, rgba(5,10,12,.42) 100%),
+    radial-gradient(80% 55% at 20% 10%, rgba(255,255,255,.16), transparent 60%);
+  pointer-events: none;
+}
 
 /* hot buttons: big, obvious, glove-sized */
 .hotrow { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
@@ -730,6 +758,7 @@ code { font-family: var(--mono); font-size: .92em; }
 @media (min-width: 560px) {
   .dayx__thumb { flex-basis: 84px; }
   .itx__body { padding-left: 68px; }
+  .itx__pic { flex-basis: 72px; width: 72px; height: 52px; }
 }
 
 /* ============================================================== 10. THE MAP */
@@ -849,6 +878,70 @@ code { font-family: var(--mono); font-size: .92em; }
   background: var(--amber-wash); color: var(--amber);
   border-radius: var(--r-pill); font-size: 10px; font-weight: 700;
   letter-spacing: .06em; text-transform: uppercase;
+}
+
+
+/* ================================================== 10b. THE LIVE MAP */
+/* Real OpenStreetMap tiles via Leaflet. The vector map above is the
+   guaranteed-offline one; this is the one with roads and town names. */
+
+.mapmode { margin-bottom: var(--s4); }
+.seg--sm { margin-bottom: var(--s2); }
+.seg--sm button { min-height: 42px; font-size: var(--t-14); }
+.seg button:disabled { opacity: .45; cursor: not-allowed; }
+.mapmode .tiny { padding: 0 var(--s1); }
+
+.lpanels { display: grid; gap: var(--s4); margin-bottom: var(--s4); }
+.lwrap {
+  background: var(--card); border: 1px solid var(--line-2);
+  border-radius: var(--r-md); box-shadow: var(--sh-1); overflow: hidden;
+}
+.panel__t--light {
+  color: var(--ink-3); padding: var(--s3) var(--s4) var(--s2);
+  border-bottom: 1px solid var(--line-2);
+}
+.lmap {
+  height: 360px; width: 100%;
+  background: var(--sunk);
+  z-index: 0;                     /* keep tiles under the sticky topbar */
+}
+.lmap:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+
+/* day-numbered pins */
+.lmkw { background: none; border: 0; }
+.lmk {
+  display: grid; place-items: center;
+  width: 28px; height: 28px;
+  border-radius: var(--r-pill);
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  color: #fff; background: #1D3A42;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.45);
+}
+.lmk--london { background: #3F5D78; }
+.lmk--on { outline: 3px solid rgba(255,255,255,.65); }
+.lmkw--dim { opacity: .45; }
+
+.leaflet-popup-content-wrapper { border-radius: var(--r-sm); }
+.leaflet-popup-content { margin: var(--s3) var(--s4); font-family: var(--sans); }
+.lpop__n { display: block; font-size: var(--t-15); font-weight: 680; }
+.lpop__m { display: block; font-family: var(--mono); font-size: var(--t-12); color: #667; margin-top: 2px; }
+.lpop__a {
+  display: inline-flex; align-items: center; min-height: 38px;
+  margin-top: var(--s2); padding: 0 var(--s3);
+  background: #0F1518; color: #fff; border-radius: var(--r-sm);
+  font-size: var(--t-13); font-weight: 650; text-decoration: none;
+}
+.leaflet-container { font-family: var(--sans); }
+.leaflet-container a { color: #1273D4; }
+.mapfilter--light { padding: 0; }
+.mapfilter--light button {
+  background: var(--card); color: var(--ink-2);
+  border-color: var(--line); box-shadow: var(--sh-1);
+}
+.mapfilter--light button:hover { background: var(--card-2); color: var(--ink); }
+.mapfilter--light button[aria-pressed="true"] {
+  background: var(--ink); color: var(--page); border-color: var(--ink);
 }
 
 /* ============================================================= 11. AURORA */
@@ -1140,6 +1233,8 @@ body.is-offline .offline-banner { display: flex; }
   .aurora-hero__b h1 { font-size: 2.75rem; }
   .bl__in { flex-basis: 150px; }
   .locker { grid-template-columns: repeat(3, 1fr); }
+  .lpanels--two { grid-template-columns: 1fr 1fr; }
+  .lmap { height: 520px; }
   .maplayout { display: grid; grid-template-columns: minmax(0,1.55fr) minmax(0,1fr); gap: var(--s6); align-items: start; }
   .maplayout > * { min-width: 0; }
   .panels--two { grid-template-columns: 1fr 1fr; align-items: stretch; }
@@ -1158,14 +1253,20 @@ body.is-offline .offline-banner { display: flex; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .shot,
   :root:not([data-theme="light"]) .day__hero,
-  :root:not([data-theme="light"]) .aurora-hero { filter: brightness(.8) saturate(.92); }
+  :root:not([data-theme="light"]) .aurora-hero,
+  :root:not([data-theme="light"]) .itx__scene,
+  :root:not([data-theme="light"]) .itx__pic { filter: brightness(.8) saturate(.92); }
 }
 :root[data-theme="dark"] .shot,
 :root[data-theme="dark"] .day__hero,
-:root[data-theme="dark"] .aurora-hero { filter: brightness(.8) saturate(.92); }
+:root[data-theme="dark"] .aurora-hero,
+:root[data-theme="dark"] .itx__scene,
+:root[data-theme="dark"] .itx__pic { filter: brightness(.8) saturate(.92); }
 :root[data-theme="light"] .shot,
 :root[data-theme="light"] .day__hero,
-:root[data-theme="light"] .aurora-hero { filter: none; }
+:root[data-theme="light"] .aurora-hero,
+:root[data-theme="light"] .itx__scene,
+:root[data-theme="light"] .itx__pic { filter: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -1174,7 +1275,7 @@ body.is-offline .offline-banner { display: flex; }
     animation-iteration-count: 1 !important;
     transition-duration: .001ms !important;
   }
-  .shot img, .aurora-hero img, .day__hero img { opacity: 1; }
+  .shot img, .aurora-hero img, .day__hero img, .itx__scene img, .itx__pic img { opacity: 1; }
   .shot .shot__credit { opacity: 1; }
   .btn:active, .chip:active { transform: none; }
 }

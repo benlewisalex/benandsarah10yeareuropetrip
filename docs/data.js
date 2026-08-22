@@ -46,54 +46,89 @@ const TRIP = {
      and change `src` to "img/yourfile.jpg" - the service worker will cache it. */
   images: {
     bigben: {
-      src: "https://source.unsplash.com/1600x900/?big-ben,westminster,london",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Big%20Ben%20from%20the%20Westminster%20Bridge.jpg?width=1600",
       alt: "The Elizabeth Tower and Big Ben clock face above the Houses of Parliament, seen from Westminster Bridge under grey cloud.",
+      credit: "Ryan Schwark / Wikimedia Commons",
       grad: "radial-gradient(60% 40% at 70% 22%,rgba(255,255,255,.16),transparent 70%),linear-gradient(180deg,#93A3B1 0%,#788A99 44%,#3F4C58 46%,#212A32 100%)"
     },
+    towerbridge: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Tower%20Bridge%20from%20London%20Tower.jpg?width=1600",
+      alt: "Tower Bridge over the Thames, seen from the Tower of London side.",
+      credit: "Historywriter / Wikimedia Commons",
+      grad: "linear-gradient(180deg,#8EA3B4 0%,#647D90 46%,#2F4758 48%,#162530 100%)"
+    },
     stonehenge: {
-      src: "https://source.unsplash.com/1600x900/?stonehenge,salisbury",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Stonehenge%20Misty%20Sunrise.jpg?width=1600",
       alt: "The standing stones and lintels of Stonehenge on open Salisbury Plain grassland.",
+      credit: "James Preston / Wikimedia Commons",
       grad: "radial-gradient(70% 45% at 30% 26%,rgba(255,240,210,.20),transparent 72%),linear-gradient(180deg,#9AA394 0%,#7E8574 40%,#59614F 42%,#2C3226 100%)"
     },
     thingvellir: {
-      src: "https://source.unsplash.com/1600x900/?thingvellir,iceland,rift",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%9Eingvellir%20National%20Park%2C%20Iceland.JPG?width=1600",
       alt: "The Almannagja rift at Thingvellir, a walled corridor of dark basalt where the tectonic plates pull apart.",
+      credit: "Beata May / Wikimedia Commons",
       grad: "linear-gradient(90deg,rgba(0,0,0,.42) 0 16%,transparent 38%,transparent 62%,rgba(0,0,0,.42) 84% 100%),linear-gradient(180deg,#8FA07E 0%,#5C6B4A 45%,#33402F 70%,#171D14 100%)"
     },
     geysir: {
-      src: "https://source.unsplash.com/1600x900/?geysir,strokkur,iceland",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Strokkur%20Geyser%20%283357373256%29.jpg?width=1600",
       alt: "Strokkur geyser throwing a column of boiling water and steam into the air above a pale geothermal field.",
+      credit: "Thomas Quine / Wikimedia Commons",
       grad: "radial-gradient(26% 64% at 50% 58%,rgba(255,255,255,.60),transparent 72%),linear-gradient(180deg,#B9C8CE 0%,#93A6AE 46%,#6C838C 48%,#3B4C54 100%)"
     },
     gullfoss: {
-      src: "https://source.unsplash.com/1600x900/?gullfoss,waterfall,iceland",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Gullfoss%20Waterfall%20%2824852505304%29.jpg?width=1600",
       alt: "The two tiers of Gullfoss waterfall dropping into a deep basalt canyon in glacial meltwater.",
+      credit: "Wikimedia Commons",
       grad: "linear-gradient(180deg,#8FB0BA 0%,#6E93A0 34%,#4C7484 36%,#3E626E 62%,#22323A 64%,#16232A 100%)"
     },
     icetunnel: {
-      src: "https://source.unsplash.com/1600x900/?ice-cave,langjokull,glacier",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Ice%20Tunnel.jpg?width=1600",
       alt: "A carved tunnel inside the Langjokull glacier, walls of layered blue ice lit from within.",
+      credit: "Wikimedia Commons",
       grad: "radial-gradient(58% 78% at 50% 58%,rgba(220,245,255,.72),rgba(90,170,205,.35) 45%,transparent 74%),linear-gradient(180deg,#2E6C89 0%,#1B4661 55%,#0E2C3E 100%)"
     },
     reynisfjara: {
-      src: "https://source.unsplash.com/1600x900/?reynisfjara,black-sand-beach,vik",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Black%20Sand%20Beach%20Iceland%2C%20Reynisfjara%20Beach.jpg?width=1600",
       alt: "Reynisfjara black sand beach with the Reynisdrangar sea stacks offshore and white surf running up the dark sand.",
+      credit: "miketnorton / Wikimedia Commons",
       grad: "linear-gradient(180deg,#9AA2AA 0%,#767F87 33%,#E6EAEC 36%,#CFD6DA 39%,#33393E 42%,#14171A 100%)"
     },
     horses: {
-      src: "https://source.unsplash.com/1600x900/?icelandic-horses",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/09%20Icelandic%20horses%20in%20Iceland%20-%20tourists%20riding%20Icelandic%20horses.jpg?width=1600",
       alt: "Icelandic horses with thick manes standing in an autumn pasture of tan grass.",
+      credit: "Marek Slusarczyk / Wikimedia Commons",
+      pos: "center 78%",
       grad: "radial-gradient(70% 40% at 25% 20%,rgba(255,235,200,.24),transparent 70%),linear-gradient(180deg,#A9B4BC 0%,#8D8064 38%,#6B5334 40%,#33291A 100%)"
     },
     aurora: {
-      src: "https://source.unsplash.com/1600x900/?aurora,northern-lights,iceland",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Aurora%20Iceland.jpg?width=1600",
       alt: "Green aurora curtains rippling over a dark south Iceland landscape under stars.",
+      credit: "Sean O Riordan / Wikimedia Commons",
       grad: "radial-gradient(120% 55% at 25% 30%,rgba(63,227,155,.50),transparent 62%),radial-gradient(80% 45% at 78% 16%,rgba(90,200,220,.30),transparent 60%),linear-gradient(180deg,#061A22 0%,#04121A 60%,#020A0E 100%)"
     },
     reykjadalur: {
-      src: "https://source.unsplash.com/1600x900/?reykjadalur,hot-river,iceland",
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Hot%20spring%2C%20Reykjadalur%20Valley%2C%20Iceland%2C%2020230502%201411%204232.jpg?width=1600",
       alt: "Steam rising off the hot river in the Reykjadalur valley, with mossy green slopes on either side.",
+      credit: "Jakub Halun / Wikimedia Commons",
       grad: "radial-gradient(45% 42% at 55% 52%,rgba(240,250,245,.44),transparent 70%),linear-gradient(180deg,#A8B899 0%,#7C8F6C 40%,#4A5C45 62%,#1E2A1F 100%)"
+    },
+    lava: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20view%20of%20the%20recent%20Fagradalsfjall%20lava%20fields.jpg?width=1600",
+      alt: "Fresh black lava fields across the Reykjanes Peninsula.",
+      credit: "Gaggi96 / Wikimedia Commons",
+      grad: "radial-gradient(48% 35% at 70% 18%,rgba(232,113,54,.34),transparent 64%),linear-gradient(180deg,#5F6462 0%,#3D403D 43%,#1E201E 45%,#080A09 100%)"
+    },
+    seljalandsfoss: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Seljalandsfoss%20%281%29.jpg?width=1600",
+      alt: "Seljalandsfoss dropping from a green cliff into mist.",
+      credit: "Chmee2 / Wikimedia Commons",
+      grad: "linear-gradient(180deg,#9DB0A0 0%,#667B63 42%,#DCE8E8 45%,#8CA2A0 58%,#26322C 100%)"
+    },
+    skogafoss: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Sk%C3%B3gafoss%20%28183587415%29.jpeg?width=1600",
+      alt: "Skogafoss waterfall falling in a wide white sheet against dark green cliffs.",
+      credit: "Luis Ascenso / Wikimedia Commons",
+      grad: "linear-gradient(180deg,#82918A 0%,#52665A 40%,#E5EEEE 42%,#9AB0AE 55%,#1F2C28 100%)"
     }
   },
 
@@ -113,9 +148,9 @@ const TRIP = {
         "Today is deliberately low-effort because she'll be wrecked. All walking, all free."
       ],
       items: [
-        { name: "Westminster & Big Ben", detail: "Then across Westminster Bridge for the classic view.", maps: "Big Ben, Westminster, London", ll: "51.5007,-0.1246" },
+        { name: "Westminster & Big Ben", detail: "Then across Westminster Bridge for the classic view.", maps: "Big Ben, Westminster, London", ll: "51.5007,-0.1246", image: "bigben" },
         { name: "Thames South Bank walk", detail: "East past the London Eye.", maps: "South Bank, London", ll: "51.5033,-0.1196" },
-        { name: "Tower Bridge", detail: "And the Tower of London from outside.", maps: "Tower Bridge, London", ll: "51.5055,-0.0754" },
+        { name: "Tower Bridge", detail: "And the Tower of London from outside.", maps: "Tower Bridge, London", ll: "51.5055,-0.0754", image: "towerbridge" },
         { name: "Trafalgar Square and Buckingham Palace", detail: "If energy holds.", maps: "Trafalgar Square, London", ll: "51.5080,-0.1281" }
       ],
       notes: [
@@ -158,7 +193,7 @@ const TRIP = {
       intro: ["The budget route beats the tour coaches."],
       items: [
         { name: "Train London Waterloo to Salisbury", detail: "About 90 minutes. Book advance tickets; walk-up fare is several times higher.", maps: "Salisbury railway station, Salisbury", ll: "51.0698,-1.8060" },
-        { name: "The Stonehenge Tour bus", detail: "Runs from Salisbury station, and the fare bundles site admission.", maps: "Stonehenge, Amesbury, Salisbury", ll: "51.1789,-1.8262" },
+        { name: "The Stonehenge Tour bus", detail: "Runs from Salisbury station, and the fare bundles site admission.", maps: "Stonehenge, Amesbury, Salisbury", ll: "51.1789,-1.8262", image: "stonehenge" },
         { name: "Back in London by early evening." }
       ],
       notes: [
@@ -180,6 +215,7 @@ const TRIP = {
         { time: "Afternoon", name: "Sundhnúkur / Fagradalsfjall lava fields",
           detail: "Marked trails cross lava from the 2021-2025 eruptions; some of it still radiates heat.",
           maps: "Fagradalsfjall, Reykjanes, Iceland", ll: "63.8958,-22.2725",
+          image: "lava",
           headsUp: "Check safetravel.is and almannavarnir.is before driving out - exclusion zones move.",
           links: [
             { label: "safetravel.is", url: "https://safetravel.is/" },
@@ -209,10 +245,10 @@ const TRIP = {
       images: ["icetunnel", "thingvellir", "geysir", "gullfoss"],
       intro: ["Big day. Roll at 8:30."],
       items: [
-        { time: "9:00", name: "Þingvellir National Park", detail: "Walk the Almannagjá rift where the plates pull apart. This is the tectonic plates park. Parking fee applies.", maps: "Thingvellir National Park, Iceland", ll: "64.2558,-21.1297" },
-        { time: "10:45", name: "Geysir", detail: "Strokkur erupts every 5-10 minutes, dependably.", maps: "Geysir, Haukadalur, Iceland", ll: "64.3104,-20.3024" },
-        { time: "11:45", name: "Gullfoss", detail: "The two-tier falls. Quick stop; you're coming back here.", maps: "Gullfoss, Iceland", ll: "64.3271,-20.1199" },
-        { time: "13:00", name: "Into the Glacier, departing Gullfoss", detail: "About 3.5 hours. Sleipnir monster truck up onto Langjökull, then an hour walking through 1,600 feet of blue ice tunnel carved into the glacier, including the ice chapel. Thermal suits and helmets provided. Book direct; the Gullfoss departure is far cheaper than the Reykjavík pickup version.", maps: "Gullfoss departure point, Iceland", ll: "64.3271,-20.1199" },
+        { time: "9:00", name: "Þingvellir National Park", detail: "Walk the Almannagjá rift where the plates pull apart. This is the tectonic plates park. Parking fee applies.", maps: "Thingvellir National Park, Iceland", ll: "64.2558,-21.1297", image: "thingvellir" },
+        { time: "10:45", name: "Geysir", detail: "Strokkur erupts every 5-10 minutes, dependably.", maps: "Geysir, Haukadalur, Iceland", ll: "64.3104,-20.3024", image: "geysir" },
+        { time: "11:45", name: "Gullfoss", detail: "The two-tier falls. Quick stop; you're coming back here.", maps: "Gullfoss, Iceland", ll: "64.3271,-20.1199", image: "gullfoss" },
+        { time: "13:00", name: "Into the Glacier, departing Gullfoss", detail: "About 3.5 hours. Sleipnir monster truck up onto Langjökull, then an hour walking through 1,600 feet of blue ice tunnel carved into the glacier, including the ice chapel. Thermal suits and helmets provided. Book direct; the Gullfoss departure is far cheaper than the Reykjavík pickup version.", maps: "Gullfoss departure point, Iceland", ll: "64.3271,-20.1199", image: "icetunnel" },
         { time: "17:15", name: "Secret Lagoon, Flúðir", detail: "Iceland's oldest swimming pool, built 1891, in a geothermal field with a small geyser erupting alongside. Your tourist hot spring, at a fraction of Blue Lagoon's price and with more character.", maps: "Secret Lagoon, Fludir, Iceland", ll: "64.1372,-20.3106" },
         { name: "Drive to the guesthouse near Hella or Hvolsvöllur", detail: "Two nights here.", maps: "Hvolsvollur, Iceland", ll: "63.7494,-20.2225", area: true }
       ],
@@ -227,11 +263,11 @@ const TRIP = {
       images: ["reynisfjara"],
       intro: [],
       items: [
-        { name: "Seljalandsfoss", detail: "The waterfall you walk behind.", maps: "Seljalandsfoss, Iceland", ll: "63.6156,-19.9886",
+        { name: "Seljalandsfoss", detail: "The waterfall you walk behind.", maps: "Seljalandsfoss, Iceland", ll: "63.6156,-19.9886", image: "seljalandsfoss",
           headsUp: "You will get drenched. Rain shells mandatory." },
-        { name: "Skógafoss", detail: "200 feet, walk right to the base.", maps: "Skogafoss, Iceland", ll: "63.5321,-19.5114" },
+        { name: "Skógafoss", detail: "200 feet, walk right to the base.", maps: "Skogafoss, Iceland", ll: "63.5321,-19.5114", image: "skogafoss" },
         { name: "Dyrhólaey", detail: "Headland arch with the whole black coastline below.", maps: "Dyrholaey, Vik, Iceland", ll: "63.4020,-19.1290" },
-        { name: "Reynisfjara black sand beach, Vík", detail: "Basalt columns and sea stacks.", maps: "Reynisfjara beach, Vik, Iceland", ll: "63.4033,-19.0447",
+        { name: "Reynisfjara black sand beach, Vík", detail: "Basalt columns and sea stacks.", maps: "Reynisfjara beach, Vik, Iceland", ll: "63.4033,-19.0447", image: "reynisfjara",
           links: [{ label: "safetravel.is conditions", url: "https://safetravel.is/" }] },
         { time: "Evening", name: "Lava Show, Vík", detail: "About 1 hour. They superheat real basalt to 1,100C and pour glowing lava into the room in front of you. You feel the heat on your face. With no eruption running, this is the closest you'll get, and it stands on its own merits.", maps: "Lava Show, Vik, Iceland", ll: "63.4186,-19.0060" },
         { name: "Back to the guesthouse." }
@@ -251,8 +287,8 @@ const TRIP = {
       images: ["reykjadalur", "horses"],
       intro: [],
       items: [
-        { time: "Morning", name: "Reykjadalur, Hveragerði", detail: "Park at the trailhead and hike about 2 miles uphill through a steaming geothermal valley, 45-60 minutes. At the top, a river you sit down in, with boardwalks and changing screens. The water gets hotter further upstream - find your spot. Your non-tourist hot spring. Free, and the most Icelandic thing on this itinerary.", maps: "Reykjadalur trailhead, Hveragerdi, Iceland", ll: "64.0225,-21.2103" },
-        { time: "Afternoon", name: "Icelandic horse riding", detail: "1-2 hours at a farm near Hveragerði or Selfoss. Ask specifically for a ride that demonstrates the tölt - the fifth gait unique to the breed, smooth enough to hold a drink while riding. Beginners are fine; these horses are famously calm.", maps: "Selfoss, Iceland", ll: "63.9333,-21.0000", area: true },
+        { time: "Morning", name: "Reykjadalur, Hveragerði", detail: "Park at the trailhead and hike about 2 miles uphill through a steaming geothermal valley, 45-60 minutes. At the top, a river you sit down in, with boardwalks and changing screens. The water gets hotter further upstream - find your spot. Your non-tourist hot spring. Free, and the most Icelandic thing on this itinerary.", maps: "Reykjadalur trailhead, Hveragerdi, Iceland", ll: "64.0225,-21.2103", image: "reykjadalur" },
+        { time: "Afternoon", name: "Icelandic horse riding", detail: "1-2 hours at a farm near Hveragerði or Selfoss. Ask specifically for a ride that demonstrates the tölt - the fifth gait unique to the breed, smooth enough to hold a drink while riding. Beginners are fine; these horses are famously calm.", maps: "Selfoss, Iceland", ll: "63.9333,-21.0000", area: true, image: "horses" },
         { name: "Drive to lodging near Keflavík", detail: "About 1 hour, for the early flight.", maps: "Keflavik, Iceland", ll: "64.0049,-22.5644", area: true }
       ],
       aurora: { night: 4, spot: "Reykjanes lava fields",

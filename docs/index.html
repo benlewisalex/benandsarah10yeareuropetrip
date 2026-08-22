@@ -14,6 +14,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="vendor/leaflet.css">
 <link rel="stylesheet" href="styles.css" onerror="window.__cssFail=1">
 </head>
 <body>
@@ -96,6 +97,9 @@
 
 <script src="data.js" onerror="window.__dataFail=1"></script>
 <script src="geo.js" onerror="window.__geoFail=1"></script>
+<!-- Vendored, not from a CDN, so the service worker can cache it and there is
+     no third-party dependency at run time. -->
+<script src="vendor/leaflet.js" onerror="window.__leafletFail=1"></script>
 <script src="app.js"></script>
 </body>
 </html>

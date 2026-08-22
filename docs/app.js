@@ -55,6 +55,7 @@
     open:    "et26.open",       // { groupId: false }  (collapsed state)
     dayOpen: "et26.dayopen",    // { dayId: true }
     itemOpen:"et26.itemopen",   // { "dayId:index": true }
+    mapMode: "et26.mapmode",    // "live" | "vector"
     override:"et26.override",   // "2026-10-14"
     theme:   "et26.theme"       // "light" | "dark"
   };
@@ -79,6 +80,7 @@
     open:    load(K.open, {}),
     dayOpen: load(K.dayOpen, {}),
     itemOpen:load(K.itemOpen, {}),
+    mapMode: load(K.mapMode, "live"),
     override:load(K.override, null)
   };
 
@@ -318,13 +320,37 @@
       "</div></div>";
   }
 
+  function photoCredit(im) {
+    return im.credit ? esc(im.credit) : "Photo";
+  }
+
+  function imageStyle(im) {
+    return "--grad:" + im.grad + (im.pos ? ";--pos:" + im.pos : "");
+  }
+
   function shot(key, cls) {
     var im = D.images[key];
     if (!im) return "";
-    return '<figure class="shot ' + (cls || "") + '" style="--grad:' + im.grad + '">' +
+    return '<figure class="shot ' + (cls || "") + '" style="' + esc(imageStyle(im)) + '">' +
       '<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy" decoding="async" data-shot>' +
-      '<figcaption class="shot__credit">Photo: Unsplash</figcaption>' +
+      '<figcaption class="shot__credit">' + photoCredit(im) + "</figcaption>" +
       "</figure>";
+  }
+
+  function scene(key, cls) {
+    var im = D.images[key];
+    if (!im) return "";
+    return '<figure class="itx__scene ' + (cls || "") + '" style="' + esc(imageStyle(im)) + '">' +
+      '<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy" decoding="async" data-shot>' +
+      '<figcaption class="shot__credit">' + photoCredit(im) + "</figcaption>" +
+      "</figure>";
+  }
+
+  function itemPhoto(key) {
+    var im = D.images[key];
+    if (!im) return "";
+    return '<span class="itx__pic" style="' + esc(imageStyle(im)) + '" aria-hidden="true">' +
+      '<img src="' + esc(im.src) + '" alt="" loading="lazy" decoding="async" data-shot></span>';
   }
 
   /* cls lets the hero reuse this with light-on-dark styling */
@@ -365,19 +391,21 @@
 
     if (!hasBody) {
       /* nothing to expand into - render it as a plain line, not a dead button */
-      h.push('<div class="itx itx--flat"><span class="itx__time">' +
+      h.push('<div class="itx itx--flat">' + itemPhoto(it.image) + '<span class="itx__time">' +
         (it.time ? esc(it.time) : "") + '</span><span class="itx__n">' + esc(it.name) + "</span></div>");
       return h.join("");
     }
 
     h.push('<div class="itx' + (open ? " is-open" : "") + '">');
     h.push('<button class="itx__h" data-itemopen="' + esc(key) + '" aria-expanded="' + open + '">');
+    h.push(itemPhoto(it.image));
     h.push('<span class="itx__time">' + (it.time ? esc(it.time) : "") + "</span>");
     h.push('<span class="itx__n">' + esc(it.name) + itemFlags(it) + "</span>");
     h.push('<span class="itx__chev">' + ICON.chev + "</span>");
     h.push("</button>");
 
     h.push('<div class="itx__body">');
+    if (it.image) h.push(scene(it.image));
     if (it.detail) h.push('<p class="itx__d">' + esc(it.detail) + "</p>");
     if (it.sub) {
       h.push('<ul class="tl__sub">');
@@ -415,7 +443,7 @@
         (im ? ' style="--grad:' + im.grad + '"' : "") + ">");
       if (im) {
         h.push('<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy" decoding="async" data-shot>');
-        h.push('<figcaption class="shot__credit">Photo: Unsplash</figcaption>');
+        h.push('<figcaption class="shot__credit">' + photoCredit(im) + "</figcaption>");
       }
       h.push("</div>");
     }
@@ -717,6 +745,7 @@
 
     h.push('<div class="aurora-hero" style="--grad:' + im.grad + '">');
     h.push('<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy" decoding="async" data-shot>');
+    h.push('<figcaption class="shot__credit">' + photoCredit(im) + "</figcaption>");
     h.push('<div class="aurora-hero__b"><p class="eyebrow">Four nights, four chances</p>' +
       "<h1>The aurora plan</h1><p>" + esc(D.aurora.lede) + "</p></div>");
     h.push("</div>");
@@ -1034,6 +1063,113 @@
     return f;
   }
 
+  /* ------------------------------------------------------- the live map */
+  /* Real OpenStreetMap tiles through Leaflet, vendored locally. This is the
+     "you have signal" map: actual roads, town names, the lot.
+
+     It cannot be made fully offline. OSM's tile policy forbids bulk
+     pre-downloading, and pre-scraping a region would be abusing a free
+     service. Tiles you have actually looked at are cached and will work
+     again without signal; everything else falls back to the built-in vector
+     map, which needs no network at all. That is why both exist. */
+
+  var LMAPS = [];
+
+  function teardownMaps() {
+    LMAPS.forEach(function (m) { try { m.remove(); } catch (e) {} });
+    LMAPS = [];
+  }
+
+  function wireMaps() {
+    if (typeof L === "undefined") return;
+    /* handy when debugging the map from the console */
+    if (typeof window !== "undefined") window.tripMaps = LMAPS;
+    Array.prototype.forEach.call(main.querySelectorAll("[data-leaflet]"), function (box) {
+      var cfg;
+      try { cfg = JSON.parse(box.getAttribute("data-leaflet")); } catch (e) { return; }
+      var stops = allStops().filter(function (x) { return x.half === cfg.half; });
+      if (!stops.length) return;
+
+      var map = L.map(box, {
+        scrollWheelZoom: false,          /* do not hijack the page scroll */
+        zoomControl: true,
+        attributionControl: true,
+        zoomSnap: 0.25,                  /* whole steps overshot the fit badly */
+        zoomDelta: 0.5
+      });
+      LMAPS.push(map);
+
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        minZoom: 5, maxZoom: 17,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      /* route in trip order */
+      var line = stops.map(function (x) { return x.ll.split(",").map(Number); });
+      if (line.length > 1) {
+        L.polyline(line, { color: "#F2F7F8", weight: 2, opacity: .7, dashArray: "5 6" }).addTo(map);
+      }
+
+      var group = [];
+      stops.forEach(function (st) {
+        var dim = cfg.hi && st.day.id !== cfg.hi;
+        var ll = st.ll.split(",").map(Number);
+        var mk = L.marker(ll, {
+          keyboard: true,
+          title: st.name,
+          icon: L.divIcon({
+            className: "lmkw" + (dim ? " lmkw--dim" : ""),
+            html: '<span class="lmk lmk--' + st.half + (cfg.hi && !dim ? " lmk--on" : "") + '">' +
+                  (st.dayIndex + 1) + "</span>",
+            iconSize: [28, 28], iconAnchor: [14, 14], popupAnchor: [0, -14]
+          })
+        }).addTo(map);
+        mk.bindPopup(
+          '<b class="lpop__n">' + esc(st.name) + "</b>" +
+          '<span class="lpop__m">Day ' + (st.dayIndex + 1) + " &middot; " +
+          esc(st.day.dow.slice(0, 3) + " " + prettyDate(st.day.date)) +
+          (st.time ? " &middot; " + esc(st.time) : "") + "</span>" +
+          '<a class="lpop__a" href="' + esc(mapsUrl(st.maps, st.ll)) +
+          '" target="_blank" rel="noopener">Open in maps</a>'
+        );
+        group.push(ll);
+      });
+
+      var focus = cfg.hi
+        ? stops.filter(function (x) { return x.day.id === cfg.hi; }).map(function (x) { return x.ll.split(",").map(Number); })
+        : group;
+      var bounds = L.latLngBounds((focus.length ? focus : group));
+
+      function fit() {
+        map.invalidateSize({ animate: false });
+        map.fitBounds(bounds, { padding: [18, 18], animate: false });
+      }
+      fit();
+      requestAnimationFrame(fit);            /* after first layout */
+      setTimeout(fit, 220);                  /* after fonts/scrollbars settle */
+
+      /* a panel below the fold has no usable size until it is on screen */
+      if (typeof ResizeObserver !== "undefined") {
+        var seen = false;
+        var ro = new ResizeObserver(function () {
+          if (box.clientHeight > 0 && !seen) { seen = true; fit(); }
+        });
+        ro.observe(box);
+        map.on("unload", function () { ro.disconnect(); });
+      }
+
+      map.once("focus", function () { map.scrollWheelZoom.enable(); });
+      map.on("click", function () { map.scrollWheelZoom.enable(); });
+    });
+  }
+
+  function liveMapPanel(half, hi, label, count) {
+    return '<div class="lwrap"><p class="panel__t panel__t--light">' + esc(label) +
+      "<span>" + count + " stop" + (count === 1 ? "" : "s") + "</span></p>" +
+      '<div class="lmap" data-leaflet=\'{"half":"' + half + '","hi":' +
+      (hi ? '"' + hi + '"' : "null") + '}\'></div></div>';
+  }
+
   function viewMap(sub) {
     var stops = allStops();
     var scope = sub || "all";
@@ -1061,7 +1197,43 @@
       ? prettyDate(dayForId(dayId).date) + " · " + dayForId(dayId).title
       : scope === "england" ? "England" : scope === "iceland" ? "Iceland" : "The whole trip";
 
+    var offline = !navigator.onLine;
+    var mode = (S.mapMode === "vector" || offline || typeof L === "undefined") ? "vector" : "live";
+
     h.push('<h1 class="sr-only">Route map</h1>');
+
+    h.push('<div class="mapmode">');
+    h.push('<div class="seg seg--sm">' +
+      '<button data-mapmode="live" aria-pressed="' + (mode === "live") + '"' +
+      (offline ? " disabled" : "") + ">Real map</button>" +
+      '<button data-mapmode="vector" aria-pressed="' + (mode === "vector") + '">Offline map</button>' +
+      "</div>");
+    h.push('<p class="tiny">' + (mode === "live"
+      ? "OpenStreetMap tiles. Needs signal; areas you have already viewed stay cached."
+      : (offline
+        ? "No signal, so this is the built-in vector map. It always works."
+        : "Built-in vector map. No network needed, ever.")) + "</p>");
+    h.push("</div>");
+
+    if (mode === "live") {
+      h.push('<div class="lpanels' + (eng.length && ice.length ? " lpanels--two" : "") + '">');
+      if (eng.length) h.push(liveMapPanel("london", hi, "England", eng.length));
+      if (ice.length) h.push(liveMapPanel("iceland", hi, "Iceland", ice.length));
+      h.push("</div>");
+      h.push('<div class="mapfilter mapfilter--light">');
+      [["all", "Whole trip"], ["england", "England"], ["iceland", "Iceland"]].forEach(function (f) {
+        h.push('<button data-map="' + f[0] + '" aria-pressed="' + (scope === f[0]) + '">' + f[1] + "</button>");
+      });
+      D.days.forEach(function (d) {
+        if (!stops.filter(function (x) { return x.day.id === d.id; }).length) return;
+        h.push('<button data-map="' + d.id + '" aria-pressed="' + (scope === d.id) + '">' +
+          esc(d.dow.slice(0, 3) + " " + prettyDate(d.date)) + "</button>");
+      });
+      h.push("</div>");
+      h.push(mapTail(shown, stops, scope, dayId));
+      return h.join("");
+    }
+
     h.push('<div class="mapwrap">');
     h.push('<div class="mapwrap__head"><div><p class="eyebrow">Where, and when</p><b>' +
       esc(heading) + "</b></div>" +
@@ -1092,6 +1264,12 @@
     });
     h.push("</div></div>");
 
+    h.push(mapTail(shown, stops, scope, dayId));
+    return h.join("");
+  }
+
+  function mapTail(shown, stops, scope, dayId) {
+    var h = [];
     h.push('<div class="maplayout"><div>');
     h.push('<div class="section-head"><h2>Stops in order</h2>');
     var rl = routeUrl(shown);
@@ -1477,6 +1655,7 @@
     else if (r.view === "info") html = viewInfo(r.sub);
     else html = viewToday();
 
+    teardownMaps();          /* Leaflet keeps handlers on detached nodes */
     main.innerHTML = html;
     document.title = ({
       today: "Today", days: "Itinerary", map: "Map", aurora: "Aurora",
@@ -1491,6 +1670,7 @@
     paintBadge();
     paintDateChip();
     wireShots();
+    wireMaps();
 
     if (pendingFocus) {
       var el = document.getElementById("bl-" + pendingFocus);
@@ -1633,6 +1813,14 @@
 
     var ed = t.closest && t.closest("[data-edit]");
     if (ed) { editCustom(ed.dataset.edit); return; }
+
+    var mm = t.closest && t.closest("[data-mapmode]");
+    if (mm) {
+      S.mapMode = mm.dataset.mapmode;
+      save(K.mapMode, S.mapMode);
+      render();
+      return;
+    }
 
     var mf = t.closest && t.closest("[data-map]");
     if (mf) { location.hash = "#/map/" + mf.dataset.map; return; }
@@ -1884,8 +2072,12 @@
     dot.className = "dot " + (off ? "dot--off" : "dot--on");
     dot.setAttribute("aria-label", off ? "Offline" : "Online");
   }
-  window.addEventListener("online", paintNet);
-  window.addEventListener("offline", paintNet);
+  function netChanged() {
+    paintNet();
+    if (route().view === "map") render();   /* live map needs signal */
+  }
+  window.addEventListener("online", netChanged);
+  window.addEventListener("offline", netChanged);
   paintNet();
 
   /* service worker - http(s) only; a file:// page cannot register one */
