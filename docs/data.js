@@ -14,12 +14,12 @@ const TRIP = {
   meta: {
     title: "London + Iceland",
     who: "Ben & Sarah Alexander",
-    start: "2026-10-10",              // first day of the trip
+    start: "2026-10-09",              // Sarah's departure day
     end: "2026-10-17",                // last day (fly home)
     nights: 7,
     budgetCeiling: 5000,
-    structure: "3 nights London (Oct 10, 11, 12) then 4 nights Iceland (Oct 13, 14, 15, 16), home midday Saturday Oct 17.",
-    flightsNote: "Ben's MSN-LHR and KEF-MSN flights are covered by work. Everything costed here is out of pocket."
+    structure: "Sarah flies Fri Oct 9, lands Sat Oct 10. 3 nights London (Oct 10, 11, 12), then 4 nights Iceland (Oct 13, 14, 15, 16). Home late Saturday Oct 17.",
+    flightsNote: "Ben's MSN-LHR and KEF-MSN flights are covered by work. Everything costed here is out of pocket, including getting to and from O'Hare and covering the kids at home."
   },
 
   /* --- the must-do list, shown as a grid ----------------------------------- */
@@ -140,15 +140,40 @@ const TRIP = {
      headsUp: logistics warning on a single item. Renders amber.               */
   days: [
 
+    { id: "oct09", date: "2026-10-09", dow: "Friday", half: "london",
+      title: "Sarah flies, Ben gets into position",
+      sun: null,
+      images: [],
+      intro: [
+        "Nothing happens together today. Sarah crosses the Atlantic overnight and Ben is already somewhere around London.",
+        "The only job tonight is making sure the Heathrow meet-up in the morning is not improvised."
+      ],
+      items: [
+        { time: "11:00am", name: "Sarah leaves Madison for O'Hare",
+          detail: "Roughly 2.5 hours of driving, plus parking, the shuttle and bag drop. Be at the terminal by 2:25pm for a 4:25pm departure." },
+        { time: "4:25pm", name: "UA929, O'Hare to Heathrow",
+          detail: "Nonstop, 8h 20m, Boeing 767-300. Lands 6:45am Saturday. First checked bag is included; a second is $120." },
+        { time: "Evening", name: "Ben: sort tonight's bed and tomorrow's route",
+          detail: "Work out where you are sleeping and exactly how you get to Heathrow Terminal 2 arrivals for about 7:15am, before you go to sleep rather than at 5am.",
+          headsUp: "Friday night into Saturday is one of the nights the Piccadilly Night Tube runs, which makes an early Heathrow run much easier than it would be midweek. Confirm current times rather than assuming." }
+      ],
+      notes: [
+        { label: "Home front", text: "Mom should already be at the house with the kids settled before Sarah leaves, not arriving the same afternoon." }
+      ]
+    },
+
     { id: "oct10", date: "2026-10-10", dow: "Saturday", half: "london",
       title: "Sarah lands, London on foot",
       sun: { sunrise: "7:20am", sunset: "6:15pm" },
       images: ["bigben"],
       intro: [
-        "Sarah's overnight flight lands Heathrow early morning. Piccadilly line into town - cheap, and only marginally slower than the express.",
+        "UA929 lands at Heathrow 6:45am. Piccadilly line into town - cheap, and only marginally slower than the express.",
         "Today is deliberately low-effort because she'll be wrecked. All walking, all free."
       ],
       items: [
+        { time: "6:45am", name: "Meet Sarah at Heathrow arrivals",
+          detail: "United uses Terminal 2. Allow 45-60 minutes for immigration and bags, so be at arrivals by about 7:15am. Confirm the terminal on the day.",
+          maps: "Heathrow Terminal 2 arrivals, London", ll: "51.4700,-0.4520" },
         { name: "Westminster & Big Ben", detail: "Then across Westminster Bridge for the classic view.", maps: "Big Ben, Westminster, London", ll: "51.5007,-0.1246", image: "bigben" },
         { name: "Thames South Bank walk", detail: "East past the London Eye.", maps: "South Bank, London", ll: "51.5033,-0.1196" },
         { name: "Tower Bridge", detail: "And the Tower of London from outside.", maps: "Tower Bridge, London", ll: "51.5055,-0.0754", image: "towerbridge" },
@@ -199,7 +224,8 @@ const TRIP = {
       ],
       notes: [
         { label: "Optional upgrade", text: "English Heritage's Stone Circle Experience puts you inside the ring outside normal hours. Check October availability directly with English Heritage - some operators indicate special access isn't offered in October or November, so treat this as a bonus rather than a plan. About $150 for the two of you." },
-        { label: "Evening", text: "Pack. Early flight tomorrow." }
+        { label: "Evening", text: "Pack tonight. Tomorrow's flight leaves Heathrow Terminal 5 at 7:50am, so you want to be at T5 by about 5:50am." },
+        { label: "Book a car", text: "Oct 13 is a Tuesday, so there is no Night Tube. Book a car for 4:45 to 5:15am instead of hoping the first train gets you there." }
       ]
     },
 
@@ -209,7 +235,9 @@ const TRIP = {
       images: [],
       intro: ["Every night in Iceland is an aurora night. The aurora panel is the most important page in this app."],
       items: [
-        { time: "Morning", name: "Flight LHR to KEF", detail: "About 3 hours. Iceland is an hour behind London; you land around midday." },
+        { time: "7:50am", name: "BA800, Heathrow T5 to Keflavík",
+          detail: "3h 5m. Iceland is an hour behind London, so you land at 9:55am - earlier than the original plan assumed, which buys you most of a day on Reykjanes. One checked bag each, 23kg.",
+          headsUp: "Be at Terminal 5 by about 5:50am. No Night Tube on a Tuesday, so this is a booked-car morning." },
         { name: "Pick up the rental car at KEF",
           detail: "A 2WD handles this entire route in mid-October and saves real money. Take the gravel and sand/ash damage waiver - that's a genuine Iceland risk, not an upsell.",
           maps: "Keflavik International Airport, Iceland", ll: "63.9850,-22.6056" },
@@ -290,7 +318,7 @@ const TRIP = {
       items: [
         { time: "Morning", name: "Reykjadalur, Hveragerði", detail: "Park at the trailhead and hike about 2 miles uphill through a steaming geothermal valley, 45-60 minutes. At the top, a river you sit down in, with boardwalks and changing screens. The water gets hotter further upstream - find your spot. Your non-tourist hot spring. Free, and the most Icelandic thing on this itinerary.", maps: "Reykjadalur trailhead, Hveragerdi, Iceland", ll: "64.0225,-21.2103", image: "reykjadalur" },
         { time: "Afternoon", name: "Icelandic horse riding", detail: "1-2 hours at a farm near Hveragerði or Selfoss. Ask specifically for a ride that demonstrates the tölt - the fifth gait unique to the breed, smooth enough to hold a drink while riding. Beginners are fine; these horses are famously calm.", maps: "Selfoss, Iceland", ll: "63.9333,-21.0000", area: true, image: "horses" },
-        { name: "Drive to lodging near Keflavík", detail: "About 1 hour, for the early flight.", maps: "Keflavik, Iceland", ll: "64.0049,-22.5644", area: true }
+        { name: "Drive toward Keflavík", detail: "About 1 hour. Tomorrow's flight is not until 4:25pm, so you are not forced to sleep next to the airport - but staying close still makes the last morning relaxed instead of rushed.", maps: "Keflavik, Iceland", ll: "64.0049,-22.5644", area: true }
       ],
       aurora: { night: 4, spot: "Reykjanes lava fields",
         text: "Dark, and ten minutes from the airport hotels. Last chance.",
@@ -298,12 +326,26 @@ const TRIP = {
     },
 
     { id: "oct17", date: "2026-10-17", dow: "Saturday", half: "iceland",
-      title: "Home",
+      title: "One more Icelandic morning, then home",
       sun: null,
       images: [],
-      intro: [],
+      intro: [
+        "FI853 does not leave until 4:25pm, so this is not the dawn-departure day the original plan assumed. After sunrise you have roughly five usable hours. Spend them.",
+        "Pick one of the three below rather than trying to stack them."
+      ],
       items: [
-        { name: "Early Icelandair KEF to Chicago O'Hare", detail: "Connect to Madison. Home early afternoon.", maps: "Keflavik International Airport, Iceland", ll: "63.9850,-22.6056" }
+        { name: "Blue Lagoon", detail: "Ten minutes from KEF, which makes it the lowest-risk way to use a morning that ends at an airport. Pre-book; they do not really do walk-ins.", maps: "Blue Lagoon, Grindavik, Iceland", ll: "63.8804,-22.4495", alt: true },
+        { name: "Or Sky Lagoon, Reykjavík", detail: "About 45 minutes from KEF and the better building of the two, with an ocean edge. Check the opening time before you commit to it.", maps: "Sky Lagoon, Kopavogur, Iceland", ll: "64.1096,-21.9320", alt: true },
+        { name: "Or finish Reykjanes", detail: "If Tuesday ran short, Gunnuhver and the Bridge Between Continents are both more or less on the way back to the airport. Free.", maps: "Gunnuhver, Reykjanes, Iceland", ll: "63.8189,-22.6836", alt: true },
+        { time: "1:30pm", name: "Fuel up, return the car, check in at KEF",
+          detail: "Refuel before you hand the car back; airport fuel is the most expensive in Iceland. Two and a half hours before an international departure is comfortable at KEF, not excessive.",
+          maps: "Keflavik International Airport, Iceland", ll: "63.9850,-22.6056" },
+        { time: "4:25pm", name: "FI853, Keflavík to Chicago O'Hare",
+          detail: "6h 50m, lands ORD 6:15pm at Terminal 5, one checked bag included. Then the connection or the drive to Madison - realistically home late evening, not early afternoon.",
+          headsUp: "Ben's KEF-MSN flight is booked separately through work. If it is not FI853, you are on different flights out of KEF and need to agree who returns the rental car." }
+      ],
+      notes: [
+        { label: "Tell Mom", text: "She is covering the kids until you are actually back. Late evening, not mid-afternoon." }
       ]
     }
   ],
@@ -371,7 +413,10 @@ const TRIP = {
         { id: "lod-kef",     label: "Keflavík x1",              planned: 180 }
       ]},
       { id: "transport", label: "Transport", lines: [
-        { id: "trn-car",     label: "Iceland rental car, 4 days",    planned: 340 },
+        { id: "trn-car",     label: "Iceland rental car, 5 days (Oct 13-17)", planned: 425, estimate: true },
+        { id: "trn-parkord", label: "O'Hare parking, Oct 9-17",       planned: 170, estimate: true },
+        { id: "trn-msnord",  label: "Madison to O'Hare and back",     planned: 60,  estimate: true },
+        { id: "trn-lhrcar",  label: "Pre-dawn car to Heathrow T5",    planned: 70,  estimate: true },
         { id: "trn-fuel",    label: "Fuel",                          planned: 140 },
         { id: "trn-london",  label: "London transit",                planned: 80 }
       ]},
@@ -385,12 +430,16 @@ const TRIP = {
         { id: "exc-temple",      label: "Temple day train + taxi",                   planned: 20 },
         { id: "exc-reykjadalur", label: "Reykjadalur",                               planned: 0, free: true }
       ]},
+      { id: "home", label: "Home while you are away", lines: [
+        { id: "home-momflights", label: "Mom's round-trip flights to Madison", planned: 400, estimate: true },
+        { id: "home-momstay",    label: "Groceries and extras for her week",  planned: 120, estimate: true }
+      ]},
       { id: "dinner", label: "One nice dinner", lines: [
         { id: "din-nice",    label: "One nice dinner",               planned: 150 }
       ]}
     ],
     headroomOptions: [
-      "Sky Lagoon on the last evening (about $234)",
+      "Sky Lagoon or Blue Lagoon on the free Saturday morning (Sky Lagoon is about $234 for two)",
       "Stone Circle Experience at Stonehenge (about $150), if October slots exist",
       "Upgrade the London hotel from budget to mid-range (about $300)",
       "Hold as buffer - Sarah's one-way airfares are the least predictable number and could run $300-400 over estimate"
@@ -414,6 +463,11 @@ const TRIP = {
       { id: "tw8", text: "Verify passports are valid at least 6 months past Oct 17, 2026" },
       { id: "tw9", text: "Apply for UK ETA for both of you - the UK has required an Electronic Travel Authorisation from US citizens since January 2025. Confirm the current fee and processing time on gov.uk before paying.", extra: true },
       { id: "tw10", text: "Check whether ETIAS is live for Iceland by October 2026 - the EU has delayed it repeatedly. If it is in force by then, both of you need one for the Schengen area.", extra: true },
+      { id: "tw11", text: "Confirm with Mom which dates she can actually cover - ideally Oct 8 through Oct 18, so there is a day of overlap at each end", extra: true },
+      { id: "tw12", text: "Book Mom's round-trip flights to Madison", budgetIds: ["home-momflights"], extra: true },
+      { id: "tw13", text: "Decide how Sarah gets to O'Hare on Oct 9: drive and park for eight days, or a drop-off", budgetIds: ["trn-parkord", "trn-msnord"], extra: true },
+      { id: "tw14", text: "Confirm Ben's own KEF-MSN flight on Oct 17. If it is not FI853 at 4:25pm you are on separate flights and need to agree who returns the rental car", extra: true },
+      { id: "tw15", text: "Work out how Ben gets to Heathrow Terminal 2 arrivals by about 7:15am on Oct 10, including where he sleeps on the 9th", extra: true },
     ]},
     { id: "four-six", label: "Four to six weeks out", promoteAt: 42, overdueAt: 7, items: [
       { id: "fs1",  text: "Book Into the Glacier - Gullfoss departure, not Reykjavík", budgetIds: ["exc-glacier"] },
@@ -425,13 +479,23 @@ const TRIP = {
       { id: "fs7",  text: "Book The Stonehenge Tour bus", budgetIds: ["exc-stonehenge"] },
       { id: "fs8",  text: "Reserve Dishoom" },
       { id: "fs9",  text: "Notify banks of travel; confirm no foreign transaction fees" },
-      { id: "fs10", text: "Download offline maps for Iceland and southern England" }
+      { id: "fs10", text: "Download offline maps for Iceland and southern England" },
+      { id: "fs11", text: "Reserve O'Hare parking for Oct 9-17 - off-site lots are far cheaper than the terminal garage, and prepaying is cheaper again", budgetIds: ["trn-parkord"], extra: true },
+      { id: "fs12", text: "Extend the Iceland rental car through Saturday afternoon - it is 5 days now, not 4", budgetIds: ["trn-car"], extra: true },
+      { id: "fs13", text: "Book a car to Heathrow T5 for 4:45 to 5:15am on Tue Oct 13 - no Night Tube on a weekday", budgetIds: ["trn-lhrcar"], extra: true },
+      { id: "fs14", text: "Decide and book the free Saturday morning: Blue Lagoon, Sky Lagoon, or finishing Reykjanes", extra: true },
+      { id: "fs15", text: "Reconsider the Oct 16 lodging - it no longer has to be next to Keflavík now the flight is 4:25pm", budgetIds: ["lod-kef"], extra: true },
+      { id: "fs16", text: "Write the week up for Mom: school runs, activities, bedtimes, pediatrician, insurance details, allergies, emergency contacts", extra: true },
+      { id: "fs17", text: "Leave a signed medical-consent note so Mom can authorise treatment for the kids if she has to", extra: true }
     ]},
     { id: "week-of", label: "Week of", promoteAt: 7, overdueAt: 0, items: [
       { id: "wo1", text: "Confirm every booking by email" },
       { id: "wo2", text: "Check vedur.is and road.is daily starting three days out" },
       { id: "wo3", text: "Charge and pack the phone tripod" },
-      { id: "wo4", text: "Screenshot all confirmations in case of no signal" }
+      { id: "wo4", text: "Screenshot all confirmations in case of no signal" },
+      { id: "wo5", text: "Hand over to Mom: house keys, car seats, wifi password, pediatrician number, allergy notes, where everything lives", extra: true },
+      { id: "wo6", text: "Send Mom every flight number and the link to this app", extra: true },
+      { id: "wo7", text: "Set an out-of-office, and give Mom a way to reach you that works from Iceland", extra: true }
     ]},
     { id: "packing", label: "Packing that actually matters", promoteAt: 7, overdueAt: 1, resettable: true, items: [
       { id: "pk1", text: "Waterproof shell + warm mid-layer - Iceland is 35-45F but wind is the real story" },
@@ -442,16 +506,20 @@ const TRIP = {
       { id: "pk6", text: "Temple recommends" },
       { id: "pk7", text: "Sunday clothes" },
       { id: "pk8", text: "Iceland is card-only in practice; skip cash" },
-      { id: "pk9", text: "Hold car doors with both hands - wind rips them off hinges every year and rental insurance doesn't cover it" }
+      { id: "pk9", text: "Hold car doors with both hands - wind rips them off hinges every year and rental insurance doesn't cover it" },
+      { id: "pk10", text: "Plug adapters: the UK is Type G and Iceland is Type F. They are different plugs, so pack both", extra: true }
     ]}
   ],
 
   /* --- confirmations locker (structure only; values live in localStorage) --- */
   confirmations: [
-    { id: "cf-flt-sarah-out", label: "Sarah MSN to LHR",               fields: ["Airline", "Flight no.", "Confirmation", "Times"] },
-    { id: "cf-flt-sarah-ret", label: "Sarah KEF to MSN",               fields: ["Airline", "Flight no.", "Confirmation", "Times"] },
-    { id: "cf-flt-lhrkef",    label: "LHR to KEF x2",                  fields: ["Airline", "Flight no.", "Confirmation", "Times"] },
-    { id: "cf-flt-home",      label: "KEF to ORD to MSN (Oct 17)",     fields: ["Airline", "Flight no.", "Confirmation", "Times"] },
+    { id: "cf-flt-sarah-out", label: "Sarah ORD-LHR, UA929, Oct 9",   fields: ["Confirmation", "Seat", "Terminal", "Notes"] },
+    { id: "cf-flt-lhrkef",    label: "LHR-KEF x2, BA800, Oct 13",      fields: ["Confirmation", "Seats", "Terminal", "Notes"] },
+    { id: "cf-flt-sarah-ret", label: "Sarah KEF-ORD, FI853, Oct 17",   fields: ["Confirmation", "Ticket no.", "Seat", "Notes"] },
+    { id: "cf-flt-ben-home",  label: "Ben KEF-MSN, Oct 17 (work)",     fields: ["Airline", "Flight no.", "Confirmation", "Times"] },
+    { id: "cf-mom",           label: "Mom's flights to Madison",       fields: ["Airline", "Flight no.", "Confirmation", "Dates"] },
+    { id: "cf-parkord",       label: "O'Hare parking",                 fields: ["Lot", "Confirmation", "Dates", "Shuttle"] },
+    { id: "cf-lhrcar",        label: "Car to Heathrow T5, Oct 13",      fields: ["Company", "Confirmation", "Pickup time", "Address"] },
     { id: "cf-lod-london",    label: "London lodging x3",              fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
     { id: "cf-lod-rvk",       label: "Reykjavík lodging x1",      fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
     { id: "cf-lod-south",     label: "South Iceland guesthouse x2",    fields: ["Name", "Address", "Confirmation", "Check-in / out"] },

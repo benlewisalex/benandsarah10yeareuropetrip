@@ -130,7 +130,8 @@
 
   /* Turn-by-turn for a whole day, in order. */
   function routeUrl(stops) {
-    var pts = stops.filter(function (x) { return x.ll; }).map(function (x) { return x.ll; });
+    /* skip alternatives - you pick one, you do not drive to all three */
+    var pts = stops.filter(function (x) { return x.ll && !x.alt; }).map(function (x) { return x.ll; });
     if (pts.length < 2) return null;
     if (isApple()) {
       return "https://maps.apple.com/?saddr=" + encodeURIComponent(pts[0]) +
@@ -194,6 +195,7 @@
         if (!it.ll) return;
         out.push({
           ll: it.ll, name: it.name, maps: it.maps, area: !!it.area,
+          alt: !!it.alt,          /* one of several options, not a stop on the route */
           day: day, dayIndex: di, half: day.half, time: it.time || null
         });
       });
@@ -982,9 +984,13 @@
       o.push('<path class="rm-ice" d="' + ringsToPath(region.glacier, pr) + '"/>');
     }
 
-    /* route legs between consecutive pins */
-    for (var n = 1; n < cl.length; n++) {
-      var A = cl[n - 1], B = cl[n];
+    /* route legs between consecutive pins, skipping pins that are only
+       "or do this instead" - you pick one, you do not drive to all three */
+    var route = cl.filter(function (c) {
+      return !c.items.every(function (x) { return x.alt; });
+    });
+    for (var n = 1; n < route.length; n++) {
+      var A = route[n - 1], B = route[n];
       var live = highlightDay && A.dayId === highlightDay && B.dayId === highlightDay;
       o.push('<line class="rm-leg' + (live ? " rm-leg--active" : "") +
         '" x1="' + A.x.toFixed(1) + '" y1="' + A.y.toFixed(1) +
@@ -1106,8 +1112,9 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
       }).addTo(map);
 
-      /* route in trip order */
-      var line = stops.map(function (x) { return x.ll.split(",").map(Number); });
+      /* route in trip order, alternatives excluded */
+      var line = stops.filter(function (x) { return !x.alt; })
+        .map(function (x) { return x.ll.split(",").map(Number); });
       if (line.length > 1) {
         L.polyline(line, { color: "#F2F7F8", weight: 2, opacity: .7, dashArray: "5 6" }).addTo(map);
       }
@@ -1286,7 +1293,8 @@
         h.push('<div class="stoplist__i stoplist__i--' + st.half + '" id="stop-' + stops.indexOf(st) + '">');
         h.push('<span class="stoplist__n">' + (st.dayIndex + 1) + "</span>");
         h.push('<div class="stoplist__t"><b>' + esc(st.name) +
-          (st.area ? '<span class="approx">area</span>' : "") + "</b>");
+          (st.area ? '<span class="approx">area</span>' : "") +
+          (st.alt ? '<span class="approx approx--alt">option</span>' : "") + "</b>");
         h.push("<span>" + esc(st.day.dow.slice(0, 3) + " " + prettyDate(st.day.date)) +
           (st.time ? " &middot; " + esc(st.time) : "") +
           (st.aurora ? " &middot; aurora night " + st.aurora : "") + "</span>");
@@ -1499,8 +1507,9 @@
           else if (d < 0) delta = ' <span class="is-under">' + money(d) + "</span>";
           else delta = ' <span class="muted">on plan</span>';
         }
-        h.push('<div class="bl__t"><label for="in-' + esc(l.id) + '">' + esc(l.label) + "</label>" +
-          "<span>planned " + (l.free ? "free" : money(l.planned)) + delta + "</span></div>");
+        h.push('<div class="bl__t"><label for="in-' + esc(l.id) + '">' + esc(l.label) +
+          (l.estimate ? '<span class="approx" title="My estimate, not from ITINERARY.md">est</span>' : "") +
+          "</label><span>planned " + (l.free ? "free" : money(l.planned)) + delta + "</span></div>");
         h.push('<div class="bl__in"><input id="in-' + esc(l.id) + '" type="number" inputmode="decimal" min="0" step="1" ' +
           'placeholder="actual" data-actual="' + esc(l.id) + '" value="' + esc(a == null ? "" : a) + '" ' +
           'aria-label="Actual cost for ' + esc(l.label) + '"></div>');

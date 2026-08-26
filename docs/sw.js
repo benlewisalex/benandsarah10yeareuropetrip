@@ -8,7 +8,7 @@
    copy. That is the one maintenance chore this file has.
    ========================================================================== */
 
-var CACHE = "london-iceland-v7";
+var CACHE = "london-iceland-v8";
 
 /* Map tiles live in their own cache so they cannot crowd out the app shell,
    and so clearing them is easy. Tiles are cached only as they are actually
