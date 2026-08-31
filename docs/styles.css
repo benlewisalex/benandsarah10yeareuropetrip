@@ -724,6 +724,28 @@ code { font-family: var(--mono); font-size: .92em; }
 .itx__body { display: none; padding: 0 0 var(--s4) 64px; }
 .itx.is-open > .itx__body { display: block; }
 .itx__d { color: var(--ink-2); font-size: var(--t-15); }
+
+/* getting-there strip: the two facts people scan for before reading anything */
+.itx__meta {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin: 0 0 var(--s3);
+}
+.itx__meta-i {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 9px 4px 8px;
+  border: 1px solid var(--line); border-radius: var(--r-pill);
+  background: var(--sunk);
+  color: var(--ink-2); font-size: var(--t-13); line-height: 1.35;
+}
+.itx__meta-i svg { flex: 0 0 auto; color: var(--ink-3); }
+
+/* why it is worth the time. Sits above the logistics and reads darker. */
+.itx__why {
+  color: var(--ink); font-size: var(--t-15); line-height: 1.55;
+  margin: 0 0 var(--s3); padding-left: var(--s3);
+  border-left: 2px solid var(--line);
+}
+.itx__why + .itx__d { color: var(--ink-2); }
 .itx__scene {
   position: relative; margin: 0 0 var(--s4);
   aspect-ratio: var(--ratio, 16 / 9); overflow: hidden;

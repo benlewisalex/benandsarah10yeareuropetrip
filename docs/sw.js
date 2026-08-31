@@ -8,7 +8,7 @@
    copy. That is the one maintenance chore this file has.
    ========================================================================== */
 
-var CACHE = "london-iceland-v8";
+var CACHE = "london-iceland-v10";
 
 /* Map tiles live in their own cache so they cannot crowd out the app shell,
    and so clearing them is easy. Tiles are cached only as they are actually
@@ -51,7 +51,8 @@ var PHOTOS = [
   "https://commons.wikimedia.org/wiki/Special:FilePath/Icelandic%20Horse%20Face.jpg?width=1600",
   "https://commons.wikimedia.org/wiki/Special:FilePath/Aurora%20Iceland.jpg?width=1600",
   "https://commons.wikimedia.org/wiki/Special:FilePath/Hot%20spring%2C%20Reykjadalur%20Valley%2C%20Iceland%2C%2020230502%201411%204232.jpg?width=1600",
-  "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20view%20of%20the%20recent%20Fagradalsfjall%20lava%20fields.jpg?width=1600"
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20view%20of%20the%20recent%20Fagradalsfjall%20lava%20fields.jpg?width=1600",
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Blue%20lagoon%20iceland.jpg?width=1600"
 ];
 
 self.addEventListener("install", function (e) {

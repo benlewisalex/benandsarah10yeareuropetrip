@@ -164,7 +164,9 @@
     trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
     pencil:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4Z"/></svg>',
     mapicon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3.5 3 6v15l6-2.5 6 2.5 6-2.5V3.5L15 6 9 3.5Z"/><path d="M9 3.5v15M15 6v15"/></svg>',
-    money: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M12 3v18M8 7h6a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h7"/></svg>'
+    money: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M12 3v18M8 7h6a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h7"/></svg>',
+    route: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M9 19h6a3 3 0 0 0 3-3V8M15 5H9a3 3 0 0 0-3 3v8"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>'
   };
 
   /* ------------------------------------------------------------ date + phase */
@@ -390,7 +392,7 @@
   function itemRow(day, it, idx) {
     var key = day.id + ":" + idx;
     var open = !!S.itemOpen[key];
-    var hasBody = it.detail || it.sub || it.headsUp || it.maps || it.links;
+    var hasBody = it.detail || it.sub || it.headsUp || it.maps || it.links || it.why || it.travel || it.dur;
     var h = [];
 
     if (!hasBody) {
@@ -410,6 +412,17 @@
 
     h.push('<div class="itx__body">');
     if (it.image) h.push(scene(it.image));
+
+    /* getting-there strip: how you arrive, and how long you stay. Two facts
+       that used to be buried mid-paragraph and are the two people scan for. */
+    if (it.travel || it.dur) {
+      var m = [];
+      if (it.travel) m.push('<span class="itx__meta-i">' + ICON.route + esc(it.travel) + "</span>");
+      if (it.dur) m.push('<span class="itx__meta-i">' + ICON.clock + esc(it.dur) + "</span>");
+      h.push('<div class="itx__meta">' + m.join("") + "</div>");
+    }
+    /* why it is worth the time, before the logistics of doing it */
+    if (it.why) h.push('<p class="itx__why">' + esc(it.why) + "</p>");
     if (it.detail) h.push('<p class="itx__d">' + esc(it.detail) + "</p>");
     if (it.sub) {
       h.push('<ul class="tl__sub">');
@@ -1524,7 +1537,10 @@
 
     h.push('<div class="section-head"><h2>Headroom</h2></div>');
     h.push('<div class="card"><div class="card__body stack">');
-    h.push('<p class="small muted">Planned leaves about ' + money(b.ceiling - b.planned) + ". Options for it:</p>");
+    var head = b.ceiling - b.planned;
+    h.push('<p class="small muted">' + (head < 0
+      ? "Planned is " + money(-head) + " past the " + money(b.ceiling) + " target. The trades:"
+      : "Planned leaves about " + money(head) + ". Options for it:") + "</p>");
     h.push('<ul class="tl__sub">');
     D.budget.headroomOptions.forEach(function (o) { h.push("<li>" + esc(o) + "</li>"); });
     h.push("</ul>");
