@@ -1076,6 +1076,89 @@ code { font-family: var(--mono); font-size: .92em; }
 .addrow { display: flex; gap: var(--s2); padding: var(--s4) var(--s5); border-top: 1px solid var(--line-2); }
 .addrow input { flex: 1 1 auto; min-width: 0; }
 
+/* ================================================ 12b. CONDENSED ITINERARY */
+/* The Book tab. Every stop of the trip on one scroll: when, what, how long,
+   how you got there from the last one, and whether the booking is done.
+   Deliberately denser than the Day accordion in section 9b - this is the page
+   you scan to find the gap, not the page you read. Nothing collapses.
+
+   Row grid is: time | name + duration | booking | tap-through.
+   The travel line sits above its own row and inside the same .cdstop, so the
+   separator falls between stops rather than between a stop and its own
+   getting-there line. */
+
+.cddays { display: grid; gap: var(--s4); }
+
+.cdday { margin-bottom: 0; box-shadow: inset 6px 0 0 var(--half, var(--line-2)), var(--sh-1); }
+.cdday__h { align-items: baseline; }
+.cdday__h span:last-child { white-space: nowrap; }
+.cdday.is-today .cdday__h { background: var(--amber-wash); }
+.cdday__warn { color: var(--hazard); margin-left: var(--s1); vertical-align: -3px; }
+.cdday__warn svg { width: 16px; height: 16px; }
+
+.cdlist { padding: var(--s2) 0; }
+.cdstop + .cdstop { border-top: 1px solid var(--line-2); }
+
+.cd { display: flex; align-items: flex-start; gap: var(--s3); padding: var(--s3) var(--s4); }
+
+.cd__time {
+  flex: 0 0 56px; padding-top: 2px; text-align: right;
+  font-size: var(--t-12); font-weight: 700; color: var(--ink-2);
+}
+.cd__m { flex: 1 1 auto; min-width: 0; }
+
+/* both the <button> on a stop and the <a> on an aurora night */
+.cd__t {
+  display: block; width: 100%; padding: 0; margin: 0; text-align: left;
+  font: inherit; color: inherit; background: none; border: 0;
+  text-decoration: none; cursor: pointer;
+}
+.cd__t b { display: block; font-size: var(--t-15); font-weight: 650; }
+.cd__t:hover b { text-decoration: underline; }
+.cd__dur { display: block; margin-top: 1px; font-size: var(--t-12); color: var(--ink-3); }
+.cd.is-booked .cd__t b { color: var(--ink-2); }
+
+.cd__tags { display: flex; gap: var(--s2); flex-wrap: wrap; margin-top: var(--s2); }
+.tag--book {
+  min-height: 32px; max-width: 100%; border-style: dashed;
+  font-size: var(--t-11); font-weight: 600; white-space: nowrap;
+}
+.tag--book span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.tag--book em { flex: 0 0 auto; font-style: normal; font-weight: 700; color: var(--ink-3); }
+
+.cd__bk { flex: 0 0 58px; display: grid; justify-items: center; gap: 2px; padding-top: 1px; }
+.cd__bk input[type="checkbox"] {
+  width: 24px; height: 24px; margin: 0;
+  accent-color: var(--moss); cursor: pointer;
+}
+.cd__bkn { font-size: var(--t-11); color: var(--ink-3); text-align: center; }
+.cd__na {
+  padding: 3px var(--s2); border-radius: var(--r-pill);
+  background: var(--sunk); color: var(--ink-3);
+  font-size: var(--t-11); font-weight: 700; letter-spacing: .06em;
+}
+
+.cd__go { flex: 0 0 18px; padding-top: 3px; color: var(--ink-3); cursor: pointer; }
+.cd__go svg { width: 16px; height: 16px; }
+.cd:hover .cd__go { color: var(--ink); }
+
+/* aligned under the name column, not the time column, so the eye reads
+   time-then-name straight down and the travel lines sit out of that path */
+.cd__tr {
+  display: flex; align-items: flex-start; gap: 6px;
+  padding: var(--s2) var(--s4) 0 calc(56px + var(--s3) + var(--s4));
+  font-size: var(--t-12); color: var(--ink-3);
+}
+.cd__tr svg { flex: 0 0 auto; width: 13px; height: 13px; margin-top: 2px; }
+
+/* flash the day a Book row just tapped through to */
+.dayx.is-target { animation: flash 1.8s var(--ease); }
+
+@media (min-width: 560px) {
+  .cd__time { flex-basis: 68px; }
+  .cd__tr { padding-left: calc(68px + var(--s3) + var(--s4)); }
+}
+
 /* =============================================================== 13. FORMS */
 
 .field { display: block; }
@@ -1312,6 +1395,7 @@ body.is-offline .offline-banner { display: flex; }
   .tabs, .topbar, .chip, .seg, .addrow, .btn, .mapfilter { display: none !important; }
   .main { padding: 0; max-width: none; }
   .card, .day, .hazard { break-inside: avoid; box-shadow: none; border: 1px solid #999; }
+  .cdstop { break-inside: avoid; }
   .hero, .mapwrap { color: #000; background: none; border: 1px solid #999; }
   .hero .eyebrow, .hero__sub, .countdown span { color: #333; }
 }

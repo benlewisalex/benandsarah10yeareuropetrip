@@ -262,6 +262,73 @@
     return out.slice(0, limit);
   }
 
+  /* --------------------------------------------------- booking, per stop */
+  /* A stop's booking checkbox on the Book tab is NOT its own state. It IS the
+     state of the checklist items named in the stop's `book` array, so ticking
+     it there ticks the same to-do on the Prep tab and the other way round -
+     there is only ever one copy. That is deliberate: two copies of "have I
+     booked the rental car" is how you end up in Keflavik without a car.
+
+     One booking can cover several stops (fs5 is four nights in four places),
+     and one stop can need several bookings, which is why this returns a
+     part/all split rather than a boolean. */
+
+  function checkItemById(id) {
+    var hit = null;
+    D.checklists.forEach(function (g) {
+      itemsOf(g).forEach(function (i) { if (i.id === id) hit = { item: i, group: g }; });
+    });
+    return hit;
+  }
+
+  /* null means this stop needs no reservation at all -> the tab shows N/A */
+  function bookState(it) {
+    var ids = (it && it.book) || [];
+    if (!ids.length) return null;
+    var rows = [], done = 0;
+    ids.forEach(function (id) {
+      var hit = checkItemById(id);
+      if (!hit) return;               /* stale id: drop it rather than claim it */
+      var d = isDone(id);
+      if (d) done++;
+      rows.push({ id: id, text: hit.item.text, done: d });
+    });
+    if (!rows.length) return null;
+    return {
+      ids: rows.map(function (r) { return r.id; }),
+      rows: rows, done: done, total: rows.length,
+      all: done === rows.length, part: done > 0 && done < rows.length
+    };
+  }
+
+  /* how many stops lean on the same booking - drives the "shared" marker, so
+     ticking one row and watching three others change is not a surprise */
+  function stopsUsing(id) {
+    var n = 0;
+    D.days.forEach(function (day) {
+      (day.items || []).forEach(function (it) {
+        if ((it.book || []).indexOf(id) !== -1) n++;
+      });
+    });
+    return n;
+  }
+
+  function bookTotals() {
+    var stops = 0, booked = 0, tied = {};
+    D.days.forEach(function (day) {
+      (day.items || []).forEach(function (it) {
+        var bs = bookState(it);
+        if (!bs) return;
+        stops++;
+        if (bs.all) booked++;
+        bs.ids.forEach(function (id) { tied[id] = true; });
+      });
+    });
+    var all = 0;
+    D.checklists.forEach(function (g) { all += itemsOf(g).length; });
+    return { stops: stops, booked: booked, untied: all - Object.keys(tied).length };
+  }
+
   /* ------------------------------------------------------------- budget math */
 
   function budgetLines() {
@@ -751,6 +818,155 @@
     h.push("<ul class=\"tl__sub\">");
     D.variant.points.forEach(function (p) { h.push("<li>" + esc(p) + "</li>"); });
     h.push("</ul></div></div>");
+    return h.join("");
+  }
+
+  /* ---------------------------------------------------------- VIEW: BOOK */
+  /* The whole trip on one scroll. Every stop: when, what, how long you are
+     there, how you got there from the last one, and whether the thing that
+     needs booking is booked. Nothing collapses - this is the page you scan
+     to find the gap, not the page you read. Days is where the detail lives,
+     and every row taps through to it. */
+
+  /* `travel` is measured FROM THE PREVIOUS STOP, so it renders above its own
+     row: read top to bottom and it is "travel, then do the thing". */
+  function bookTravel(it) {
+    if (!it.travel) return "";
+    return '<p class="cd__tr">' + ICON.route + "<span>" + esc(it.travel) + "</span></p>";
+  }
+
+  function bookCell(bs, key) {
+    if (!bs) {
+      return '<div class="cd__bk"><span class="cd__na" title="Nothing to book for this stop">N/A</span></div>';
+    }
+    var label = bs.rows.map(function (r) { return r.text; }).join("; ");
+    if (label.length > 90) label = label.slice(0, 89) + "…";
+    var h = '<div class="cd__bk">' +
+      '<input type="checkbox" id="bk-' + esc(key) + '"' +
+      ' data-book="' + esc(bs.ids.join(",")) + '"' +
+      ' data-book-part="' + (bs.part ? "1" : "0") + '"' +
+      (bs.all ? " checked" : "") +
+      ' aria-label="Booked: ' + esc(label) + '">';
+    /* Only the half-done case earns a number. "0 of 2" is just a slower way of
+       saying the box is empty, and the tag underneath already names both. */
+    if (bs.part) h += '<span class="cd__bkn num">' + bs.done + " of " + bs.total + "</span>";
+    return h + "</div>";
+  }
+
+  /* One line, always, on the rows that still owe something. A fully booked row
+     says nothing extra - the tick is the whole message. With one booking left
+     it names it; with several it counts them and the full list is the tooltip.
+     Either way it is a link to the same to-do on Prep. */
+  function bookTags(bs) {
+    if (!bs) return "";
+    var left = bs.rows.filter(function (r) { return !r.done; });
+    if (!left.length) return "";
+    var label, mark = "";
+    if (left.length === 1) {
+      /* Trimming is CSS's job here (.tag--book span ellipsizes), not a
+         character count - the pill has very different room on a phone and in
+         the desktop rail, and the "shared" marker eats into the same line. */
+      label = left[0].text;
+      if (stopsUsing(left[0].id) > 1) mark = "<em>shared</em>";
+    } else {
+      label = left.length + " still to book";
+    }
+    return '<span class="cd__tags"><a class="tag tag--book" href="#/prep/lists" title="' +
+      esc(left.map(function (r) { return r.text; }).join("\n\n")) + '"><span>' +
+      esc(label) + "</span>" + mark + "</a></span>";
+  }
+
+  function bookRow(day, it, idx) {
+    var key = day.id + ":" + idx;
+    var bs = bookState(it);
+    var h = [];
+    h.push('<div class="cdstop">');
+    h.push(bookTravel(it));
+    h.push('<div class="cd' + (bs && bs.all ? " is-booked" : "") + '">');
+    h.push('<span class="cd__time num">' + esc(it.time || "") + "</span>");
+    h.push('<div class="cd__m">');
+    h.push('<button class="cd__t" data-godetail="' + esc(key) + '">');
+    h.push("<b>" + esc(it.name) + (it.alt ? ' <span class="pill pill--later">optional</span>' : "") + "</b>");
+    if (it.dur) h.push('<span class="cd__dur">' + esc(it.dur) + "</span>");
+    h.push("</button>");
+    h.push(bookTags(bs));       /* outside the button: an <a> inside one is invalid */
+    h.push("</div>");
+    h.push(bookCell(bs, key));
+    h.push('<span class="cd__go" data-godetail="' + esc(key) + '" aria-hidden="true">' + ICON.chev + "</span>");
+    h.push("</div></div>");
+    return h.join("");
+  }
+
+  /* Aurora is a real thing you do that evening, so it gets a row. There is
+     nothing to book for it - the whole plan is "drive to wherever is clear". */
+  function bookAuroraRow(day) {
+    var a = day.aurora;
+    return '<div class="cdstop"><div class="cd cd--aurora">' +
+      '<span class="cd__time num">Night</span>' +
+      '<div class="cd__m"><a class="cd__t" href="#/aurora">' +
+      "<b>Aurora night " + a.night + "</b>" +
+      '<span class="cd__dur">' + esc(a.spot) + "</span></a></div>" +
+      '<div class="cd__bk"><span class="cd__na" title="Nothing to book for this stop">N/A</span></div>' +
+      '<span class="cd__go" aria-hidden="true">' + ICON.chev + "</span>" +
+      "</div></div>";
+  }
+
+  function bookDay(day, isToday) {
+    var stops = 0, booked = 0;
+    (day.items || []).forEach(function (it) {
+      var bs = bookState(it);
+      if (!bs) return;
+      stops++;
+      if (bs.all) booked++;
+    });
+    var hz = (day.hazards || []).length;
+    var h = [];
+
+    h.push('<section class="card cdday' + (isToday ? " is-today" : "") + '" style="--half:' +
+      (day.half === "london" ? "var(--london)" : "var(--iceland)") + '">');
+    h.push('<div class="sec-sum cdday__h">');
+    h.push("<span>" + esc(day.dow.slice(0, 3)) + " &middot; " + esc(prettyDate(day.date)) +
+      " &middot; " + esc(day.title) +
+      (isToday ? ' <em class="dayx__today">Today</em>' : "") + "</span>");
+    /* A safety note is never hidden behind a tap. The condensed view cannot
+       carry the full hazard, so it carries the flag and the way to it. */
+    h.push("<span>" + (stops ? booked + "/" + stops + " booked" : "nothing to book") +
+      (hz ? ' <a class="cdday__warn" href="#/days" title="' + hz + " safety note" +
+        (hz === 1 ? "" : "s") + ' on this day">' + ICON.alert + "</a>" : "") + "</span>");
+    h.push("</div>");
+
+    h.push('<div class="cdlist">');
+    (day.items || []).forEach(function (it, idx) { h.push(bookRow(day, it, idx)); });
+    if (day.aurora) h.push(bookAuroraRow(day));
+    h.push("</div></section>");
+    return h.join("");
+  }
+
+  function viewBook() {
+    var c = clock();
+    var t = bookTotals();
+    var h = [];
+
+    h.push('<div class="section-head"><h1>The trip, condensed</h1>' +
+      '<a href="#/days">Full detail</a></div>');
+
+    h.push('<div class="card"><div class="card__body">');
+    h.push('<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">' +
+      '<p class="eyebrow">Stops that need booking</p>' +
+      '<p class="num" style="font-weight:700">' + t.booked + " / " + t.stops + "</p></div>");
+    h.push('<div style="margin-top:8px">' +
+      meter(t.stops ? t.booked / t.stops * 100 : 100, false) + "</div>");
+    h.push('<p class="tiny muted" style="margin-top:8px">Every checkbox here is the same to-do as on the ' +
+      '<a href="#/prep/lists">Prep tab</a>, not a copy of it - tick it either place and it is ticked in both. ' +
+      "<b>N/A</b> means that stop needs no reservation. A row marked <em>shared</em> is one booking " +
+      "covering several stops, so it ticks in all of them at once. " + t.untied +
+      " more prep to-dos are not tied to any stop (passports, the ETA, phones, the handover to Mom) " +
+      "and live only on Prep.</p>");
+    h.push("</div></div>");
+
+    h.push('<div class="cddays">');
+    D.days.forEach(function (day) { h.push(bookDay(day, day.date === c.t)); });
+    h.push("</div>");
     return h.join("");
   }
 
@@ -1666,11 +1882,13 @@
     var parts = hash.split("/");
     var view = parts[0] || "today";
     var sub = parts[1] || "";
-    if (["today", "days", "map", "aurora", "prep", "info"].indexOf(view) === -1) { view = "today"; sub = ""; }
+    if (["today", "days", "map", "book", "aurora", "prep", "info"].indexOf(view) === -1) { view = "today"; sub = ""; }
     return { view: view, sub: sub };
   }
 
   var pendingFocus = null;
+  /* set by a Book-tab row tapping through to its full entry on Days */
+  var pendingDay = null;
 
   function render() {
     var r = route();
@@ -1680,13 +1898,14 @@
     else if (r.view === "aurora") html = viewAurora();
     else if (r.view === "prep") html = viewPrep(r.sub);
     else if (r.view === "info") html = viewInfo(r.sub);
+    else if (r.view === "book") html = viewBook();
     else html = viewToday();
 
     teardownMaps();          /* Leaflet keeps handlers on detached nodes */
     main.innerHTML = html;
     document.title = ({
       today: "Today", days: "Itinerary", map: "Map", aurora: "Aurora",
-      prep: "Prep", info: "Reference"
+      book: "Book", prep: "Prep", info: "Reference"
     }[r.view]) + " · London + Iceland";
 
     /* tab state */
@@ -1698,6 +1917,7 @@
     paintDateChip();
     wireShots();
     wireMaps();
+    wireBook();
 
     if (pendingFocus) {
       var el = document.getElementById("bl-" + pendingFocus);
@@ -1709,6 +1929,26 @@
       }
       pendingFocus = null;
     }
+
+    if (pendingDay) {
+      var dEl = document.getElementById("day-" + pendingDay);
+      if (dEl) {
+        dEl.scrollIntoView({ block: "start", behavior: "smooth" });
+        dEl.classList.remove("is-target");
+        void dEl.offsetWidth;                 /* restart the flash */
+        dEl.classList.add("is-target");
+      }
+      pendingDay = null;
+    }
+  }
+
+  /* Native HTML has no attribute for a half-done checkbox, so it is set after
+     the markup lands. It matters here: one stop can carry two bookings, and
+     "one of the two done" must not look identical to "neither done". */
+  function wireBook() {
+    Array.prototype.forEach.call(main.querySelectorAll("[data-book]"), function (box) {
+      box.indeterminate = box.dataset.bookPart === "1";
+    });
   }
 
   /* photos fade in only once they actually load; otherwise the gradient stays */
@@ -1754,7 +1994,7 @@
   /* ------------------------------------------------------------- LISTENERS */
 
   window.addEventListener("hashchange", function () {
-    var jumping = pendingFocus !== null;   // render() will place focus itself
+    var jumping = pendingFocus !== null || pendingDay !== null;   // render() places it
     render();
     if (!jumping) {
       window.scrollTo(0, 0);
@@ -1864,6 +2104,19 @@
       return;
     }
 
+    var gd = t.closest && t.closest("[data-godetail]");
+    if (gd) {
+      var gkey = gd.dataset.godetail;
+      var gday = gkey.split(":")[0];
+      S.dayOpen[gday] = true;      save(K.dayOpen, S.dayOpen);
+      S.itemOpen[gkey] = true;     save(K.itemOpen, S.itemOpen);
+      pendingDay = gday;
+      /* already on Days: the hash will not change, so no hashchange fires */
+      if (location.hash === "#/days") render();
+      else location.hash = "#/days";
+      return;
+    }
+
     var sub = t.closest && t.closest("[data-sub]");
     if (sub) {
       var r = route();
@@ -1896,6 +2149,22 @@
       else delete S.tonight[el.dataset.tonight];
       save(K.tonight, S.tonight);
       el.closest(".check").classList.toggle("is-done", el.checked);
+      return;
+    }
+    if (el.dataset.book) {
+      /* Writes straight into S.checks, the same store the Prep tab reads. A
+         partly-done stop completes on the first tap, which is what the native
+         indeterminate-to-checked transition already does for us. */
+      var bids = el.dataset.book.split(",");
+      var want = el.checked;
+      bids.forEach(function (id) {
+        if (want) S.checks[id] = true;
+        else delete S.checks[id];
+      });
+      save(K.checks, S.checks);
+      render();
+      var reBox = document.querySelector('[data-book="' + el.dataset.book + '"]');
+      if (reBox) reBox.focus({ preventScroll: true });
       return;
     }
     if (el.dataset.actual !== undefined) {

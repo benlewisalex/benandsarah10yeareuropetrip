@@ -224,6 +224,34 @@ Items live in `checklists`, grouped by the buckets from `ITINERARY.md`.
   trip date in `meta.start` and every bucket re-sorts itself.
 - Items you add in the app itself are stored per-device and don't need a code
   change. `data.js` items are the shared ones.
+- **Keep the item `id` values stable too.** The `book` array on an itinerary
+  item points at them, and that is what puts a booking checkbox on the Book tab.
+  Rename `tw4` and the "Pick up the rental car at KEF" row silently drops to
+  N/A, because a stale id is treated as "no such booking" rather than an
+  unbooked one.
+
+### Change what the Book tab asks you to book
+
+The Book tab is the whole trip on one scroll, and the checkbox on a row is the
+`checklists` to-do itself, not a copy of it - tick it on either tab and it is
+ticked on both. The wiring is the `book` array on an itinerary item:
+
+```js
+{ time: "10:30am", name: "Pick up the rental car at KEF",
+  book: ["tw4", "fs12"],
+  travel: "Rental desks are in the terminal", ... },
+```
+
+- Leave `book` off a stop that needs no reservation and the row shows **N/A**.
+  That is the default: 24 of the 47 stops are walk-up or free.
+- Several ids on one stop means the stop is not booked until all of them are.
+  A half-done stop shows a dashed box and "1 of 2" rather than looking empty.
+- The same id on several stops means one booking covers them all - `fs5` is the
+  Iceland lodging block, four nights in four places - so it ticks in all of
+  them at once. Those rows are marked *shared* so that is not a surprise.
+- Prep to-dos with no `book` reference anywhere (passports, the ETA, phones, the
+  handover to Mom) are not trip stops and only ever appear on Prep. The Book tab
+  counts them so the two tabs never look like they disagree.
 
 ### Change the map
 
@@ -291,6 +319,10 @@ behavior, prefer local files in `docs/img/` for your own photos.
   overdue count, the next few unchecked items checkable in place. Oct 10-17 it's
   that day's plan. After Oct 17 it's a farewell state. The date chip in the top
   strip overrides "today" so you can preview any day.
+- **Days and Book are the same content at two densities.** Days is the
+  two-level accordion you read; Book is one row per stop - time, activity, how
+  long, how you got there - that you scan to find the gap. Every Book row taps
+  through to its full entry on Days and flashes it.
 - **Offline** is a service worker that precaches the shell and assets. The dot in
   the top strip goes red and a banner appears when there's no connection.
 - **Dark mode** follows `prefers-color-scheme`; the sun button overrides it.
