@@ -3,6 +3,7 @@ shots/
 .geo/
 *.png
 .t*.mjs
+.t-profile/
 .p*.py
 .DS_Store
 Thumbs.db

@@ -18,15 +18,15 @@ const TRIP = {
     end: "2026-10-17",                // last day (fly home)
     nights: 7,
     budgetCeiling: 5000,
-    structure: "Sarah flies Fri Oct 9, lands Sat Oct 10. 3 nights London (Oct 10, 11, 12): temple session Saturday, church and the Thames walk Sunday, Stonehenge Monday. Then 4 nights Iceland (Oct 13, 14, 15, 16), ending with Blue Lagoon on the way to the airport. Home late Saturday Oct 17.",
-    flightsNote: "Ben's MSN-LHR and KEF-MSN flights are covered by work. Everything costed here is out of pocket, including getting to and from O'Hare and covering the kids at home."
+    structure: "Ben is already in England from Oct 3 on a work trip and moves to the Courtyard Heathrow on Fri Oct 9. Sarah flies Fri Oct 9, lands Sat Oct 10 and cabs straight to that hotel. 3 nights England (Oct 10, 11, 12): 1:00pm endowment session Saturday, church and the Thames walk Sunday, Stonehenge Monday. Then 4 nights Iceland (Oct 13, 14, 15, 16), ending with Blue Lagoon on the way to the airport. Home late Saturday Oct 17.",
+    flightsNote: "Ben's MSN-ORD-LHR flights out, the KEF-ORD flight home, and every hotel night from Oct 3 through the morning of Oct 11 are booked and paid by work - including Sat Oct 10, which is a free night for both of you. Everything costed here is out of pocket: Sarah's airfare, London lodging from Oct 11, all of Iceland, getting to and from O'Hare, and covering the kids at home."
   },
 
   /* --- the must-do list, shown as a grid ----------------------------------- */
   mustDo: [
     { item: "Stonehenge",                 when: "Mon Oct 12" },
     { item: "Big Ben / London classics",  when: "Sun Oct 11 afternoon" },
-    { item: "LDS temple",                 when: "Sat Oct 10 - session at Newchapel" },
+    { item: "LDS temple",                 when: "Sat Oct 10 - 1:00pm endowment, Newchapel (booked)" },
     { item: "Aurora hunting",             when: "All four Iceland nights" },
     { item: "Stargazing",                 when: "Wed-Fri, rural south Iceland" },
     { item: "Icelandic horses",           when: "Fri Oct 16" },
@@ -163,89 +163,115 @@ const TRIP = {
       sun: null,
       images: [],
       intro: [
-        "Nothing happens together today. Sarah crosses the Atlantic overnight and Ben is already somewhere around London.",
-        "The only job tonight is making sure tomorrow is not improvised - and tomorrow is now the temple day, so it has a booked session and a booked car in it."
+        "Nothing happens together today. Sarah crosses the Atlantic overnight while Ben finishes the work leg in Exeter and repositions to Heathrow.",
+        "The important thing about tonight is that it is already solved. Work has Ben at the Courtyard Heathrow Marriott for Friday and Saturday, so there is no scramble for a bed and no 3pm check-in wait for Sarah tomorrow morning - she walks into a room that is already yours."
       ],
       items: [
+        { time: "Morning", name: "Ben checks out of Hotel Indigo Exeter",
+          travel: "Exeter St Davids to London Paddington, about 2hr 15min by GWR",
+          dur: "Work day ends, trip begins",
+          detail: "Then Paddington to the Courtyard: the Elizabeth line to Heathrow is about 30 minutes, then a taxi or the Hoppa shuttle the last two miles.",
+          maps: "Hotel Indigo Exeter, 3 Catherine Street, Exeter EX1 1EU", ll: "50.7228,-3.5305" },
         { time: "11:00am", name: "Sarah leaves Madison for O'Hare",
-          book: ["tw13", "fs11"],
+          book: ["tw13", "tw21"],
           travel: "Drive, Madison to ORD, about 2.5 hrs",
           dur: "Budget 3.5 hrs door to gate",
-          detail: "The 2.5 hours of driving is the predictable part. Parking, the shuttle from the lot to the terminal, and the bag drop are what actually eat the buffer, so aim to be at the terminal by 2:25pm for a 4:25pm departure." },
+          detail: "The 2.5 hours of driving is the predictable part. Parking, the shuttle from the lot to the terminal, and the bag drop are what actually eat the buffer, so aim to be at the terminal by 2:25pm for a 4:25pm departure.",
+          headsUp: "Park for the full Oct 9-17 window. You both fly back into O'Hare together on FI853 on the 17th, so this car is the ride home for two." },
+        { time: "3:00pm UK", name: "Ben checks into the Courtyard Heathrow Marriott",
+          book: ["tw15"],
+          travel: "1 Nobel Drive, Harlington, Hayes UB3 5EY - about 2 miles north of the airport",
+          dur: "Two nights, Fri and Sat, both paid by work",
+          why: "This is the quiet win in the whole plan. A free bed on Saturday night that happens to be ten minutes from the terminal Sarah lands at, which is why she can go straight there at 8am instead of waiting until a 3pm check-in somewhere in town.",
+          detail: "The reservation is written for 1 adult and Sarah is on it from Saturday, so tell the front desk tonight rather than arriving with her tomorrow and sorting it at the desk.",
+          maps: "Courtyard by Marriott London Heathrow Airport, 1 Nobel Drive, Harlington, Hayes UB3 5EY", ll: "51.4934,-0.4192" },
         { time: "4:25pm", name: "UA929, O'Hare to Heathrow",
           book: ["tw2"],
           travel: "Nonstop, Boeing 767-300",
           dur: "8h 20m in the air, lands 6:45am Saturday",
-          detail: "First checked bag is included; a second is $120. Sleep on this flight is worth more than the movie - tomorrow is a temple session on landing day, and how well she sleeps here is most of whether that goes well.",
-          headsUp: "Pack the temple clothing and both recommends where they are reachable, not at the bottom of a checked bag. You go more or less straight from the airport to Newchapel." },
-        { time: "Evening", name: "Ben: sort tonight's bed and tomorrow's pickup",
-          book: ["tw15"],
+          detail: "First checked bag is included; a second is $120. Sleep on this flight is worth more than the movie - tomorrow is an endowment session on landing day, and how well she sleeps here is most of whether that goes well.",
+          headsUp: "Pack the temple clothing and both recommends where they are reachable, not at the bottom of a checked bag. There are only about two hours at the hotel between her cab and the car to Newchapel." },
+        { time: "Evening", name: "Ben: book Sarah's cab and the car to Newchapel",
+          book: ["tw18", "tw16"],
           dur: "20 minutes of planning, tonight not at 5am",
-          detail: "Work out where you are sleeping, and confirm the car to Newchapel is booked for about 8:00am from Heathrow Terminal 2. Be at arrivals by 7:15am.",
-          headsUp: "Friday night into Saturday is one of the nights the Piccadilly Night Tube runs, which makes an early Heathrow run much easier than it would be midweek. Confirm current times rather than assuming." }
+          detail: "Two rides to have confirmed before you sleep: Sarah's ride from Terminal 2 arrivals to the hotel at about 7:45am, and the car from the hotel to Newchapel at about 11:00am. Send her the hotel address and the confirmation number so she is not reading a booking email on airport wifi.",
+          headsUp: "Sarah is arriving into a country she has not been in, on no sleep, to a hotel booked in your name. Send the address, the confirmation number, the room number and a photo of the front of the building. That is the difference between a ten-minute cab and a bad forty-five minutes." }
       ],
       notes: [
-        { label: "Home front", text: "Mom should already be at the house with the kids settled before Sarah leaves, not arriving the same afternoon." }
+        { label: "Home front", text: "Mom should already be at the house with the kids settled before Sarah leaves, not arriving the same afternoon." },
+        { label: "Why she is not being met at arrivals", text: "The hotel is about ten minutes from the terminal and Ben is already in the room. Meeting her airside costs an hour of standing in Terminal 2 and buys nothing - she is better off in a shower and a bed two hours earlier." }
       ]
     },
 
     { id: "oct10", date: "2026-10-10", dow: "Saturday", half: "london",
-      title: "Sarah lands, temple session at Newchapel",
+      title: "Sarah lands, 1:00pm endowment at Newchapel",
       sun: { sunrise: "7:20am", sunset: "6:15pm" },
       images: [],
       intro: [
-        "Straight from Heathrow to the temple. It is an ambitious first day and it is also the only day it can happen - the temple is closed Sunday and Monday, and Tuesday is the 7:50am flight to Iceland. Saturday or not at all.",
-        "The upside is large: doing the session today leaves Sunday and Monday untouched and keeps the whole Iceland half exactly as booked."
+        "The session is booked: 1:00pm endowment at the London England Temple. That one fact does more for this day than anything else in the plan, because it turns a scramble off a red-eye into a morning with actual slack in it.",
+        "Sarah lands at 6:45am and is in the hotel room by about 8:15am - the room is already Ben's from Friday, so there is no waiting for check-in. Shower, eat, lie down for an hour, and still leave for Surrey at 11:00am with time to spare."
       ],
       items: [
-        { time: "6:45am", name: "Meet Sarah at Heathrow arrivals",
-          book: ["tw15"],
-          travel: "Piccadilly line or Night Tube to LHR T2",
-          dur: "Be at arrivals by 7:15am",
-          detail: "United uses Terminal 2. Allow 45-60 minutes for immigration and bags before she appears. Confirm the terminal on the day.",
+        { time: "6:45am", name: "Sarah lands at Heathrow Terminal 2",
+          travel: "UA929, arriving T2",
+          dur: "Allow 45-60 min for immigration and bags",
+          detail: "United uses Terminal 2. Confirm the terminal on the day. Ben is not meeting her here - the plan is that she walks out and gets in a cab.",
           maps: "Heathrow Terminal 2 arrivals, London", ll: "51.4700,-0.4520" },
-        { time: "8:00am", name: "Car from Heathrow to Newchapel",
-          book: ["tw16"],
-          travel: "Pre-booked car or rideshare, about 40 miles clockwise on the M25",
-          dur: "About 1 hr",
-          why: "Worth the money rather than the principle. Going by rail means Heathrow into central London, across to Victoria, out to Lingfield, then a taxi anyway - about two and a half hours with luggage and three changes, on no sleep. The car is one hour, door to door, with the suitcases in the boot.",
-          detail: "Book it the night before rather than opening an app at 7:30am at Heathrow. Roughly $90-110 for the two of you plus bags, which is the single best-value line item on the London side of this trip.",
-          maps: "London England Temple, West Park Road, Newchapel, Lingfield, Surrey RH7 6HW", ll: "51.1608,-0.0497" },
-        { time: "Late morning", name: "Temple session, London England Temple",
-          book: ["tw7", "tw6", "tw17"],
+        { time: "7:45am", name: "Sarah: cab straight to the Courtyard Heathrow",
+          book: ["tw18"],
+          travel: "Black cab, Uber, or the Heathrow Hoppa shuttle - about 2 miles",
+          dur: "10-15 min",
+          why: "The hotel is close enough that being met at arrivals would cost an hour and buy nothing. Ben is already in the room with the kettle on.",
+          detail: "1 Nobel Drive, Harlington, Hayes UB3 5EY. Roughly 20-25 GBP by cab, less on the Hoppa if it serves this hotel - confirm which before the day. Have the address, the confirmation number and the room number on her phone before she lands, because airport wifi at 7am is not the moment to go looking for them.",
+          maps: "Courtyard by Marriott London Heathrow Airport, 1 Nobel Drive, Harlington, Hayes UB3 5EY", ll: "51.4934,-0.4192",
+          headsUp: "She will have been awake around 20 hours and will be paying in a currency she has not used yet. Set the ride up in advance if you can rather than leaving her to hail one." },
+        { time: "8:15am", name: "Breakfast, shower, and one hard-stop nap",
           travel: "You are here",
-          dur: "About 2 hrs including changing, plus time on the grounds",
-          why: "Dedicated in 1958, this was the first temple in the British Isles and only the second in Europe. The grounds are worth the extra half hour on their own: formal gardens, a large pond, and an oak on site that is over 450 years old, which President McKay had preserved when he chose the building site. It is deep Surrey countryside, twenty minutes and a world away from Heathrow.",
-          detail: "West Park Road, Newchapel, Lingfield, Surrey RH7 6HW. Reservations are available and walk-ins are welcome, but without a reservation you may be asked to wait or to participate in a different ordinance - so reserve. Bring your own temple clothing; rental is available on site. Both recommends need to be current.",
-          maps: "London England Temple, West Park Road, Newchapel, Lingfield, Surrey RH7 6HW", ll: "51.1608,-0.0497",
-          headsUp: "Book a late-morning or early-afternoon session, not the first one of the day. She will have had maybe four hours of bad airline sleep, and an hour of daylight and something to eat first is the difference between being present and being unconscious.",
-          links: [{ label: "Temple schedule and reservations", url: "https://www.churchofjesuschrist.org/temples/details/london-england-temple" }],
-          sub: [
-            "Ask at the desk about somewhere to leave the suitcases during the session. There is patron accommodation on site and dressing-room lockers; confirm rather than assume.",
-            "Confirm the October session times on the temple page before you book the car - the schedule shifts and a Saturday can fill up."
-          ] },
-        { time: "2:30pm", name: "Train back into London",
-          travel: "Taxi to Lingfield (2 miles) or East Grinstead (4 miles), then train to Victoria or London Bridge",
-          dur: "About 1hr 15min all in",
-          detail: "Arrange the taxi to the station before you are dropped off in the morning. It is rural and you will not flag one down.",
-          maps: "Lingfield railway station, Surrey", ll: "51.1889,-0.0139" },
-        { time: "4:00pm", name: "Check into the London lodging",
-          book: ["fs4"],
-          travel: "Tube from Victoria or London Bridge",
-          dur: "Three nights",
-          why: "This is the point of the day where doing nothing is the correct move. She has been awake for something like 24 hours and has crossed six time zones.",
-          detail: "If she needs to lie down, let it be a hard 45 minutes with an alarm, not an open-ended nap. Then get back outside - daylight is the only thing that actually fixes jet lag, and sunset is 6:15pm.",
+          dur: "About 2hr 30min before the car",
+          why: "This is the buffer the 1:00pm session bought you, and the temptation will be to fritter it. Spend it deliberately: food, a shower, and a horizontal hour.",
+          detail: "Set an alarm for 10:30am and treat it as non-negotiable. An open-ended nap on landing day is how people lose the afternoon. Change into temple clothes or pack them ready before the car comes.",
           area: true },
-        { time: "Evening", name: "Dinner: Dishoom",
+        { time: "11:00am", name: "Car from the hotel to Newchapel",
+          book: ["tw16"],
+          travel: "Pre-booked car, about 45 miles clockwise on the M25",
+          dur: "1 hr to 1hr 15min - build in the longer number",
+          why: "Worth the money rather than the principle. By rail this is Heathrow into central London, across to Victoria, out to Lingfield, then a taxi anyway - about two and a half hours with three changes on no sleep. The car is one hour door to door.",
+          detail: "Book it the night before rather than opening an app at 10:45am. Roughly $90-110 for the two of you. Leaving at 11:00 puts you there around 12:15 for a 1:00pm session, which is the right amount of early - the M25 anticlockwise on a Saturday is the one thing that could eat this margin.",
+          maps: "London England Temple, West Park Road, Newchapel, Lingfield, Surrey RH7 6HW", ll: "51.1608,-0.0497",
+          headsUp: "Arrange the return ride at the same time as the outbound, for about 4:00pm. Newchapel is deep countryside and you will not flag anything down at the gate." },
+        { time: "12:15pm", name: "Arrive, recommend desk, and the grounds",
+          book: ["tw6", "tw17"],
+          travel: "You are here",
+          dur: "45 min before the session",
+          why: "Dedicated in 1958, this was the first temple in the British Isles and only the second in Europe. The grounds are worth the walk on their own: formal gardens, a large pond, and an oak on site over 450 years old, which President McKay had preserved when he chose the building site.",
+          detail: "Check in at the recommend desk by about 12:30 for a 1:00pm endowment. Ask at the desk where the suitcases can go during the session - there is patron accommodation on site and dressing-room lockers, but confirm rather than assume.",
+          maps: "London England Temple, West Park Road, Newchapel, Lingfield, Surrey RH7 6HW", ll: "51.1608,-0.0497" },
+        { time: "1:00pm", name: "Endowment session, London England Temple",
+          book: ["tw7"],
+          travel: "You are here",
+          dur: "About 2 hrs including changing",
+          why: "Booked, confirmed, and the only day on this trip it could happen - the temple is closed Sunday and Monday, and Tuesday morning is the flight to Keflavík.",
+          detail: "West Park Road, Newchapel, Lingfield, Surrey RH7 6HW. Bring your own temple clothing; rental is available on site. Both recommends need to be current.",
+          maps: "London England Temple, West Park Road, Newchapel, Lingfield, Surrey RH7 6HW", ll: "51.1608,-0.0497",
+          links: [{ label: "Temple schedule and reservations", url: "https://www.churchofjesuschrist.org/temples/details/london-england-temple" }] },
+        { time: "4:00pm", name: "Car back to the Courtyard Heathrow",
+          travel: "Pre-booked car, back around the M25",
+          dur: "About 1 hr, in by 5:00pm",
+          why: "Saturday night is at the airport hotel, not in town - work is paying for it, and going into central London tonight means unpacking in a place you leave in the morning anyway.",
+          detail: "Same room you left this morning, nothing to check into. Tomorrow is when the bags move into London.",
+          maps: "Courtyard by Marriott London Heathrow Airport, 1 Nobel Drive, Harlington, Hayes UB3 5EY", ll: "51.4934,-0.4192" },
+        { time: "Evening", name: "Dinner, and where depends on how the day went",
           book: ["fs8"],
-          travel: "Tube, 15-20 min from most central lodging",
-          dur: "1.5 hrs",
-          why: "Bombay-Irani cafe food in a room done up like a 1940s Bombay tearoom. It is the most reliably good and reliably reasonable dinner in London, and after a day like this one, being fed well in a warm dark room is the whole objective.",
-          detail: "Book ahead - it is a Saturday night and the walk-in wait can be over an hour. Black daal and the chai. There are several branches; Covent Garden and Shoreditch are the usual picks.",
-          maps: "Dishoom Covent Garden, London", ll: "51.5122,-0.1242" }
+          travel: "Either walkable from the hotel, or 30 min each way on the Elizabeth line",
+          dur: "1.5 hrs, or 3 hrs with the travel",
+          why: "Two honest options and the right one is whichever matches how she actually feels at 5pm, not what sounded good in September.",
+          detail: "Low-key: the Bath Road hotel strip has the usual pubs and chains within a short walk or a five-minute cab - unremarkable, but she has been awake 30 hours. Worth the trip: Dishoom, Bombay-Irani cafe food in a room done up like a 1940s Bombay tearoom, the most reliably good and reasonable dinner in London. Elizabeth line from Heathrow to Tottenham Court Road is about 30 minutes, so Covent Garden is the branch that makes sense. Book it either way - a Saturday walk-in wait can be over an hour, and you can always cancel.",
+          maps: "Dishoom Covent Garden, London", ll: "51.5122,-0.1242",
+          alt: true }
       ],
       notes: [
-        { label: "This is the one shot", text: "Temples are closed Sunday and Monday, and Tuesday morning is the flight to Keflavík. If Saturday does not happen, there is no session on this trip - so build the day around it rather than fitting it in." },
+        { label: "This is the one shot", text: "Temples are closed Sunday and Monday, and Tuesday morning is the flight to Keflavík. The 1:00pm session is the only one on this trip - so the whole day is built around it rather than fitting it in." },
+        { label: "Tonight is free", text: "Work booked the Courtyard for Friday and Saturday, so the first night of the trip together costs nothing and the London lodging budget is now two nights instead of three. That is roughly $200 back." },
         { label: "What this saved you", text: "The old plan had the session on Tuesday morning, which meant flying to Iceland out of Gatwick instead of Heathrow, landing in the evening, and pushing all of Reykjanes onto an already-full Friday. BA800 out of Heathrow T5 is booked. Doing the session today costs Iceland nothing." }
       ]
     },
@@ -256,9 +282,17 @@ const TRIP = {
       images: ["bigben"],
       intro: [
         "Church in South Kensington, then the classic Thames walk in the afternoon. Sunset is 6:10pm, so you have roughly five hours of daylight after the block - enough for the river, not enough for the river plus museums.",
-        "Everything in the afternoon is free, outdoors, and one continuous line along the Thames, so you can stop wherever you run out."
+        "The one piece of friction today is the bags. You check out of the Courtyard this morning and the London room is not yours until the afternoon, so the suitcases come into town with you unless you sort left luggage first."
       ],
       items: [
+        { time: "Early", name: "Check out of the Courtyard Heathrow, bags into London",
+          book: ["fs4"],
+          travel: "Elizabeth line, Heathrow to Paddington about 30 min, then District or Circle to South Kensington",
+          dur: "About 1 hr with the walk to the station",
+          why: "Work's nights end here. From this morning on, the lodging is on you.",
+          detail: "Best case, the London lodging holds your bags before check-in - ask when you book, most places will. Failing that, there is paid left luggage at Paddington and at most mainline stations. Rolling two suitcases into sacrament meeting is the outcome to avoid.",
+          maps: "Courtyard by Marriott London Heathrow Airport, 1 Nobel Drive, Harlington, Hayes UB3 5EY", ll: "51.4934,-0.4192",
+          headsUp: "The Elizabeth line is the fast way in and it does not run all night - but on a Sunday morning you are well inside normal service. Leave by about 8:00am to make a mid-morning block comfortably." },
         { time: "Morning", name: "Sacrament meeting at the Hyde Park Chapel",
           travel: "South Kensington tube, then a 3-min walk up Exhibition Road",
           dur: "The block, plus 30 min in the visitors' centre",
@@ -294,10 +328,17 @@ const TRIP = {
           dur: "About an hour, including the queue",
           why: "Hand-rolled pasta at a counter for the price of a sandwich. The eight-hour beef shin ragu and the pici cacio e pepe are the two everyone comes back for, and it is comfortably the best cheap meal in the city.",
           detail: "No reservations - go at 5pm or join the queue. If you finish the walk at Tower Bridge, this is a ten-minute stroll west, which is why it is tonight and not another night.",
-          maps: "Padella, Borough Market, London", ll: "51.5054,-0.0905" }
+          maps: "Padella, Borough Market, London", ll: "51.5054,-0.0905" },
+        { time: "Evening", name: "Check into the London lodging",
+          book: ["fs4"],
+          travel: "Tube from London Bridge",
+          dur: "Two nights, Oct 11 and 12",
+          detail: "Collect the bags if you left them somewhere and settle in properly. This is the only lodging you pay for in England, and it is worth being near a Piccadilly or Elizabeth line station - you leave for Heathrow before dawn on Tuesday.",
+          area: true }
       ],
       notes: [
-        { label: "Order matters today", text: "Church first, then the river, because the river works in fading light and church does not move. If the block runs long, drop Trafalgar rather than compressing the South Bank walk - the walk is the good part." }
+        { label: "Order matters today", text: "Church first, then the river, because the river works in fading light and church does not move. If the block runs long, drop Trafalgar rather than compressing the South Bank walk - the walk is the good part." },
+        { label: "Two nights, not three", text: "Saturday moved to the work-paid Courtyard at Heathrow, so the London room only needs Sunday and Monday. Book it near a Piccadilly or Elizabeth line stop so Tuesday's 4:45am run to Terminal 5 is short." }
       ]
     },
 
@@ -350,8 +391,10 @@ const TRIP = {
           detail: "Tomorrow's flight leaves Heathrow Terminal 5 at 7:50am and you want to be at T5 by about 5:50am. Oct 13 is a Tuesday, so there is no Night Tube - the car is not optional, and it needs to be booked, not summoned." }
       ],
       notes: [
+        { label: "Stonehenge is not settled", text: "As of Sept 2026 this day is under review - the stones may not survive the cut. Nothing here is booked yet, and the train and bus are the two things to hold off on until the call is made. If Stonehenge goes, Monday is a blank full day in London with a $220 refund attached, and the obvious replacements are the free big museums, Greenwich, or Hampton Court." },
         { label: "Optional upgrade", text: "English Heritage's Stone Circle Experience puts you inside the ring outside normal hours, which is a completely different experience from the roped path. Check October availability directly with English Heritage - some operators indicate special access is not offered in October or November, so treat this as a bonus rather than a plan. About $150 for the two of you." },
-        { label: "You cannot have both", text: "The Stone Circle Experience and a West End show are each about $150-200, and the budget is already past its target. Pick one." }
+        { label: "You cannot have both", text: "The Stone Circle Experience and a West End show are each about $150-200. Pick one." },
+        { label: "Or sleep at Heathrow tonight", text: "Tomorrow starts with a 4:45am car to Terminal 5. A cheap Heathrow-area hotel for tonight - Premier Inn, Ibis, Holiday Inn Express, all around $90-110 off-season - is cheaper than a central London room, kills the $70 pre-dawn car, and buys you an hour of sleep before a flight and a full first day in Iceland. The cost is that you finish Monday evening out by the airport instead of in town, which matters if you are doing a West End show and does not if you are not." }
       ]
     },
 
@@ -604,15 +647,15 @@ const TRIP = {
           maps: "Keflavik International Airport, Iceland", ll: "63.9850,-22.6056" },
         { time: "4:25pm", name: "FI853, Keflavík to Chicago O'Hare",
           book: ["tw2", "tw14"],
-          travel: "Nonstop Icelandair",
+          travel: "Nonstop Icelandair, Boeing 737 MAX",
           dur: "6h 50m, lands ORD 6:15pm at Terminal 5",
-          detail: "One checked bag included. Then the connection or the drive to Madison - realistically home late evening, not early afternoon.",
-          headsUp: "Ben's KEF-MSN flight is booked separately through work. If it is not FI853, you are on different flights out of KEF and need to agree who returns the rental car." }
+          detail: "You are both on this flight - Ben's seat is work-booked through Icelandair. One checked bag included. Then Sarah's car out of the O'Hare lot and about 2.5 hours to Madison, so realistically home around 10pm.",
+          headsUp: "Same flight resolves the old open question: one rental car return, one check-in, no splitting up at KEF. It also means Ben lands at O'Hare and not Madison - so whatever gets him to MSN on Oct 3 cannot be his own car left in the Madison lot, because he is not coming back to it." }
       ],
       notes: [
         { label: "If Blue Lagoon is closed", text: "It sits at Svartsengi, in the middle of the Reykjanes eruption zone, and it has closed for days at a time during past eruptions. Sky Lagoon in Reykjavík is the fallback: about 45 minutes from KEF, arguably the better building, with an ocean edge. Check almannavarnir.is the night before and rebook from the guesthouse rather than driving out to find a barrier across the road." },
         { label: "If you skip the water entirely", text: "If Tuesday ran short, Gunnuhver and the Bridge Between Continents are both more or less on the way back to the airport, and free." },
-        { label: "Tell Mom", text: "She is covering the kids until you are actually back. Late evening, not mid-afternoon." }
+        { label: "Tell Mom", text: "She is covering the kids until you are actually back. Landing at O'Hare at 6:15pm means Madison around 10pm, not mid-afternoon." }
       ]
     }
   ],
@@ -671,11 +714,11 @@ const TRIP = {
   budget: {
     sections: [
       { id: "flights", label: "Flights", lines: [
-        { id: "flt-sarah",   label: "Sarah MSN-LHR + KEF-MSN",       planned: 900 },
+        { id: "flt-sarah",   label: "Sarah ORD-LHR + KEF-ORD",       planned: 900 },
         { id: "flt-lhrkef",  label: "LHR-KEF x2",                    planned: 300 }
       ]},
-      { id: "lodging", label: "Lodging (7 nights)", lines: [
-        { id: "lod-london",  label: "London x3",                     planned: 600 },
+      { id: "lodging", label: "Lodging (6 paid nights of 7)", lines: [
+        { id: "lod-london",  label: "London x2 (Oct 10 is work-paid)", planned: 400 },
         { id: "lod-rvk",     label: "Reykjavík x1",             planned: 200 },
         { id: "lod-south",   label: "South Iceland guesthouse x2",   planned: 340 },
         { id: "lod-kef",     label: "Keflavík x1",              planned: 180 }
@@ -709,14 +752,16 @@ const TRIP = {
       ]}
     ],
     headroomOptions: [
-      "There is no headroom left. Planned now runs $5,335 against a $5,000 target - Blue Lagoon added $210, and the Saturday temple session turned a $20 train day into a $150 car day. Both were the right call; the target is what has to give. These are trades, not extras.",
+      "Planned now runs $5,135 against a $5,000 target, down from $5,335 - work covering Sat Oct 10 at the Courtyard Heathrow took $200 straight off the London lodging line. You are $135 over, which is close enough that one decision closes it.",
+      "Sleep near Heathrow on Mon Oct 12 instead of central London: a Premier Inn or Ibis runs $90-110 off-season against a $200 central room, and it also kills the $70 pre-dawn car to Terminal 5. That is about $145 and it puts you under $5,000 on its own",
+      "If Stonehenge comes out of Monday, that is another $220 back - but do not count it until the call is actually made",
       "Swap Secret Lagoon for a municipal pool like Laugardalslaug, about $12 for both: saves roughly $68, and Blue Lagoon already covers the tourist hot spring twice over",
-      "Drop the nice dinner, $150. Together with the Secret Lagoon swap that pays for Blue Lagoon outright",
+      "Drop the nice dinner, $150",
       "Trim the Oct 16 lodging - Keflavík and Reykjanesbær guesthouses run well under the $180 placeholder off-season",
-      "A West End show on Monday evening runs about $150-220 for two decent seats. It is the best optional thing left in London, and it is a straight trade against the Stonehenge Stone Circle Experience - not both",
+      "A West End show on Monday evening runs about $150-220 for two decent seats. It is the best optional thing left in England, and it is a straight trade against the Stonehenge Stone Circle Experience - not both",
       "Sarah's one-way airfares are still the least predictable number here and could move $300-400 in either direction on their own"
     ],
-    cutIfOver: "The realistic menu: swap Secret Lagoon for a municipal pool (~$68), cut the nice dinner ($150), and book the Keflavík and London beds at the low end of their placeholders (~$100). That is roughly $320 and it lands you back on $5,000 - but it costs you a nice dinner and a lagoon to save a number you set yourself. Do not cut Blue Lagoon, the temple car, or the horses; those are the trip. If something has to give, let it be the $5,000."
+    cutIfOver: "You are only $135 over now, and the Monday-night-at-Heathrow swap covers it by itself while buying an hour of sleep before the Iceland flight. Take that one first. After that the menu is the Secret Lagoon swap (~$68) and the nice dinner ($150), in that order. Do not cut Blue Lagoon, the temple car, or the horses; those are the trip. If something still has to give, let it be the $5,000."
   },
 
   /* --- checklists ---------------------------------------------------------- */
@@ -730,33 +775,37 @@ const TRIP = {
       { id: "tw3", text: "Book LHR-KEF x2 (Play or Icelandair)", budgetIds: ["flt-lhrkef"] },
       { id: "tw4", text: "Reserve Iceland rental car - take gravel + sand/ash waiver", budgetIds: ["trn-car"] },
       { id: "tw5", text: "Check English Heritage for October Stone Circle Experience availability" },
-      { id: "tw6", text: "Confirm both temple recommends are current - the session is Sat Oct 10 and there is no second chance on this trip" },
-      { id: "tw7", text: "Reserve the Sat Oct 10 temple session at Newchapel. Late morning or early afternoon, not the first slot of the day", budgetIds: ["exc-temple"] },
-      { id: "tw16", text: "Book the Heathrow T2 to Newchapel car for about 8:00am Sat Oct 10 - roughly 1 hr via the M25, and far better than 2.5 hrs of rail with suitcases", budgetIds: ["exc-temple"], extra: true },
+      { id: "tw6", text: "Confirm both temple recommends are current - the 1:00pm endowment on Sat Oct 10 is booked and there is no second chance on this trip" },
+      { id: "tw7", text: "Save the temple reservation confirmation somewhere offline. Session is booked: 1:00pm endowment, Sat Oct 10, London England Temple, Newchapel. Be at the recommend desk by 12:30", budgetIds: ["exc-temple"] },
+      { id: "tw16", text: "Book the Courtyard Heathrow to Newchapel car for 11:00am Sat Oct 10, plus the 4:00pm return - roughly 1 hr each way via the M25. Book both legs at once; you will not flag a cab at the temple gate", budgetIds: ["exc-temple"], extra: true },
       { id: "tw17", text: "Confirm the temple can hold the suitcases during the session, or find somewhere that can", extra: true },
+      { id: "tw18", text: "Set up Sarah's ride from Heathrow T2 to the Courtyard for about 7:45am Sat Oct 10, and send her the address, the hotel confirmation number, the room number and a photo of the hotel entrance before she flies", extra: true },
+      { id: "tw19", text: "Tell the Courtyard Heathrow that Sarah is on the room for both nights - the work reservation is written for 1 adult", extra: true },
+      { id: "tw20", text: "Sort how Ben gets to Madison airport on Oct 3. He returns to O'Hare on the 17th, not Madison, so leaving his own car in the MSN lot does not work - get a drop-off from Sarah", extra: true },
+      { id: "tw21", text: "Book Sarah's O'Hare parking, Oct 9-17 (8 nights). Off-site lots run roughly $10-14 a day with a shuttle against $40+ a day in the terminal garage, and prepaying online is cheaper again - the usual names are The Parking Spot, WallyPark and SpotHero. Prepay a reservation rather than turning up, and check the shuttle runs late: you both land at 6:15pm on the 17th and will be collecting the car in the evening", budgetIds: ["trn-parkord"] },
       { id: "tw8", text: "Verify passports are valid at least 6 months past Oct 17, 2026" },
       { id: "tw9", text: "Apply for UK ETA for both of you - the UK has required an Electronic Travel Authorisation from US citizens since January 2025. Confirm the current fee and processing time on gov.uk before paying.", extra: true },
       { id: "tw10", text: "Check whether ETIAS is live for Iceland by October 2026 - the EU has delayed it repeatedly. If it is in force by then, both of you need one for the Schengen area.", extra: true },
       { id: "tw11", text: "Confirm with Mom which dates she can actually cover - ideally Oct 8 through Oct 18, so there is a day of overlap at each end", extra: true },
       { id: "tw12", text: "Book Mom's round-trip flights to Madison", budgetIds: ["home-momflights"], extra: true },
-      { id: "tw13", text: "Decide how Sarah gets to O'Hare on Oct 9: drive and park for eight days, or a drop-off", budgetIds: ["trn-parkord", "trn-msnord"], extra: true },
-      { id: "tw14", text: "Confirm Ben's own KEF-MSN flight on Oct 17. If it is not FI853 at 4:25pm you are on separate flights and need to agree who returns the rental car", extra: true },
-      { id: "tw15", text: "Work out how Ben gets to Heathrow Terminal 2 arrivals by about 7:15am on Oct 10, including where he sleeps on the 9th", extra: true },
+      { id: "tw13", text: "Sarah drives to O'Hare on Oct 9 and parks the full window - you both land back at ORD together on the 17th, so that car is the ride home for two. Book the lot", budgetIds: ["trn-parkord", "trn-msnord"], extra: true },
+      { id: "tw14", text: "Done - Ben is on FI853 KEF-ORD, 4:25pm Oct 17, same flight as Sarah, booked through Icelandair. One rental car return, one check-in", extra: true },
+      { id: "tw15", text: "Done - work has Ben at the Courtyard Heathrow Marriott, 1 Nobel Drive, Hayes UB3 5EY, for Fri Oct 9 and Sat Oct 10", extra: true },
     ]},
     { id: "four-six", label: "Four to six weeks out", promoteAt: 42, overdueAt: 7, items: [
       { id: "fs1",  text: "Book Into the Glacier - Gullfoss departure, not Reykjavík", budgetIds: ["exc-glacier"] },
       { id: "fs2",  text: "Book Icelandic horse riding farm near Hveragerði or Selfoss", budgetIds: ["exc-horses"] },
       { id: "fs3",  text: "Book Lava Show, Vík", budgetIds: ["exc-lavashow"] },
-      { id: "fs4",  text: "Book London lodging x3 nights", budgetIds: ["lod-london"] },
+      { id: "fs4",  text: "Book London lodging x2 nights, Oct 11 and 12 - Oct 10 is covered by work at the Courtyard Heathrow. Pick something on the Piccadilly or Elizabeth line and ask whether they hold bags before check-in", budgetIds: ["lod-london"] },
+      { id: "fs20", text: "Decide Mon Oct 12 night: cheap Heathrow-area hotel (~$100, kills the $70 pre-dawn car, an hour more sleep) or stay central (~$200, better if you are doing a West End show). The Heathrow option is the one that gets you under the $5,000 target", budgetIds: ["lod-london", "trn-lhrcar"], extra: true },
       { id: "fs5",  text: "Book Reykjavík x1, south Iceland guesthouse x2, Keflavík x1", budgetIds: ["lod-rvk","lod-south","lod-kef"] },
-      { id: "fs6",  text: "Buy advance Waterloo-Salisbury train tickets - an early train out, around 7:30am, is what leaves Monday evening free", budgetIds: ["exc-stonehenge"] },
-      { id: "fs7",  text: "Book The Stonehenge Tour bus", budgetIds: ["exc-stonehenge"] },
-      { id: "fs8",  text: "Reserve Dishoom for Sat Oct 10 evening - it is a Saturday night, so this one actually needs booking" },
+      { id: "fs6",  text: "Decide whether Stonehenge is happening at all before buying anything. If yes: advance Waterloo-Salisbury tickets, early train around 7:30am", budgetIds: ["exc-stonehenge"] },
+      { id: "fs7",  text: "Book The Stonehenge Tour bus - only after the Stonehenge call is made", budgetIds: ["exc-stonehenge"] },
+      { id: "fs8",  text: "Reserve Dishoom Covent Garden for Sat Oct 10 evening - Saturday nights need booking, and it is cancellable if Sarah would rather eat near the hotel and sleep" },
       { id: "fs18", text: "Decide on a West End show for Mon Oct 12 evening. Sunday is dark almost everywhere, so Monday is the only night it fits. Trade against the Stone Circle Experience, not in addition to it", budgetIds: ["exc-westend"], extra: true },
       { id: "fs9",  text: "Notify banks of travel; confirm no foreign transaction fees" },
       { id: "fs19", text: "Sort international phone service for both phones, Oct 9-17. Check what your plan already covers in the UK and Iceland, then add a travel pass or an eSIM. You need data working for vedur.is cloud maps, road.is, offline-map fallback and Mom", extra: true },
       { id: "fs10", text: "Download offline maps for Iceland and southern England" },
-      { id: "fs11", text: "Reserve O'Hare parking for Oct 9-17 - off-site lots are far cheaper than the terminal garage, and prepaying is cheaper again", budgetIds: ["trn-parkord"], extra: true },
       { id: "fs12", text: "Extend the Iceland rental car through Saturday afternoon - it is 5 days now, not 4", budgetIds: ["trn-car"], extra: true },
       { id: "fs13", text: "Book a car to Heathrow T5 for 4:45 to 5:15am on Tue Oct 13 - no Night Tube on a weekday", budgetIds: ["trn-lhrcar"], extra: true },
       { id: "fs14", text: "Book Blue Lagoon for Sat Oct 17 - Comfort x2, earliest timed slot, plus the luggage hold. Read the cancellation terms; an eruption closure should be refundable", budgetIds: ["exc-bluelagoon"], extra: true },
@@ -793,11 +842,15 @@ const TRIP = {
     { id: "cf-flt-sarah-out", label: "Sarah ORD-LHR, UA929, Oct 9",   fields: ["Confirmation", "Seat", "Terminal", "Notes"] },
     { id: "cf-flt-lhrkef",    label: "LHR-KEF x2, BA800, Oct 13",      fields: ["Confirmation", "Seats", "Terminal", "Notes"] },
     { id: "cf-flt-sarah-ret", label: "Sarah KEF-ORD, FI853, Oct 17",   fields: ["Confirmation", "Ticket no.", "Seat", "Notes"] },
-    { id: "cf-flt-ben-home",  label: "Ben KEF-MSN, Oct 17 (work)",     fields: ["Airline", "Flight no.", "Confirmation", "Times"] },
+    { id: "cf-flt-ben-out",   label: "Ben MSN-ORD-LHR, Oct 3 (work)",  fields: ["Confirmation", "Seats", "Terminals", "Notes"] },
+    { id: "cf-flt-ben-home",  label: "Ben KEF-ORD, FI853, Oct 17 (work)", fields: ["Confirmation", "Seat", "Ticket no.", "Notes"] },
+    { id: "cf-lod-heathrow",  label: "Courtyard Heathrow, Oct 9-11 (work)", fields: ["Confirmation", "Room no.", "Sarah added?", "Notes"] },
+    { id: "cf-lod-worktrip",  label: "Work hotels: Ipswich, Bristol, Exeter", fields: ["Ipswich conf", "Bristol conf", "Exeter conf"] },
+    { id: "cf-sarah-cab",     label: "Sarah's LHR T2 to hotel ride, Oct 10", fields: ["Company", "Booking", "Pickup", "Cost"] },
     { id: "cf-mom",           label: "Mom's flights to Madison",       fields: ["Airline", "Flight no.", "Confirmation", "Dates"] },
     { id: "cf-parkord",       label: "O'Hare parking",                 fields: ["Lot", "Confirmation", "Dates", "Shuttle"] },
     { id: "cf-lhrcar",        label: "Car to Heathrow T5, Oct 13",      fields: ["Company", "Confirmation", "Pickup time", "Address"] },
-    { id: "cf-lod-london",    label: "London lodging x3",              fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
+    { id: "cf-lod-london",    label: "London lodging x2, Oct 11-13",   fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
     { id: "cf-lod-rvk",       label: "Reykjavík lodging x1",      fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
     { id: "cf-lod-south",     label: "South Iceland guesthouse x2",    fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
     { id: "cf-lod-kef",       label: "Keflavík lodging x1",       fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
@@ -809,11 +862,56 @@ const TRIP = {
     { id: "cf-lavashow",      label: "Lava Show, Vík",            fields: ["Confirmation", "Time"] },
     { id: "cf-bluelagoon",    label: "Blue Lagoon, Oct 17",            fields: ["Confirmation", "Entry time", "Package", "Luggage hold?"] },
     { id: "cf-dishoom",       label: "Dishoom, Oct 10",                fields: ["Location", "Confirmation", "Time"] },
-    { id: "cf-temple",        label: "Temple session, Oct 10",         fields: ["Session time", "Reservation", "Clothing rental?", "Notes"] },
-    { id: "cf-templecar",     label: "Heathrow to Newchapel car",      fields: ["Company", "Confirmation", "Pickup time", "Terminal"] },
+    { id: "cf-temple",        label: "Endowment, 1:00pm Sat Oct 10",   fields: ["Reservation", "Clothing rental?", "Notes"] },
+    { id: "cf-templecar",     label: "Courtyard to Newchapel car, Oct 10", fields: ["Company", "Confirmation", "Out 11:00am", "Return 4:00pm"] },
     { id: "cf-westend",       label: "West End show, Oct 12",          fields: ["Show", "Theatre", "Confirmation", "Curtain"] },
     { id: "cf-phone",         label: "International phone / eSIM",     fields: ["Carrier or eSIM", "Plan", "Dates", "Cost"] }
   ],
+
+  /* --- Ben's work leg: booked and paid by work, Oct 3-11 -------------------- */
+  /* These are real confirmations, not placeholders. They are here so the whole
+     trip lives in one place and so the Oct 9-11 overlap with Sarah is visible. */
+  workLeg: {
+    lede: "Ben is in England from Oct 3 on a work trip. Everything below is booked and paid by work. It matters to the shared trip in two places: Ben is already on the ground when Sarah lands, and the Courtyard Heathrow covers Saturday Oct 10 for both of you.",
+    flights: [
+      { label: "Sat Oct 3 - UA1400", route: "Madison MSN 2:49pm to Chicago ORD 4:00pm, Terminal 1",
+        meta: "1h 11m, Boeing 737-900. United" },
+      { label: "Sat Oct 3 - UA920", route: "Chicago ORD 6:05pm, Terminal 1, to London LHR 8:30am Sun Oct 4, Terminal 2",
+        meta: "8h 25m, Boeing 767. United. Seats not assigned yet - United is monitoring until departure day" },
+      { label: "Sat Oct 17 - FI853", route: "Keflavík KEF 4:25pm to Chicago ORD 6:15pm, Terminal 5",
+        meta: "6h 50m, Boeing 737 MAX. Same flight as Sarah. Seat status UN - unassigned" }
+    ],
+    hotels: [
+      { label: "Novotel Ipswich", dates: "Sun Oct 4 3:00pm to Tue Oct 6 - 2 nights",
+        address: "Grey Friars Road, Ipswich IP1 1UP", phone: "+44 1473 232400",
+        rate: "GBP 185/night, approx GBP 257 total",
+        cxl: "Free until 1 day before arrival; after that the first night is charged",
+        maps: "Novotel Ipswich, Grey Friars Road, Ipswich IP1 1UP", ll: "52.0553,1.1478" },
+      { label: "Novotel Bristol Centre", dates: "Tue Oct 6 2:00pm to Wed Oct 7 - 1 night",
+        address: "Victoria Street, Bristol BS1 6HY", phone: "+44 117 9769988",
+        rate: "GBP 154/night, approx $208 USD",
+        cxl: "Free until 1 day before arrival",
+        maps: "Novotel Bristol Centre, Victoria Street, Bristol BS1 6HY", ll: "51.4515,-2.5893" },
+      { label: "Hotel Indigo Exeter", dates: "Wed Oct 7 3:00pm to Fri Oct 9 - 2 nights",
+        address: "3 Catherine Street, Exeter EX1 1EU", phone: "+44 1392 301801",
+        rate: "GBP 105/night, approx $142 USD",
+        cxl: "Cancel by 4:00pm Tue Oct 6 or forfeit the first night",
+        maps: "Hotel Indigo Exeter, 3 Catherine Street, Exeter EX1 1EU", ll: "50.7228,-3.5305" },
+      { label: "Courtyard Heathrow Marriott", dates: "Fri Oct 9 3:00pm to Sun Oct 11 - 2 nights, Sarah on it from Saturday",
+        address: "1 Nobel Drive, Harlington, Hayes UB3 5EY", phone: "+44 203 9885000",
+        rate: "GBP 148.75/night, approx $201 USD - work-paid, so $0 to you",
+        cxl: "Free up to 1 day before arrival; after that GBP 148.75",
+        maps: "Courtyard by Marriott London Heathrow Airport, 1 Nobel Drive, Harlington, Hayes UB3 5EY", ll: "51.4934,-0.4192",
+        key: true }
+    ],
+    notes: [
+      "Confirmation numbers are deliberately not in this file - it is a public repository. They are in your work travel email, and you can copy them into the Confirmations tab, which stays on your phone.",
+      "The reservations are written for 1 adult. Tell the Courtyard that Sarah is joining before you arrive on the 9th, not at the desk on the 10th.",
+      "The Courtyard is about 2 miles north of the terminals. That is the whole reason Sarah cabs there directly instead of being met at arrivals.",
+      "Work's last covered night is Saturday Oct 10. From Sunday morning the lodging is out of pocket, which is why the London budget is now 2 nights and not 3.",
+      "Ben flies out of Madison on Oct 3 but lands back at O'Hare on Oct 17. His car cannot sit in the MSN lot - he needs a drop-off."
+    ]
+  },
 
   /* --- reference ----------------------------------------------------------- */
   reference: {
@@ -846,8 +944,8 @@ const TRIP = {
           "Train from London Victoria or London Bridge toward East Grinstead or Lingfield, roughly 50 minutes.",
           "Lingfield station is 2 miles from the temple with no bus service. Taxi or rideshare the last stretch, and arrange the return ride before you're dropped off - it's rural.",
           "Grounds are open to all during daylight hours. Formal gardens, a large pond, and an oak over 450 years old that President McKay had preserved when he chose the building site.",
-          "Closed Sundays, so Oct 11 is a grounds visit only. Be there well before sunset at 6:10pm.",
-          "For an actual session: Tuesday Oct 13 morning. Reservations available, walk-ins welcome, but without a reservation you may be asked to wait or participate in a different ordinance. Bring your own temple clothing; rental is available.",
+          "Booked: 1:00pm endowment session, Saturday Oct 10. Be at the recommend desk by 12:30. Bring your own temple clothing; rental is available on site.",
+          "Closed Sundays and Mondays, which is why Saturday is the only day a session fits this trip.",
           "Bring both recommends."
         ]}
     ]
@@ -858,7 +956,8 @@ const TRIP = {
     title: "Why the London days are in this order",
     lede: "The order is forced by three fixed constraints, and it is worth knowing which ones so you do not accidentally undo it.",
     points: [
-      "The temple is closed Sunday and Monday, and Tuesday is the 7:50am flight to Keflavík. Saturday is the only day in the London window when a session is possible at all - so the session drives the day Sarah lands, not the other way round.",
+      "The temple is closed Sunday and Monday, and Tuesday is the 7:50am flight to Keflavík. Saturday is the only day in the London window when a session is possible at all - so the session drives the day Sarah lands, not the other way round. It is booked for 1:00pm, which is late enough to give her a shower and an hour lying down first.",
+      "Saturday night is at the Courtyard Heathrow because work already paid for it. That is why Saturday runs airport-temple-airport instead of ending in town, and why the London room is only two nights.",
       "Church is Sunday morning and does not move, which puts the Thames walk in Sunday afternoon. That works because the whole walk is outdoors and free and reads fine in fading light; sunset is 6:10pm.",
       "Stonehenge needs a full day and cannot share one with church, so it lands on Monday. Take the early train out, around 7:30am, and Monday evening comes back free.",
       "West End theatre is dark on Sundays almost everywhere, so Monday evening is the only slot a show fits. The cost is sleep - curtain down at 10:15pm against a 4:45am car to Heathrow.",

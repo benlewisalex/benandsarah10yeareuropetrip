@@ -1826,6 +1826,8 @@
       h.push("</div></div>");
     });
 
+    if (D.workLeg) h.push(workLegBlock());
+
     h.push('<div class="section-head"><h2>Safety</h2></div>');
     var hz = [];
     D.days.forEach(function (d) { (d.hazards || []).forEach(function (x) { hz.push(x); }); });
@@ -1841,6 +1843,45 @@
     h.push("<p><b>Storage.</b> Every checkbox, actual cost and confirmation number lives in this browser&rsquo;s " +
       "localStorage on this device only. Clearing site data clears all of it.</p>");
     h.push("</div>");
+    return h.join("");
+  }
+
+  /* Ben's work-booked leg. Real confirmation numbers, so unlike the locker these
+     are baked into data.js rather than typed in - they are already in his email. */
+  function workLegBlock() {
+    var W = D.workLeg;
+    var h = [];
+    h.push('<div class="section-head"><h2>Ben&rsquo;s work leg, Oct 3-11</h2></div>');
+    h.push('<div class="card"><div class="card__body"><p class="small">' + esc(W.lede) + "</p></div></div>");
+
+    h.push('<div class="card"><div class="card__body">');
+    h.push('<p class="eyebrow">Flights, booked by work</p>');
+    W.flights.forEach(function (f, i) {
+      h.push('<div style="margin-top:' + (i ? "14px" : "8px") + '">' +
+        "<b>" + esc(f.label) + "</b>" +
+        '<p class="small" style="margin-top:2px">' + esc(f.route) + "</p>" +
+        '<p class="tiny muted" style="margin-top:2px;font-family:var(--mono)">' + esc(f.meta) + "</p></div>");
+    });
+    h.push("</div></div>");
+
+    W.hotels.forEach(function (t) {
+      h.push('<div class="card"' + (t.key ? ' style="border-color:var(--london)"' : "") + '><div class="card__body">');
+      if (t.key) h.push('<p class="eyebrow" style="color:var(--london)">Both of you, Sat Oct 10</p>');
+      h.push("<b>" + esc(t.label) + "</b>");
+      h.push('<p class="small" style="margin-top:2px">' + esc(t.dates) + "</p>");
+      h.push('<p class="small muted" style="margin-top:4px;font-family:var(--mono)">' + esc(t.address) +
+        "<br>" + esc(t.phone) + "</p>");
+      h.push('<p class="tiny muted" style="margin-top:6px">' + esc(t.rate) + "</p>");
+      h.push('<p class="tiny muted" style="margin-top:2px">' + esc(t.cxl) + "</p>");
+      h.push(mapsChip(t.maps, "Open in maps", t.ll));
+      h.push("</div></div>");
+    });
+
+    h.push('<div class="card"><div class="card__body">');
+    h.push('<p class="eyebrow">What this means for the shared trip</p>');
+    h.push('<ul class="tl__sub" style="margin-top:10px">');
+    W.notes.forEach(function (n) { h.push("<li>" + esc(n) + "</li>"); });
+    h.push("</ul></div></div>");
     return h.join("");
   }
 

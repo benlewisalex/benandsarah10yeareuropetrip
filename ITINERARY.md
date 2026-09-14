@@ -1,9 +1,9 @@
 # London + Iceland - October 9-17, 2026
-**Ben & Sarah Alexander · 8 nights out, 7 together · Budget target: $5,000 (currently projecting $5,335)**
+**Ben & Sarah Alexander · 8 nights out, 7 together · Budget target: $5,000 (currently projecting $5,135)**
 
-**Structure:** Sarah flies Fri Oct 9 and lands Sat Oct 10. Three nights London (Oct 10, 11, 12): temple session Saturday, church and the Thames walk Sunday, Stonehenge Monday. Then four nights Iceland (Oct 13, 14, 15, 16), ending with Blue Lagoon on the way to the airport. Home late Saturday Oct 17.
+**Structure:** Ben is already in England from Oct 3 on a work trip and moves to the Courtyard Heathrow on Fri Oct 9. Sarah flies Fri Oct 9, lands Sat Oct 10 and cabs straight to that hotel. Three nights England (Oct 10, 11, 12): 1:00pm endowment session Saturday, church and the Thames walk Sunday, Stonehenge Monday. Then four nights Iceland (Oct 13, 14, 15, 16), ending with Blue Lagoon on the way to the airport. Home late Saturday Oct 17.
 
-Ben's MSN-LHR and KEF-MSN flights are covered by work. Everything costed below is out of pocket, including getting to and from O'Hare and covering the kids at home.
+Ben's MSN-ORD-LHR flights out, the KEF-ORD flight home, and every hotel night from Oct 3 through the morning of Oct 11 are booked and paid by work - including Sat Oct 10, which is a free night for both of you. Everything costed below is out of pocket: Sarah's airfare, London lodging from Oct 11, all of Iceland, getting to and from O'Hare, and covering the kids at home.
 
 > **This file mirrors `docs/data.js`, which is what the app reads.** If the two ever disagree, the app is correct - edit `data.js` first.
 
@@ -15,7 +15,7 @@ Ben's MSN-LHR and KEF-MSN flights are covered by work. Everything costed below i
 |---|---|
 | Stonehenge | Mon Oct 12 |
 | Big Ben / London classics | Sun Oct 11 afternoon |
-| LDS temple | Sat Oct 10 - session at Newchapel |
+| LDS temple | Sat Oct 10 - 1:00pm endowment, Newchapel (booked) |
 | Aurora hunting | All four Iceland nights |
 | Stargazing | Wed-Fri, rural south Iceland |
 | Icelandic horses | Fri Oct 16 |
@@ -32,13 +32,32 @@ Ben's MSN-LHR and KEF-MSN flights are covered by work. Everything costed below i
 
 ## Booked flights
 
-| Flight | Route | Depart | Arrive | Duration |
+| Flight | Who | Route | Depart | Arrive |
 |---|---|---|---|---|
-| UA929 | ORD - LHR | Fri Oct 9, 4:25pm | Sat Oct 10, 6:45am | 8h 20m |
-| BA800 | LHR T5 - KEF | Tue Oct 13, 7:50am | 9:55am local | 3h 05m |
-| FI853 | KEF - ORD T5 | Sat Oct 17, 4:25pm | 6:15pm | 6h 50m |
+| UA1400 | Ben | MSN - ORD T1 | Sat Oct 3, 2:49pm | 4:00pm |
+| UA920 | Ben | ORD T1 - LHR T2 | Sat Oct 3, 6:05pm | Sun Oct 4, 8:30am |
+| UA929 | Sarah | ORD - LHR T2 | Fri Oct 9, 4:25pm | Sat Oct 10, 6:45am |
+| BA800 | Both | LHR T5 - KEF | Tue Oct 13, 7:50am | 9:55am local |
+| FI853 | Both | KEF - ORD T5 | Sat Oct 17, 4:25pm | 6:15pm |
 
-Ben's own KEF-MSN leg is booked separately through work. If it is not FI853, you are on different flights out of Keflavík and need to agree who returns the rental car.
+**Resolved:** Ben is on FI853, the same flight as Sarah. One rental car return, one check-in, no split at Keflavík. It also means Ben lands at O'Hare rather than Madison, so his own car cannot sit in the MSN lot from Oct 3 - he needs a drop-off.
+
+---
+
+## Ben's work leg, Oct 3-11 (booked and paid by work)
+
+| Hotel | Nights | Address | Rate |
+|---|---|---|---|
+| Novotel Ipswich | Sun Oct 4 - Tue Oct 6 (2) | Grey Friars Road, Ipswich IP1 1UP | GBP 185/nt, ~GBP 257 total |
+| Novotel Bristol Centre | Tue Oct 6 - Wed Oct 7 (1) | Victoria Street, Bristol BS1 6HY | GBP 154/nt (~$209) |
+| Hotel Indigo Exeter | Wed Oct 7 - Fri Oct 9 (2) | 3 Catherine Street, Exeter EX1 1EU | GBP 105/nt (~$142) |
+| **Courtyard Heathrow Marriott** | **Fri Oct 9 - Sun Oct 11 (2)** | 1 Nobel Drive, Harlington, Hayes UB3 5EY | GBP 148.75/nt (~$202), work-paid |
+
+*Confirmation numbers are deliberately kept out of this file - the repository is public. They are in the work travel email, and the app's Confirmations tab holds them on your phone only.*
+
+Cancellation: Ipswich and Bristol free until 1 day prior; Exeter forfeits the first night after 4:00pm Tue Oct 6; the Courtyard is free up to 1 day before arrival, GBP 148.75 after.
+
+**Why this matters to the shared trip.** The Courtyard covers Friday *and* Saturday, so Sat Oct 10 is a free night for both of you and the London lodging drops from three paid nights to two. The reservations are written for 1 adult - tell the Courtyard Sarah is joining before you arrive on the 9th. The hotel is about 2 miles north of the terminals, which is why Sarah cabs there directly instead of being met at arrivals.
 
 ---
 
@@ -46,41 +65,48 @@ Ben's own KEF-MSN leg is booked separately through work. If it is not FI853, you
 
 ## Friday, Oct 9 - Sarah flies, Ben gets into position
 
-Nothing happens together today. The only job tonight is making sure tomorrow is not improvised, and tomorrow is now the temple day.
+Nothing happens together today. Sarah crosses the Atlantic overnight while Ben finishes the work leg in Exeter and repositions to Heathrow. The important thing about tonight is that it is already solved - work has Ben at the Courtyard Heathrow for Friday and Saturday, so there is no scramble for a bed and no 3pm check-in wait for Sarah tomorrow morning.
 
-- **11:00am - Sarah leaves Madison for O'Hare.** Drive is about 2.5 hrs; budget 3.5 hrs door to gate, because parking, the shuttle and the bag drop are what actually eat the buffer. At the terminal by 2:25pm.
-- **4:25pm - UA929, O'Hare to Heathrow.** 8h 20m, Boeing 767-300, lands 6:45am Saturday. First checked bag included, second is $120. Sleep on this flight is worth more than the movie - how well she sleeps here is most of whether the temple session goes well.
-- **Evening - Ben:** confirm where you are sleeping and that the car to Newchapel is booked for about 8:00am from Heathrow T2. Be at arrivals by 7:15am.
+- **Morning - Ben checks out of Hotel Indigo Exeter.** Exeter St Davids to Paddington is about 2hr 15min by GWR, then the Elizabeth line to Heathrow (~30 min) and a taxi or the Hoppa the last two miles.
+- **11:00am - Sarah leaves Madison for O'Hare.** Drive is about 2.5 hrs; budget 3.5 hrs door to gate, because parking, the shuttle and the bag drop are what actually eat the buffer. At the terminal by 2:25pm. **Park for the full Oct 9-17 window** - you both fly back into O'Hare together on the 17th, so this car is the ride home for two.
+- **3:00pm UK - Ben checks into the Courtyard Heathrow Marriott.** 1 Nobel Drive, Harlington, Hayes UB3 5EY. Two nights, both paid by work. **Tell the front desk tonight that Sarah is on the room from Saturday** - the reservation is written for 1 adult.
+- **4:25pm - UA929, O'Hare to Heathrow.** 8h 20m, Boeing 767-300, lands 6:45am Saturday. First checked bag included, second is $120. Sleep on this flight is worth more than the movie - how well she sleeps here is most of whether the endowment session goes well.
+- **Evening - Ben: book two rides.** Sarah's ride from T2 arrivals to the hotel at about 7:45am, and the car from the hotel to Newchapel at about 11:00am. Send her the address, the confirmation number, the room number and a photo of the hotel entrance before she flies - airport wifi at 7am is not the moment to go hunting through email.
 
-**Pack the temple clothing and both recommends where they are reachable, not at the bottom of a checked bag.** You go more or less straight from the airport to Newchapel.
+**Pack the temple clothing and both recommends where they are reachable, not at the bottom of a checked bag.** There are only about two hours at the hotel between her cab and the car to Newchapel.
+
+*Why she is not being met at arrivals: the hotel is about ten minutes from the terminal and Ben is already in the room. Meeting her airside costs an hour of standing in T2 and buys nothing - she is better off in a shower two hours earlier.*
 
 *Home front: Mom should already be at the house with the kids settled before Sarah leaves, not arriving the same afternoon.*
 
-## Saturday, Oct 10 - Sarah lands, temple session at Newchapel
+## Saturday, Oct 10 - Sarah lands, 1:00pm endowment at Newchapel
 
-Straight from Heathrow to the temple. It is an ambitious first day and it is **also the only day it can happen** - the temple is closed Sunday and Monday, and Tuesday is the 7:50am flight to Iceland. Saturday or not at all.
+**The session is booked: 1:00pm endowment at the London England Temple.** That one fact does more for this day than anything else in the plan, because it turns a scramble off a red-eye into a morning with actual slack in it. Sarah lands at 6:45am and is in the hotel room by about 8:15am - the room is already Ben's from Friday, so there is no waiting for check-in.
 
-The upside is large: doing the session today leaves Sunday and Monday untouched and keeps the whole Iceland half exactly as booked.
+It is still the only day it can happen: the temple is closed Sunday and Monday, and Tuesday is the 7:50am flight to Iceland.
 
-- **6:45am - meet Sarah at Heathrow arrivals.** United uses Terminal 2. Allow 45-60 min for immigration and bags, so be at arrivals by 7:15am.
-- **8:00am - car from Heathrow to Newchapel.** Pre-booked car or rideshare, about 40 miles clockwise on the M25, roughly **1 hour**.
-  - Worth the money rather than the principle. Rail means Heathrow into central London, across to Victoria, out to Lingfield, then a taxi anyway - about 2.5 hours with luggage and three changes, on no sleep.
-  - Roughly $90-110 for the two of you plus bags. Book it the night before, not at 7:30am in an arrivals hall.
-- **Late morning - temple session, London England Temple.** About **2 hours** including changing, plus time on the grounds.
-  - Dedicated in 1958, the first temple in the British Isles and only the second in Europe. The grounds are worth the extra half hour: formal gardens, a large pond, and an oak on site over 450 years old, which President McKay had preserved when he chose the building site.
-  - West Park Road, Newchapel, Lingfield, Surrey RH7 6HW. **Reserve** - walk-ins are welcome but without a reservation you may be asked to wait or to participate in a different ordinance. Bring your own temple clothing; rental is available on site.
-  - **Book a late-morning or early-afternoon session, not the first of the day.** She will have had maybe four hours of bad airline sleep, and an hour of daylight and something to eat first is the difference between being present and being unconscious.
-  - Ask at the desk about somewhere to leave the suitcases. There is patron accommodation on site and dressing-room lockers; confirm rather than assume.
-- **2:30pm - train back into London.** Taxi to Lingfield (2 miles) or East Grinstead (4 miles), then train to Victoria or London Bridge. About 1hr 15min all in. **Arrange the taxi before you are dropped off in the morning** - it is rural and you will not flag one down.
-- **4:00pm - check into the London lodging.** Three nights. This is the point where doing nothing is the correct move. If she needs to lie down, make it a hard 45 minutes with an alarm, then get back outside - daylight is the only thing that actually fixes jet lag, and sunset is 6:15pm.
-- **Evening - Dishoom.** Bombay-Irani cafe food in a room done up like a 1940s Bombay tearoom. **Book ahead**; it is a Saturday night and the walk-in wait runs over an hour. Black daal and the chai.
+- **6:45am - Sarah lands at Heathrow Terminal 2.** United uses T2; allow 45-60 min for immigration and bags. Ben is not meeting her here.
+- **7:45am - Sarah cabs straight to the Courtyard Heathrow.** About 2 miles, 10-15 min, roughly 20-25 GBP by cab - or the Heathrow Hoppa if it serves this hotel, which is worth confirming in advance. 1 Nobel Drive, Harlington, Hayes UB3 5EY.
+- **8:15am - breakfast, shower, and one hard-stop nap.** About 2hr 30min before the car. **Set an alarm for 10:30am and treat it as non-negotiable** - an open-ended nap on landing day is how people lose the afternoon.
+- **11:00am - car from the hotel to Newchapel.** About 45 miles clockwise on the M25, **1 hour to 1hr 15min**; build in the longer number, because an anticlockwise M25 on a Saturday is the one thing that could eat this margin.
+  - Worth the money rather than the principle. Rail means Heathrow into central London, across to Victoria, out to Lingfield, then a taxi anyway - about 2.5 hours with three changes on no sleep.
+  - Roughly $90-110. **Book the 4:00pm return at the same time** - Newchapel is deep countryside and you will not flag anything down at the gate.
+- **12:15pm - arrive, recommend desk, and the grounds.** Check in by about 12:30. Dedicated in 1958, the first temple in the British Isles and only the second in Europe; the grounds have formal gardens, a large pond, and an oak over 450 years old that President McKay had preserved when he chose the building site. Ask at the desk where the suitcases can go - there is patron accommodation and dressing-room lockers, but confirm rather than assume.
+- **1:00pm - endowment session.** About 2 hours including changing. West Park Road, Newchapel, Lingfield, Surrey RH7 6HW. Bring your own temple clothing; rental is available on site. Both recommends current.
+- **4:00pm - car back to the Courtyard Heathrow.** About 1 hour, in by 5:00pm. Same room you left this morning, nothing to check into.
+- **Evening - dinner, and where depends on how the day went.** Two honest options, and the right one is whichever matches how she actually feels at 5pm.
+  - *Low-key:* the Bath Road hotel strip has the usual pubs and chains within a short walk or a five-minute cab. Unremarkable, but she has been awake 30 hours.
+  - *Worth the trip:* Dishoom Covent Garden. Elizabeth line from Heathrow to Tottenham Court Road is about 30 minutes each way. Book it either way - a Saturday walk-in wait runs over an hour and you can always cancel.
+
+**Tonight is free.** Work booked the Courtyard for Friday and Saturday, so the first night of the trip together costs nothing and the London lodging budget is now two nights instead of three - roughly $200 back.
 
 Sunrise 7:20am, sunset 6:15pm.
 
 ## Sunday, Oct 11 - Church, then London on foot
 
-Church in South Kensington, then the classic Thames walk. Sunset is 6:10pm, so you have roughly five hours of daylight after the block - enough for the river, not enough for the river plus museums. Everything in the afternoon is free, outdoors, and one continuous line, so you can stop wherever you run out.
+Church in South Kensington, then the classic Thames walk. Sunset is 6:10pm, so you have roughly five hours of daylight after the block - enough for the river, not enough for the river plus museums. The one piece of friction today is the bags: you check out of the Courtyard this morning and the London room is not yours until the afternoon.
 
+- **Early - check out of the Courtyard Heathrow, bags into London.** Elizabeth line to Paddington is about 30 min, then District or Circle to South Kensington. Leave by about 8:00am to make a mid-morning block comfortably. **Ask the London lodging whether they hold bags before check-in** - most will. Failing that, paid left luggage at Paddington. Rolling two suitcases into sacrament meeting is the outcome to avoid.
 - **Morning - sacrament meeting at the Hyde Park Chapel.** 64-68 Exhibition Road, South Kensington tube then a 3-min walk. The Church's central London home since 1961, a tall thin spire on a street of Victorian museums. The visitors' centre inside has exhibits on temples and on the history of the Church in the British Isles - worth 30 minutes after the block. Confirm the meeting time on the ward or stake page beforehand.
 - **12:45pm - Westminster and Big Ben.** District or Circle line, South Kensington to Westminster, 12 min. About 45 min including the bridge.
   - Big Ben is the bell, not the tower - 13.7 tonnes of it, in what has been called the Elizabeth Tower since the Diamond Jubilee in 2012. Each clock face is about 7 metres across. Cross to the south bank for the photo; from the Parliament side you cannot fit the tower in.
@@ -91,6 +117,7 @@ Church in South Kensington, then the classic Thames walk. Sunset is 6:10pm, so y
   - The glass-floor walkway and the Tower itself are separate paid tickets. The Tower alone wants three hours, which you do not have today.
 - **4:15pm - Trafalgar Square and Buckingham Palace** *(optional)*. Nelson on a 52-metre column with the National Gallery behind him - and the Gallery is free, which makes it the best fallback if it rains. **First thing to drop**; after 6:10pm this is two buildings in the dark.
 - **Evening - Padella, Borough.** Hand-rolled pasta at a counter for the price of a sandwich; the eight-hour beef shin ragu and the pici cacio e pepe are what people come back for. No reservations - go at 5pm or queue. Ten minutes' walk west of Tower Bridge, which is why it is tonight.
+- **Evening - check into the London lodging.** Two nights, Oct 11 and 12. This is the only lodging you pay for in England. **Book it near a Piccadilly or Elizabeth line station** - you leave for Heathrow before dawn on Tuesday.
 
 **Order matters today:** church first, then the river, because the river works in fading light and church does not move. If the block runs long, drop Trafalgar rather than compressing the walk - the walk is the good part.
 
@@ -114,7 +141,11 @@ A day trip built out of a train and a bus, roughly half the price of a coach tou
   - **The real cost is sleep.** Curtain down at 10:15pm against a booked 4:45am car is about five hours in bed before a flight and a full first day in Iceland.
 - **Before bed - pack, and confirm the 4:45am car.** Tomorrow's flight leaves Heathrow T5 at 7:50am and you want to be there by 5:50am. Oct 13 is a Tuesday, so there is no Night Tube: the car is not optional and it needs to be booked, not summoned.
 
-**You cannot have both.** The Stone Circle Experience and a West End show are each about $150-200, and the budget is already past its target. Pick one.
+**Stonehenge is not settled.** As of Sept 2026 this day is under review and the stones may not survive the cut. Nothing here is booked yet, and the train and the tour bus are the two things to hold off on until the call is made. If Stonehenge goes, Monday is a blank full day in London with a $220 refund attached; the obvious replacements are the free big museums, Greenwich, or Hampton Court.
+
+**Or sleep at Heathrow tonight.** Tomorrow starts with a 4:45am car to Terminal 5. A cheap Heathrow-area hotel tonight - Premier Inn, Ibis, Holiday Inn Express, all around $90-110 off-season - is cheaper than a central London room, kills the $70 pre-dawn car, and buys an hour of sleep before a flight and a full first day in Iceland. The cost is that you finish Monday evening out by the airport rather than in town, which matters if you are doing a West End show and does not if you are not.
+
+**You cannot have both.** The Stone Circle Experience and a West End show are each about $150-200. Pick one.
 
 **Optional upgrade:** English Heritage's Stone Circle Experience puts you inside the ring outside normal hours - a completely different experience from the roped path. Check October availability directly with English Heritage; some operators indicate special access is not offered in October or November, so treat it as a bonus rather than a plan. About $150 for the two of you.
 
@@ -300,7 +331,7 @@ No active eruption as of the writing of this itinerary. The last ran July 16 to 
 | Sarah MSN-LHR + KEF-MSN | $900 |
 | LHR-KEF ×2 | $300 |
 | **Lodging (7 nights)** | **$1,320** |
-| London ×3 | $600 |
+| London ×2 (Oct 10 is work-paid) | $400 |
 | Reykjavík ×1 | $200 |
 | South Iceland guesthouse ×2 | $340 |
 | Keflavík / Reykjanesbær ×1 | $180 |
@@ -316,7 +347,7 @@ No active eruption as of the writing of this itinerary. The last ran July 16 to 
 | Into the Glacier from Gullfoss | $190 |
 | Icelandic horse riding | $220 |
 | Blue Lagoon, Comfort ×2 + luggage hold | $210 |
-| Temple day: Heathrow car + return train + taxis | $150 |
+| Temple day: cars to and from Newchapel | $150 |
 | Secret Lagoon | $80 |
 | Lava Show, Vík | $120 |
 | Þingvellir parking | $10 |
@@ -326,16 +357,17 @@ No active eruption as of the writing of this itinerary. The last ran July 16 to 
 | Mom's round-trip flights to Madison | $400 |
 | Groceries and extras for her week | $120 |
 | **One nice dinner** | **$150** |
-| **TOTAL** | **$5,335** |
+| **TOTAL** | **$5,135** |
 
-**This is $335 past the $5,000 target.** Two deliberate additions got you here: Blue Lagoon at $210, and the Saturday temple session turning a $20 train day into a $150 car day. Both were the right call.
+**This is $135 past the $5,000 target**, down from $335 - work covering Sat Oct 10 at the Courtyard Heathrow took $200 straight off the London lodging line.
 
 **The realistic menu if you want the number back under $5,000:**
+- **Sleep near Heathrow on Mon Oct 12** instead of central London: a Premier Inn or Ibis runs $90-110 off-season against a $200 central room, *and* it kills the $70 pre-dawn car to Terminal 5. About **$145** - this one closes the gap on its own
+- If Stonehenge comes out of Monday, that is another **$220** - but do not count it until the call is made
 - Swap Secret Lagoon for a municipal pool like Laugardalslaug (~$12 for both): saves about **$68**
 - Cut the nice dinner: **$150**
-- Book the Keflavík and London beds at the low end of their placeholders: about **$100**
 
-That is roughly $320 and it lands you on target - but it costs a nice dinner and a lagoon to save a number you set yourself.
+Take the Monday-at-Heathrow swap first. It is the only one that saves money and makes the trip better at the same time.
 
 **Do not cut Blue Lagoon, the temple car, or the horses.** Those are the trip. If something has to give, let it be the $5,000.
 
@@ -347,38 +379,42 @@ That is roughly $320 and it lands you on target - but it costs a nice dinner and
 
 ## This week
 - [ ] Price Sarah's flights **three ways**: two separate one-ways, multi-city, and open-jaw. They routinely differ by hundreds.
-- [ ] Book Sarah MSN-LHR and KEF-MSN
+- [ ] Book Sarah ORD-LHR and KEF-ORD
 - [ ] Book LHR-KEF ×2 *(done - BA800)*
 - [ ] Reserve Iceland rental car - take gravel + sand/ash waiver
 - [ ] Check English Heritage for October Stone Circle Experience availability
-- [ ] Confirm both temple recommends are current - **the session is Sat Oct 10 and there is no second chance on this trip**
-- [ ] **Reserve the Sat Oct 10 temple session** at Newchapel. Late morning or early afternoon, not the first slot of the day
-- [ ] **Book the Heathrow T2 to Newchapel car** for about 8:00am Sat Oct 10
+- [ ] Confirm both temple recommends are current - **the 1:00pm endowment on Sat Oct 10 is booked and there is no second chance on this trip**
+- [x] ~~Reserve the Sat Oct 10 temple session~~ **Booked: 1:00pm endowment, London England Temple.** Save the confirmation offline; recommend desk by 12:30
+- [ ] **Book the Courtyard Heathrow to Newchapel car** for 11:00am Sat Oct 10, plus the 4:00pm return - book both legs at once
+- [ ] **Set up Sarah's ride from Heathrow T2 to the Courtyard** for about 7:45am Sat Oct 10, and send her the address, the hotel confirmation number, the room number and a photo of the entrance before she flies
+- [ ] **Tell the Courtyard that Sarah is on the room for both nights** - the work reservation is written for 1 adult
+- [ ] Sort how Ben gets to Madison airport on Oct 3. He returns to O'Hare on the 17th, not Madison, so leaving his own car in the MSN lot does not work
 - [ ] Confirm the temple can hold the suitcases during the session, or find somewhere that can
 - [ ] Verify passports are valid at least 6 months past Oct 17, 2026
 - [ ] Apply for **UK ETA** for both of you - required from US citizens since January 2025. Confirm the current fee and processing time on gov.uk
 - [ ] Check whether **ETIAS** is live for Iceland by October 2026 - the EU has delayed it repeatedly
 - [ ] Confirm with Mom which dates she can actually cover - ideally Oct 8 through Oct 18
 - [ ] Book Mom's round-trip flights to Madison
-- [ ] Decide how Sarah gets to O'Hare on Oct 9: drive and park for eight days, or a drop-off
-- [ ] Confirm Ben's own KEF-MSN flight on Oct 17
-- [ ] Work out where Ben sleeps on the 9th and how he reaches Heathrow T2 arrivals by 7:15am
+- [ ] **Book Sarah's O'Hare parking, Oct 9-17 (8 nights).** Off-site lots run roughly $10-14 a day with a shuttle against $40+ a day in the terminal garage, and prepaying online is cheaper again - the usual names are The Parking Spot, WallyPark and SpotHero. Prepay a reservation rather than turning up, and check the shuttle runs late: you both land at 6:15pm on the 17th and will be collecting the car in the evening
+- [ ] Sarah drives to O'Hare on Oct 9 and parks the full window - you both land back at ORD together on the 17th, so that car is the ride home for two
+- [x] ~~Confirm Ben's own KEF flight on Oct 17~~ **Done - FI853, same flight as Sarah, booked through Icelandair**
+- [x] ~~Work out where Ben sleeps on the 9th~~ **Done - Courtyard Heathrow Marriott, Fri and Sat, work-paid**
 
 ## Four to six weeks out
 - [ ] Book Into the Glacier - **Gullfoss departure**, not Reykjavík
 - [ ] Book Icelandic horse riding farm near Hveragerði or Selfoss
 - [ ] Book Lava Show, Vík
 - [ ] **Book Blue Lagoon for Sat Oct 17** - Comfort ×2, earliest timed slot, plus the luggage hold. Read the cancellation terms
-- [ ] Book London lodging ×3 nights
+- [ ] Book London lodging **×2 nights, Oct 11 and 12** - Oct 10 is covered by work. Pick something on the Piccadilly or Elizabeth line, and ask whether they hold bags before check-in
+- [ ] **Decide Mon Oct 12 night:** cheap Heathrow-area hotel (~$100, kills the $70 pre-dawn car, an hour more sleep) or stay central (~$200, better if you are doing a West End show)
 - [ ] Book Reykjavík ×1, south Iceland guesthouse ×2, Keflavík ×1
-- [ ] Buy advance Waterloo-Salisbury train tickets - **an early train out, around 7:30am**
-- [ ] Book The Stonehenge Tour bus
-- [ ] Reserve Dishoom for **Sat Oct 10 evening** - it is a Saturday night, so this one actually needs booking
+- [ ] **Decide whether Stonehenge is happening at all before buying anything.** If yes: advance Waterloo-Salisbury tickets, early train around 7:30am
+- [ ] Book The Stonehenge Tour bus - only after the Stonehenge call is made
+- [ ] Reserve Dishoom Covent Garden for **Sat Oct 10 evening** - Saturday nights need booking, and it is cancellable if Sarah would rather eat near the hotel and sleep
 - [ ] Decide on a **West End show for Mon Oct 12**. Trade against the Stone Circle Experience, not in addition to it
 - [ ] Notify banks of travel; confirm no foreign transaction fees
 - [ ] **Sort international phone service for both phones, Oct 9-17.** Check what your plan already covers in the UK and Iceland, then add a travel pass or an eSIM. You need data working for vedur.is cloud maps, road.is, offline-map fallback, and Mom
 - [ ] Download offline maps for Iceland and southern England
-- [ ] Reserve O'Hare parking for Oct 9-17 - off-site lots are far cheaper, and prepaying is cheaper again
 - [ ] Extend the Iceland rental car through Saturday afternoon - it is 5 days now, not 4
 - [ ] Book a car to Heathrow T5 for 4:45 to 5:15am on Tue Oct 13 - no Night Tube on a weekday
 - [ ] Book the Oct 16 lodging in the **Keflavík area** - a 20-minute run to a 9am Blue Lagoon slot
