@@ -293,7 +293,7 @@ const TRIP = {
           travel: "Hop to the terminal, then Elizabeth line straight to Paddington, about 30 min",
           dur: "About 50 min door to door",
           why: "This is the only time the bags move on the whole England leg, and it is deliberately the easiest possible version: one direct train from the airport you are already standing in, to a hotel you walk to from the station.",
-          detail: "Drop the bags at the Paddington hotel - ask when you book whether they hold luggage before check-in, because almost all of them will. Then Paddington to South Kensington is about 12 minutes on the Circle or District line. Leave the Courtyard by about 8:00am to make a mid-morning block comfortably.",
+          detail: "Drop the bags at the Tudor Court, 10-12 Norfolk Square, three to five minutes from the station - check-in is not until 3:00pm but baggage storage is one of their listed services. Then Paddington to South Kensington is about 12 minutes on the Circle or District line. Leave the Courtyard by about 8:00am to make a mid-morning block comfortably.",
           maps: "London Paddington station", ll: "51.5154,-0.1755",
           headsUp: "Paddington is a big station and the Elizabeth line platforms sit well below and away from the main concourse. Note how long that walk actually takes today, because you are doing it in reverse at 5am on Tuesday." },
         { time: "Morning", name: "Sacrament meeting at the Hyde Park Chapel",
@@ -332,17 +332,19 @@ const TRIP = {
           why: "Hand-rolled pasta at a counter for the price of a sandwich. The eight-hour beef shin ragu and the pici cacio e pepe are the two everyone comes back for, and it is comfortably the best cheap meal in the city.",
           detail: "No reservations - go at 5pm or join the queue. If you finish the walk at Tower Bridge, this is a ten-minute stroll west, which is why it is tonight and not another night.",
           maps: "Padella, Borough Market, London", ll: "51.5054,-0.0905" },
-        { time: "Evening", name: "Check into the Paddington hotel",
-          book: ["fs4"],
+        { time: "Evening", name: "Check into the Tudor Court Hotel",
+          book: ["fs20"],
           travel: "London Bridge to Paddington, about 20-25 min",
-          dur: "Two nights, Oct 11 and 12",
-          detail: "The only lodging you pay for in England. Bags in, feet up. Ask the front desk to confirm there are no engineering works on the Elizabeth line for Tuesday morning, and get the 5:15am car booked while you are standing there.",
-          maps: "London Paddington station", ll: "51.5154,-0.1755",
-          area: true }
+          dur: "Two nights, Oct 11 and 12 - booked and paid",
+          why: "Three to five minutes from the station, on a garden square set back off Praed Street. A triple room for the two of you, so more space than the night needs.",
+          detail: "10-12 Norfolk Square, W2 1RS. Check-in runs 3:00pm to midnight, so arriving after dinner is fine. Already paid in full - if anyone asks for money at the desk, show the confirmation.",
+          maps: "Tudor Court Hotel, 10-12 Norfolk Square, London W2 1RS", ll: "51.5147,-0.1757",
+          headsUp: "Three things to do at the desk tonight: ask about Elizabeth line engineering works for Tuesday, book the 5:15am car, and set a 4:30am wake-up call. All three are services this hotel actually offers, which is why it was worth paying a little more for a 24-hour front desk." }
       ],
       notes: [
         { label: "Order matters today", text: "Church first, then the river, because the river works in fading light and church does not move. If the block runs long, drop Trafalgar rather than compressing the South Bank walk - the walk is the good part." },
-        { label: "Why Paddington", text: "It is the one place that works for all three days at once: a direct Elizabeth line train from Heathrow this morning, 12 minutes to church, 15 minutes to Hamilton tomorrow, and the only station with trains to Terminal 5 early enough on Tuesday. See Where to book on the Info tab." }
+        { label: "Why Paddington", text: "It is the one place that works for all three days at once: a direct Elizabeth line train from Heathrow this morning, 12 minutes to church, 15 minutes to Hamilton tomorrow, and the only station with trains to Terminal 5 early enough on Tuesday." },
+        { label: "Booked", text: "Tudor Court Hotel, 10-12 Norfolk Square. Two nights, triple room with a garden view, GBP 262.75 paid in full. Non-refundable, and the dates cannot be changed - which is fine, because Sarah's flight, the temple session and BA800 all pin this weekend in place. Full details under Where to book on the Info tab." }
       ]
     },
 
@@ -381,7 +383,7 @@ const TRIP = {
           travel: "Circle line from St Paul's or Blackfriars, about 25 min",
           dur: "2 hrs of slack before the theatre",
           why: "You have been on your feet since 9:30 and the show is 2hr 45min sitting down. An hour off your feet and a real dinner beforehand is the difference between enjoying Hamilton and fighting sleep through the second act.",
-          detail: "Eat near Paddington or near the theatre - Victoria has plenty within five minutes of the Apollo and the Palace. Do not plan to eat afterwards; you are out at 10:15pm with a 5am start coming.",
+          detail: "Eat near Paddington or near the theatre - Victoria has plenty within five minutes of the Palace. Norfolk Square is a three-minute walk from the station, so dropping back to change costs you almost nothing. Do not plan to eat afterwards; you are out at 10:15pm with a 5am start coming.",
           area: true },
         { time: "7:30pm", name: "Hamilton, Victoria Palace Theatre",
           book: ["fs18"],
@@ -395,13 +397,13 @@ const TRIP = {
         { time: "Before bed", name: "Pack, and lock in the morning",
           book: ["fs13"],
           dur: "30 min",
-          detail: "Bags packed tonight, not at 4:30am. Confirm the 5:15am car, set two alarms and a front-desk wake-up call for 4:30am, and put something to eat in the room - nothing is open at Paddington that early and the next food is on the plane.",
+          detail: "Bags packed tonight, not at 4:30am. Confirm the 5:15am car, set two alarms plus the front-desk wake-up call for 4:30am, and put something to eat in the room - nothing is open at Paddington that early and the next food is on the plane. The room has a kettle and a fridge, so tea and breakfast in the room are possible.",
           headsUp: "Curtain down 10:15pm, in bed by about 10:50pm, up at 4:30am. That is a short night before a 3-hour flight and a full first day in Iceland - which is exactly why the car is booked rather than hoped for." }
       ],
       notes: [
         { label: "Why this replaced Stonehenge", text: "Stonehenge was a 7-hour round trip built on a 7:30am train, and it made Monday the tiring day rather than the good one. Dropping it freed about $220, put two world-class interiors in walking distance of each other, and left an evening open for the show. The stones are not going anywhere." },
         { label: "The cheaper version of today", text: "Westminster Abbey is the one to keep. If you want to spend less, swap St Paul's for the British Museum or the National Gallery - both free, both excellent - and today costs $80 instead of $150." },
-        { label: "Tuesday morning is handled", text: "A car at 5:15am from Paddington to Terminal 5, about 40 minutes with empty roads. The Elizabeth line also works - the 05:03 from Paddington reaches T5 at 05:39 - but you do not want a first-train connection between you and an international flight. Book the car, and cancel it Monday if the trains look clean." }
+        { label: "Tuesday morning is handled", text: "A car at 5:15am from Norfolk Square to Terminal 5, about 40 minutes with empty roads. The hotel check-out window opens at midnight and the front desk is staffed 24 hours, so a 4:55am departure needs no special arrangement. The Elizabeth line also works - the 05:03 from Paddington reaches T5 at 05:39, and the station is three minutes from the door - but you do not want a first-train connection between you and an international flight. Book the car, and cancel it Monday if the trains look clean." }
       ]
     },
 
@@ -414,14 +416,14 @@ const TRIP = {
         "Everything today is on the same peninsula as the airport, so the driving is short and the order is flexible. Every night in Iceland is an aurora night, and the aurora panel is the most important page in this app."
       ],
       items: [
-        { time: "5:15am", name: "Car from Paddington to Terminal 5",
+        { time: "5:15am", name: "Car from Norfolk Square to Terminal 5",
           book: ["fs13"],
           travel: "Pre-booked minicab, about 40 min on empty roads",
           dur: "At T5 by about 6:00am",
           why: "The deadline that matters is not the 7:50am departure - it is bag drop, which closes 45 minutes before, so about 7:05am. Arriving at 6:00am leaves an hour of genuine slack rather than a sprint.",
-          detail: "Booked, not summoned. A scheduled Uber does not reserve a driver; a minicab firm does. Roughly 45-65 GBP - the hotel's partner firm may quote closer to 100, and you are not obliged to take it.",
+          detail: "Booked, not summoned. A scheduled Uber does not reserve a driver; a minicab firm does. Roughly 45-65 GBP - the hotel's partner firm may quote closer to 100, and you are not obliged to take it. Check-out opens at midnight and the desk is staffed round the clock, so just hand the key back on the way past.",
           maps: "Heathrow Terminal 5, London", ll: "51.4723,-0.4885",
-          headsUp: "If you would rather take the train: the Elizabeth line reaches T5 at 05:39 and then 06:06, roughly :06 and :36 past each hour. Check the train actually serves Terminal 5 - most Elizabeth line services terminate at T2&3 or T4 and never get there." },
+          headsUp: "If you would rather take the train: Paddington is three minutes from the hotel door, the Elizabeth line reaches T5 at 05:39 and then 06:06, roughly :06 and :36 past each hour. Check the train actually serves Terminal 5 - most Elizabeth line services terminate at T2&3 or T4 and never get there." },
         { time: "7:50am", name: "BA800, Heathrow T5 to Keflavík",
           book: ["tw3"],
           travel: "You are already at the terminal",
@@ -738,7 +740,7 @@ const TRIP = {
         { id: "flt-lhrkef",  label: "LHR-KEF x2",                    planned: 300 }
       ]},
       { id: "lodging", label: "Lodging (6 paid nights of 7)", lines: [
-        { id: "lod-london",  label: "Paddington x2 (Oct 10 is work-paid)", planned: 400 },
+        { id: "lod-london",  label: "Tudor Court, Paddington x2 (booked)", planned: 356 },
         { id: "lod-rvk",     label: "Reykjavík x1",             planned: 200 },
         { id: "lod-south",   label: "South Iceland guesthouse x2",   planned: 340 },
         { id: "lod-kef",     label: "Keflavík x1",              planned: 180 }
@@ -772,7 +774,7 @@ const TRIP = {
       ]}
     ],
     headroomOptions: [
-      "Planned now runs $5,105 against a $5,000 target. Dropping Stonehenge freed $220 and turning the horse ride into a farm visit freed $150; Hamilton put back $190 and Monday's two cathedrals $150. Net you are $105 over, which one small decision closes.",
+      "Planned now runs $5,061 against a $5,000 target, with Paddington booked at a real $356 rather than a $400 placeholder. Dropping Stonehenge freed $220 and turning the horse ride into a farm visit freed $150; Hamilton put back $190 and Monday's two cathedrals $150. Net you are $61 over, which one small decision closes.",
       "Swap St Paul's for the British Museum or the National Gallery, both free: saves $70, and Westminster Abbey is still the centrepiece of the day",
       "Swap Secret Lagoon for a municipal pool like Laugardalslaug, about $12 for both: saves roughly $68, and Blue Lagoon already covers the tourist hot spring twice over",
       "Either of those on its own puts you under target. Both together lands you near $4,970",
@@ -781,7 +783,7 @@ const TRIP = {
       "Drop the nice dinner, $150 - last resort, not first",
       "Sarah's one-way airfares are still the least predictable number here and could move $300-400 in either direction on their own"
     ],
-    cutIfOver: "You are $105 over. Swapping St Paul's for the free British Museum covers it outright and barely changes Monday. After that, the Secret Lagoon swap (~$68). Do not cut Blue Lagoon, the rental car for the temple, Hamilton, or Westminster Abbey - those are the trip. If something still has to give, let it be the $5,000."
+    cutIfOver: "You are $61 over. Swapping St Paul's for the free British Museum covers it outright and barely changes Monday. After that, the Secret Lagoon swap (~$68). Do not cut Blue Lagoon, the rental car for the temple, Hamilton, or Westminster Abbey - those are the trip. If something still has to give, let it be the $5,000."
   },
 
   /* --- checklists ---------------------------------------------------------- */
@@ -816,8 +818,9 @@ const TRIP = {
       { id: "fs1",  text: "Book Into the Glacier - Gullfoss departure, not Reykjavík", budgetIds: ["exc-glacier"] },
       { id: "fs2",  text: "Book a horse farm VISIT near Hveragerði or Selfoss for Fri Oct 16 - ask for a stable visit or 'meet the horses', not a riding tour. Roughly 3,000-6,000 ISK each. Small farms are not staffed for walk-ins in October", budgetIds: ["exc-horses"] },
       { id: "fs3",  text: "Book Lava Show, Vík", budgetIds: ["exc-lavashow"] },
-      { id: "fs4",  text: "Book a PADDINGTON hotel for Oct 11 and 12 - within a 10-minute walk of the station, with a lift, and confirm they hold bags before check-in. See Where to book on the Info tab for the exact streets to search and what to avoid", budgetIds: ["lod-london"] },
-      { id: "fs20", text: "Ask the Paddington front desk at check-in: any Elizabeth line engineering works Monday night, and how long is the walk to the Elizabeth line and Heathrow Express platforms. Then book the 5:15am car on the spot", extra: true },
+      { id: "fs4",  text: "Done - Tudor Court Hotel, 10-12 Norfolk Square, Paddington. Two nights Oct 11-13, triple room with garden view, GBP 262.75 paid in full. Non-refundable", budgetIds: ["lod-london"] },
+      { id: "fs21", text: "Message the Tudor Court through the booking and ask which floor the room is on, and whether there is a lift. No lift is listed and it is a Victorian townhouse - if you are three floors up, ask to be moved lower. You carry the bags down at 4:55am", extra: true },
+      { id: "fs20", text: "At Tudor Court check-in on Sunday: ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line and Heathrow Express platforms, book the 5:15am car, and set a 4:30am wake-up call. All four are things this hotel does", extra: true },
       { id: "fs5",  text: "Book the four Iceland beds: Reykjavík x1 (Oct 13), south coast x2 (Oct 14-15, same place), Reykjanesbær x1 (Oct 16). See Where to book on the Info tab - the south coast one has real criteria attached and is the only bed on this trip that is hard to substitute", budgetIds: ["lod-rvk","lod-south","lod-kef"] },
       { id: "fs6",  text: "Book a timed Westminster Abbey slot for 9:30am Mon Oct 12 - go at opening, the nave fills by eleven. About 30 GBP each", budgetIds: ["exc-monday"] },
       { id: "fs7",  text: "Book St Paul's for Mon Oct 12 afternoon, about 26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start", budgetIds: ["exc-monday"] },
@@ -872,7 +875,7 @@ const TRIP = {
     { id: "cf-mom",           label: "Mom's flights to Madison",       fields: ["Airline", "Flight no.", "Confirmation", "Dates"] },
     { id: "cf-parkord",       label: "O'Hare parking",                 fields: ["Lot", "Confirmation", "Dates", "Shuttle"] },
     { id: "cf-lhrcar",        label: "5:15am car to T5, Oct 13",        fields: ["Company", "Confirmation", "Pickup time", "Phone"] },
-    { id: "cf-lod-london",    label: "Paddington hotel, Oct 11-13",    fields: ["Name", "Address", "Confirmation", "Walk to station"] },
+    { id: "cf-lod-london",    label: "Tudor Court, Paddington, Oct 11-13", fields: ["Booking no.", "PIN", "Room / floor", "Notes"] },
     { id: "cf-lod-rvk",       label: "Reykjavík lodging x1",      fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
     { id: "cf-lod-south",     label: "South Iceland guesthouse x2",    fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
     { id: "cf-lod-kef",       label: "Keflavík lodging x1",       fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
@@ -895,11 +898,34 @@ const TRIP = {
      filter on, the streets that qualify, what to rule out, and the one or two
      criteria that actually matter for that night. */
   lodging: {
-    lede: "Six nights to book. Oct 10 is work-paid at the Courtyard Heathrow, and Oct 17 is spent on a plane. Each of these is written as a search brief - filter on the map, not on the hotel's name.",
+    lede: "Six paid nights. Paddington is booked; the four Iceland beds are not. Oct 10 is work-paid at the Courtyard Heathrow and Oct 17 is spent on a plane. The unbooked entries below are search briefs - filter on the map, not on the hotel's name.",
     stays: [
       { id: "lg-pad", label: "Paddington, London", nights: "Sun Oct 11 - Tue Oct 13 (2 nights)",
         budget: "$180-230 a night", budgetId: "lod-london",
         why: "The only London district that solves all three days at once: a direct Elizabeth line train in from Heathrow on Sunday, 12 minutes to church, 15 minutes to Hamilton, and the only station with trains reaching Terminal 5 early enough on Tuesday.",
+        booked: {
+          name: "Tudor Court Hotel",
+          address: "10-12 Norfolk Square, Paddington, London W2 1RS",
+          phone: "+44 20 7723 5157",
+          room: "Triple Room with Garden View, booked for 2 adults",
+          paid: "GBP 262.75 all in, about $356 - VAT included and paid in full",
+          terms: "Non-refundable. Dates cannot be changed.",
+          checkIn: "Sun Oct 11, 3:00pm to midnight",
+          checkOut: "Tue Oct 13, any time from midnight to 10:00am",
+          maps: "Tudor Court Hotel, 10-12 Norfolk Square, London W2 1RS", ll: "51.5147,-0.1757",
+          wins: [
+            "Check-out opens at MIDNIGHT, so leaving at 4:55am is inside the permitted window rather than a favour you have to ask for. Combined with the 24-hour front desk, Tuesday morning is genuinely solved.",
+            "A triple room for two, with a garden view onto Norfolk Square - more space than the Compact Double you were looking at, and set back off Praed Street so it should be quieter.",
+            "Baggage storage and a wake-up service are both listed, which covers the Sunday morning bag drop and the 4:30am alarm.",
+            "Norfolk Square scored 9.5 on location from 1,928 reviews, the highest of anything considered. Three to five minutes to the station."
+          ],
+          confirmOnArrival: [
+            "Which floor, and is there a lift? No lift appeared in the amenity list and this is a Victorian townhouse. If it is three floors up, ask to be moved lower - you are carrying bags down at 4:55am. Message the property now through the booking rather than finding out on Sunday.",
+            "That they will hold luggage on Sunday morning. Check-in is not until 3:00pm and you arrive around 9:00am.",
+            "The room is already paid in full. If anyone asks for payment at the desk, show the confirmation. The property invoice will read GBP 281.52 because Booking.com covered GBP 18.77 of it - that is not a balance owing.",
+            "Book the 5:15am car for Tuesday and set the wake-up call for 4:30am while you are at the desk on Sunday."
+          ]
+        },
         searchIn: [
           "Praed Street - directly opposite the station, the shortest walk there is",
           "London Street and Norfolk Place - 2 to 4 minutes",
@@ -981,7 +1007,7 @@ const TRIP = {
         ] }
     ],
     notes: [
-      "Book the three Iceland beds first. Mid-October south-coast guesthouses are a small inventory and the rural aurora-friendly ones go early. London has far more supply and can wait a week.",
+      "London is done. The three Iceland beds are what is left, and they are now the urgent ones - mid-October south-coast guesthouses are a small inventory and the rural aurora-friendly ones go early.",
       "Refundable where the plan is still moving: Reykjanesbær because of the volcano, and Paddington if you are still weighing the Courtyard.",
       "Work covers Fri Oct 9 and Sat Oct 10 at the Courtyard Heathrow, and Sat Oct 17 is spent flying. Neither needs booking."
     ]

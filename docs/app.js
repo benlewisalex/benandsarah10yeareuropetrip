@@ -1857,11 +1857,39 @@
 
     L.stays.forEach(function (st) {
       var bl = lineById(st.budgetId);
-      h.push('<div class="card"><div class="card__body">');
-      h.push('<p class="eyebrow">' + esc(st.nights) + "</p>");
-      h.push('<h3 style="margin-top:4px">' + esc(st.label) + "</h3>");
-      h.push('<p class="tiny muted" style="margin-top:2px">Budget ' + esc(st.budget) +
-        (bl ? " &middot; planned " + money(bl.line.planned) : "") + "</p>");
+      var bk = st.booked;
+      h.push('<div class="card"' + (bk ? ' style="border-color:var(--london)"' : "") +
+        '><div class="card__body">');
+      h.push('<p class="eyebrow"' + (bk ? ' style="color:var(--london)"' : "") + ">" +
+        (bk ? "Booked &middot; " : "") + esc(st.nights) + "</p>");
+      h.push('<h3 style="margin-top:4px">' + esc(bk ? bk.name : st.label) + "</h3>");
+      h.push('<p class="tiny muted" style="margin-top:2px">' +
+        (bk ? esc(bk.paid) : "Budget " + esc(st.budget) +
+          (bl ? " &middot; planned " + money(bl.line.planned) : "")) + "</p>");
+
+      /* Booked: the brief has done its job, so show the reservation and what is
+         still worth asking. The search criteria would only be noise now. */
+      if (bk) {
+        h.push('<p class="small muted" style="margin-top:10px;font-family:var(--mono)">' +
+          esc(bk.address) + "<br>" + esc(bk.phone) + "</p>");
+        h.push('<p class="small" style="margin-top:10px">' + esc(bk.room) + "</p>");
+        h.push('<p class="tiny muted" style="margin-top:8px">In: ' + esc(bk.checkIn) +
+          "<br>Out: " + esc(bk.checkOut) + "<br>" + esc(bk.terms) + "</p>");
+
+        h.push('<p class="eyebrow" style="margin-top:14px">What this gets you</p>');
+        h.push('<ul class="tl__sub" style="margin-top:6px">');
+        bk.wins.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
+        h.push("</ul>");
+
+        h.push('<p class="eyebrow" style="margin-top:14px;color:var(--hazard)">Still to confirm</p>');
+        h.push('<ul class="tl__sub" style="margin-top:6px">');
+        bk.confirmOnArrival.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
+        h.push("</ul>");
+        h.push(mapsChip(bk.maps, "Open in maps", bk.ll));
+        h.push("</div></div>");
+        return;
+      }
+
       h.push('<p class="small" style="margin-top:10px">' + esc(st.why) + "</p>");
 
       h.push('<p class="eyebrow" style="margin-top:14px">Search these</p>');

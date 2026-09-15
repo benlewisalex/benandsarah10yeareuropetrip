@@ -1,5 +1,5 @@
 # London + Iceland - October 9-17, 2026
-**Ben & Sarah Alexander · 8 nights out, 7 together · Budget target: $5,000 (currently projecting $5,105)**
+**Ben & Sarah Alexander · 8 nights out, 7 together · Budget target: $5,000 (currently projecting $5,061)**
 
 **Structure:** Ben is already in England from Oct 3 on a work trip and moves to the Courtyard Heathrow on Fri Oct 9. Sarah flies Fri Oct 9, lands Sat Oct 10 and cabs straight to that hotel. Three nights England (Oct 10, 11, 12): 1:00pm endowment session Saturday, church and the Thames walk Sunday, Westminster Abbey and Hamilton Monday. Saturday is at the work-paid Courtyard Heathrow with a one-day rental car; Sunday and Monday are in Paddington. Then four nights Iceland (Oct 13, 14, 15, 16), ending with Blue Lagoon on the way to the airport. Home late Saturday Oct 17.
 
@@ -107,7 +107,7 @@ Sunrise 7:20am, sunset 6:15pm.
 
 Church in South Kensington, then the classic Thames walk. Sunset is 6:10pm, so you have roughly five hours of daylight after the block - enough for the river, not enough for the river plus museums. The one piece of friction today is the bags, and it is a small one: you check out of the Courtyard, ride one direct train to Paddington, and leave the suitcases at the hotel desk before church. That is the only time they move all week.
 
-- **Early - check out of the Courtyard, one train to Paddington.** Elizabeth line straight from the airport, about 30 min, roughly 50 min door to door. Drop the bags at the Paddington hotel, then Paddington to South Kensington is about 12 min on the Circle or District line. Leave by about 8:00am to make a mid-morning block comfortably.
+- **Early - check out of the Courtyard, one train to Paddington.** Elizabeth line straight from the airport, about 30 min, roughly 50 min door to door. Drop the bags at the **Tudor Court, 10-12 Norfolk Square** - three to five minutes from the station, and baggage storage is one of their listed services. Then Paddington to South Kensington is about 12 min on the Circle or District line. Leave by about 8:00am to make a mid-morning block comfortably.
   - **Note how long the walk to the Elizabeth line platforms actually takes today** - you are doing it in reverse at 5am on Tuesday.
 - **Morning - sacrament meeting at the Hyde Park Chapel.** 64-68 Exhibition Road, South Kensington tube then a 3-min walk. The Church's central London home since 1961, a tall thin spire on a street of Victorian museums. The visitors' centre inside has exhibits on temples and on the history of the Church in the British Isles - worth 30 minutes after the block. Confirm the meeting time on the ward or stake page beforehand.
 - **12:45pm - Westminster and Big Ben.** District or Circle line, South Kensington to Westminster, 12 min. About 45 min including the bridge.
@@ -119,7 +119,9 @@ Church in South Kensington, then the classic Thames walk. Sunset is 6:10pm, so y
   - The glass-floor walkway and the Tower itself are separate paid tickets. The Tower alone wants three hours, which you do not have today.
 - **4:15pm - Trafalgar Square and Buckingham Palace** *(optional)*. Nelson on a 52-metre column with the National Gallery behind him - and the Gallery is free, which makes it the best fallback if it rains. **First thing to drop**; after 6:10pm this is two buildings in the dark.
 - **Evening - Padella, Borough.** Hand-rolled pasta at a counter for the price of a sandwich; the eight-hour beef shin ragu and the pici cacio e pepe are what people come back for. No reservations - go at 5pm or queue. Ten minutes' walk west of Tower Bridge, which is why it is tonight.
-- **Evening - check into the Paddington hotel.** Two nights, Oct 11 and 12 - the only lodging you pay for in England. While you are at the desk: ask about Elizabeth line engineering works for Tuesday morning, and **book the 5:15am car on the spot**.
+- **Evening - check into the Tudor Court Hotel.** 10-12 Norfolk Square, W2 1RS. Two nights, Oct 11 and 12, **booked and paid in full**. Check-in runs 3:00pm to midnight, so arriving after dinner is fine.
+  - Already paid - if anyone asks for money at the desk, show the confirmation.
+  - **Four things to do at the desk tonight:** ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line and Heathrow Express platforms, **book the 5:15am car**, and set a **4:30am wake-up call**. All four are services this hotel actually offers, which is why it was worth paying a little more for a 24-hour front desk.
 
 **Order matters today:** church first, then the river, because the river works in fading light and church does not move. If the block runs long, drop Trafalgar rather than compressing the walk - the walk is the good part.
 
@@ -140,19 +142,19 @@ Stonehenge came out and this is what went in: the two great interiors that are *
   - The climb is narrow, spiral, and one-way with no bail-out partway - **decide at the bottom.** Go up first, look at the floor afterwards.
   - **If 528 stone steps is a no**, swap this for the **British Museum** - free, 20 minutes away, and the Rosetta Stone and the Elgin Marbles are not a consolation prize. Saves $70.
 - **4:30pm - back to Paddington, change, eat early.** Circle line, about 25 min. **2 hrs of slack.**
-  - You have been on your feet since 9:30 and the show is 2hr 45min sitting down. An hour off your feet and a real dinner first is the difference between enjoying Hamilton and fighting sleep through the second act. **Do not plan to eat afterwards** - you are out at 10:15pm with a 5am start coming.
+  - You have been on your feet since 9:30 and the show is 2hr 45min sitting down. An hour off your feet and a real dinner first is the difference between enjoying Hamilton and fighting sleep through the second act. Norfolk Square is a three-minute walk from the station, so dropping back to change costs almost nothing. **Do not plan to eat afterwards** - you are out at 10:15pm with a 5am start coming.
 - **7:30pm - Hamilton, Victoria Palace Theatre.** Paddington to Victoria, Circle line, about 15 min; the theatre is directly opposite the station. **2hr 45min including a 15-min interval, out by 10:15pm.**
   - The only evening show available to you all week. Harry Potter, the Lion King and Wicked are all dark on Mondays and matinee-only on Sundays, and Hamilton is dark Sunday. One evening, one show - and it happened to be the first choice. Monday is also the cheapest night in its October run.
   - From 55 GBP each, but that is the restricted-view price. **Budget 110-180 GBP for two decent seats**, plus booking fees. Runs about 93% full, so book well ahead.
   - Latecomers are not admitted until a break. Be seated by 7:25pm.
 - **Before bed - pack, and lock in the morning.** **30 min.**
-  - Bags packed tonight, not at 4:30am. Confirm the 5:15am car, set two alarms **and** a front-desk wake-up call for 4:30am, and put something to eat in the room - nothing is open at Paddington that early and the next food is on the plane.
+  - Bags packed tonight, not at 4:30am. Confirm the 5:15am car, set two alarms **plus** the front-desk wake-up call for 4:30am, and put something to eat in the room - nothing is open at Paddington that early and the next food is on the plane. The room has a kettle and a fridge, so tea and breakfast in the room are possible.
 
 **Why this replaced Stonehenge.** Stonehenge was a 7-hour round trip built on a 7:30am train, and it made Monday the tiring day rather than the good one. Dropping it freed about $220, put two world-class interiors within walking distance of each other, and left an evening open for the show. The stones are not going anywhere.
 
 **The cheaper version of today.** Westminster Abbey is the one to keep. Swap St Paul's for the British Museum or the National Gallery - both free, both excellent - and today costs $80 instead of $150.
 
-**Tuesday morning is handled.** A car at 5:15am from Paddington to Terminal 5, about 40 minutes on empty roads. The Elizabeth line also works (the 05:03 from Paddington reaches T5 at 05:39) but you do not want a first-train connection between you and an international flight. Book the car; cancel it Monday if the trains look clean.
+**Tuesday morning is handled.** A car at 5:15am from Norfolk Square to Terminal 5, about 40 minutes on empty roads. **The hotel's check-out window opens at midnight and the front desk is staffed 24 hours**, so a 4:55am departure needs no special arrangement. The Elizabeth line also works (the 05:03 from Paddington reaches T5 at 05:39, and the station is three minutes from the door) but you do not want a first-train connection between you and an international flight. Book the car; cancel it Monday if the trains look clean.
 
 ---
 
@@ -164,9 +166,9 @@ Stonehenge came out and this is what went in: the two great interiors that are *
 
 You land at 9:55am, which is the best thing about the booked flights - it buys most of a day on Reykjanes instead of a scramble to Reykjavík. Everything today is on the same peninsula as the airport, so the driving is short and the order is flexible.
 
-- **5:15am - car from Paddington to Terminal 5.** Pre-booked minicab, about 40 min on empty roads, at T5 by about 6:00am. Roughly 45-65 GBP.
+- **5:15am - car from Norfolk Square to Terminal 5.** Pre-booked minicab, about 40 min on empty roads, at T5 by about 6:00am. Roughly 45-65 GBP.
   - The deadline that matters is not the 7:50am departure - it is **bag drop, which closes 45 minutes before, so about 7:05am.** Arriving at 6:00am leaves an hour of real slack.
-  - **Booked, not summoned.** A scheduled Uber does not reserve a driver; a minicab firm does. The hotel's partner firm may quote closer to 100 GBP and you are not obliged to take it.
+  - **Booked, not summoned.** A scheduled Uber does not reserve a driver; a minicab firm does. The hotel's partner firm may quote closer to 100 GBP and you are not obliged to take it. Check-out opens at midnight and the desk is staffed round the clock, so just hand the key back on the way past.
   - *If you would rather take the train:* the Elizabeth line reaches T5 at **05:39** and then **06:06** - roughly :06 and :36 past each hour. **Check the train actually serves Terminal 5**; most Elizabeth line services terminate at T2&3 or T4 and never get there.
 - **7:50am - BA800, Heathrow T5 to Keflavík.** 3h 05m; Iceland is an hour behind London, so the clock works in your favour. One checked bag each, 23kg.
 - **10:30am - pick up the rental car at KEF.** 30-45 min including the walk to the lot.
@@ -346,30 +348,25 @@ Six paid nights. Oct 10 is work-paid at the Courtyard Heathrow, and Oct 17 is sp
 
 ---
 
-## Paddington, London - Sun Oct 11 to Tue Oct 13 (2 nights)
+## BOOKED - Tudor Court Hotel, Paddington - Sun Oct 11 to Tue Oct 13 (2 nights)
 
-**Budget $180-230 a night.** The only London district that solves all three days at once: a direct Elizabeth line train in from Heathrow on Sunday, 12 minutes to church, 15 minutes to Hamilton, and the only station with trains reaching Terminal 5 early enough on Tuesday.
+**10-12 Norfolk Square, Paddington, London W2 1RS** &middot; +44 20 7723 5157
 
-**Search these streets:**
-- **Praed Street** - directly opposite the station, the shortest walk there is
-- **London Street, Norfolk Place** - 2 to 4 minutes
-- **Craven Road, Craven Hill** - 4 to 6 minutes
-- **Eastbourne Terrace, Westbourne Terrace** - 3 to 6 minutes
-- **Norfolk Square** and the east end of **Sussex Gardens** - 5 to 8 minutes
-- **Paddington Basin / Merchant Square** - 5 to 8 minutes, newer buildings
+**Triple Room with Garden View, booked for 2 adults. GBP 262.75 all in (~$356), VAT included, paid in full.**
+Check-in Sun Oct 11, 3:00pm to midnight. Check-out Tue Oct 13, any time from midnight to 10:00am.
+**Non-refundable. Dates cannot be changed.**
 
-**Rule out:**
-- **Lancaster Gate, Bayswater, Queensway** - they show up in Paddington searches and are a 12-20 minute walk with suitcases
-- The far west end of **Sussex Gardens** past Norfolk Square - it runs a long way and the numbers get high
-- **Edgware Road** north of the flyover - different neighbourhood, longer walk
+**What this gets you:**
+- **Check-out opens at MIDNIGHT**, so leaving at 4:55am is inside the permitted window rather than a favour you have to ask for. Combined with the 24-hour front desk, Tuesday morning is genuinely solved.
+- A **triple room for two, garden view** onto Norfolk Square - more space than the Compact Double that was on the table, and set back off Praed Street so it should be quieter.
+- **Baggage storage** and a **wake-up service** are both listed, covering the Sunday morning bag drop and the 4:30am alarm.
+- Norfolk Square scored **9.5 on location from 1,928 reviews**, the highest of anything considered. Three to five minutes to the station.
 
-**What actually matters:**
-1. **Set the map filter to 10 minutes' walk of Paddington station and ignore the name.** Plenty of hotels called Paddington are nowhere near it.
-2. **Confirm there is a LIFT.** Much of this district is converted Georgian terraces - four floors, narrow staircases, no elevator, your room on the third. The most common unpleasant surprise here.
-3. **Ask whether they hold luggage before check-in.** Almost all will, and you arrive Sunday morning well before the room is ready.
-4. **Ask how long the walk is to the Elizabeth line and Heathrow Express platforms specifically**, not just to the station. Paddington is big and those platforms are a hike from some entrances.
-
-*Starting points:* the **Hilton London Paddington** is built into the station itself (the old Great Western Royal Hotel), which makes it the shortest possible walk at 5am, at a price. **Hotel Indigo Paddington** and the **Premier Inn** on the Praed Street side are the usual mid-range picks. Verify locations and rates yourself - these are starting points, not recommendations.
+**Still to confirm:**
+1. **Which floor, and is there a lift?** No lift appeared in the amenity list and this is a Victorian townhouse. If the room is three floors up, ask to be moved lower - you carry the bags down at 4:55am. Message the property through the booking rather than finding out on Sunday.
+2. **That they will hold luggage Sunday morning.** Check-in is not until 3:00pm and you arrive around 9:00am.
+3. **The room is paid in full.** The property invoice will read GBP 281.52 because Booking.com covered GBP 18.77 - that is not a balance owing.
+4. **Book the 5:15am car and set the 4:30am wake-up call** at the desk on Sunday.
 
 ---
 
@@ -446,8 +443,8 @@ Six paid nights. Oct 10 is work-paid at the Courtyard Heathrow, and Oct 17 is sp
 | **Flights** | **$1,200** |
 | Sarah MSN-LHR + KEF-MSN | $900 |
 | LHR-KEF ×2 | $300 |
-| **Lodging (6 paid nights of 7)** | **$1,120** |
-| Paddington ×2 (Oct 10 is work-paid) | $400 |
+| **Lodging (6 paid nights of 7)** | **$1,076** |
+| Tudor Court, Paddington ×2 (booked) | $356 |
 | Reykjavík ×1 | $200 |
 | South Iceland guesthouse ×2 | $340 |
 | Keflavík / Reykjanesbær ×1 | $180 |
@@ -473,9 +470,9 @@ Six paid nights. Oct 10 is work-paid at the Courtyard Heathrow, and Oct 17 is sp
 | Mom's round-trip flights to Madison | $400 |
 | Groceries and extras for her week | $120 |
 | **One nice dinner** | **$150** |
-| **TOTAL** | **$5,105** |
+| **TOTAL** | **$5,061** |
 
-**This is $105 past the $5,000 target.** Dropping Stonehenge freed $220 and turning the horse ride into a farm visit freed $150; Hamilton put back $190 and Monday's two cathedrals $150.
+**This is $61 past the $5,000 target**, with Paddington now booked at a real $356 rather than a $400 placeholder.
 
 **The realistic menu if you want the number back under $5,000:**
 - **Swap St Paul's for the British Museum or the National Gallery**, both free: saves **$70**, and Westminster Abbey is still the centrepiece of the day
@@ -520,8 +517,9 @@ Six paid nights. Oct 10 is work-paid at the Courtyard Heathrow, and Oct 17 is sp
 - [ ] Book a horse farm **VISIT** near Hveragerði or Selfoss for Fri Oct 16 - ask for a stable visit or 'meet the horses', not a riding tour. Roughly 3,000-6,000 ISK each; small farms are not staffed for walk-ins in October
 - [ ] Book Lava Show, Vík
 - [ ] **Book Blue Lagoon for Sat Oct 17** - Comfort ×2, earliest timed slot, plus the luggage hold. Read the cancellation terms
-- [ ] Book a **PADDINGTON** hotel for Oct 11 and 12 - within a 10-minute walk of the station, with a lift, and confirm they hold bags before check-in. See **Where to book** above for the exact streets
-- [ ] At Paddington check-in, ask about Elizabeth line engineering works for Tuesday and the walk to the Elizabeth line / Heathrow Express platforms, then **book the 5:15am car on the spot**
+- [x] ~~Book a Paddington hotel~~ **Tudor Court Hotel, 10-12 Norfolk Square.** Two nights Oct 11-13, triple room with garden view, GBP 262.75 paid in full, non-refundable
+- [ ] **Message the Tudor Court** and ask which floor the room is on and whether there is a lift. No lift is listed and it is a Victorian townhouse - if you are three floors up, ask to be moved lower. You carry the bags down at 4:55am
+- [ ] At Tudor Court check-in on Sunday: ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line / Heathrow Express platforms, **book the 5:15am car**, and set a **4:30am wake-up call**
 - [ ] Book the four Iceland beds: Reykjavík ×1 (Oct 13), south coast ×2 (Oct 14-15, **same place**), Reykjanesbær ×1 (Oct 16). See **Where to book** above - the south coast one is the only bed on this trip that is hard to substitute
 - [ ] **Book a timed Westminster Abbey slot for 9:30am Mon Oct 12** - go at opening, the nave fills by eleven. ~30 GBP each
 - [ ] Book **St Paul's** for Mon Oct 12 afternoon, ~26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start
