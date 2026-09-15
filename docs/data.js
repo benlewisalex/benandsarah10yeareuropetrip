@@ -461,12 +461,14 @@ const TRIP = {
           why: "Iceland's largest mud pool, and violently unimpressed by your presence - boiling grey mud and steam vents roaring hard enough that you raise your voice over them. The vents have destroyed the boardwalks here more than once and they have simply been rebuilt further back. Named for Guðrún, a ghost the story says was lured into the spring to stop her haunting the district.",
           detail: "Free, boardwalked, ten minutes from the car. Stay on the boardwalk - the crust around these vents is thin and the water is well above boiling.",
           maps: "Gunnuhver, Reykjanes, Iceland", ll: "63.8189,-22.6836" },
-        { time: "5:00pm", name: "Check into Reykjavík",
-          book: ["fs5"],
+        { time: "5:00pm", name: "Check into the Fosshotel Baron",
+          book: ["fs22"],
           travel: "55-min drive, about 60 km on Route 41",
-          dur: "One night",
-          detail: "Dinner: Messinn for fish, or Bæjarins Beztu for the hot dog that every visiting head of state gets photographed with. Both are walkable from downtown lodging.",
-          maps: "Reykjavik, Iceland", ll: "64.1466,-21.9426", area: true }
+          dur: "One night, check-in from 3:00pm",
+          why: "Barónsstíg 2-4, on the eastern edge of 101 between Laugavegur and the waterfront. It has on-site parking, which is the thing that matters when you arrive in central Reykjavík with a rental car, and a 24-hour desk for when you come back from Grótta at 1am.",
+          detail: "Dinner: Messinn for fish, or Bæjarins Beztu for the hot dog that every visiting head of state gets photographed with. Both are a walk from here. Ask at the desk about tonight's aurora forecast before you drive out - they watch it.",
+          maps: "Fosshotel Baron, Baronsstigur 2-4, 101 Reykjavik, Iceland", ll: "64.1445,-21.9200",
+          headsUp: "Buy breakfast tonight if it is not on the booking. Tomorrow you leave at 8:30am and the next food is the Gullfoss cafe at about 11:45 - and Reykjavík cafes mostly do not open until 8." }
       ],
       hazards: [
         { title: "Volcanic gas is what actually kills people here",
@@ -487,7 +489,7 @@ const TRIP = {
       sun: { sunrise: "8:15am", sunset: "6:01pm" },
       images: ["icetunnel", "thingvellir", "geysir", "gullfoss"],
       intro: [
-        "The biggest day of the trip and the one with the least slack in it. Roll at 8:30 and the timings hold; leave at 9:30 and you are eating dinner at 10pm.",
+        "The biggest day of the trip and the one with the least slack in it. Roll at 8:30 and the timings hold; leave at 9:30 and you are eating dinner at 10pm. Checkout is not until noon, so nothing is chasing you out of the room - the 8:30 is about the day, not the hotel.",
         "About 190 miles of driving in total, all on good paved road, ending at a guesthouse in the rural south where aurora night 2 is statistically your best shot of the week."
       ],
       items: [
@@ -741,7 +743,7 @@ const TRIP = {
       ]},
       { id: "lodging", label: "Lodging (6 paid nights of 7)", lines: [
         { id: "lod-london",  label: "Tudor Court, Paddington x2 (booked)", planned: 356 },
-        { id: "lod-rvk",     label: "Reykjavík x1",             planned: 200 },
+        { id: "lod-rvk",     label: "Fosshotel Baron x1 (booked)", planned: 191 },
         { id: "lod-south",   label: "South Iceland guesthouse x2",   planned: 340 },
         { id: "lod-kef",     label: "Keflavík x1",              planned: 180 }
       ]},
@@ -774,7 +776,7 @@ const TRIP = {
       ]}
     ],
     headroomOptions: [
-      "Planned now runs $5,061 against a $5,000 target, with Paddington booked at a real $356 rather than a $400 placeholder. Dropping Stonehenge freed $220 and turning the horse ride into a farm visit freed $150; Hamilton put back $190 and Monday's two cathedrals $150. Net you are $61 over, which one small decision closes.",
+      "Planned now runs $5,052 against a $5,000 target, with Paddington and Reykjavík both booked at real numbers rather than placeholders. Dropping Stonehenge freed $220 and turning the horse ride into a farm visit freed $150; Hamilton put back $190 and Monday's two cathedrals $150. Net you are $52 over, which one small decision closes.",
       "Swap St Paul's for the British Museum or the National Gallery, both free: saves $70, and Westminster Abbey is still the centrepiece of the day",
       "Swap Secret Lagoon for a municipal pool like Laugardalslaug, about $12 for both: saves roughly $68, and Blue Lagoon already covers the tourist hot spring twice over",
       "Either of those on its own puts you under target. Both together lands you near $4,970",
@@ -783,7 +785,7 @@ const TRIP = {
       "Drop the nice dinner, $150 - last resort, not first",
       "Sarah's one-way airfares are still the least predictable number here and could move $300-400 in either direction on their own"
     ],
-    cutIfOver: "You are $61 over. Swapping St Paul's for the free British Museum covers it outright and barely changes Monday. After that, the Secret Lagoon swap (~$68). Do not cut Blue Lagoon, the rental car for the temple, Hamilton, or Westminster Abbey - those are the trip. If something still has to give, let it be the $5,000."
+    cutIfOver: "You are $52 over. Swapping St Paul's for the free British Museum covers it outright and barely changes Monday. After that, the Secret Lagoon swap (~$68). Do not cut Blue Lagoon, the rental car for the temple, Hamilton, or Westminster Abbey - those are the trip. If something still has to give, let it be the $5,000."
   },
 
   /* --- checklists ---------------------------------------------------------- */
@@ -821,7 +823,9 @@ const TRIP = {
       { id: "fs4",  text: "Done - Tudor Court Hotel, 10-12 Norfolk Square, Paddington. Two nights Oct 11-13, triple room with garden view, GBP 262.75 paid in full. Non-refundable", budgetIds: ["lod-london"] },
       { id: "fs21", text: "Message the Tudor Court through the booking and ask which floor the room is on, and whether there is a lift. No lift is listed and it is a Victorian townhouse - if you are three floors up, ask to be moved lower. You carry the bags down at 4:55am", extra: true },
       { id: "fs20", text: "At Tudor Court check-in on Sunday: ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line and Heathrow Express platforms, book the 5:15am car, and set a 4:30am wake-up call. All four are things this hotel does", extra: true },
-      { id: "fs5",  text: "Book the four Iceland beds: Reykjavík x1 (Oct 13), south coast x2 (Oct 14-15, same place), Reykjanesbær x1 (Oct 16). See Where to book on the Info tab - the south coast one has real criteria attached and is the only bed on this trip that is hard to substitute", budgetIds: ["lod-rvk","lod-south","lod-kef"] },
+      { id: "fs5",  text: "Book the two remaining Iceland beds: south coast x2 (Oct 14-15, SAME PLACE) and Reykjanesbær x1 (Oct 16). See Where to book on the Info tab - the south coast one has real criteria attached and is the only bed on this trip that is hard to substitute", budgetIds: ["lod-south","lod-kef"] },
+      { id: "fs22", text: "Done - Fosshotel Baron, Barónsstíg 2-4, 101 Reykjavík, Tue Oct 13. ISK 23,106, free to cancel until Oct 10", budgetIds: ["lod-rvk"] },
+      { id: "fs23", text: "Fosshotel Baron follow-ups before Oct 10: add breakfast or accept that Wednesday starts unfed, ask for the queen bed rather than two singles, and check whether the on-site parking is free or paid", extra: true },
       { id: "fs6",  text: "Book a timed Westminster Abbey slot for 9:30am Mon Oct 12 - go at opening, the nave fills by eleven. About 30 GBP each", budgetIds: ["exc-monday"] },
       { id: "fs7",  text: "Book St Paul's for Mon Oct 12 afternoon, about 26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start", budgetIds: ["exc-monday"] },
       { id: "fs8",  text: "Reserve Dishoom Covent Garden for Sat Oct 10 evening - Saturday nights need booking, and it is cancellable if Sarah would rather eat near the hotel and sleep" },
@@ -876,7 +880,7 @@ const TRIP = {
     { id: "cf-parkord",       label: "O'Hare parking",                 fields: ["Lot", "Confirmation", "Dates", "Shuttle"] },
     { id: "cf-lhrcar",        label: "5:15am car to T5, Oct 13",        fields: ["Company", "Confirmation", "Pickup time", "Phone"] },
     { id: "cf-lod-london",    label: "Tudor Court, Paddington, Oct 11-13", fields: ["Booking no.", "PIN", "Room / floor", "Notes"] },
-    { id: "cf-lod-rvk",       label: "Reykjavík lodging x1",      fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
+    { id: "cf-lod-rvk",       label: "Fosshotel Baron, Oct 13",   fields: ["Confirmation", "PIN", "Breakfast added?", "Bed type"] },
     { id: "cf-lod-south",     label: "South Iceland guesthouse x2",    fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
     { id: "cf-lod-kef",       label: "Keflavík lodging x1",       fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
     { id: "cf-car",           label: "Iceland rental car",             fields: ["Company", "Confirmation", "Pickup / return", "Waiver taken?"] },
@@ -898,7 +902,7 @@ const TRIP = {
      filter on, the streets that qualify, what to rule out, and the one or two
      criteria that actually matter for that night. */
   lodging: {
-    lede: "Six paid nights. Paddington is booked; the four Iceland beds are not. Oct 10 is work-paid at the Courtyard Heathrow and Oct 17 is spent on a plane. The unbooked entries below are search briefs - filter on the map, not on the hotel's name.",
+    lede: "Six paid nights. Paddington and Reykjavík are booked; the south coast and Reykjanesbær are not. Oct 10 is work-paid at the Courtyard Heathrow and Oct 17 is spent on a plane. The unbooked entries below are search briefs - filter on the map, not on the hotel's name.",
     stays: [
       { id: "lg-pad", label: "Paddington, London", nights: "Sun Oct 11 - Tue Oct 13 (2 nights)",
         budget: "$180-230 a night", budgetId: "lod-london",
@@ -950,6 +954,31 @@ const TRIP = {
       { id: "lg-rvk", label: "Reykjavík", nights: "Tue Oct 13 - Wed Oct 14 (1 night)",
         budget: "$180-210", budgetId: "lod-rvk",
         why: "You arrive about 5pm off the Reykjanes peninsula, want dinner downtown and aurora night 1 out at Grótta, and leave north-east on Route 36 for Þingvellir in the morning.",
+        booked: {
+          name: "Fosshotel Baron",
+          address: "Barónsstíg 2-4, 101 Reykjavík",
+          phone: "+354 562 3204",
+          room: "Double or Twin Room, 205 sq ft, booked for 2 adults",
+          paid: "ISK 23,106 all in, roughly $190 - VAT and city tax included, nothing charged yet",
+          terms: "Free cancellation until 11:59pm GMT on Oct 10. From Oct 11 the full ISK 24,039 applies.",
+          checkIn: "Tue Oct 13, from 3:00pm",
+          checkOut: "Wed Oct 14, until 12:00pm",
+          maps: "Fosshotel Baron, Baronsstigur 2-4, 101 Reykjavik, Iceland", ll: "64.1445,-21.9200",
+          wins: [
+            "On-site parking, which was the one criterion that actually mattered for this night. Central Reykjavík street parking is metered and scarce and you will have the rental car.",
+            "24-hour front desk. Aurora night 1 is out at Grótta and you will be back around 1am - no lockout, and someone to ask about conditions before you drive out.",
+            "Barónsstígur sits on the eastern edge of 101, between Laugavegur and the Sæbraut waterfront. Walkable to dinner, and already pointing the right way for Route 36 in the morning rather than untangling from the west end.",
+            "Free cancellation until Oct 10 with nothing charged yet, so this is a free hold for another three weeks.",
+            "8.0 from 1,060 reviews, location 9.2."
+          ],
+          confirmOnArrival: [
+            "BREAKFAST IS PROBABLY NOT INCLUDED. The price breakdown is room + VAT + city tax with no breakfast line, and ISK 21,657 matches the cheaper of the two rates. Wednesday is the Golden Circle and Into the Glacier - out the door by 8:30am, first food at the Gullfoss cafe around 11:45. Reykjavík cafes mostly open at 8 or later, so add breakfast or buy something the night before.",
+            "The bed is not pinned down. The room is sold as 'Double or Twin' and the listing let you pick - tell the hotel you want the queen, not two singles.",
+            "Is the parking free or paid? The listing icon suggested paid. Expect ISK 1,500-2,500. Still far better than hunting a meter.",
+            "Booking.com charges the card automatically rather than the hotel taking payment, and the property invoice will read ISK 24,839 because Booking covered ISK 1,733. That is not a balance owing.",
+            "Oct 10 is the decision deadline. After midnight on the 11th it is the full price."
+          ]
+        },
         searchIn: [
           "101 postcode - the centre. Laugavegur, Hverfisgata, Skólavörðustígur, around Tjörnin",
           "Skúlagata and the Sæbraut waterfront - still walkable in, much easier parking",
@@ -1007,7 +1036,7 @@ const TRIP = {
         ] }
     ],
     notes: [
-      "London is done. The three Iceland beds are what is left, and they are now the urgent ones - mid-October south-coast guesthouses are a small inventory and the rural aurora-friendly ones go early.",
+      "Two left, and the south coast is the one to do next. Mid-October south-coast guesthouses are a small inventory and the rural aurora-friendly ones go early. Reykjanesbær has plenty of supply and can wait.",
       "Refundable where the plan is still moving: Reykjanesbær because of the volcano, and Paddington if you are still weighing the Courtyard.",
       "Work covers Fri Oct 9 and Sat Oct 10 at the Courtyard Heathrow, and Sat Oct 17 is spent flying. Neither needs booking."
     ]

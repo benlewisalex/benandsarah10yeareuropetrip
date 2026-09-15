@@ -1,5 +1,5 @@
 # London + Iceland - October 9-17, 2026
-**Ben & Sarah Alexander · 8 nights out, 7 together · Budget target: $5,000 (currently projecting $5,061)**
+**Ben & Sarah Alexander · 8 nights out, 7 together · Budget target: $5,000 (currently projecting $5,052)**
 
 **Structure:** Ben is already in England from Oct 3 on a work trip and moves to the Courtyard Heathrow on Fri Oct 9. Sarah flies Fri Oct 9, lands Sat Oct 10 and cabs straight to that hotel. Three nights England (Oct 10, 11, 12): 1:00pm endowment session Saturday, church and the Thames walk Sunday, Westminster Abbey and Hamilton Monday. Saturday is at the work-paid Courtyard Heathrow with a one-day rental car; Sunday and Monday are in Paddington. Then four nights Iceland (Oct 13, 14, 15, 16), ending with Blue Lagoon on the way to the airport. Home late Saturday Oct 17.
 
@@ -182,7 +182,11 @@ You land at 9:55am, which is the best thing about the booked flights - it buys m
 - **3:30pm - Gunnuhver.** 10-min drive south on Route 425. **20-30 min.**
   - Iceland's largest mud pool, and violently unimpressed by your presence - boiling grey mud and steam vents roaring hard enough that you raise your voice over them. The vents have destroyed the boardwalks more than once and they have simply been rebuilt further back. Named for Guðrún, a ghost the story says was lured into the spring to stop her haunting the district.
   - Free, boardwalked, ten minutes from the car. **Stay on the boardwalk** - the crust is thin and the water is well above boiling.
-- **5:00pm - check into Reykjavík.** 55-min drive, about 60 km on Route 41. One night. Dinner: Messinn for fish, or Bæjarins Beztu for the hot dog every visiting head of state gets photographed with.
+- **5:00pm - check into the Fosshotel Baron.** 55-min drive, about 60 km on Route 41. One night, check-in from 3:00pm.
+  - Barónsstíg 2-4, on the eastern edge of 101 between Laugavegur and the waterfront. **On-site parking** - the thing that matters when you arrive in central Reykjavík with a rental car - and a **24-hour desk** for when you come back from Grótta at 1am.
+  - Dinner: Messinn for fish, or Bæjarins Beztu for the hot dog every visiting head of state gets photographed with. Both are a walk from here.
+  - **Ask at the desk about tonight's aurora forecast** before you drive out - they watch it.
+  - **Buy breakfast tonight if it is not on the booking.** Tomorrow you leave at 8:30am and the next food is the Gullfoss cafe at about 11:45.
 
 > **You will drive past Blue Lagoon today. Resist it.** It is fifteen minutes off this route, but Saturday morning is a booked slot with five empty hours around it, and today ends with aurora night 1.
 
@@ -370,23 +374,26 @@ Check-in Sun Oct 11, 3:00pm to midnight. Check-out Tue Oct 13, any time from mid
 
 ---
 
-## Reykjavik - Tue Oct 13 to Wed Oct 14 (1 night)
+## BOOKED - Fosshotel Baron, Reykjavík - Tue Oct 13 to Wed Oct 14 (1 night)
 
-**Budget $180-210.** You arrive about 5pm off the Reykjanes peninsula, want dinner downtown and aurora night 1 out at Grotta, and leave north-east on Route 36 for Thingvellir in the morning.
+**Barónsstíg 2-4, 101 Reykjavík** &middot; +354 562 3204
 
-**Search these areas:**
-- **101 postcode** - the centre. Laugavegur, Hverfisgata, Skolavordustigur, around Tjornin
-- **Skulagata / Saebraut waterfront** - still walkable in, much easier parking
-- **105 Borgartun / Tunin** - about 15 minutes' walk from the centre, cheapest of the three, and already on the road out
+**Double or Twin Room, 205 sq ft, booked for 2 adults. ISK 23,106 all in (~$190), VAT and city tax included.**
+Check-in Tue Oct 13 from 3:00pm. Check-out Wed Oct 14 until 12:00pm.
+**Free cancellation until 11:59pm GMT on Oct 10. Nothing charged yet.** From Oct 11 the full ISK 24,039 applies.
 
-**Rule out:**
-- Anything advertised as **near the airport** - that is Keflavik, 45 minutes away, a completely different town
-- Somewhere central with no parking provision at all
+**What this gets you:**
+- **On-site parking**, which was the one criterion that actually mattered for this night. Central Reykjavík street parking is metered and scarce and you will have the rental car.
+- **24-hour front desk.** Aurora night 1 is out at Grótta and you will be back around 1am - no lockout, and someone to ask about conditions before you drive out.
+- Barónsstígur sits on the **eastern edge of 101**, between Laugavegur and the Sæbraut waterfront. Walkable to dinner, and already pointing the right way for Route 36 in the morning rather than untangling from the west end.
+- **8.0 from 1,060 reviews, location 9.2.**
 
-**What actually matters:**
-1. **PARKING, not the address.** You have a rental car and central Reykjavik parking is paid, metered and scarce. Filter for free or on-site parking and accept a 10-minute walk into town for it - that trade is worth more than being on Laugavegur.
-2. **Walkable to dinner.** Messinn for fish and Baejarins Beztu for the hot dog are both central, and you do not want to drive after a long day.
-3. One night only, so nothing else really matters. The least fussy booking of the six.
+**Before Oct 10:**
+1. **Breakfast is probably NOT included.** The breakdown is room + VAT + city tax with no breakfast line, and ISK 21,657 matches the cheaper of the two rates. Wednesday is the Golden Circle and Into the Glacier - out the door by 8:30am, first food at the Gullfoss cafe around 11:45, and Reykjavík cafes mostly open at 8 or later. **Add breakfast or buy something the night before.**
+2. **The bed is not pinned down.** Sold as "Double or Twin" - tell the hotel you want the queen, not two singles.
+3. **Free or paid parking?** The listing icon suggested paid. Expect ISK 1,500-2,500. Still far better than hunting a meter.
+4. Booking.com charges the card automatically rather than the hotel taking payment, and the property invoice will read **ISK 24,839** because Booking covered ISK 1,733 - that is not a balance owing.
+5. **Oct 10 is the decision deadline.** After midnight on the 11th it is the full price.
 
 ---
 
@@ -443,9 +450,9 @@ Check-in Sun Oct 11, 3:00pm to midnight. Check-out Tue Oct 13, any time from mid
 | **Flights** | **$1,200** |
 | Sarah MSN-LHR + KEF-MSN | $900 |
 | LHR-KEF ×2 | $300 |
-| **Lodging (6 paid nights of 7)** | **$1,076** |
+| **Lodging (6 paid nights of 7)** | **$1,067** |
 | Tudor Court, Paddington ×2 (booked) | $356 |
-| Reykjavík ×1 | $200 |
+| Fosshotel Baron ×1 (booked) | $191 |
 | South Iceland guesthouse ×2 | $340 |
 | Keflavík / Reykjanesbær ×1 | $180 |
 | **Transport** | **$945** |
@@ -470,9 +477,9 @@ Check-in Sun Oct 11, 3:00pm to midnight. Check-out Tue Oct 13, any time from mid
 | Mom's round-trip flights to Madison | $400 |
 | Groceries and extras for her week | $120 |
 | **One nice dinner** | **$150** |
-| **TOTAL** | **$5,061** |
+| **TOTAL** | **$5,052** |
 
-**This is $61 past the $5,000 target**, with Paddington now booked at a real $356 rather than a $400 placeholder.
+**This is $52 past the $5,000 target**, with Paddington and Reykjavík both booked at real numbers rather than placeholders.
 
 **The realistic menu if you want the number back under $5,000:**
 - **Swap St Paul's for the British Museum or the National Gallery**, both free: saves **$70**, and Westminster Abbey is still the centrepiece of the day
@@ -520,7 +527,9 @@ Check-in Sun Oct 11, 3:00pm to midnight. Check-out Tue Oct 13, any time from mid
 - [x] ~~Book a Paddington hotel~~ **Tudor Court Hotel, 10-12 Norfolk Square.** Two nights Oct 11-13, triple room with garden view, GBP 262.75 paid in full, non-refundable
 - [ ] **Message the Tudor Court** and ask which floor the room is on and whether there is a lift. No lift is listed and it is a Victorian townhouse - if you are three floors up, ask to be moved lower. You carry the bags down at 4:55am
 - [ ] At Tudor Court check-in on Sunday: ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line / Heathrow Express platforms, **book the 5:15am car**, and set a **4:30am wake-up call**
-- [ ] Book the four Iceland beds: Reykjavík ×1 (Oct 13), south coast ×2 (Oct 14-15, **same place**), Reykjanesbær ×1 (Oct 16). See **Where to book** above - the south coast one is the only bed on this trip that is hard to substitute
+- [x] ~~Reykjavík ×1~~ **Fosshotel Baron, Barónsstíg 2-4.** Tue Oct 13, ISK 23,106, free to cancel until Oct 10
+- [ ] Book the two remaining Iceland beds: **south coast ×2 (Oct 14-15, SAME PLACE)** and **Reykjanesbær ×1 (Oct 16)**. The south coast one is the only bed on this trip that is hard to substitute
+- [ ] **Fosshotel Baron follow-ups before Oct 10:** add breakfast or accept that Wednesday starts unfed, ask for the queen bed rather than two singles, and check whether the on-site parking is free or paid
 - [ ] **Book a timed Westminster Abbey slot for 9:30am Mon Oct 12** - go at opening, the nave fills by eleven. ~30 GBP each
 - [ ] Book **St Paul's** for Mon Oct 12 afternoon, ~26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start
 - [ ] Reserve Dishoom Covent Garden for **Sat Oct 10 evening** - Saturday nights need booking, and it is cancellable if Sarah would rather eat near the hotel and sleep
