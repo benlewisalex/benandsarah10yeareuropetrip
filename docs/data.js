@@ -828,9 +828,9 @@ const TRIP = {
       { id: "fs5",  text: "Book the last Iceland bed: Reykjanesbær x1 for Fri Oct 16. Reykjanesbær, NOT Grindavík, and book it refundable in case Svartsengi is erupting. See Where to book on the Info tab", budgetIds: ["lod-kef"] },
       { id: "fs24", text: "Done - Rauduskridur farm, the Green Cabin, Hvolsvöllur. Both nights Oct 14-16 in one place, entire cabin, 4.88 from 740 reviews", budgetIds: ["lod-south"] },
       { id: "fs25", text: "Resolve the cabin Plus code QQ2H+QMJ to latitude and longitude and save it offline. It is not a street address, it will not go into a car sat-nav, and you arrive in the dark at 8pm with no guarantee of signal", extra: true },
-      { id: "fs26", text: "Message the cabin hosts: can the two single beds be pushed together, is there a yard light near the terrace and is it on all night, and is there any gas appliance or wood stove given there is no CO alarm", extra: true },
+      { id: "fs26", text: "Message the cabin hosts: is there a yard light near the terrace and is it on all night, and is there any gas appliance or wood stove given there is no CO alarm reported", extra: true },
       { id: "fs22", text: "Done - Fosshotel Baron, Barónsstíg 2-4, 101 Reykjavík, Tue Oct 13. ISK 23,106, free to cancel until Oct 10", budgetIds: ["lod-rvk"] },
-      { id: "fs23", text: "Fosshotel Baron follow-ups before Oct 10: add breakfast or accept that Wednesday starts unfed, ask for the queen bed rather than two singles, and check whether the on-site parking is free or paid", extra: true },
+      { id: "fs23", text: "Fosshotel Baron follow-ups before Oct 10: add breakfast or accept that Wednesday starts unfed, ask for the TWIN beds rather than the queen, and check whether the on-site parking is free or paid", extra: true },
       { id: "fs6",  text: "Book a timed Westminster Abbey slot for 9:30am Mon Oct 12 - go at opening, the nave fills by eleven. About 30 GBP each", budgetIds: ["exc-monday"] },
       { id: "fs7",  text: "Book St Paul's for Mon Oct 12 afternoon, about 26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start", budgetIds: ["exc-monday"] },
       { id: "fs8",  text: "Reserve Dishoom Covent Garden for Sat Oct 10 evening - Saturday nights need booking, and it is cancellable if Sarah would rather eat near the hotel and sleep" },
@@ -924,7 +924,7 @@ const TRIP = {
           maps: "Tudor Court Hotel, 10-12 Norfolk Square, London W2 1RS", ll: "51.5147,-0.1757",
           wins: [
             "Check-out opens at MIDNIGHT, so leaving at 4:55am is inside the permitted window rather than a favour you have to ask for. Combined with the 24-hour front desk, Tuesday morning is genuinely solved.",
-            "A triple room for two, with a garden view onto Norfolk Square - more space than the Compact Double you were looking at, and set back off Praed Street so it should be quieter.",
+            "A triple room for two, with a garden view onto Norfolk Square - more space than the Compact Double you were looking at, and set back off Praed Street so it should be quieter. A triple is usually a full bed plus a single, which suits two sprawlers better than a shared double would have.",
             "Baggage storage and a wake-up service are both listed, which covers the Sunday morning bag drop and the 4:30am alarm.",
             "Norfolk Square scored 9.5 on location from 1,928 reviews, the highest of anything considered. Three to five minutes to the station."
           ],
@@ -978,7 +978,7 @@ const TRIP = {
           ],
           confirmOnArrival: [
             "BREAKFAST IS PROBABLY NOT INCLUDED. The price breakdown is room + VAT + city tax with no breakfast line, and ISK 21,657 matches the cheaper of the two rates. Wednesday is the Golden Circle and Into the Glacier - out the door by 8:30am, first food at the Gullfoss cafe around 11:45. Reykjavík cafes mostly open at 8 or later, so add breakfast or buy something the night before.",
-            "The bed is not pinned down. The room is sold as 'Double or Twin' and the listing let you pick - tell the hotel you want the queen, not two singles.",
+            "Pick the TWIN beds, not the queen. The room is sold as 'Double or Twin' and the listing let you choose, so message the hotel and say two singles - you are both sprawlers and two twins beat one queen.",
             "Is the parking free or paid? The listing icon suggested paid. Expect ISK 1,500-2,500. Still far better than hunting a meter.",
             "Booking.com charges the card automatically rather than the hotel taking payment, and the property invoice will read ISK 24,839 because Booking covered ISK 1,733. That is not a balance owing.",
             "Oct 10 is the decision deadline. After midnight on the 11th it is the full price."
@@ -1016,12 +1016,12 @@ const TRIP = {
             "4.88 from 740 reviews over 12 years of hosting. That is the strongest track record of any property on this trip, and a farm that advertises aurora viewing has had a lot of guests test the claim.",
             "Six kilometres off the ring road, which is the right distance - far enough that Route 1 headlights are not sweeping your sky, close enough to get back out fast when you need to chase a clear window.",
             "A kitchen, which quietly solves a real problem: evening food around Hvolsvöllur is thin and closes early. Shop in Hvolsvöllur on the way in on Wednesday and cook.",
+            "Two single beds, which is the configuration you actually want - you are both sprawlers. No need to ask about pushing anything together.",
             "Every leg matches the timings already in this plan - about an hour from Secret Lagoon on Wednesday, 20-25 minutes to Seljalandsfoss on Thursday, 50 minutes to Reykjadalur on Friday.",
             "A 10:00am checkout is no constraint at all, because Friday has you leaving around 8:10am for Reykjadalur anyway."
           ],
           confirmOnArrival: [
             "SAVE THE COORDINATES OFFLINE BEFORE YOU FLY. The address is a Google Plus code, not a street address. It resolves in Google Maps but will not work in most car sat-navs, and it is useless without signal. Open it, grab the latitude and longitude, and write them down - you are arriving in the dark at 8pm.",
-            "Did the beds get sorted? The listing is a studio with two singles. If they do not push together, message the hosts - they answer everything and there is still plenty of time.",
             "Ask about the farm yard light. It is a working farm, and one sodium lamp forty metres from the terrace does more damage to your dark adaptation than the entire town of Hvolsvöllur. Worth knowing whether it is on all night.",
             "No carbon monoxide alarm is reported, though there is a smoke alarm. Icelandic cabins are almost always geothermal heating and electric cooking, which means no CO source at all - but ask whether there is any gas appliance or wood stove. If there is, a portable detector is a cheap thing to pack.",
             "Pets live on the property. Fine unless either of you reacts to animals - worth a thought rather than a surprise."

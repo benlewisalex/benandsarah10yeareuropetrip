@@ -365,7 +365,7 @@ Check-in Sun Oct 11, 3:00pm to midnight. Check-out Tue Oct 13, any time from mid
 
 **What this gets you:**
 - **Check-out opens at MIDNIGHT**, so leaving at 4:55am is inside the permitted window rather than a favour you have to ask for. Combined with the 24-hour front desk, Tuesday morning is genuinely solved.
-- A **triple room for two, garden view** onto Norfolk Square - more space than the Compact Double that was on the table, and set back off Praed Street so it should be quieter.
+- A **triple room for two, garden view** onto Norfolk Square - more space than the Compact Double that was on the table, and set back off Praed Street so it should be quieter. A triple is usually a full bed plus a single, which suits two sprawlers better than a shared double would have.
 - **Baggage storage** and a **wake-up service** are both listed, covering the Sunday morning bag drop and the 4:30am alarm.
 - Norfolk Square scored **9.5 on location from 1,928 reviews**, the highest of anything considered. Three to five minutes to the station.
 
@@ -393,7 +393,7 @@ Check-in Tue Oct 13 from 3:00pm. Check-out Wed Oct 14 until 12:00pm.
 
 **Before Oct 10:**
 1. **Breakfast is probably NOT included.** The breakdown is room + VAT + city tax with no breakfast line, and ISK 21,657 matches the cheaper of the two rates. Wednesday is the Golden Circle and Into the Glacier - out the door by 8:30am, first food at the Gullfoss cafe around 11:45, and Reykjavík cafes mostly open at 8 or later. **Add breakfast or buy something the night before.**
-2. **The bed is not pinned down.** Sold as "Double or Twin" - tell the hotel you want the queen, not two singles.
+2. **Ask for the TWIN beds, not the queen.** Sold as "Double or Twin" and the listing let you choose - message the hotel and say two singles.
 3. **Free or paid parking?** The listing icon suggested paid. Expect ISK 1,500-2,500. Still far better than hunting a meter.
 4. Booking.com charges the card automatically rather than the hotel taking payment, and the property invoice will read **ISK 24,839** because Booking covered ISK 1,733 - that is not a balance owing.
 5. **Oct 10 is the decision deadline.** After midnight on the 11th it is the full price.
@@ -413,12 +413,12 @@ Check-in Wed Oct 14 after 4:00pm. Checkout Fri Oct 16 by 10:00am.
 - **The strongest track record of any property on this trip** - 4.88 across 740 reviews over 12 years, on a farm that advertises aurora viewing, so a lot of guests have tested the claim.
 - **Six kilometres off the ring road**, which is the right distance: far enough that Route 1 headlights are not sweeping your sky, close enough to get back out fast when you need to chase a clear window.
 - **A kitchen**, which quietly solves a real problem. Evening food around Hvolsvöllur is thin and closes early - shop in Hvolsvöllur on the way in Wednesday and cook.
+- **Two single beds**, which is the configuration you actually want - you are both sprawlers.
 - **Every leg matches the timings already in this plan**: about an hour from Secret Lagoon Wednesday, 20-25 min to Seljalandsfoss Thursday, 50 min to Reykjadalur Friday.
 - The 10:00am checkout is no constraint - Friday has you rolling around 8:10am anyway.
 
 **Before you fly:**
 1. **SAVE THE COORDINATES OFFLINE.** The address is a Google Plus code, not a street address. It resolves in Google Maps but will not go into most car sat-navs, and it is useless without signal. Open it, grab the latitude and longitude, write them down. **You are arriving in the dark at 8pm.**
-2. **Did the beds get sorted?** The listing is a studio with two singles. If they do not push together, message the hosts - they answer everything and there is time.
 3. **Ask about the farm yard light.** It is a working farm, and one sodium lamp forty metres from the terrace does more damage to your dark adaptation than the entire town of Hvolsvöllur.
 4. **No carbon monoxide alarm** is reported, though there is a smoke alarm. Icelandic cabins are almost always geothermal heat and electric cooking, so usually no CO source at all - but ask whether there is any gas appliance or wood stove. If so, a portable detector is cheap to pack.
 5. **Pets live on the property.** Fine unless either of you reacts to animals.
@@ -534,8 +534,8 @@ Check-in Wed Oct 14 after 4:00pm. Checkout Fri Oct 16 by 10:00am.
 - [x] ~~South coast ×2~~ **Rauduskridur farm, the Green Cabin, Hvolsvöllur.** Both nights Oct 14-16 in one place, entire cabin, 4.88 from 740 reviews
 - [ ] Book the last Iceland bed: **Reykjanesbær ×1 (Fri Oct 16)**. Reykjanesbær, NOT Grindavík, and book it refundable in case Svartsengi is erupting
 - [ ] **Resolve the cabin Plus code QQ2H+QMJ to latitude and longitude and save it offline.** Not a street address, will not go into a car sat-nav, and you arrive in the dark with no guarantee of signal
-- [ ] **Message the cabin hosts:** can the two single beds be pushed together, is there a yard light near the terrace and is it on all night, and is there any gas appliance or wood stove given there is no CO alarm
-- [ ] **Fosshotel Baron follow-ups before Oct 10:** add breakfast or accept that Wednesday starts unfed, ask for the queen bed rather than two singles, and check whether the on-site parking is free or paid
+- [ ] **Message the cabin hosts:** is there a yard light near the terrace and is it on all night, and is there any gas appliance or wood stove given there is no CO alarm reported
+- [ ] **Fosshotel Baron follow-ups before Oct 10:** add breakfast or accept that Wednesday starts unfed, ask for the **TWIN** beds rather than the queen, and check whether the on-site parking is free or paid
 - [ ] **Book a timed Westminster Abbey slot for 9:30am Mon Oct 12** - go at opening, the nave fills by eleven. ~30 GBP each
 - [ ] Book **St Paul's** for Mon Oct 12 afternoon, ~26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start
 - [ ] Reserve Dishoom Covent Garden for **Sat Oct 10 evening** - Saturday nights need booking, and it is cancellable if Sarah would rather eat near the hotel and sleep
