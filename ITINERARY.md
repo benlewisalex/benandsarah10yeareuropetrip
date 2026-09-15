@@ -213,9 +213,12 @@ The biggest day of the trip and the one with the least slack. **Roll at 8:30** a
 - **17:15 - Secret Lagoon, Flúðir.** 45-min drive from Gullfoss, about 45 km on Route 30. **1-1.5 hrs.**
   - Gamla Laugin, built 1891, is the oldest swimming pool in Iceland - locals were taught to swim here until 1909, then it sat more or less abandoned for most of a century. Water around 38-40C, ringed by a raw geothermal field rather than architecture, with a small geyser erupting alongside every few minutes while you are in it.
   - Older, smaller and far more low-key than Blue Lagoon, which is now booked for Saturday, so this earns its place on character rather than as a substitute. **First line to cut if the budget tightens** - and cutting it gets you to the guesthouse with more left for aurora night 2.
-- **19:00 - drive to the guesthouse near Hella or Hvolsvöllur.** 1-hr drive, about 70 km. **Two nights.** Everything on Thursday is within 40 minutes of it, and the sky above it is why you booked out here instead of commuting from Reykjavík.
+- **19:00 - drive to Rauduskridur farm, the Green Cabin.** 1-hr drive, about 70 km, then 6 km off Route 1 on Route 250. **Two nights**, check-in any time after 4:00pm.
+  - Plus code **QQ2H+QMJ, 860 Hvolsvöllur**. Hosts Ingveldur and Steini, through the Airbnb thread.
+  - **Stop in Hvolsvöllur for groceries on the way past.** The cabin has a kitchen and evening food out here is thin and closes early.
+  - **The address is a Plus code, not a street address.** It will not go into a car sat-nav and it is useless without signal - have the latitude and longitude saved offline before you fly, because you are arriving here in the dark.
 
-**Aurora night 2:** rural and dark, with no town glow in any direction. Statistically your best shot of the trip, and you do not have to drive anywhere for it.
+**Aurora night 2 - the cabin terrace.** Statistically your best shot of the trip, and you do not have to drive anywhere for it. Hvolsvöllur is 950 people and you are 6 km off the ring road, so there is no town glow and no passing headlights. **Kill the cabin lights before you go out**, and give it the full twenty minutes.
 
 Sunrise 8:15am, sunset 6:01pm.
 
@@ -242,15 +245,15 @@ The easiest driving day in Iceland - everything strung along Route 1 in a line e
 - **Evening - Lava Show, Vík.** 10-min drive into Vík. **About 1 hr.**
   - The only show of its kind anywhere. They melt real basalt, quarried from the 1918 Katla eruption, to 1,100C and pour it - glowing orange, moving like honey - into a channel a few metres in front of the seating. You feel the heat on your face, and the smell is the part nobody warns you about.
   - **Book ahead**; the room is small and October sessions sell out. Pick a session that gets you back before full dark.
-- **Back to the guesthouse.** 1-hr drive west, about 75 km.
+- **Back to the cabin.** 1-hr drive west, about 75 km, then 6 km on Route 250. Nothing to check into - you are already in, which is the whole point of booking both nights in one place.
 
-**Aurora night 3:** same dark skies as night 2. Even if the aurora does nothing, this is the Milky Way with no effort and no driving.
+**Aurora night 3 - the cabin terrace again.** Same dark skies as night 2, plus the advantage of a second night in one place: you already know where to stand and how long your eyes take. Even if the aurora does nothing, this is the Milky Way with no effort and no driving.
 
 Sunrise 8:18am, sunset 5:58pm.
 
 ## Friday, Oct 16 - Hot river + horse farm
 
-A long soak in a river you hike to, an hour with the horses, then a westward drive to set up Saturday. **Check out of the south coast guesthouse first thing** - you do not come back this way.
+A long soak in a river you hike to, an hour with the horses, then a westward drive to set up Saturday. **Check out of the cabin first thing** - you do not come back this way. Checkout is by 10:00am and you want to be rolling around 8:10 to make Reykjadalur for 9:00, so the deadline is not what is pushing you.
 
 - **9:00 - Reykjadalur, Hveragerði.** 50-min drive, about 65 km west on Route 1. **3-4 hrs total: 45-60 min up, 1-1.5 hrs in the water, 40 min down.**
   - Reykjadalur means Steam Valley and it earns the name - about 2 miles uphill through a green valley with steam venting out of the hillsides around you, and at the top a river you sit down in. Hot springs feed it from above and cold water joins from below, so it gets hotter the further upstream you go and you pick your own temperature. Boardwalks, changing screens, nothing else.
@@ -397,28 +400,28 @@ Check-in Tue Oct 13 from 3:00pm. Check-out Wed Oct 14 until 12:00pm.
 
 ---
 
-## South coast, Hvolsvollur area - Wed Oct 14 to Fri Oct 16 (2 nights, same place)
+## BOOKED - Rauduskridur farm, The Green Cabin - Wed Oct 14 to Fri Oct 16 (2 nights)
 
-**Budget $160-180 a night. This is the important one.** Aurora nights 2 and 3 happen here and it is statistically your best chance of the week. It is also the base for Thursday's entire south-coast run, all of which sits east along Route 1.
+**Plus code QQ2H+QMJ, 860 Hvolsvöllur** - about 6 km off Route 1 on Route 250
+Hosts **Ingveldur and Steini**, reachable through the Airbnb thread
 
-**Search these areas:**
-- **Hvolsvollur** and the farms immediately around it - best positioned for Thursday
-- Anywhere along **Route 1 between Hella and Hvolsvollur**
-- **Fljotshlid**, the valley road running north-east out of Hvolsvollur - rural and dark
-- **Skogar**, further east by Skogafoss - even better for Thursday, but a longer Wednesday drive
+**Entire standalone cabin, studio, 2 guests maximum. Booked on Airbnb for both nights.**
+Check-in Wed Oct 14 after 4:00pm. Checkout Fri Oct 16 by 10:00am.
+**4.88 from 740 reviews. Superhosts of 12 years.**
 
-**Rule out:**
-- **Hveragerdi and Selfoss** - too far west, and they add 40 minutes to every Thursday stop
-- **Vik** - too far east, and it turns Wednesday's arrival into a slog
-- Anything in the middle of a town with street lighting. Town glow is the thing you drove out here to escape.
+**What this gets you:**
+- **The strongest track record of any property on this trip** - 4.88 across 740 reviews over 12 years, on a farm that advertises aurora viewing, so a lot of guests have tested the claim.
+- **Six kilometres off the ring road**, which is the right distance: far enough that Route 1 headlights are not sweeping your sky, close enough to get back out fast when you need to chase a clear window.
+- **A kitchen**, which quietly solves a real problem. Evening food around Hvolsvöllur is thin and closes early - shop in Hvolsvöllur on the way in Wednesday and cook.
+- **Every leg matches the timings already in this plan**: about an hour from Secret Lagoon Wednesday, 20-25 min to Seljalandsfoss Thursday, 50 min to Reykjadalur Friday.
+- The 10:00am checkout is no constraint - Friday has you rolling around 8:10am anyway.
 
-**What actually matters:**
-1. **BOOK BOTH NIGHTS IN THE SAME PLACE.** Do not move between aurora nights 2 and 3 - packing up mid-stay is how you end up watching the sky from a car park.
-2. **Rural, with an unobstructed view north.** Read the reviews for the words *dark* and *aurora*; guests always mention it.
-3. **Look for an AURORA WAKE-UP CALL.** Some Icelandic hotels ring the room if it appears. Across two nights out here that is worth paying a little extra for - filter or ask for it specifically.
-4. **Check whether dinner is served on site.** Evening food around Hvolsvollur is thin and closes early, and discovering that at 9pm on Wednesday after the glacier is a bad time to find out. Many of these are working farms that feed guests - that is the one to book.
-
-*Starting points:* **Hotel Ranga**, between Hella and Hvolsvollur, is the famous aurora hotel - on-site observatory and a wake-up service - but it runs well above this budget. **Stracta Hotel** in Hella and **Hotel Hvolsvollur** are the mainstream mid-range options, and the surrounding farm guesthouses are where the value is. Verify all of it yourself.
+**Before you fly:**
+1. **SAVE THE COORDINATES OFFLINE.** The address is a Google Plus code, not a street address. It resolves in Google Maps but will not go into most car sat-navs, and it is useless without signal. Open it, grab the latitude and longitude, write them down. **You are arriving in the dark at 8pm.**
+2. **Did the beds get sorted?** The listing is a studio with two singles. If they do not push together, message the hosts - they answer everything and there is time.
+3. **Ask about the farm yard light.** It is a working farm, and one sodium lamp forty metres from the terrace does more damage to your dark adaptation than the entire town of Hvolsvöllur.
+4. **No carbon monoxide alarm** is reported, though there is a smoke alarm. Icelandic cabins are almost always geothermal heat and electric cooking, so usually no CO source at all - but ask whether there is any gas appliance or wood stove. If so, a portable detector is cheap to pack.
+5. **Pets live on the property.** Fine unless either of you reacts to animals.
 
 ---
 
@@ -453,7 +456,7 @@ Check-in Tue Oct 13 from 3:00pm. Check-out Wed Oct 14 until 12:00pm.
 | **Lodging (6 paid nights of 7)** | **$1,067** |
 | Tudor Court, Paddington ×2 (booked) | $356 |
 | Fosshotel Baron ×1 (booked) | $191 |
-| South Iceland guesthouse ×2 | $340 |
+| Rauduskridur cabin ×2 (booked, price TBC) | $340 |
 | Keflavík / Reykjanesbær ×1 | $180 |
 | **Transport** | **$945** |
 | Iceland rental car, 5 days (Oct 13-17) | $425 |
@@ -528,7 +531,10 @@ Check-in Tue Oct 13 from 3:00pm. Check-out Wed Oct 14 until 12:00pm.
 - [ ] **Message the Tudor Court** and ask which floor the room is on and whether there is a lift. No lift is listed and it is a Victorian townhouse - if you are three floors up, ask to be moved lower. You carry the bags down at 4:55am
 - [ ] At Tudor Court check-in on Sunday: ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line / Heathrow Express platforms, **book the 5:15am car**, and set a **4:30am wake-up call**
 - [x] ~~Reykjavík ×1~~ **Fosshotel Baron, Barónsstíg 2-4.** Tue Oct 13, ISK 23,106, free to cancel until Oct 10
-- [ ] Book the two remaining Iceland beds: **south coast ×2 (Oct 14-15, SAME PLACE)** and **Reykjanesbær ×1 (Oct 16)**. The south coast one is the only bed on this trip that is hard to substitute
+- [x] ~~South coast ×2~~ **Rauduskridur farm, the Green Cabin, Hvolsvöllur.** Both nights Oct 14-16 in one place, entire cabin, 4.88 from 740 reviews
+- [ ] Book the last Iceland bed: **Reykjanesbær ×1 (Fri Oct 16)**. Reykjanesbær, NOT Grindavík, and book it refundable in case Svartsengi is erupting
+- [ ] **Resolve the cabin Plus code QQ2H+QMJ to latitude and longitude and save it offline.** Not a street address, will not go into a car sat-nav, and you arrive in the dark with no guarantee of signal
+- [ ] **Message the cabin hosts:** can the two single beds be pushed together, is there a yard light near the terrace and is it on all night, and is there any gas appliance or wood stove given there is no CO alarm
 - [ ] **Fosshotel Baron follow-ups before Oct 10:** add breakfast or accept that Wednesday starts unfed, ask for the queen bed rather than two singles, and check whether the on-site parking is free or paid
 - [ ] **Book a timed Westminster Abbey slot for 9:30am Mon Oct 12** - go at opening, the nave fills by eleven. ~30 GBP each
 - [ ] Book **St Paul's** for Mon Oct 12 afternoon, ~26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start

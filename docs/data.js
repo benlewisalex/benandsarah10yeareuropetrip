@@ -524,16 +524,18 @@ const TRIP = {
           why: "Gamla Laugin, built in 1891, is the oldest swimming pool in Iceland - locals were taught to swim here until 1909, and then it sat more or less abandoned for most of a century. The water sits around 38-40C, it is ringed by a raw geothermal field rather than architecture, and a small geyser erupts alongside every few minutes while you are in it. Older, smaller and far more low-key than Blue Lagoon, which is now booked for Saturday, so this earns its place on character rather than as a substitute.",
           detail: "Cheap by Icelandic lagoon standards. Towel rental is extra, so bring your own. This is the first line to cut if the budget gets tight - and cutting it gets you to the guesthouse with more left in the tank for aurora night 2.",
           maps: "Secret Lagoon, Fludir, Iceland", ll: "64.1372,-20.3106" },
-        { time: "19:00", name: "Drive to the guesthouse near Hella or Hvolsvöllur",
-          book: ["fs5"],
-          travel: "1-hr drive, about 70 km",
-          dur: "Two nights here",
-          detail: "Your base for the south coast. Rural, dark, and well positioned - everything on Thursday is within 40 minutes of it, and the sky above it is the reason you booked out here instead of commuting from Reykjavík.",
-          maps: "Hvolsvollur, Iceland", ll: "63.7494,-20.2225", area: true }
+        { time: "19:00", name: "Drive to Rauduskridur farm, the Green Cabin",
+          book: ["fs24"],
+          travel: "1-hr drive, about 70 km, then 6 km off Route 1 on Route 250",
+          dur: "Two nights here, check-in any time after 4:00pm",
+          why: "Your base for the south coast, and the reason aurora nights 2 and 3 are the best of the trip. A standalone cabin on a working farm, six kilometres off the ring road - far enough that no headlights cross your sky, close enough to get back out and chase a clear window.",
+          detail: "Plus code QQ2H+QMJ, 860 Hvolsvöllur. Stop in Hvolsvöllur for groceries on the way past - the cabin has a kitchen, and evening food out here is thin and closes early. Hosts are Ingveldur and Steini, reachable through the Airbnb thread.",
+          maps: "QQ2H+QMJ 860 Hvolsvollur Iceland", ll: "63.7494,-20.2225",
+          headsUp: "The address is a Google Plus code, not a street address. It will not go into a car sat-nav and it is useless without signal. Have the latitude and longitude saved offline before you fly - you are arriving here in the dark." }
       ],
-      aurora: { night: 2, spot: "Wherever you are - rural south Iceland",
-        text: "Rural and dark, with no town glow in any direction. Statistically your best shot of the trip, and you do not have to drive anywhere for it.",
-        maps: "Hvolsvollur, Iceland", ll: "63.7494,-20.2225", area: true }
+      aurora: { night: 2, spot: "The cabin terrace, Rauduskridur farm",
+        text: "Statistically your best shot of the trip, and you do not have to drive anywhere for it - the terrace is the spot. Hvolsvöllur is 950 people and you are 6 km off the ring road, so there is no town glow and no passing headlights. Kill the cabin lights before you go out, and give it the full twenty minutes.",
+        maps: "QQ2H+QMJ 860 Hvolsvollur Iceland", ll: "63.7494,-20.2225" }
     },
 
     { id: "oct15", date: "2026-10-15", dow: "Thursday", half: "iceland",
@@ -578,18 +580,18 @@ const TRIP = {
           why: "The only show of its kind anywhere. They melt real basalt, quarried from the 1918 Katla eruption, to 1,100C and pour it - glowing orange and moving like honey - into a channel a few metres in front of the seating. You feel the heat come off it on your face, and the smell is the part nobody warns you about. With no eruption running this is the closest you will get to molten rock, and it stands on its own merits either way.",
           detail: "Book ahead; the room is small and October sessions still sell out. Sessions run through the evening, so pick one that gets you back to the guesthouse before full dark for aurora night 3.",
           maps: "Lava Show, Vik, Iceland", ll: "63.4186,-19.0060" },
-        { name: "Back to the guesthouse",
-          book: ["fs5"],
-          travel: "1-hr drive west, about 75 km on Route 1",
-          dur: "Second of two nights" }
+        { name: "Back to the cabin",
+          travel: "1-hr drive west, about 75 km on Route 1, then 6 km on Route 250",
+          dur: "Second of two nights",
+          detail: "Nothing to check into - you are already in. Which is the whole point of booking both nights in one place." }
       ],
       hazards: [
         { title: "Reynisfjara sneaker waves. Safety, not boilerplate.",
           text: "Reynisfjara kills tourists every few years. Sneaker waves arrive with no warning and drag people out - the beach shelves steeply and the undertow is unsurvivable. Stay well up the beach, never turn your back on the water, and do not walk to the waterline for a photo." }
       ],
-      aurora: { night: 3, spot: "South coast, back at the guesthouse",
-        text: "Same dark skies as night 2. Even if the aurora does nothing, this is the Milky Way with no effort and no driving.",
-        maps: "Hvolsvollur, Iceland", ll: "63.7494,-20.2225", area: true }
+      aurora: { night: 3, spot: "The cabin terrace again",
+        text: "Same dark skies as night 2, and the advantage of a second night in the same place: you already know where to stand and how long your eyes take. Even if the aurora does nothing, this is the Milky Way with no effort and no driving.",
+        maps: "QQ2H+QMJ 860 Hvolsvollur Iceland", ll: "63.7494,-20.2225" }
     },
 
     { id: "oct16", date: "2026-10-16", dow: "Friday", half: "iceland",
@@ -598,7 +600,7 @@ const TRIP = {
       images: ["reykjadalur", "horses"],
       intro: [
         "A long soak in a river you hike to, an hour with the horses, and then a westward drive to set up Saturday morning.",
-        "Check out of the south coast guesthouse first thing - you do not come back this way."
+        "Check out of the cabin first thing - you do not come back this way. Checkout is by 10:00am and you want to be rolling around 8:10 to make Reykjadalur for 9:00, so the deadline is not the thing pushing you."
       ],
       items: [
         { time: "9:00", name: "Reykjadalur, Hveragerði",
@@ -744,7 +746,7 @@ const TRIP = {
       { id: "lodging", label: "Lodging (6 paid nights of 7)", lines: [
         { id: "lod-london",  label: "Tudor Court, Paddington x2 (booked)", planned: 356 },
         { id: "lod-rvk",     label: "Fosshotel Baron x1 (booked)", planned: 191 },
-        { id: "lod-south",   label: "South Iceland guesthouse x2",   planned: 340 },
+        { id: "lod-south",   label: "Rauduskridur cabin x2 (booked)", planned: 340, estimate: true },
         { id: "lod-kef",     label: "Keflavík x1",              planned: 180 }
       ]},
       { id: "transport", label: "Transport", lines: [
@@ -823,7 +825,10 @@ const TRIP = {
       { id: "fs4",  text: "Done - Tudor Court Hotel, 10-12 Norfolk Square, Paddington. Two nights Oct 11-13, triple room with garden view, GBP 262.75 paid in full. Non-refundable", budgetIds: ["lod-london"] },
       { id: "fs21", text: "Message the Tudor Court through the booking and ask which floor the room is on, and whether there is a lift. No lift is listed and it is a Victorian townhouse - if you are three floors up, ask to be moved lower. You carry the bags down at 4:55am", extra: true },
       { id: "fs20", text: "At Tudor Court check-in on Sunday: ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line and Heathrow Express platforms, book the 5:15am car, and set a 4:30am wake-up call. All four are things this hotel does", extra: true },
-      { id: "fs5",  text: "Book the two remaining Iceland beds: south coast x2 (Oct 14-15, SAME PLACE) and Reykjanesbær x1 (Oct 16). See Where to book on the Info tab - the south coast one has real criteria attached and is the only bed on this trip that is hard to substitute", budgetIds: ["lod-south","lod-kef"] },
+      { id: "fs5",  text: "Book the last Iceland bed: Reykjanesbær x1 for Fri Oct 16. Reykjanesbær, NOT Grindavík, and book it refundable in case Svartsengi is erupting. See Where to book on the Info tab", budgetIds: ["lod-kef"] },
+      { id: "fs24", text: "Done - Rauduskridur farm, the Green Cabin, Hvolsvöllur. Both nights Oct 14-16 in one place, entire cabin, 4.88 from 740 reviews", budgetIds: ["lod-south"] },
+      { id: "fs25", text: "Resolve the cabin Plus code QQ2H+QMJ to latitude and longitude and save it offline. It is not a street address, it will not go into a car sat-nav, and you arrive in the dark at 8pm with no guarantee of signal", extra: true },
+      { id: "fs26", text: "Message the cabin hosts: can the two single beds be pushed together, is there a yard light near the terrace and is it on all night, and is there any gas appliance or wood stove given there is no CO alarm", extra: true },
       { id: "fs22", text: "Done - Fosshotel Baron, Barónsstíg 2-4, 101 Reykjavík, Tue Oct 13. ISK 23,106, free to cancel until Oct 10", budgetIds: ["lod-rvk"] },
       { id: "fs23", text: "Fosshotel Baron follow-ups before Oct 10: add breakfast or accept that Wednesday starts unfed, ask for the queen bed rather than two singles, and check whether the on-site parking is free or paid", extra: true },
       { id: "fs6",  text: "Book a timed Westminster Abbey slot for 9:30am Mon Oct 12 - go at opening, the nave fills by eleven. About 30 GBP each", budgetIds: ["exc-monday"] },
@@ -881,7 +886,7 @@ const TRIP = {
     { id: "cf-lhrcar",        label: "5:15am car to T5, Oct 13",        fields: ["Company", "Confirmation", "Pickup time", "Phone"] },
     { id: "cf-lod-london",    label: "Tudor Court, Paddington, Oct 11-13", fields: ["Booking no.", "PIN", "Room / floor", "Notes"] },
     { id: "cf-lod-rvk",       label: "Fosshotel Baron, Oct 13",   fields: ["Confirmation", "PIN", "Breakfast added?", "Bed type"] },
-    { id: "cf-lod-south",     label: "South Iceland guesthouse x2",    fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
+    { id: "cf-lod-south",     label: "Rauduskridur cabin, Oct 14-16",  fields: ["Airbnb code", "Lat / long", "Door code", "Host phone"] },
     { id: "cf-lod-kef",       label: "Keflavík lodging x1",       fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
     { id: "cf-car",           label: "Iceland rental car",             fields: ["Company", "Confirmation", "Pickup / return", "Waiver taken?"] },
     { id: "cf-abbey",         label: "Westminster Abbey, Oct 12",      fields: ["Confirmation", "Entry time"] },
@@ -902,7 +907,7 @@ const TRIP = {
      filter on, the streets that qualify, what to rule out, and the one or two
      criteria that actually matter for that night. */
   lodging: {
-    lede: "Six paid nights. Paddington and Reykjavík are booked; the south coast and Reykjanesbær are not. Oct 10 is work-paid at the Courtyard Heathrow and Oct 17 is spent on a plane. The unbooked entries below are search briefs - filter on the map, not on the hotel's name.",
+    lede: "Six paid nights. Five are booked. Only Reykjanesbær on Fri Oct 16 is still open. Oct 10 is work-paid at the Courtyard Heathrow and Oct 17 is spent on a plane. The unbooked entries below are search briefs - filter on the map, not on the hotel's name.",
     stays: [
       { id: "lg-pad", label: "Paddington, London", nights: "Sun Oct 11 - Tue Oct 13 (2 nights)",
         budget: "$180-230 a night", budgetId: "lod-london",
@@ -997,6 +1002,31 @@ const TRIP = {
       { id: "lg-south", label: "South coast, Hvolsvöllur area", nights: "Wed Oct 14 - Fri Oct 16 (2 nights, same place)",
         budget: "$160-180 a night", budgetId: "lod-south",
         why: "This is the important one. Aurora nights 2 and 3 happen here, and it is statistically your best chance of the week. It is also the base for Thursday's entire south-coast run, all of which sits east along Route 1.",
+        booked: {
+          name: "Rauduskridur farm - The Green Cabin",
+          address: "Plus code QQ2H+QMJ, 860 Hvolsvöllur - about 6 km off Route 1 on Route 250",
+          phone: "Airbnb message thread - hosts Ingveldur and Steini",
+          room: "Entire standalone cabin, studio, 2 guests maximum",
+          paid: "Airbnb, both nights - 4.88 from 740 reviews, Superhosts of 12 years",
+          terms: "Check Airbnb for the cancellation window. Pets live on the property.",
+          checkIn: "Wed Oct 14, after 4:00pm",
+          checkOut: "Fri Oct 16, by 10:00am",
+          maps: "QQ2H+QMJ 860 Hvolsvollur Iceland", ll: "63.7494,-20.2225",
+          wins: [
+            "4.88 from 740 reviews over 12 years of hosting. That is the strongest track record of any property on this trip, and a farm that advertises aurora viewing has had a lot of guests test the claim.",
+            "Six kilometres off the ring road, which is the right distance - far enough that Route 1 headlights are not sweeping your sky, close enough to get back out fast when you need to chase a clear window.",
+            "A kitchen, which quietly solves a real problem: evening food around Hvolsvöllur is thin and closes early. Shop in Hvolsvöllur on the way in on Wednesday and cook.",
+            "Every leg matches the timings already in this plan - about an hour from Secret Lagoon on Wednesday, 20-25 minutes to Seljalandsfoss on Thursday, 50 minutes to Reykjadalur on Friday.",
+            "A 10:00am checkout is no constraint at all, because Friday has you leaving around 8:10am for Reykjadalur anyway."
+          ],
+          confirmOnArrival: [
+            "SAVE THE COORDINATES OFFLINE BEFORE YOU FLY. The address is a Google Plus code, not a street address. It resolves in Google Maps but will not work in most car sat-navs, and it is useless without signal. Open it, grab the latitude and longitude, and write them down - you are arriving in the dark at 8pm.",
+            "Did the beds get sorted? The listing is a studio with two singles. If they do not push together, message the hosts - they answer everything and there is still plenty of time.",
+            "Ask about the farm yard light. It is a working farm, and one sodium lamp forty metres from the terrace does more damage to your dark adaptation than the entire town of Hvolsvöllur. Worth knowing whether it is on all night.",
+            "No carbon monoxide alarm is reported, though there is a smoke alarm. Icelandic cabins are almost always geothermal heating and electric cooking, which means no CO source at all - but ask whether there is any gas appliance or wood stove. If there is, a portable detector is a cheap thing to pack.",
+            "Pets live on the property. Fine unless either of you reacts to animals - worth a thought rather than a surprise."
+          ]
+        },
         searchIn: [
           "Hvolsvöllur and the farms immediately around it - best positioned for Thursday",
           "Anywhere along Route 1 between Hella and Hvolsvöllur",
@@ -1036,7 +1066,7 @@ const TRIP = {
         ] }
     ],
     notes: [
-      "Two left, and the south coast is the one to do next. Mid-October south-coast guesthouses are a small inventory and the rural aurora-friendly ones go early. Reykjanesbær has plenty of supply and can wait.",
+      "One left, and it is the easy one. Reykjanesbær has plenty of off-season supply, so this is a short job rather than a hunt - just book it refundable and do not book Grindavík.",
       "Refundable where the plan is still moving: Reykjanesbær because of the volcano, and Paddington if you are still weighing the Courtyard.",
       "Work covers Fri Oct 9 and Sat Oct 10 at the Courtyard Heathrow, and Sat Oct 17 is spent flying. Neither needs booking."
     ]
