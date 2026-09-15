@@ -1826,6 +1826,7 @@
       h.push("</div></div>");
     });
 
+    if (D.lodging) h.push(lodgingBlock());
     if (D.workLeg) h.push(workLegBlock());
 
     h.push('<div class="section-head"><h2>Safety</h2></div>');
@@ -1843,6 +1844,53 @@
     h.push("<p><b>Storage.</b> Every checkbox, actual cost and confirmation number lives in this browser&rsquo;s " +
       "localStorage on this device only. Clearing site data clears all of it.</p>");
     h.push("</div>");
+    return h.join("");
+  }
+
+  /* A search brief per paid night. Deliberately not a booking - the streets to
+     filter on and the two or three criteria that actually matter for that bed. */
+  function lodgingBlock() {
+    var L = D.lodging;
+    var h = [];
+    h.push('<div class="section-head"><h2>Where to book</h2></div>');
+    h.push('<div class="card"><div class="card__body"><p class="small">' + esc(L.lede) + "</p></div></div>");
+
+    L.stays.forEach(function (st) {
+      var bl = lineById(st.budgetId);
+      h.push('<div class="card"><div class="card__body">');
+      h.push('<p class="eyebrow">' + esc(st.nights) + "</p>");
+      h.push('<h3 style="margin-top:4px">' + esc(st.label) + "</h3>");
+      h.push('<p class="tiny muted" style="margin-top:2px">Budget ' + esc(st.budget) +
+        (bl ? " &middot; planned " + money(bl.line.planned) : "") + "</p>");
+      h.push('<p class="small" style="margin-top:10px">' + esc(st.why) + "</p>");
+
+      h.push('<p class="eyebrow" style="margin-top:14px">Search these</p>');
+      h.push('<ul class="tl__sub" style="margin-top:6px">');
+      st.searchIn.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
+      h.push("</ul>");
+
+      h.push('<p class="eyebrow" style="margin-top:14px;color:var(--hazard)">Rule out</p>');
+      h.push('<ul class="tl__sub" style="margin-top:6px">');
+      st.avoid.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
+      h.push("</ul>");
+
+      h.push('<p class="eyebrow" style="margin-top:14px">What actually matters</p>');
+      h.push('<ul class="tl__sub" style="margin-top:6px">');
+      st.criteria.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
+      h.push("</ul>");
+
+      if (st.candidates) {
+        h.push('<p class="tiny muted" style="margin-top:14px"><b>Starting points.</b> ' +
+          esc(st.candidates) + "</p>");
+      }
+      h.push("</div></div>");
+    });
+
+    h.push('<div class="card"><div class="card__body">');
+    h.push('<p class="eyebrow">Order of play</p>');
+    h.push('<ul class="tl__sub" style="margin-top:10px">');
+    L.notes.forEach(function (n) { h.push("<li>" + esc(n) + "</li>"); });
+    h.push("</ul></div></div>");
     return h.join("");
   }
 

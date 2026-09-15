@@ -1,7 +1,7 @@
 # London + Iceland - October 9-17, 2026
-**Ben & Sarah Alexander · 8 nights out, 7 together · Budget target: $5,000 (currently projecting $5,135)**
+**Ben & Sarah Alexander · 8 nights out, 7 together · Budget target: $5,000 (currently projecting $5,105)**
 
-**Structure:** Ben is already in England from Oct 3 on a work trip and moves to the Courtyard Heathrow on Fri Oct 9. Sarah flies Fri Oct 9, lands Sat Oct 10 and cabs straight to that hotel. Three nights England (Oct 10, 11, 12): 1:00pm endowment session Saturday, church and the Thames walk Sunday, Stonehenge Monday. Then four nights Iceland (Oct 13, 14, 15, 16), ending with Blue Lagoon on the way to the airport. Home late Saturday Oct 17.
+**Structure:** Ben is already in England from Oct 3 on a work trip and moves to the Courtyard Heathrow on Fri Oct 9. Sarah flies Fri Oct 9, lands Sat Oct 10 and cabs straight to that hotel. Three nights England (Oct 10, 11, 12): 1:00pm endowment session Saturday, church and the Thames walk Sunday, Westminster Abbey and Hamilton Monday. Saturday is at the work-paid Courtyard Heathrow with a one-day rental car; Sunday and Monday are in Paddington. Then four nights Iceland (Oct 13, 14, 15, 16), ending with Blue Lagoon on the way to the airport. Home late Saturday Oct 17.
 
 Ben's MSN-ORD-LHR flights out, the KEF-ORD flight home, and every hotel night from Oct 3 through the morning of Oct 11 are booked and paid by work - including Sat Oct 10, which is a free night for both of you. Everything costed below is out of pocket: Sarah's airfare, London lodging from Oct 11, all of Iceland, getting to and from O'Hare, and covering the kids at home.
 
@@ -13,12 +13,12 @@ Ben's MSN-ORD-LHR flights out, the KEF-ORD flight home, and every hotel night fr
 
 | Item | When |
 |---|---|
-| Stonehenge | Mon Oct 12 |
+| West End show | Mon Oct 12 - Hamilton, 7:30pm |
 | Big Ben / London classics | Sun Oct 11 afternoon |
 | LDS temple | Sat Oct 10 - 1:00pm endowment, Newchapel (booked) |
 | Aurora hunting | All four Iceland nights |
 | Stargazing | Wed-Fri, rural south Iceland |
-| Icelandic horses | Fri Oct 16 |
+| Icelandic horses | Fri Oct 16 - farm visit, no riding |
 | Volcano | Tue Oct 13 lava fields + Thu Oct 15 Lava Show |
 | Geysers | Wed Oct 14 (Strokkur) |
 | Blue Lagoon | Sat Oct 17 (booked morning slot) |
@@ -71,7 +71,8 @@ Nothing happens together today. Sarah crosses the Atlantic overnight while Ben f
 - **11:00am - Sarah leaves Madison for O'Hare.** Drive is about 2.5 hrs; budget 3.5 hrs door to gate, because parking, the shuttle and the bag drop are what actually eat the buffer. At the terminal by 2:25pm. **Park for the full Oct 9-17 window** - you both fly back into O'Hare together on the 17th, so this car is the ride home for two.
 - **3:00pm UK - Ben checks into the Courtyard Heathrow Marriott.** 1 Nobel Drive, Harlington, Hayes UB3 5EY. Two nights, both paid by work. **Tell the front desk tonight that Sarah is on the room from Saturday** - the reservation is written for 1 adult.
 - **4:25pm - UA929, O'Hare to Heathrow.** 8h 20m, Boeing 767-300, lands 6:45am Saturday. First checked bag included, second is $120. Sleep on this flight is worth more than the movie - how well she sleeps here is most of whether the endowment session goes well.
-- **Evening - Ben: book two rides.** Sarah's ride from T2 arrivals to the hotel at about 7:45am, and the car from the hotel to Newchapel at about 11:00am. Send her the address, the confirmation number, the room number and a photo of the hotel entrance before she flies - airport wifi at 7am is not the moment to go hunting through email.
+- **Evening - collect the rental car at Heathrow.** 45-60 min including the desk and the walk to the lot. Doing it tonight means Saturday morning has no paperwork in it - the car is simply in the hotel car park. Take the excess waiver, and confirm it is ULEZ-compliant (Heathrow is inside the zone; any modern car qualifies).
+- **Evening - set up Sarah's ride from T2 arrivals** to the hotel at about 7:45am. Send her the address, the hotel confirmation number, the room number and a photo of the hotel entrance before she flies - airport wifi at 7am is not the moment to go hunting through email.
 
 **Pack the temple clothing and both recommends where they are reachable, not at the bottom of a checked bag.** There are only about two hours at the hotel between her cab and the car to Newchapel.
 
@@ -88,12 +89,12 @@ It is still the only day it can happen: the temple is closed Sunday and Monday, 
 - **6:45am - Sarah lands at Heathrow Terminal 2.** United uses T2; allow 45-60 min for immigration and bags. Ben is not meeting her here.
 - **7:45am - Sarah cabs straight to the Courtyard Heathrow.** About 2 miles, 10-15 min, roughly 20-25 GBP by cab - or the Heathrow Hoppa if it serves this hotel, which is worth confirming in advance. 1 Nobel Drive, Harlington, Hayes UB3 5EY.
 - **8:15am - breakfast, shower, and one hard-stop nap.** About 2hr 30min before the car. **Set an alarm for 10:30am and treat it as non-negotiable** - an open-ended nap on landing day is how people lose the afternoon.
-- **11:00am - car from the hotel to Newchapel.** About 45 miles clockwise on the M25, **1 hour to 1hr 15min**; build in the longer number, because an anticlockwise M25 on a Saturday is the one thing that could eat this margin.
-  - Worth the money rather than the principle. Rail means Heathrow into central London, across to Victoria, out to Lingfield, then a taxi anyway - about 2.5 hours with three changes on no sleep.
-  - Roughly $90-110. **Book the 4:00pm return at the same time** - Newchapel is deep countryside and you will not flag anything down at the gate.
-- **12:15pm - arrive, recommend desk, and the grounds.** Check in by about 12:30. Dedicated in 1958, the first temple in the British Isles and only the second in Europe; the grounds have formal gardens, a large pond, and an oak over 450 years old that President McKay had preserved when he chose the building site. Ask at the desk where the suitcases can go - there is patron accommodation and dressing-room lockers, but confirm rather than assume.
+- **11:00am - drive to Newchapel** in your own rental car. About 45 miles clockwise on the M25, **1 hour to 1hr 15min**; build in the longer number, because an anticlockwise M25 on a Saturday is the one thing that could eat this margin.
+  - Your own keys beat a hired car twice over: no return pickup to arrange in rural Surrey, and no clock running while you are inside.
+  - **First UK driving of the trip.** Left side, roundabouts, busy motorway. Set the route before you pull out, not at the first junction.
+- **12:15pm - arrive, recommend desk, and the grounds.** Check in by about 12:30. **No suitcase problem today** - you are back at the same hotel tonight, so the bags never leave the room. Dedicated in 1958, the first temple in the British Isles and only the second in Europe; the grounds have formal gardens, a large pond, and an oak over 450 years old that President McKay had preserved when he chose the building site. Ask at the desk where the suitcases can go - there is patron accommodation and dressing-room lockers, but confirm rather than assume.
 - **1:00pm - endowment session.** About 2 hours including changing. West Park Road, Newchapel, Lingfield, Surrey RH7 6HW. Bring your own temple clothing; rental is available on site. Both recommends current.
-- **4:00pm - car back to the Courtyard Heathrow.** About 1 hour, in by 5:00pm. Same room you left this morning, nothing to check into.
+- **4:00pm - drive back to the Courtyard Heathrow.** About 1 hour, in by 5:00pm. Drop the car at the airport on the way in, or keep it overnight if the rate is the same. Same room you left this morning, nothing to check into.
 - **Evening - dinner, and where depends on how the day went.** Two honest options, and the right one is whichever matches how she actually feels at 5pm.
   - *Low-key:* the Bath Road hotel strip has the usual pubs and chains within a short walk or a five-minute cab. Unremarkable, but she has been awake 30 hours.
   - *Worth the trip:* Dishoom Covent Garden. Elizabeth line from Heathrow to Tottenham Court Road is about 30 minutes each way. Book it either way - a Saturday walk-in wait runs over an hour and you can always cancel.
@@ -104,9 +105,10 @@ Sunrise 7:20am, sunset 6:15pm.
 
 ## Sunday, Oct 11 - Church, then London on foot
 
-Church in South Kensington, then the classic Thames walk. Sunset is 6:10pm, so you have roughly five hours of daylight after the block - enough for the river, not enough for the river plus museums. The one piece of friction today is the bags: you check out of the Courtyard this morning and the London room is not yours until the afternoon.
+Church in South Kensington, then the classic Thames walk. Sunset is 6:10pm, so you have roughly five hours of daylight after the block - enough for the river, not enough for the river plus museums. The one piece of friction today is the bags, and it is a small one: you check out of the Courtyard, ride one direct train to Paddington, and leave the suitcases at the hotel desk before church. That is the only time they move all week.
 
-- **Early - check out of the Courtyard Heathrow, bags into London.** Elizabeth line to Paddington is about 30 min, then District or Circle to South Kensington. Leave by about 8:00am to make a mid-morning block comfortably. **Ask the London lodging whether they hold bags before check-in** - most will. Failing that, paid left luggage at Paddington. Rolling two suitcases into sacrament meeting is the outcome to avoid.
+- **Early - check out of the Courtyard, one train to Paddington.** Elizabeth line straight from the airport, about 30 min, roughly 50 min door to door. Drop the bags at the Paddington hotel, then Paddington to South Kensington is about 12 min on the Circle or District line. Leave by about 8:00am to make a mid-morning block comfortably.
+  - **Note how long the walk to the Elizabeth line platforms actually takes today** - you are doing it in reverse at 5am on Tuesday.
 - **Morning - sacrament meeting at the Hyde Park Chapel.** 64-68 Exhibition Road, South Kensington tube then a 3-min walk. The Church's central London home since 1961, a tall thin spire on a street of Victorian museums. The visitors' centre inside has exhibits on temples and on the history of the Church in the British Isles - worth 30 minutes after the block. Confirm the meeting time on the ward or stake page beforehand.
 - **12:45pm - Westminster and Big Ben.** District or Circle line, South Kensington to Westminster, 12 min. About 45 min including the bridge.
   - Big Ben is the bell, not the tower - 13.7 tonnes of it, in what has been called the Elizabeth Tower since the Diamond Jubilee in 2012. Each clock face is about 7 metres across. Cross to the south bank for the photo; from the Parliament side you cannot fit the tower in.
@@ -117,37 +119,40 @@ Church in South Kensington, then the classic Thames walk. Sunset is 6:10pm, so y
   - The glass-floor walkway and the Tower itself are separate paid tickets. The Tower alone wants three hours, which you do not have today.
 - **4:15pm - Trafalgar Square and Buckingham Palace** *(optional)*. Nelson on a 52-metre column with the National Gallery behind him - and the Gallery is free, which makes it the best fallback if it rains. **First thing to drop**; after 6:10pm this is two buildings in the dark.
 - **Evening - Padella, Borough.** Hand-rolled pasta at a counter for the price of a sandwich; the eight-hour beef shin ragu and the pici cacio e pepe are what people come back for. No reservations - go at 5pm or queue. Ten minutes' walk west of Tower Bridge, which is why it is tonight.
-- **Evening - check into the London lodging.** Two nights, Oct 11 and 12. This is the only lodging you pay for in England. **Book it near a Piccadilly or Elizabeth line station** - you leave for Heathrow before dawn on Tuesday.
+- **Evening - check into the Paddington hotel.** Two nights, Oct 11 and 12 - the only lodging you pay for in England. While you are at the desk: ask about Elizabeth line engineering works for Tuesday morning, and **book the 5:15am car on the spot**.
 
 **Order matters today:** church first, then the river, because the river works in fading light and church does not move. If the block runs long, drop Trafalgar rather than compressing the walk - the walk is the good part.
 
 Sunset 6:10pm.
 
-## Monday, Oct 12 - Stonehenge, and the last London night
+## Monday, Oct 12 - Westminster Abbey, St Paul's, and Hamilton
 
-A day trip built out of a train and a bus, roughly half the price of a coach tour and on your own schedule. **Take an early train** - round trip is about 7 hours door to door, and going early is what leaves the evening free.
+Stonehenge came out and this is what went in: the two great interiors that are **closed to sightseeing on Sundays**, so yesterday could only walk past them. Then Hamilton in the evening. Two ticketed things and a walk between them - busy, not a march, and everything today is indoors, which is the right shape for the one October day you have no weather plan for.
 
-- **7:30am - train, London Waterloo to Salisbury.** South Western Railway, about 90 min each way. **Book advance tickets the moment the date is fixed** - the walk-up fare is several times higher and this is the easiest place on the trip to waste money. Price two singles against a return.
-- **9:30am - The Stonehenge Tour bus, and the stones.** Bus from outside Salisbury station, about 30 min. **1.5-2 hrs on site.**
-  - The scale only lands in person. The big sarsens weigh around 25 tonnes each and came about 20 miles from the Marlborough Downs; the bluestones came from the Preseli Hills in Wales, roughly 140 miles; and a 2024 study traced the Altar Stone all the way to northeast Scotland, something like 750 km. Moved by hand around 2500 BC and aligned on the midsummer sunrise.
-  - Mid-October means low light, thin crowds, and a real chance of the mist that makes it look like the postcard.
-  - The bus fare bundles site admission, which is what makes this route cheaper. Buses run on a loop - check return times when you board.
-- **12:30pm - Salisbury Cathedral** *(optional, 45 min)*. Britain's tallest spire at 123 metres, and one of only four surviving originals of the 1215 Magna Carta, in the Chapter House. Donation rather than fixed admission. Best possible use of a spare hour.
-- **3:30pm - back in London.**
-- **7:30pm - a West End show** *(optional, about 2.5 hrs, out by 10:15pm)*. 10-min walk over Waterloo Bridge, or one tube stop to Covent Garden.
-  - London's theatre genuinely beats New York and costs less - about forty theatres inside a half-mile of Leicester Square, most of them Victorian. Les Misérables has been running since 1985; The Mousetrap since 1952, the longest-running play anywhere.
-  - **Monday is the only night it fits.** Sunday is dark almost everywhere in the West End.
-  - Roughly $150-220 for two decent seats booked ahead; less at the TKTS booth in Leicester Square on the day, or via a show's day-seat lottery.
-  - **The real cost is sleep.** Curtain down at 10:15pm against a booked 4:45am car is about five hours in bed before a flight and a full first day in Iceland.
-- **Before bed - pack, and confirm the 4:45am car.** Tomorrow's flight leaves Heathrow T5 at 7:50am and you want to be there by 5:50am. Oct 13 is a Tuesday, so there is no Night Tube: the car is not optional and it needs to be booked, not summoned.
+- **9:30am - Westminster Abbey.** Paddington to Westminster, Circle or District line, about 18 min. **2 hrs.** About 30 GBP each.
+  - A thousand years of the country's history in one building. Every coronation since 1066 has happened here, on the Coronation Chair you can still see. Seventeen monarchs are buried in it, and so are Newton, Darwin and Hawking - you walk over them. Poets' Corner has Chaucer, Dickens and Hardy.
+  - **Go at opening.** The nave fills by eleven and it is not a big space for the number of people in it. **Book a timed slot online** - walk-up queues are long and outdoors.
+  - The included audio guide is genuinely worth using here; without it the floor is just names.
+- **11:45am - walk to the river, and lunch.** On foot past Parliament and along Victoria Embankment. **About 90 min.**
+  - You saw all of this from the far bank yesterday. Westminster and Embankment are tourist-priced; walk 10 minutes into St James's or up toward Strand and it improves sharply for the same money.
+- **2:00pm - St Paul's Cathedral, and the dome.** District or Circle to Blackfriars, or a 25-min walk along the Embankment. **1.5-2 hrs.** About 26 GBP each.
+  - Wren's dome has been the shape of the London skyline since 1710, and it survived the Blitz when everything around it burned. Inside, the climb is the point: 257 steps to the Whispering Gallery, where a murmur against the wall carries right round, then 528 in total to the Golden Gallery and the best view in the city.
+  - The climb is narrow, spiral, and one-way with no bail-out partway - **decide at the bottom.** Go up first, look at the floor afterwards.
+  - **If 528 stone steps is a no**, swap this for the **British Museum** - free, 20 minutes away, and the Rosetta Stone and the Elgin Marbles are not a consolation prize. Saves $70.
+- **4:30pm - back to Paddington, change, eat early.** Circle line, about 25 min. **2 hrs of slack.**
+  - You have been on your feet since 9:30 and the show is 2hr 45min sitting down. An hour off your feet and a real dinner first is the difference between enjoying Hamilton and fighting sleep through the second act. **Do not plan to eat afterwards** - you are out at 10:15pm with a 5am start coming.
+- **7:30pm - Hamilton, Victoria Palace Theatre.** Paddington to Victoria, Circle line, about 15 min; the theatre is directly opposite the station. **2hr 45min including a 15-min interval, out by 10:15pm.**
+  - The only evening show available to you all week. Harry Potter, the Lion King and Wicked are all dark on Mondays and matinee-only on Sundays, and Hamilton is dark Sunday. One evening, one show - and it happened to be the first choice. Monday is also the cheapest night in its October run.
+  - From 55 GBP each, but that is the restricted-view price. **Budget 110-180 GBP for two decent seats**, plus booking fees. Runs about 93% full, so book well ahead.
+  - Latecomers are not admitted until a break. Be seated by 7:25pm.
+- **Before bed - pack, and lock in the morning.** **30 min.**
+  - Bags packed tonight, not at 4:30am. Confirm the 5:15am car, set two alarms **and** a front-desk wake-up call for 4:30am, and put something to eat in the room - nothing is open at Paddington that early and the next food is on the plane.
 
-**Stonehenge is not settled.** As of Sept 2026 this day is under review and the stones may not survive the cut. Nothing here is booked yet, and the train and the tour bus are the two things to hold off on until the call is made. If Stonehenge goes, Monday is a blank full day in London with a $220 refund attached; the obvious replacements are the free big museums, Greenwich, or Hampton Court.
+**Why this replaced Stonehenge.** Stonehenge was a 7-hour round trip built on a 7:30am train, and it made Monday the tiring day rather than the good one. Dropping it freed about $220, put two world-class interiors within walking distance of each other, and left an evening open for the show. The stones are not going anywhere.
 
-**Or sleep at Heathrow tonight.** Tomorrow starts with a 4:45am car to Terminal 5. A cheap Heathrow-area hotel tonight - Premier Inn, Ibis, Holiday Inn Express, all around $90-110 off-season - is cheaper than a central London room, kills the $70 pre-dawn car, and buys an hour of sleep before a flight and a full first day in Iceland. The cost is that you finish Monday evening out by the airport rather than in town, which matters if you are doing a West End show and does not if you are not.
+**The cheaper version of today.** Westminster Abbey is the one to keep. Swap St Paul's for the British Museum or the National Gallery - both free, both excellent - and today costs $80 instead of $150.
 
-**You cannot have both.** The Stone Circle Experience and a West End show are each about $150-200. Pick one.
-
-**Optional upgrade:** English Heritage's Stone Circle Experience puts you inside the ring outside normal hours - a completely different experience from the roped path. Check October availability directly with English Heritage; some operators indicate special access is not offered in October or November, so treat it as a bonus rather than a plan. About $150 for the two of you.
+**Tuesday morning is handled.** A car at 5:15am from Paddington to Terminal 5, about 40 minutes on empty roads. The Elizabeth line also works (the 05:03 from Paddington reaches T5 at 05:39) but you do not want a first-train connection between you and an international flight. Book the car; cancel it Monday if the trains look clean.
 
 ---
 
@@ -159,7 +164,11 @@ A day trip built out of a train and a bus, roughly half the price of a coach tou
 
 You land at 9:55am, which is the best thing about the booked flights - it buys most of a day on Reykjanes instead of a scramble to Reykjavík. Everything today is on the same peninsula as the airport, so the driving is short and the order is flexible.
 
-- **7:50am - BA800, Heathrow T5 to Keflavík.** 3h 05m; Iceland is an hour behind London, so the clock works in your favour. One checked bag each, 23kg. **At T5 by 5:50am.**
+- **5:15am - car from Paddington to Terminal 5.** Pre-booked minicab, about 40 min on empty roads, at T5 by about 6:00am. Roughly 45-65 GBP.
+  - The deadline that matters is not the 7:50am departure - it is **bag drop, which closes 45 minutes before, so about 7:05am.** Arriving at 6:00am leaves an hour of real slack.
+  - **Booked, not summoned.** A scheduled Uber does not reserve a driver; a minicab firm does. The hotel's partner firm may quote closer to 100 GBP and you are not obliged to take it.
+  - *If you would rather take the train:* the Elizabeth line reaches T5 at **05:39** and then **06:06** - roughly :06 and :36 past each hour. **Check the train actually serves Terminal 5**; most Elizabeth line services terminate at T2&3 or T4 and never get there.
+- **7:50am - BA800, Heathrow T5 to Keflavík.** 3h 05m; Iceland is an hour behind London, so the clock works in your favour. One checked bag each, 23kg.
 - **10:30am - pick up the rental car at KEF.** 30-45 min including the walk to the lot.
   - This car is the whole reason the aurora plan works. Iceland's weather changes completely over 50 miles, so having your own keys turns a clouded-out night into an hour's drive instead of a write-off.
   - A 2WD handles this entire route in mid-October and saves real money over a 4x4 you will not need. **Take the gravel and sand/ash damage waiver** - that is a genuine Iceland risk, not an upsell.
@@ -233,17 +242,20 @@ The easiest driving day in Iceland - everything strung along Route 1 in a line e
 
 Sunrise 8:18am, sunset 5:58pm.
 
-## Friday, Oct 16 - Hot river + horses
+## Friday, Oct 16 - Hot river + horse farm
 
-Two things today, both the kind you will still be talking about in a year, then a long westward drive to set up Saturday. **Check out of the south coast guesthouse first thing** - you do not come back this way.
+A long soak in a river you hike to, an hour with the horses, then a westward drive to set up Saturday. **Check out of the south coast guesthouse first thing** - you do not come back this way.
 
 - **9:00 - Reykjadalur, Hveragerði.** 50-min drive, about 65 km west on Route 1. **3-4 hrs total: 45-60 min up, 1-1.5 hrs in the water, 40 min down.**
   - Reykjadalur means Steam Valley and it earns the name - about 2 miles uphill through a green valley with steam venting out of the hillsides around you, and at the top a river you sit down in. Hot springs feed it from above and cold water joins from below, so it gets hotter the further upstream you go and you pick your own temperature. Boardwalks, changing screens, nothing else.
   - **Your non-tourist hot spring.** Free, and the most Icelandic thing on this itinerary.
   - Uphill, muddy, unshielded from the wind: waterproof boots, not trainers. Bring your own towel - there is nowhere to rent one and you will walk back down wet if you forget.
-- **14:00 - Icelandic horse riding.** 20-min drive to a farm near Hveragerði or Selfoss. **1-2 hrs in the saddle.**
-  - The breed has been sealed for about a thousand years - Norse settlers brought them in the 9th century and export has been one-way ever since, so a horse that leaves Iceland can never come back. Five gaits instead of the usual three, and the one to feel is the **tölt**: a four-beat gait so level the party trick is holding a full drink while riding it. Famously unbothered by beginners.
-  - **Ask specifically for a ride that demonstrates the tölt when you book**, or you may just walk. Helmets and usually overalls provided.
+- **14:00 - horse farm visit: meet them, don't ride them.** 20-min drive to a farm near Hveragerði or Selfoss. **About 1 hr on the ground.**
+  - The breed has been sealed for about a thousand years - Norse settlers brought them in the 9th century and export has been one-way ever since, so a horse that leaves Iceland can never come back. Five gaits rather than the usual three, including the **tölt**: a four-beat gait so level the party trick is holding a full drink while riding it. They are small, shaggy, startlingly friendly and completely unbothered by strangers - which is exactly why a stable visit works as well as a ride.
+  - Plenty of farms around Selfoss and Hveragerði run short guided stable visits with no saddle involved. **Ask for a 'meet the horses' or 'horse farm visit', not a riding tour** - expect 3,000-6,000 ISK each rather than the 12,000+ a ride costs. Book ahead anyway; the small farms are not staffed for walk-ins in October.
+  - **Do not feed them**, however much they ask. Iceland runs strict equine biosecurity - the herd has no immunity to anything from outside - and hand-feeding also makes them nippy with the next visitor. Flat palm, approach from the side, scratch the neck rather than the face.
+  - *Free fallback:* Icelandic horses stand at roadside fences all along the south coast, and greeting them over a fence is normal and welcome. Pull fully off the road, never into a field, same no-feeding rule.
+  - *If you want something more structured:* **Friðheimar** near Reykholt pairs a horse stable with a tomato-greenhouse restaurant and a short show about the breed. Genuinely good, but it sits on Wednesday's Golden Circle route rather than today's, and Wednesday has no slack in it.
 - **17:00 - drive to the Keflavík area.** 1hr 15min, about 100 km on Routes 1 and 41. **One night, the last one.**
   - Sleeping out here rather than in Reykjavík is deliberate: Blue Lagoon is a 20-minute drive from these beds on a booked 9am slot, and that is the whole reason Saturday morning works.
   - Fill the tank tonight rather than tomorrow.
@@ -278,12 +290,15 @@ FI853 does not leave until 4:25pm, and that is what makes today the right home f
 
 # WHY THE LONDON DAYS ARE IN THIS ORDER
 
-The order is forced by three fixed constraints, and it is worth knowing which ones so you do not accidentally undo it.
+The order is forced by a handful of fixed constraints, and it is worth knowing which ones so you do not accidentally undo it.
 
 1. **The temple is closed Sunday and Monday, and Tuesday is the 7:50am flight to Keflavík.** Saturday is the only day in the London window when a session is possible at all - so the session drives the day Sarah lands, not the other way round.
-2. **Church is Sunday morning and does not move**, which puts the Thames walk in Sunday afternoon. That works because the whole walk is outdoors and free and reads fine in fading light.
-3. **Stonehenge needs a full day and cannot share one with church**, so it lands on Monday. Take the early train and Monday evening comes back free.
-4. **West End theatre is dark on Sundays almost everywhere**, so Monday evening is the only slot a show fits. The cost is sleep: curtain down at 10:15pm against a 4:45am car.
+2. **Saturday night is at the Courtyard Heathrow because work already paid for it.** That is why Saturday runs airport-temple-airport instead of ending in town, and why the Paddington room is only two nights.
+3. **Church is Sunday morning and does not move**, which puts the Thames walk in Sunday afternoon. That works because the whole walk is outdoors and free and reads fine in fading light.
+4. **Monday is the only day the two great interiors are open to visitors.** Westminster Abbey and St Paul's both close to sightseeing on Sundays, so Sunday could only walk past them - which is what makes Monday worth more than a second outdoor day.
+5. **Hamilton is Monday because it is the only evening show that exists this week.** Harry Potter, the Lion King and Wicked are all dark on Mondays and matinee-only on Sundays, and Hamilton is dark Sunday. One evening, one show - and it happened to be the first choice.
+6. **Paddington is the base for Sunday and Monday** because it is the only district that serves all three days: a direct Elizabeth line train in from Heathrow, 12 minutes to church, 15 minutes to the theatre, and the only station with trains reaching Terminal 5 early enough on Tuesday.
+7. **The cost is sleep:** curtain down at 10:15pm against a 5:15am car to Terminal 5. That is why the car is booked rather than hoped for, and why Monday ends with an early dinner instead of a late one.
 
 **What this replaced:** the old plan put the session on Tuesday morning, which meant flying to Iceland out of Gatwick, landing in the evening, and pushing the entire Reykjanes afternoon onto an already-full Friday. BA800 out of Heathrow T5 is now booked, so that variant would also mean rebuying a flight. The Saturday session costs Iceland nothing and is strictly better.
 
@@ -323,6 +338,107 @@ No active eruption as of the writing of this itinerary. The last ran July 16 to 
 
 ---
 
+# WHERE TO BOOK
+
+Six paid nights. Oct 10 is work-paid at the Courtyard Heathrow, and Oct 17 is spent on a plane. Each of these is a **search brief** - filter on the map, not on the hotel's name.
+
+**Book the three Iceland beds first.** Mid-October south-coast guesthouses are a small inventory and the rural aurora-friendly ones go early. London has far more supply and can wait a week.
+
+---
+
+## Paddington, London - Sun Oct 11 to Tue Oct 13 (2 nights)
+
+**Budget $180-230 a night.** The only London district that solves all three days at once: a direct Elizabeth line train in from Heathrow on Sunday, 12 minutes to church, 15 minutes to Hamilton, and the only station with trains reaching Terminal 5 early enough on Tuesday.
+
+**Search these streets:**
+- **Praed Street** - directly opposite the station, the shortest walk there is
+- **London Street, Norfolk Place** - 2 to 4 minutes
+- **Craven Road, Craven Hill** - 4 to 6 minutes
+- **Eastbourne Terrace, Westbourne Terrace** - 3 to 6 minutes
+- **Norfolk Square** and the east end of **Sussex Gardens** - 5 to 8 minutes
+- **Paddington Basin / Merchant Square** - 5 to 8 minutes, newer buildings
+
+**Rule out:**
+- **Lancaster Gate, Bayswater, Queensway** - they show up in Paddington searches and are a 12-20 minute walk with suitcases
+- The far west end of **Sussex Gardens** past Norfolk Square - it runs a long way and the numbers get high
+- **Edgware Road** north of the flyover - different neighbourhood, longer walk
+
+**What actually matters:**
+1. **Set the map filter to 10 minutes' walk of Paddington station and ignore the name.** Plenty of hotels called Paddington are nowhere near it.
+2. **Confirm there is a LIFT.** Much of this district is converted Georgian terraces - four floors, narrow staircases, no elevator, your room on the third. The most common unpleasant surprise here.
+3. **Ask whether they hold luggage before check-in.** Almost all will, and you arrive Sunday morning well before the room is ready.
+4. **Ask how long the walk is to the Elizabeth line and Heathrow Express platforms specifically**, not just to the station. Paddington is big and those platforms are a hike from some entrances.
+
+*Starting points:* the **Hilton London Paddington** is built into the station itself (the old Great Western Royal Hotel), which makes it the shortest possible walk at 5am, at a price. **Hotel Indigo Paddington** and the **Premier Inn** on the Praed Street side are the usual mid-range picks. Verify locations and rates yourself - these are starting points, not recommendations.
+
+---
+
+## Reykjavik - Tue Oct 13 to Wed Oct 14 (1 night)
+
+**Budget $180-210.** You arrive about 5pm off the Reykjanes peninsula, want dinner downtown and aurora night 1 out at Grotta, and leave north-east on Route 36 for Thingvellir in the morning.
+
+**Search these areas:**
+- **101 postcode** - the centre. Laugavegur, Hverfisgata, Skolavordustigur, around Tjornin
+- **Skulagata / Saebraut waterfront** - still walkable in, much easier parking
+- **105 Borgartun / Tunin** - about 15 minutes' walk from the centre, cheapest of the three, and already on the road out
+
+**Rule out:**
+- Anything advertised as **near the airport** - that is Keflavik, 45 minutes away, a completely different town
+- Somewhere central with no parking provision at all
+
+**What actually matters:**
+1. **PARKING, not the address.** You have a rental car and central Reykjavik parking is paid, metered and scarce. Filter for free or on-site parking and accept a 10-minute walk into town for it - that trade is worth more than being on Laugavegur.
+2. **Walkable to dinner.** Messinn for fish and Baejarins Beztu for the hot dog are both central, and you do not want to drive after a long day.
+3. One night only, so nothing else really matters. The least fussy booking of the six.
+
+---
+
+## South coast, Hvolsvollur area - Wed Oct 14 to Fri Oct 16 (2 nights, same place)
+
+**Budget $160-180 a night. This is the important one.** Aurora nights 2 and 3 happen here and it is statistically your best chance of the week. It is also the base for Thursday's entire south-coast run, all of which sits east along Route 1.
+
+**Search these areas:**
+- **Hvolsvollur** and the farms immediately around it - best positioned for Thursday
+- Anywhere along **Route 1 between Hella and Hvolsvollur**
+- **Fljotshlid**, the valley road running north-east out of Hvolsvollur - rural and dark
+- **Skogar**, further east by Skogafoss - even better for Thursday, but a longer Wednesday drive
+
+**Rule out:**
+- **Hveragerdi and Selfoss** - too far west, and they add 40 minutes to every Thursday stop
+- **Vik** - too far east, and it turns Wednesday's arrival into a slog
+- Anything in the middle of a town with street lighting. Town glow is the thing you drove out here to escape.
+
+**What actually matters:**
+1. **BOOK BOTH NIGHTS IN THE SAME PLACE.** Do not move between aurora nights 2 and 3 - packing up mid-stay is how you end up watching the sky from a car park.
+2. **Rural, with an unobstructed view north.** Read the reviews for the words *dark* and *aurora*; guests always mention it.
+3. **Look for an AURORA WAKE-UP CALL.** Some Icelandic hotels ring the room if it appears. Across two nights out here that is worth paying a little extra for - filter or ask for it specifically.
+4. **Check whether dinner is served on site.** Evening food around Hvolsvollur is thin and closes early, and discovering that at 9pm on Wednesday after the glacier is a bad time to find out. Many of these are working farms that feed guests - that is the one to book.
+
+*Starting points:* **Hotel Ranga**, between Hella and Hvolsvollur, is the famous aurora hotel - on-site observatory and a wake-up service - but it runs well above this budget. **Stracta Hotel** in Hella and **Hotel Hvolsvollur** are the mainstream mid-range options, and the surrounding farm guesthouses are where the value is. Verify all of it yourself.
+
+---
+
+## Reykjanesbaer - Fri Oct 16 to Sat Oct 17 (1 night)
+
+**Budget $120-180, likely the cheap end.** Twenty minutes from Blue Lagoon for the 9am slot and five from the airport. That is the entire job of this bed.
+
+**Search these areas:**
+- **Reykjanesbaer** - the municipality covering Keflavik and Njardvik
+- **Keflavik harbour**, which is the nicest part of it
+- **Asbru**, the old NATO base by the airport - functional, cheap, very close
+
+**Rule out:**
+- **GRINDAVIK.** It is closer to Blue Lagoon, and it has been repeatedly evacuated since the 2023 eruptions began. Do not book there.
+- **Reykjavik** - 45 minutes from the lagoon, and it undoes the reason you drove out here
+
+**What actually matters:**
+1. Free parking, which is universal out here.
+2. **This is the line most likely to come in under its placeholder.** Off-season Reykjanesbaer is cheap - take the savings rather than upgrading.
+3. **Book it refundable.** If Svartsengi is erupting you are rebooking to Sky Lagoon and want to be near Reykjavik instead.
+4. Fill the fuel tank in town on Friday night, not Saturday morning.
+
+---
+
 # BUDGET
 
 | Category | Planned |
@@ -330,8 +446,8 @@ No active eruption as of the writing of this itinerary. The last ran July 16 to 
 | **Flights** | **$1,200** |
 | Sarah MSN-LHR + KEF-MSN | $900 |
 | LHR-KEF ×2 | $300 |
-| **Lodging (7 nights)** | **$1,320** |
-| London ×2 (Oct 10 is work-paid) | $400 |
+| **Lodging (6 paid nights of 7)** | **$1,120** |
+| Paddington ×2 (Oct 10 is work-paid) | $400 |
 | Reykjavík ×1 | $200 |
 | South Iceland guesthouse ×2 | $340 |
 | Keflavík / Reykjanesbær ×1 | $180 |
@@ -339,39 +455,38 @@ No active eruption as of the writing of this itinerary. The last ran July 16 to 
 | Iceland rental car, 5 days (Oct 13-17) | $425 |
 | O'Hare parking, Oct 9-17 | $170 |
 | Madison to O'Hare and back | $60 |
-| Pre-dawn car to Heathrow T5 | $70 |
+| 5:15am car, Paddington to T5 | $70 |
 | Fuel | $140 |
 | London transit | $80 |
-| **Excursions (both)** | **$1,200** |
-| Stonehenge - train + tour bus + admission | $220 |
+| **Excursions (both)** | **$1,170** |
+| Westminster Abbey + St Paul's dome ×2 | $150 |
 | Into the Glacier from Gullfoss | $190 |
-| Icelandic horse riding | $220 |
+| Horse farm visit ×2 (no riding) | $70 |
 | Blue Lagoon, Comfort ×2 + luggage hold | $210 |
-| Temple day: cars to and from Newchapel | $150 |
+| Temple day: 1-day rental car + fuel | $150 |
 | Secret Lagoon | $80 |
 | Lava Show, Vík | $120 |
 | Þingvellir parking | $10 |
-| West End show ×2 (optional) | not counted |
+| Hamilton ×2, Mon Oct 12 | $190 |
 | Reykjadalur | free |
 | **Home while you are away** | **$520** |
 | Mom's round-trip flights to Madison | $400 |
 | Groceries and extras for her week | $120 |
 | **One nice dinner** | **$150** |
-| **TOTAL** | **$5,135** |
+| **TOTAL** | **$5,105** |
 
-**This is $135 past the $5,000 target**, down from $335 - work covering Sat Oct 10 at the Courtyard Heathrow took $200 straight off the London lodging line.
+**This is $105 past the $5,000 target.** Dropping Stonehenge freed $220 and turning the horse ride into a farm visit freed $150; Hamilton put back $190 and Monday's two cathedrals $150.
 
 **The realistic menu if you want the number back under $5,000:**
-- **Sleep near Heathrow on Mon Oct 12** instead of central London: a Premier Inn or Ibis runs $90-110 off-season against a $200 central room, *and* it kills the $70 pre-dawn car to Terminal 5. About **$145** - this one closes the gap on its own
-- If Stonehenge comes out of Monday, that is another **$220** - but do not count it until the call is made
+- **Swap St Paul's for the British Museum or the National Gallery**, both free: saves **$70**, and Westminster Abbey is still the centrepiece of the day
 - Swap Secret Lagoon for a municipal pool like Laugardalslaug (~$12 for both): saves about **$68**
-- Cut the nice dinner: **$150**
+- Either of those on its own puts you under target. Both together lands you near **$4,970**
+- Trim the Oct 16 lodging - Reykjanesbaer guesthouses run well under the $180 placeholder off-season, and this is the line most likely to come in cheap
+- Cut the nice dinner: **$150** - last resort, not first
 
-Take the Monday-at-Heathrow swap first. It is the only one that saves money and makes the trip better at the same time.
+**Do not cut Blue Lagoon, the rental car for the temple, Hamilton, or Westminster Abbey.** Those are the trip. If something still has to give, let it be the $5,000.
 
-**Do not cut Blue Lagoon, the temple car, or the horses.** Those are the trip. If something has to give, let it be the $5,000.
-
-**Also not yet costed:** international phone service for both phones (see the checklist), and a West End show if you want one.
+**Also not yet costed:** international phone service for both phones (see the checklist).
 
 ---
 
@@ -382,14 +497,14 @@ Take the Monday-at-Heathrow swap first. It is the only one that saves money and 
 - [ ] Book Sarah ORD-LHR and KEF-ORD
 - [ ] Book LHR-KEF ×2 *(done - BA800)*
 - [ ] Reserve Iceland rental car - take gravel + sand/ash waiver
-- [ ] Check English Heritage for October Stone Circle Experience availability
+- [ ] **Book Hamilton** for Mon Oct 12, 7:30pm at the Victoria Palace Theatre. Runs ~93% full, Monday is the cheapest night in its October run, and 55 GBP is restricted view - budget 110-180 GBP for two decent seats
 - [ ] Confirm both temple recommends are current - **the 1:00pm endowment on Sat Oct 10 is booked and there is no second chance on this trip**
 - [x] ~~Reserve the Sat Oct 10 temple session~~ **Booked: 1:00pm endowment, London England Temple.** Save the confirmation offline; recommend desk by 12:30
-- [ ] **Book the Courtyard Heathrow to Newchapel car** for 11:00am Sat Oct 10, plus the 4:00pm return - book both legs at once
+- [ ] **Reserve a one-day rental car at Heathrow** for the temple trip. Collect it Friday evening so Saturday morning has no desk queue in it; take the excess waiver and confirm it is ULEZ-compliant
 - [ ] **Set up Sarah's ride from Heathrow T2 to the Courtyard** for about 7:45am Sat Oct 10, and send her the address, the hotel confirmation number, the room number and a photo of the entrance before she flies
 - [ ] **Tell the Courtyard that Sarah is on the room for both nights** - the work reservation is written for 1 adult
 - [ ] Sort how Ben gets to Madison airport on Oct 3. He returns to O'Hare on the 17th, not Madison, so leaving his own car in the MSN lot does not work
-- [ ] Confirm the temple can hold the suitcases during the session, or find somewhere that can
+- [x] ~~Confirm the temple can hold the suitcases~~ **Not needed** - you sleep at the Courtyard both Friday and Saturday, so the bags never leave the room
 - [ ] Verify passports are valid at least 6 months past Oct 17, 2026
 - [ ] Apply for **UK ETA** for both of you - required from US citizens since January 2025. Confirm the current fee and processing time on gov.uk
 - [ ] Check whether **ETIAS** is live for Iceland by October 2026 - the EU has delayed it repeatedly
@@ -402,22 +517,22 @@ Take the Monday-at-Heathrow swap first. It is the only one that saves money and 
 
 ## Four to six weeks out
 - [ ] Book Into the Glacier - **Gullfoss departure**, not Reykjavík
-- [ ] Book Icelandic horse riding farm near Hveragerði or Selfoss
+- [ ] Book a horse farm **VISIT** near Hveragerði or Selfoss for Fri Oct 16 - ask for a stable visit or 'meet the horses', not a riding tour. Roughly 3,000-6,000 ISK each; small farms are not staffed for walk-ins in October
 - [ ] Book Lava Show, Vík
 - [ ] **Book Blue Lagoon for Sat Oct 17** - Comfort ×2, earliest timed slot, plus the luggage hold. Read the cancellation terms
-- [ ] Book London lodging **×2 nights, Oct 11 and 12** - Oct 10 is covered by work. Pick something on the Piccadilly or Elizabeth line, and ask whether they hold bags before check-in
-- [ ] **Decide Mon Oct 12 night:** cheap Heathrow-area hotel (~$100, kills the $70 pre-dawn car, an hour more sleep) or stay central (~$200, better if you are doing a West End show)
-- [ ] Book Reykjavík ×1, south Iceland guesthouse ×2, Keflavík ×1
-- [ ] **Decide whether Stonehenge is happening at all before buying anything.** If yes: advance Waterloo-Salisbury tickets, early train around 7:30am
-- [ ] Book The Stonehenge Tour bus - only after the Stonehenge call is made
+- [ ] Book a **PADDINGTON** hotel for Oct 11 and 12 - within a 10-minute walk of the station, with a lift, and confirm they hold bags before check-in. See **Where to book** above for the exact streets
+- [ ] At Paddington check-in, ask about Elizabeth line engineering works for Tuesday and the walk to the Elizabeth line / Heathrow Express platforms, then **book the 5:15am car on the spot**
+- [ ] Book the four Iceland beds: Reykjavík ×1 (Oct 13), south coast ×2 (Oct 14-15, **same place**), Reykjanesbær ×1 (Oct 16). See **Where to book** above - the south coast one is the only bed on this trip that is hard to substitute
+- [ ] **Book a timed Westminster Abbey slot for 9:30am Mon Oct 12** - go at opening, the nave fills by eleven. ~30 GBP each
+- [ ] Book **St Paul's** for Mon Oct 12 afternoon, ~26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start
 - [ ] Reserve Dishoom Covent Garden for **Sat Oct 10 evening** - Saturday nights need booking, and it is cancellable if Sarah would rather eat near the hotel and sleep
-- [ ] Decide on a **West End show for Mon Oct 12**. Trade against the Stone Circle Experience, not in addition to it
+- [x] ~~Decide on a West End show~~ **Hamilton, Mon Oct 12, 7:30pm.** Every other big title is dark Mondays and matinee-only Sundays, so this was the only evening show available all week
 - [ ] Notify banks of travel; confirm no foreign transaction fees
 - [ ] **Sort international phone service for both phones, Oct 9-17.** Check what your plan already covers in the UK and Iceland, then add a travel pass or an eSIM. You need data working for vedur.is cloud maps, road.is, offline-map fallback, and Mom
 - [ ] Download offline maps for Iceland and southern England
 - [ ] Extend the Iceland rental car through Saturday afternoon - it is 5 days now, not 4
-- [ ] Book a car to Heathrow T5 for 4:45 to 5:15am on Tue Oct 13 - no Night Tube on a weekday
-- [ ] Book the Oct 16 lodging in the **Keflavík area** - a 20-minute run to a 9am Blue Lagoon slot
+- [ ] Book a **minicab for 5:15am Tue Oct 13**, Paddington to Terminal 5. Use a minicab firm, not a scheduled Uber - scheduling an Uber does not reserve a driver. ~45-65 GBP; cancels free if the trains look clean on Monday
+- [ ] Book Oct 16 in **Reykjanesbær, NOT Grindavík** - Grindavík is closer to Blue Lagoon but has been repeatedly evacuated for the eruptions since 2023
 - [ ] Write the week up for Mom: school runs, activities, bedtimes, pediatrician, insurance, allergies, emergency contacts
 - [ ] Leave a signed medical-consent note so Mom can authorise treatment for the kids if she has to
 
@@ -426,6 +541,7 @@ Take the Monday-at-Heathrow swap first. It is the only one that saves money and 
 - [ ] Check vedur.is and road.is daily starting three days out
 - [ ] **Check almannavarnir.is for Reykjanes activity before Saturday** - Blue Lagoon shuts when Svartsengi does
 - [ ] Charge and pack the phone tripod
+- [ ] Check TfL for Elizabeth line engineering works on Tue Oct 13, and confirm with BA that bag drop for BA800 closes 45 min before the 7:50am departure
 - [ ] Screenshot all confirmations in case of no signal
 - [ ] Hand over to Mom: house keys, car seats, wifi password, pediatrician number, allergy notes
 - [ ] Send Mom every flight number and the link to this app
