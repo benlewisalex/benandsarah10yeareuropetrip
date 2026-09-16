@@ -734,7 +734,7 @@ const TRIP = {
       { n: 2, text: "If ground access opens, hikes from the Reykjanes trailheads run 2-4 hours round trip over rough lava. Free." },
       { n: 3, text: "Helicopter tours launch within a day or two and give the best views, at $400-600 per person. That breaks the budget - your call in the moment." },
       { n: 4, text: "Assume Blue Lagoon is shut. It sits at Svartsengi inside the affected area and closed repeatedly through the 2023-2025 sequence. Move Saturday morning to Sky Lagoon instead of waiting to see." },
-      { n: 5, text: "And assume you have lost the Friday bed too. Volcano Escape is in Grindavík, inside the evacuation zone, and it is non-refundable - so an eruption costs you the room whatever you do. The refundable Reykjanesbær backup is what stops that also costing you a place to sleep on your last night." }
+      { n: 5, text: "And assume you have lost the Friday bed too. Volcano Escape is in Grindavík, inside the evacuation zone, and non-refundable, so an eruption costs you the room whatever you do - that risk is knowingly accepted. The recovery is a same-day rebooking, and it lines up with the lagoon decision: Reykjavík for the bed, Sky Lagoon for the morning, 45 minutes to KEF. Check almannavarnir.is the night before so you are making that call from a warm cabin rather than a closed road." }
     ],
     hazard: { title: "Never approach a fresh flow from downwind.",
       text: "Volcanic gas concentrations near vents are lethal, and that's how people actually die at these sites." }
@@ -847,8 +847,8 @@ const TRIP = {
       { id: "fs13", text: "Book a minicab for 5:15am Tue Oct 13, Paddington to Terminal 5. Use a minicab firm, not a scheduled Uber - scheduling an Uber does not reserve a driver. Roughly 45-65 GBP; cancel free if the trains look clean on Monday", budgetIds: ["trn-lhrcar"], extra: true },
       { id: "fs14", text: "Book Blue Lagoon for Sat Oct 17 - Comfort x2, earliest timed slot, plus the luggage hold. Read the cancellation terms; an eruption closure should be refundable", budgetIds: ["exc-bluelagoon"], extra: true },
       { id: "fs15", text: "Contact the Volcano Escape host for key pickup and arrival time. The confirmation says to, and Grindavík is largely depopulated - not a town to improvise in after dark", extra: true },
-      { id: "fs27", text: "BOOK A REFUNDABLE REYKJANESBÆR BACKUP for Fri Oct 16. About $120-150, free to cancel, dropped in early October if Reykjanes is quiet. Grindavík sits inside the active Sundhnúkur zone and the Volcano Escape booking is non-refundable - this turns a possible evacuation from a scramble on your last night into a phone call", extra: true },
-      { id: "fs28", text: "Check almannavarnir.is weekly from late September. If Grindavík closes you need to know while you can still act, and the same closure very likely shuts Blue Lagoon - so it is one decision, not two", extra: true },
+      { id: "fs27", text: "Decided: no backup bed. The risk is accepted and you rebook on the day if Grindavík closes. Read the Plan B on the Info tab once so you are not composing it at 5pm on your last Friday - the short version is sleep in Reykjavík, swim at Sky Lagoon, drive to KEF", extra: true },
+      { id: "fs28", text: "Check almannavarnir.is weekly from late September, then the night before and the morning of Oct 16. Since there is no backup booking, this check IS the plan - it is what turns an evacuation into a rebooking rather than a surprise at the door", extra: true },
       { id: "fs16", text: "Write the week up for Mom: school runs, activities, bedtimes, pediatrician, insurance details, allergies, emergency contacts", extra: true },
       { id: "fs17", text: "Leave a signed medical-consent note so Mom can authorise treatment for the kids if she has to", extra: true }
     ]},
@@ -915,7 +915,7 @@ const TRIP = {
      filter on, the streets that qualify, what to rule out, and the one or two
      criteria that actually matter for that night. */
   lodging: {
-    lede: "All six paid nights are booked. The one that still needs work is Grindavík on Fri Oct 16 - not the booking, but the fallback behind it. Oct 10 is work-paid at the Courtyard Heathrow and Oct 17 is spent on a plane. The unbooked entries below are search briefs - filter on the map, not on the hotel's name.",
+    lede: "All six paid nights are booked. Grindavík on Fri Oct 16 sits inside the active volcano zone and is non-refundable; that risk is accepted deliberately, with a same-day Plan B instead of a backup bed. Oct 10 is work-paid at the Courtyard Heathrow and Oct 17 is spent on a plane. The unbooked entries below are search briefs - filter on the map, not on the hotel's name.",
     stays: [
       { id: "lg-pad", label: "Paddington, London", nights: "Sun Oct 11 - Tue Oct 13 (2 nights)",
         budget: "$180-230 a night", budgetId: "lod-london",
@@ -1075,8 +1075,10 @@ const TRIP = {
           ],
           confirmOnArrival: [
             "READ THIS FIRST: Grindavík is the town the plan told you to avoid. It has been repeatedly evacuated since the Sundhnúkur eruptions began in November 2023, fissures have opened inside the town itself, and the Met Office considers another intrusion the most likely outcome. This booking is non-refundable and already paid, so the money is committed - what is not committed is having a fallback.",
-            "BOOK A REFUNDABLE REYKJANESBÆR BACKUP. About $120-150, free to cancel, and you drop it in early October if Reykjanes is quiet. That turns a possible evacuation from a scramble on your last night into a phone call. This is the single most useful thing left on the whole trip.",
-            "Check almannavarnir.is weekly from late September, not just the day before. If Grindavík closes you need to know while you can still act, and the same closure very likely shuts Blue Lagoon - so it is one decision, not two.",
+            "DECISION: no backup bed. The risk is accepted - if Grindavík closes you rebook on the day, and October is off-season with real supply in both Reykjanesbær and Reykjavík. What follows is the Plan B, worth reading once now rather than composing at 5pm on your last Friday.",
+            "Plan B, and it is more coherent than it sounds. The same closure that takes Grindavík almost certainly shuts Blue Lagoon, and the Blue Lagoon fallback is Sky Lagoon - which is in Reykjavík. So an evacuation pushes both decisions the same way: sleep in Reykjavík, swim at Sky Lagoon in the morning, drive the 45 minutes to KEF. That still lands comfortably ahead of a 4:25pm flight.",
+            "Check almannavarnir.is weekly from late September, then the night before and the morning of the 16th. With no backup booked, this check is the plan - it is the difference between rebooking calmly from the cabin and finding a road closed.",
+            "Keep the bags packed rather than spread out. It is one night, and if an evacuation comes at 2am you want to leave in five minutes.",
             "Arrange key pickup with the host now. The confirmation says to contact them to find out where the keys are and what time to arrive, and Grindavík is largely depopulated - this is not somewhere to improvise at 8pm.",
             "Do not count on fuel or food in Grindavík. Fill the tank in Reykjanesbær or on Route 41 on the way in, and bring dinner with you."
           ]
@@ -1098,7 +1100,7 @@ const TRIP = {
         ] }
     ],
     notes: [
-      "Nothing left to book, but one thing left to do: a refundable Reykjanesbær bed behind the Grindavík night. See that entry for why.",
+      "Nothing left to book. The Grindavík night carries a known, accepted volcano risk and a same-day Plan B rather than a backup reservation - see that entry.",
       "Refundable where the plan is still moving: Reykjanesbær because of the volcano, and Paddington if you are still weighing the Courtyard.",
       "Work covers Fri Oct 9 and Sat Oct 10 at the Courtyard Heathrow, and Sat Oct 17 is spent flying. Neither needs booking."
     ]

@@ -442,8 +442,12 @@ Check-in Fri Oct 16, 3:00pm to 11:00pm. Check-out Sat Oct 17, any time from midn
 
 **Read this first.** Grindavík is the town this plan told you to avoid. It has been repeatedly evacuated since the Sundhnúkur eruptions began in November 2023, fissures have opened inside the town itself, and the Met Office considers another intrusion the most likely outcome. The booking is non-refundable and already paid, so the money is committed. **The fallback is not.**
 
-1. **BOOK A REFUNDABLE REYKJANESBÆR BACKUP.** About $120-150, free to cancel, dropped in early October if Reykjanes is quiet. That turns a possible evacuation from a scramble on your last night into a phone call. **This is the single most useful thing left on the whole trip.**
-2. **Check almannavarnir.is weekly from late September**, not just the day before. If Grindavík closes you need to know while you can still act - and the same closure very likely shuts Blue Lagoon, so it is one decision rather than two.
+**Decision: no backup bed.** The risk is accepted - if Grindavík closes you rebook on the day, and October is off-season with real supply in both Reykjanesbær and Reykjavík.
+
+**Plan B, worth reading once now rather than composing it at 5pm on your last Friday.** It is more coherent than it sounds: the same closure that takes Grindavík almost certainly shuts Blue Lagoon, and the Blue Lagoon fallback is **Sky Lagoon, which is in Reykjavík**. So an evacuation pushes both decisions the same way - **sleep in Reykjavík, swim at Sky Lagoon in the morning, drive the 45 minutes to KEF.** That still lands comfortably ahead of a 4:25pm flight.
+
+1. **Check almannavarnir.is weekly from late September**, then the night before and the morning of the 16th. With no backup booked, **this check is the plan** - it is the difference between rebooking calmly from the cabin and finding a road closed.
+2. **Keep the bags packed rather than spread out.** It is one night, and if an evacuation comes at 2am you want to leave in five minutes.
 3. **Arrange key pickup with the host now.** The confirmation tells you to contact them for where the keys are and what time to arrive, and Grindavík is largely depopulated.
 4. **Do not count on fuel or food in Grindavík.** Fill the tank in Reykjanesbær or on Route 41 on the way in, and bring dinner with you.
 
@@ -536,8 +540,8 @@ Check-in Fri Oct 16, 3:00pm to 11:00pm. Check-out Sat Oct 17, any time from midn
 - [x] ~~Reykjavík ×1~~ **Fosshotel Baron, Barónsstíg 2-4.** Tue Oct 13, ISK 23,106, free to cancel until Oct 10
 - [x] ~~South coast ×2~~ **Rauduskridur farm, the Green Cabin, Hvolsvöllur.** Both nights Oct 14-16 in one place, entire cabin, 4.88 from 740 reviews
 - [x] ~~Book the last Iceland bed~~ **Volcano Escape Grindavík with hot tub.** Fri Oct 16, EUR 233.10 paid, non-refundable
-- [ ] **BOOK A REFUNDABLE REYKJANESBÆR BACKUP for Fri Oct 16.** ~$120-150, free to cancel, dropped in early October if Reykjanes is quiet. Grindavík is inside the active Sundhnúkur zone and the booking is non-refundable - **this is the most useful thing left on the trip**
-- [ ] **Check almannavarnir.is weekly from late September.** If Grindavík closes you need to know while you can still act, and the same closure very likely shuts Blue Lagoon
+- [x] ~~Book a refundable backup~~ **Decided against.** Risk accepted; rebook on the day if Grindavík closes. Read the Plan B above once so you are not composing it on your last Friday
+- [ ] **Check almannavarnir.is weekly from late September**, then the night before and the morning of Oct 16. With no backup booked, this check **is** the plan
 - [ ] **Contact the Volcano Escape host** for key pickup and arrival time
 - [ ] **Resolve the cabin Plus code QQ2H+QMJ to latitude and longitude and save it offline.** Not a street address, will not go into a car sat-nav, and you arrive in the dark with no guarantee of signal
 - [ ] **Message the cabin hosts:** is there a yard light near the terrace and is it on all night, and is there any gas appliance or wood stove given there is no CO alarm reported
