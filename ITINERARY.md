@@ -276,25 +276,35 @@ Sunrise 8:21am, sunset 5:54pm.
 
 ## Saturday, Oct 17 - Blue Lagoon, then home
 
-FI853 does not leave until 4:25pm, and that is what makes today the right home for Blue Lagoon. **This is the only slot on the trip where the lagoon displaces nothing:** twenty minutes from the airport, five hours of runway, and no aurora night waiting at the other end of it.
+FI853 does not leave until 4:25pm, and that is what makes today the right home for Blue Lagoon. **This is the only slot on the trip where the lagoon displaces nothing**, and it still leaves room for the one thing the plan never made space for: an unhurried drive along the coast. **Ninety minutes in the water instead of two and a half funds the whole thing.**
 
 - **8:30am - check out and drive to Blue Lagoon.** 10-min drive from Grindavík on Route 43. Take the bags with you rather than coming back for them - there is a paid luggage hold at the entrance and an airport-day visit is exactly what it exists for.
-- **9:00am - Blue Lagoon.** **2-2.5 hrs in the water.**
+- **9:00am - Blue Lagoon.** **1.5-2 hrs in the water.**
   - The water is an accident. It is the outflow of the Svartsengi geothermal plant next door - about 70% seawater, 30% fresh, pulled up from 2,000 metres down, loaded with silica and algae that turn it opaque milky blue and hold it around 38-39C. People started bathing in the runoff in the 1980s because psoriasis got better in it; it became a formal facility in 1992. Steam, black lava walls on every side, a mud mask, and a swim-up bar in the middle of a lava field. The most touristed thing in Iceland and still worth it.
   - **Comfort** is the tier that makes sense: entry, a towel, the silica mud mask and a drink at the bar. Premium adds a robe and slippers you will not use on the way to an airport; the Retreat is a separate building at several times the price.
-  - **Timed entry, pre-booked.** Walk-ins are effectively not a thing. Take the earliest slot they sell - October opening is usually around 8am but verify, and an early slot is emptier.
+  - **Timed entry, pre-booked.** Walk-ins are effectively not a thing. **A 9:00am slot is the right call** - early enough to be quiet, and it puts you back on the road by 11:00 with two and a half hours before anything is urgent. Verify October opening times when you book.
   - Work the free conditioner through your hair before you get in and keep your head above water. The silica wrecks hair and you cannot fix it at 35,000 feet.
   - Shower properly first, without a swimsuit on. It is not a suggestion here and the staff enforce it.
   - Phone stays in the locker unless it is in a floating case.
-- **12:00pm - out, dried off, and on the road.** 20 min to KEF. Nothing is tight; if the lagoon is going well, 12:30 still works.
-- **1:30pm - fuel up, return the car, check in.** The fuel station is before the airport turn, not at it - airport fuel is the most expensive in Iceland. Two and a half hours before an international departure is comfortable at KEF, not excessive.
-- **4:25pm - FI853, Keflavík to Chicago O'Hare.** 6h 50m, lands ORD 6:15pm at Terminal 5, one checked bag included. Then the connection or the drive to Madison - realistically home late evening.
+- **11:00am - out, dried off, and pointed at the coast.** Back south to Grindavík, 10 min on Route 43. **Two and a half hours before anything is urgent.** If the lagoon is going well, stay in until 11:30 and shorten the drive instead - the coast leg is the compressible part of the morning, not the flight.
+- **11:15am - the Reykjanes coast road** *(optional, and the good kind of optional)*. Route 425 west from Grindavík, then north to Route 44 and KEF. **About 95 min with both stops, or 60 with one.**
+  - The one genuinely unhurried drive of the trip, and the only stretch of coast the plan has not already shown you. Route 425 runs the southwest edge of Reykjanes: black lava inland, open North Atlantic hammering the other side, almost nobody on it in October. It is a **loop rather than a detour** - every metre is between you and the airport, so running short costs you a stop, never the flight.
+  - **Brimketill** first, ~10 min west of Grindavík: a lava rock pool carved into the shoreline by the surf. Roadside parking, five minutes to look. Legend puts a troll woman bathing in it.
+  - **Valahnúkamöl and Reykjanesviti**, another 10 min on: cliffs and a black boulder beach where the Atlantic comes straight in, Eldey island offshore, and Iceland's oldest lighthouse above it. **This one is the reason to come** - if you only want one stop, take this.
+  - Then north on 425 to Route 44 and into KEF, about 30 min.
+  - **Do not go near the water at Valahnúkamöl.** Exposed Atlantic cliff and boulder beach; the same sneaker-wave physics that makes Reynisfjara lethal applies here. Look from above, stay well back. This is also the coast where wind takes car doors off their hinges.
+  - Route 425 runs through the Sundhnúkur zone and has **closed during eruptions** - the almannavarnir.is check you are already doing for Grindavík and the lagoon covers this too.
+  - Tuesday's Gunnuhver and Bridge Between Continents are on this same road, so it will feel familiar. These two stops are the bits Tuesday does not cover.
+- **1:00pm - fuel up, return the car, check in.** The fuel station is before the airport turn, not at it - airport fuel is the most expensive in Iceland. Two and a half hours before an international departure is comfortable at KEF, not excessive.
+- **4:25pm - FI853, Keflavík to Chicago O'Hare.** 6h 50m, lands ORD 6:15pm at Terminal 5, one checked bag included. You are both on this flight - Ben's seat is work-booked through Icelandair. Then Sarah's car out of the O'Hare lot and about 2.5 hours to Madison, so realistically home around 10pm.
 
 **If Blue Lagoon is closed:** it sits at Svartsengi, in the middle of the Reykjanes eruption zone, and it closed for days at a time through the 2023-2025 sequence. **Sky Lagoon** in Reykjavík is the fallback - about 45 minutes from KEF, arguably the better building, with an ocean edge. Check almannavarnir.is the night before and rebook from the guesthouse rather than driving out to find a barrier across the road.
 
-**If you skip the water entirely:** if Tuesday ran short, Gunnuhver and the Bridge Between Continents are both more or less on the way back to the airport, and free.
+**Why the lagoon goes first.** The coast drive is the flexible half of this morning and the lagoon is a booked, timed slot - so the fixed thing goes first and the compressible thing second. Reverse it and an overrun on the coast makes you late for a ticket you have already paid for.
 
-*Tell Mom: she is covering the kids until you are actually back. Late evening, not mid-afternoon.*
+**If you skip the water entirely:** if Tuesday ran short, Gunnuhver and the Bridge Between Continents are on the same Route 425 stretch as the coast drive, and free.
+
+*Tell Mom: she is covering the kids until you are actually back. Landing at O'Hare at 6:15pm means Madison around 10pm, not mid-afternoon.*
 
 ---
 
@@ -533,7 +543,7 @@ Check-in Fri Oct 16, 3:00pm to 11:00pm. Check-out Sat Oct 17, any time from midn
 - [ ] Book Into the Glacier - **Gullfoss departure**, not Reykjavík
 - [ ] Book a horse farm **VISIT** near Hveragerði or Selfoss for Fri Oct 16 - ask for a stable visit or 'meet the horses', not a riding tour. Roughly 3,000-6,000 ISK each; small farms are not staffed for walk-ins in October
 - [ ] Book Lava Show, Vík
-- [ ] **Book Blue Lagoon for Sat Oct 17** - Comfort ×2, earliest timed slot, plus the luggage hold. Read the cancellation terms
+- [ ] **Book Blue Lagoon for Sat Oct 17** - Comfort ×2, a **9:00am slot**, plus the luggage hold. Read the cancellation terms. Leaving the water at 11:00 is what funds the coast drive afterwards
 - [x] ~~Book a Paddington hotel~~ **Tudor Court Hotel, 10-12 Norfolk Square.** Two nights Oct 11-13, triple room with garden view, GBP 262.75 paid in full, non-refundable
 - [ ] **Message the Tudor Court** and ask which floor the room is on and whether there is a lift. No lift is listed and it is a Victorian townhouse - if you are three floors up, ask to be moved lower. You carry the bags down at 4:55am
 - [ ] At Tudor Court check-in on Sunday: ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line / Heathrow Express platforms, **book the 5:15am car**, and set a **4:30am wake-up call**

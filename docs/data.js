@@ -644,7 +644,7 @@ const TRIP = {
       images: ["bluelagoon"],
       intro: [
         "FI853 does not leave until 4:25pm, so this is not the dawn-departure day the original plan assumed. That is what makes today the right home for Blue Lagoon.",
-        "This is the only slot on the trip where the lagoon displaces nothing. Twenty minutes from the airport, five hours of runway, and no aurora night waiting at the other end of it."
+        "This is the only slot on the trip where the lagoon displaces nothing, and it still leaves room for the one thing the plan never made space for: an unhurried drive along the coast. Ninety minutes in the water instead of two and a half funds the whole thing."
       ],
       items: [
         { time: "8:30am", name: "Check out and drive to Blue Lagoon",
@@ -655,22 +655,35 @@ const TRIP = {
         { time: "9:00am", name: "Blue Lagoon",
           book: ["fs14", "wo8"],
           travel: "You are here",
-          dur: "2-2.5 hrs in the water",
+          dur: "1.5-2 hrs in the water",
           why: "The water is an accident. It is the outflow of the Svartsengi geothermal plant next door - about 70% seawater and 30% fresh, pulled up from 2,000 metres down, loaded with silica and algae that turn it opaque milky blue and hold it around 38-39C. People started bathing in the runoff in the 1980s because psoriasis got better in it, and it became a formal facility in 1992. Steam, black lava walls on every side, a mud mask, and a swim-up bar in the middle of a lava field. It is the most touristed thing in Iceland and it is still worth it.",
-          detail: "Comfort admission is the tier that makes sense: entry, a towel, the silica mud mask and a drink at the bar. Premium adds a robe and slippers you will not use on the way to an airport, and the Retreat is a separate building at several times the price. Two to two and a half hours is right - long enough to stop checking the time, short enough that you are not shrivelled before a seven-hour flight.",
+          detail: "Comfort admission is the tier that makes sense: entry, a towel, the silica mud mask and a drink at the bar. Premium adds a robe and slippers you will not use on the way to an airport, and the Retreat is a separate building at several times the price. Ninety minutes is a full visit - long enough to stop checking the time, short enough that you are not shrivelled before a seven-hour flight, and it buys you the coast road afterwards.",
           maps: "Blue Lagoon, Grindavik, Iceland", ll: "63.8804,-22.4495", image: "bluelagoon",
-          headsUp: "Timed entry, pre-booked - walk-ins are effectively not a thing. Take the earliest slot they sell: October opening is usually around 8am but verify, and an early slot is emptier and leaves all your afternoon slack intact.",
+          headsUp: "Timed entry, pre-booked - walk-ins are effectively not a thing. A 9:00am slot is the right call: early enough to be quiet, and it puts you back on the road by 11:00 with two and a half hours before anything is urgent. Verify October opening times when you book.",
           links: [{ label: "bluelagoon.com", url: "https://www.bluelagoon.com/" }],
           sub: [
             "Work the free conditioner through your hair before you get in and keep your head above water. The silica wrecks hair, and you cannot fix it at 35,000 feet.",
             "Shower properly first, without a swimsuit on. It is not a suggestion here and the staff enforce it.",
             "Phone stays in the locker unless it is in a floating case. They fish handsets out of that water daily."
           ] },
-        { time: "12:00pm", name: "Out, dried off, and on the road",
-          travel: "20-min drive to KEF",
-          dur: "Over an hour of slack before anything is urgent",
-          detail: "Nothing is tight today. If the lagoon is going well, leaving at 12:30 still works." },
-        { time: "1:30pm", name: "Fuel up, return the car, check in at KEF",
+        { time: "11:00am", name: "Out, dried off, and pointed at the coast",
+          travel: "Back south to Grindavík, 10 min on Route 43",
+          dur: "Two and a half hours before anything is urgent",
+          detail: "Nothing is tight today. If the lagoon is going well, stay in until 11:30 and shorten the drive instead - the coast leg below is the compressible part of the morning, not the flight." },
+        { time: "11:15am", name: "The Reykjanes coast road",
+          travel: "Route 425 west from Grindavík, then north to Route 44 and KEF",
+          dur: "About 95 min with both stops, or 60 with one",
+          why: "The one genuinely unhurried drive of the trip, and the only stretch of coast you have not already been shown. Route 425 runs the southwest edge of Reykjanes: black lava to the inland side, open North Atlantic hammering the other, and almost nobody on it in October. It is also a loop rather than a detour - every metre of it is between you and the airport, so running short costs you a stop, never the flight.",
+          detail: "Brimketill first, about 10 minutes west of Grindavík: a lava rock pool carved into the shoreline by the surf, roadside parking, five minutes to look. Local legend puts a troll woman bathing in it. Then Valahnúkamöl and Reykjanesviti, another 10 minutes on: cliffs and a black boulder beach where the Atlantic comes straight in, with Eldey island offshore, and Iceland's oldest lighthouse above it. That one is the reason to come. Then north on 425 to Route 44 and into KEF, about 30 minutes.",
+          maps: "Valahnukamol, Reykjanes, Iceland", ll: "63.8130,-22.7060",
+          headsUp: "Do not go near the water at Valahnúkamöl. It is exposed Atlantic cliff and boulder beach and the same sneaker-wave physics that makes Reynisfjara lethal applies here - look from above and stay well back. This is also the coast where the wind takes car doors off their hinges, so two hands on the handle.",
+          sub: [
+            "Route 425 runs through the Sundhnúkur zone and has closed during eruptions. It is the same almannavarnir.is check you are already doing for Grindavík and the lagoon - one look covers all three.",
+            "If you only want one stop, take Valahnúkamöl. Brimketill is a pleasant five minutes; the lighthouse headland is the thing you will remember.",
+            "Tuesday's Gunnuhver and Bridge Between Continents are on this same road, so it will feel familiar. These two stops are the bits Tuesday does not cover."
+          ],
+          alt: true },
+        { time: "1:00pm", name: "Fuel up, return the car, check in at KEF",
           travel: "The fuel station is before the airport turn, not at it",
           dur: "Allow 45 min for all three",
           detail: "Refuel before you hand the car back; airport fuel is the most expensive in Iceland. Two and a half hours before an international departure is comfortable at KEF, not excessive.",
@@ -684,7 +697,8 @@ const TRIP = {
       ],
       notes: [
         { label: "If Blue Lagoon is closed", text: "It sits at Svartsengi, in the middle of the Reykjanes eruption zone, and it has closed for days at a time during past eruptions. Sky Lagoon in Reykjavík is the fallback: about 45 minutes from KEF, arguably the better building, with an ocean edge. Check almannavarnir.is the night before and rebook from the guesthouse rather than driving out to find a barrier across the road." },
-        { label: "If you skip the water entirely", text: "If Tuesday ran short, Gunnuhver and the Bridge Between Continents are both more or less on the way back to the airport, and free." },
+        { label: "Why the lagoon goes first", text: "The coast drive is the flexible half of this morning and the lagoon is a booked, timed slot - so the fixed thing goes first and the compressible thing second. Reverse the order and an overrun on the coast makes you late for a ticket you have already paid for." },
+        { label: "If you skip the water entirely", text: "If Tuesday ran short, Gunnuhver and the Bridge Between Continents are on the same Route 425 stretch as the coast drive, and free." },
         { label: "Tell Mom", text: "She is covering the kids until you are actually back. Landing at O'Hare at 6:15pm means Madison around 10pm, not mid-afternoon." }
       ]
     }
@@ -845,7 +859,7 @@ const TRIP = {
       { id: "fs10", text: "Download offline maps for Iceland and southern England" },
       { id: "fs12", text: "Extend the Iceland rental car through Saturday afternoon - it is 5 days now, not 4", budgetIds: ["trn-car"], extra: true },
       { id: "fs13", text: "Book a minicab for 5:15am Tue Oct 13, Paddington to Terminal 5. Use a minicab firm, not a scheduled Uber - scheduling an Uber does not reserve a driver. Roughly 45-65 GBP; cancel free if the trains look clean on Monday", budgetIds: ["trn-lhrcar"], extra: true },
-      { id: "fs14", text: "Book Blue Lagoon for Sat Oct 17 - Comfort x2, earliest timed slot, plus the luggage hold. Read the cancellation terms; an eruption closure should be refundable", budgetIds: ["exc-bluelagoon"], extra: true },
+      { id: "fs14", text: "Book Blue Lagoon for Sat Oct 17 - Comfort x2, a 9:00am slot, plus the luggage hold. Read the cancellation terms; an eruption closure should be refundable. Leaving the water at 11:00 is what funds the coast drive afterwards", budgetIds: ["exc-bluelagoon"], extra: true },
       { id: "fs15", text: "Contact the Volcano Escape host for key pickup and arrival time. The confirmation says to, and Grindavík is largely depopulated - not a town to improvise in after dark", extra: true },
       { id: "fs27", text: "Decided: no backup bed. The risk is accepted and you rebook on the day if Grindavík closes. Read the Plan B on the Info tab once so you are not composing it at 5pm on your last Friday - the short version is sleep in Reykjavík, swim at Sky Lagoon, drive to KEF", extra: true },
       { id: "fs28", text: "Check almannavarnir.is weekly from late September, then the night before and the morning of Oct 16. Since there is no backup booking, this check IS the plan - it is what turns an evacuation into a rebooking rather than a surprise at the door", extra: true },
