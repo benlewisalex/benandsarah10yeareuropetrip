@@ -1,5 +1,5 @@
 # London + Iceland - October 9-17, 2026
-**Ben & Sarah Alexander · 8 nights out, 7 together · Budget target: $5,000 (currently projecting $5,052)**
+**Ben & Sarah Alexander · 8 nights out, 7 together · Budget target: $5,000 (currently projecting $5,128)**
 
 **Structure:** Ben is already in England from Oct 3 on a work trip and moves to the Courtyard Heathrow on Fri Oct 9. Sarah flies Fri Oct 9, lands Sat Oct 10 and cabs straight to that hotel. Three nights England (Oct 10, 11, 12): 1:00pm endowment session Saturday, church and the Thames walk Sunday, Westminster Abbey and Hamilton Monday. Saturday is at the work-paid Courtyard Heathrow with a one-day rental car; Sunday and Monday are in Paddington. Then four nights Iceland (Oct 13, 14, 15, 16), ending with Blue Lagoon on the way to the airport. Home late Saturday Oct 17.
 
@@ -145,8 +145,9 @@ Stonehenge came out and this is what went in: the two great interiors that are *
   - You have been on your feet since 9:30 and the show is 2hr 45min sitting down. An hour off your feet and a real dinner first is the difference between enjoying Hamilton and fighting sleep through the second act. Norfolk Square is a three-minute walk from the station, so dropping back to change costs almost nothing. **Do not plan to eat afterwards** - you are out at 10:15pm with a 5am start coming.
 - **7:30pm - Hamilton, Victoria Palace Theatre.** Paddington to Victoria, Circle line, about 15 min; the theatre is directly opposite the station. **2hr 45min including a 15-min interval, out by 10:15pm.**
   - The only evening show available to you all week. Harry Potter, the Lion King and Wicked are all dark on Mondays and matinee-only on Sundays, and Hamilton is dark Sunday. One evening, one show - and it happened to be the first choice. Monday is also the cheapest night in its October run.
-  - From 55 GBP each, but that is the restricted-view price. **Budget 110-180 GBP for two decent seats**, plus booking fees. Runs about 93% full, so book well ahead.
-  - Latecomers are not admitted until a break. Be seated by 7:25pm.
+  - **Booked: Grand Circle Row B, seats 10 and 11, in through Door 7.** Grand Circle is the upper tier and Row B is at the front of it - the right place to watch this show, because the double turntable staging reads far better from slightly above than from the stalls. E-tickets arrive by email 24 hours before.
+  - **Be seated by 7:25pm.** Latecomers are not admitted until a suitable break, and this show has no gentle opening to slip into. No outside food or drink. Everyone needs their own ticket in hand.
+  - Ticket protection runs until 7:30pm on Sun Oct 11 - cancel before then and you get a voucher to rebook rather than a refund.
 - **Before bed - pack, and lock in the morning.** **30 min.**
   - Bags packed tonight, not at 4:30am. Confirm the 5:15am car, set two alarms **plus** the front-desk wake-up call for 4:30am, and put something to eat in the room - nothing is open at Paddington that early and the next food is on the plane. The room has a kettle and a fridge, so tea and breakfast in the room are possible.
 
@@ -265,11 +266,11 @@ A long soak in a river you hike to, an hour with the horses, then a westward dri
   - **Do not feed them**, however much they ask. Iceland runs strict equine biosecurity - the herd has no immunity to anything from outside - and hand-feeding also makes them nippy with the next visitor. Flat palm, approach from the side, scratch the neck rather than the face.
   - *Free fallback:* Icelandic horses stand at roadside fences all along the south coast, and greeting them over a fence is normal and welcome. Pull fully off the road, never into a field, same no-feeding rule.
   - *If you want something more structured:* **Friðheimar** near Reykholt pairs a horse stable with a tomato-greenhouse restaurant and a short show about the breed. Genuinely good, but it sits on Wednesday's Golden Circle route rather than today's, and Wednesday has no slack in it.
-- **17:00 - drive to the Keflavík area.** 1hr 15min, about 100 km on Routes 1 and 41. **One night, the last one.**
+- **17:00 - drive to Volcano Escape, Grindavík.** 1hr 15min, about 100 km on Routes 1 and 41. **One night, the last one.**
   - Sleeping out here rather than in Reykjavík is deliberate: Blue Lagoon is a 20-minute drive from these beds on a booked 9am slot, and that is the whole reason Saturday morning works.
   - Fill the tank tonight rather than tomorrow.
 
-**Aurora night 4: Reykjanes lava fields.** Dark, and ten minutes from the airport hotels. **Last chance** - if the forecast is clear anywhere on the peninsula tonight, go, even if you are tired.
+**Aurora night 4 - straight out of the door.** The one night you do not have to drive for it: Grindavík sits in the middle of the Reykjanes lava fields, so the dark is already outside. **Last chance of the trip** - if the forecast is clear anywhere on the peninsula, go out even if you are tired. And there is a hot tub to come back to.
 
 Sunrise 8:21am, sunset 5:54pm.
 
@@ -277,7 +278,7 @@ Sunrise 8:21am, sunset 5:54pm.
 
 FI853 does not leave until 4:25pm, and that is what makes today the right home for Blue Lagoon. **This is the only slot on the trip where the lagoon displaces nothing:** twenty minutes from the airport, five hours of runway, and no aurora night waiting at the other end of it.
 
-- **8:30am - check out and drive to Blue Lagoon.** 20-min drive on Route 43. Take the bags with you rather than coming back for them - there is a paid luggage hold at the entrance and an airport-day visit is exactly what it exists for.
+- **8:30am - check out and drive to Blue Lagoon.** 10-min drive from Grindavík on Route 43. Take the bags with you rather than coming back for them - there is a paid luggage hold at the entrance and an airport-day visit is exactly what it exists for.
 - **9:00am - Blue Lagoon.** **2-2.5 hrs in the water.**
   - The water is an accident. It is the outflow of the Svartsengi geothermal plant next door - about 70% seawater, 30% fresh, pulled up from 2,000 metres down, loaded with silica and algae that turn it opaque milky blue and hold it around 38-39C. People started bathing in the runoff in the 1980s because psoriasis got better in it; it became a formal facility in 1992. Steam, black lava walls on every side, a mud mask, and a swim-up bar in the middle of a lava field. The most touristed thing in Iceland and still worth it.
   - **Comfort** is the tier that makes sense: entry, a towel, the silica mud mask and a drink at the bar. Premium adds a robe and slippers you will not use on the way to an airport; the Retreat is a separate building at several times the price.
@@ -425,24 +426,26 @@ Check-in Wed Oct 14 after 4:00pm. Checkout Fri Oct 16 by 10:00am.
 
 ---
 
-## Reykjanesbaer - Fri Oct 16 to Sat Oct 17 (1 night)
+## BOOKED - Volcano Escape Grindavík with hot tub - Fri Oct 16 to Sat Oct 17 (1 night)
 
-**Budget $120-180, likely the cheap end.** Twenty minutes from Blue Lagoon for the 9am slot and five from the airport. That is the entire job of this bed.
+**Þórkötlustaðarvegur, 240 Grindavík** &middot; +354 768 2110
 
-**Search these areas:**
-- **Reykjanesbaer** - the municipality covering Keflavik and Njardvik
-- **Keflavik harbour**, which is the nicest part of it
-- **Asbru**, the old NATO base by the airport - functional, cheap, very close
+**One-Bedroom House, entire place, 2 adults. EUR 233.10 all in (~$256), VAT and city tax included, paid in full.**
+Check-in Fri Oct 16, 3:00pm to 11:00pm. Check-out Sat Oct 17, any time from midnight to 11:00am.
+**NON-REFUNDABLE. Dates cannot be changed.**
 
-**Rule out:**
-- **GRINDAVIK.** It is closer to Blue Lagoon, and it has been repeatedly evacuated since the 2023 eruptions began. Do not book there.
-- **Reykjavik** - 45 minutes from the lagoon, and it undoes the reason you drove out here
+**What this gets you:**
+- **A hot tub on the last night in Iceland**, which is the one thing the south coast cabin did not have.
+- **Ten minutes to Blue Lagoon** instead of twenty, so Saturday's 9am slot gets an even gentler start.
+- An **entire one-bedroom house**, and a midnight-to-11am checkout window so nothing rushes you.
+- Grindavík sits in the middle of the Reykjanes lava fields, so **aurora night 4 is a step out of the door** rather than a drive.
 
-**What actually matters:**
-1. Free parking, which is universal out here.
-2. **This is the line most likely to come in under its placeholder.** Off-season Reykjanesbaer is cheap - take the savings rather than upgrading.
-3. **Book it refundable.** If Svartsengi is erupting you are rebooking to Sky Lagoon and want to be near Reykjavik instead.
-4. Fill the fuel tank in town on Friday night, not Saturday morning.
+**Read this first.** Grindavík is the town this plan told you to avoid. It has been repeatedly evacuated since the Sundhnúkur eruptions began in November 2023, fissures have opened inside the town itself, and the Met Office considers another intrusion the most likely outcome. The booking is non-refundable and already paid, so the money is committed. **The fallback is not.**
+
+1. **BOOK A REFUNDABLE REYKJANESBÆR BACKUP.** About $120-150, free to cancel, dropped in early October if Reykjanes is quiet. That turns a possible evacuation from a scramble on your last night into a phone call. **This is the single most useful thing left on the whole trip.**
+2. **Check almannavarnir.is weekly from late September**, not just the day before. If Grindavík closes you need to know while you can still act - and the same closure very likely shuts Blue Lagoon, so it is one decision rather than two.
+3. **Arrange key pickup with the host now.** The confirmation tells you to contact them for where the keys are and what time to arrive, and Grindavík is largely depopulated.
+4. **Do not count on fuel or food in Grindavík.** Fill the tank in Reykjanesbær or on Route 41 on the way in, and bring dinner with you.
 
 ---
 
@@ -453,11 +456,11 @@ Check-in Wed Oct 14 after 4:00pm. Checkout Fri Oct 16 by 10:00am.
 | **Flights** | **$1,200** |
 | Sarah MSN-LHR + KEF-MSN | $900 |
 | LHR-KEF ×2 | $300 |
-| **Lodging (6 paid nights of 7)** | **$1,067** |
+| **Lodging (6 paid nights of 7)** | **$1,143** |
 | Tudor Court, Paddington ×2 (booked) | $356 |
 | Fosshotel Baron ×1 (booked) | $191 |
 | Rauduskridur cabin ×2 (booked, price TBC) | $340 |
-| Keflavík / Reykjanesbær ×1 | $180 |
+| Volcano Escape, Grindavík ×1 (booked) | $256 |
 | **Transport** | **$945** |
 | Iceland rental car, 5 days (Oct 13-17) | $425 |
 | O'Hare parking, Oct 9-17 | $170 |
@@ -480,9 +483,9 @@ Check-in Wed Oct 14 after 4:00pm. Checkout Fri Oct 16 by 10:00am.
 | Mom's round-trip flights to Madison | $400 |
 | Groceries and extras for her week | $120 |
 | **One nice dinner** | **$150** |
-| **TOTAL** | **$5,052** |
+| **TOTAL** | **$5,128** |
 
-**This is $52 past the $5,000 target**, with Paddington and Reykjavík both booked at real numbers rather than placeholders.
+**This is $128 past the $5,000 target.** Every bed and every ticket is now booked, so this is close to the real number - the only estimate left is the south coast cabin. Grindavík came in at $256 against a $180 placeholder, which is most of the gap.
 
 **The realistic menu if you want the number back under $5,000:**
 - **Swap St Paul's for the British Museum or the National Gallery**, both free: saves **$70**, and Westminster Abbey is still the centrepiece of the day
@@ -504,7 +507,7 @@ Check-in Wed Oct 14 after 4:00pm. Checkout Fri Oct 16 by 10:00am.
 - [ ] Book Sarah ORD-LHR and KEF-ORD
 - [ ] Book LHR-KEF ×2 *(done - BA800)*
 - [ ] Reserve Iceland rental car - take gravel + sand/ash waiver
-- [ ] **Book Hamilton** for Mon Oct 12, 7:30pm at the Victoria Palace Theatre. Runs ~93% full, Monday is the cheapest night in its October run, and 55 GBP is restricted view - budget 110-180 GBP for two decent seats
+- [x] ~~Book Hamilton~~ **Mon Oct 12, 7:30pm, Victoria Palace. Grand Circle Row B, seats 10 and 11, Door 7.** E-tickets email 24 hrs before
 - [ ] Confirm both temple recommends are current - **the 1:00pm endowment on Sat Oct 10 is booked and there is no second chance on this trip**
 - [x] ~~Reserve the Sat Oct 10 temple session~~ **Booked: 1:00pm endowment, London England Temple.** Save the confirmation offline; recommend desk by 12:30
 - [ ] **Reserve a one-day rental car at Heathrow** for the temple trip. Collect it Friday evening so Saturday morning has no desk queue in it; take the excess waiver and confirm it is ULEZ-compliant
@@ -532,7 +535,10 @@ Check-in Wed Oct 14 after 4:00pm. Checkout Fri Oct 16 by 10:00am.
 - [ ] At Tudor Court check-in on Sunday: ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line / Heathrow Express platforms, **book the 5:15am car**, and set a **4:30am wake-up call**
 - [x] ~~Reykjavík ×1~~ **Fosshotel Baron, Barónsstíg 2-4.** Tue Oct 13, ISK 23,106, free to cancel until Oct 10
 - [x] ~~South coast ×2~~ **Rauduskridur farm, the Green Cabin, Hvolsvöllur.** Both nights Oct 14-16 in one place, entire cabin, 4.88 from 740 reviews
-- [ ] Book the last Iceland bed: **Reykjanesbær ×1 (Fri Oct 16)**. Reykjanesbær, NOT Grindavík, and book it refundable in case Svartsengi is erupting
+- [x] ~~Book the last Iceland bed~~ **Volcano Escape Grindavík with hot tub.** Fri Oct 16, EUR 233.10 paid, non-refundable
+- [ ] **BOOK A REFUNDABLE REYKJANESBÆR BACKUP for Fri Oct 16.** ~$120-150, free to cancel, dropped in early October if Reykjanes is quiet. Grindavík is inside the active Sundhnúkur zone and the booking is non-refundable - **this is the most useful thing left on the trip**
+- [ ] **Check almannavarnir.is weekly from late September.** If Grindavík closes you need to know while you can still act, and the same closure very likely shuts Blue Lagoon
+- [ ] **Contact the Volcano Escape host** for key pickup and arrival time
 - [ ] **Resolve the cabin Plus code QQ2H+QMJ to latitude and longitude and save it offline.** Not a street address, will not go into a car sat-nav, and you arrive in the dark with no guarantee of signal
 - [ ] **Message the cabin hosts:** is there a yard light near the terrace and is it on all night, and is there any gas appliance or wood stove given there is no CO alarm reported
 - [ ] **Fosshotel Baron follow-ups before Oct 10:** add breakfast or accept that Wednesday starts unfed, ask for the **TWIN** beds rather than the queen, and check whether the on-site parking is free or paid

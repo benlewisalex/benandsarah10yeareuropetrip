@@ -390,10 +390,13 @@ const TRIP = {
           travel: "Paddington to Victoria, Circle line, about 15 min. Theatre is directly opposite the station",
           dur: "2hr 45min including a 15-min interval, out by 10:15pm",
           why: "The one evening show available to you all week, and the one you wanted. Every other big title - Harry Potter, Lion King, Wicked - is dark on Mondays and matinee-only on Sundays, so this is not a compromise pick, it is the only ticket that exists on the only free evening. Monday is also the cheapest night in its October run.",
-          detail: "From 55 GBP each, but that is the restricted-view price - budget 110-180 GBP for two decent seats, plus booking fees. Latecomers are not admitted until a break, so be in your seat by 7:25pm.",
-          maps: "Victoria Palace Theatre, Victoria Street, London SW1E 5EA", ll: "51.4961,-0.1425",
-          links: [{ label: "London Theatre - Hamilton", url: "https://www.londontheatre.co.uk/" }],
-          headsUp: "Book this well ahead. It runs about 93 percent full and the cheap seats go first." },
+          detail: "Booked: Grand Circle Row B, seats 10 and 11, in through Door 7. Grand Circle is the upper tier and Row B is at the front of it, which is the right place to watch this particular show - the double turntable staging reads far better from slightly above than from the stalls. E-tickets arrive by email 24 hours before.",
+          maps: "Victoria Palace Theatre, 126 Victoria Street, London SW1E 5EA", ll: "51.4961,-0.1425",
+          headsUp: "Be in your seat by 7:25pm - latecomers are not admitted until a suitable break, and this show has no gentle opening to slip into. No food or drink brought in from outside. Everyone needs their own ticket in hand.",
+          sub: [
+            "Ticket protection runs until 7:30pm on Sun Oct 11 - cancel before then and you get a voucher to rebook rather than a refund. After that the tickets are yours.",
+            "Door 7. Write it down; Victoria Palace has several entrances and finding the right one in a Monday-night crowd is the difference between a calm arrival and a scramble."
+          ] },
         { time: "Before bed", name: "Pack, and lock in the morning",
           book: ["fs13"],
           dur: "30 min",
@@ -621,17 +624,18 @@ const TRIP = {
             "Free fallback: Icelandic horses stand at roadside fences all along the south coast, and greeting them over a fence is normal and welcome. Pull fully off the road, never into a field, and the same no-feeding rule applies.",
             "If you want something more structured, Friðheimar near Reykholt pairs a horse stable with a tomato-greenhouse restaurant and a short show about the breed. It is genuinely good, but it sits on Wednesday's Golden Circle route rather than today's, and Wednesday has no slack in it."
           ] },
-        { time: "17:00", name: "Drive to the Keflavík area",
-          book: ["fs15", "fs5"],
-          travel: "1hr 15min drive, about 100 km on Routes 1 and 41",
-          dur: "One night, the last one",
-          why: "Sleeping out here rather than in Reykjavík is deliberate: Blue Lagoon is a 20-minute drive from these beds on a booked 9am slot, and that is the whole reason tomorrow morning works.",
-          detail: "Fill the tank tonight rather than tomorrow - it makes the last morning one step shorter.",
-          maps: "Keflavik, Iceland", ll: "64.0049,-22.5644", area: true }
+        { time: "17:00", name: "Drive to Volcano Escape, Grindavík",
+          book: ["fs15"],
+          travel: "1hr 15min drive, about 100 km on Routes 1 and 41, then Route 43 south",
+          dur: "One night, the last one. Check-in 3:00pm to 11:00pm",
+          why: "Þórkötlustaðarvegur, Grindavík - an entire one-bedroom house with a hot tub, ten minutes from Blue Lagoon. The shortest possible last morning, and the aurora fields are outside the door.",
+          detail: "Fill the tank in Reykjanesbær or on Route 41 BEFORE you turn south, and bring dinner with you - Grindavík is largely depopulated and you should not count on fuel or a shop being open.",
+          maps: "Thorkotlustadarvegur, 240 Grindavik, Iceland", ll: "63.8424,-22.4340",
+          headsUp: "Contact the host in advance for key pickup and arrival time - the confirmation says to, and this is not a town to improvise in after dark. And check almannavarnir.is before you drive down: Grindavík sits inside the active Sundhnúkur zone, and the plan carries a refundable Reykjanesbær backup for exactly this reason." }
       ],
-      aurora: { night: 4, spot: "Reykjanes lava fields",
-        text: "Dark, and ten minutes from the airport hotels. Last chance - if the forecast is clear anywhere on the peninsula tonight, go, even if you are tired.",
-        maps: "Reykjanes peninsula, Iceland", ll: "63.8500,-22.4500", area: true }
+      aurora: { night: 4, spot: "Straight out of the door, Grindavík",
+        text: "The one night you do not have to drive for it - Grindavík sits in the middle of the Reykjanes lava fields, so the dark is already outside. Last chance of the trip: if the forecast is clear anywhere on the peninsula tonight, go out, even if you are tired. And there is a hot tub to come back to.",
+        maps: "Thorkotlustadarvegur, 240 Grindavik, Iceland", ll: "63.8424,-22.4340" }
     },
 
     { id: "oct17", date: "2026-10-17", dow: "Saturday", half: "iceland",
@@ -644,7 +648,7 @@ const TRIP = {
       ],
       items: [
         { time: "8:30am", name: "Check out and drive to Blue Lagoon",
-          travel: "20-min drive from the Keflavík area on Route 43",
+          travel: "10-min drive from Grindavík on Route 43",
           dur: "Allow 30 min with check-in",
           detail: "Take the bags with you rather than coming back for them - there is a paid luggage hold at the entrance and an airport-day visit is exactly what it exists for.",
           maps: "Blue Lagoon, Grindavik, Iceland", ll: "63.8804,-22.4495" },
@@ -729,7 +733,8 @@ const TRIP = {
       { n: 1, text: "Check almannavarnir.is immediately. Civil Protection controls access, and early-stage eruptions are typically closed to the public for days." },
       { n: 2, text: "If ground access opens, hikes from the Reykjanes trailheads run 2-4 hours round trip over rough lava. Free." },
       { n: 3, text: "Helicopter tours launch within a day or two and give the best views, at $400-600 per person. That breaks the budget - your call in the moment." },
-      { n: 4, text: "Assume Blue Lagoon is shut. It sits at Svartsengi inside the affected area and closed repeatedly through the 2023-2025 sequence. Move Saturday morning to Sky Lagoon instead of waiting to see, and check the cancellation terms when you book so a closure is a refund and not a donation." }
+      { n: 4, text: "Assume Blue Lagoon is shut. It sits at Svartsengi inside the affected area and closed repeatedly through the 2023-2025 sequence. Move Saturday morning to Sky Lagoon instead of waiting to see." },
+      { n: 5, text: "And assume you have lost the Friday bed too. Volcano Escape is in Grindavík, inside the evacuation zone, and it is non-refundable - so an eruption costs you the room whatever you do. The refundable Reykjanesbær backup is what stops that also costing you a place to sleep on your last night." }
     ],
     hazard: { title: "Never approach a fresh flow from downwind.",
       text: "Volcanic gas concentrations near vents are lethal, and that's how people actually die at these sites." }
@@ -747,7 +752,7 @@ const TRIP = {
         { id: "lod-london",  label: "Tudor Court, Paddington x2 (booked)", planned: 356 },
         { id: "lod-rvk",     label: "Fosshotel Baron x1 (booked)", planned: 191 },
         { id: "lod-south",   label: "Rauduskridur cabin x2 (booked)", planned: 340, estimate: true },
-        { id: "lod-kef",     label: "Keflavík x1",              planned: 180 }
+        { id: "lod-kef",     label: "Volcano Escape, Grindavík x1 (booked)", planned: 256 }
       ]},
       { id: "transport", label: "Transport", lines: [
         { id: "trn-car",     label: "Iceland rental car, 5 days (Oct 13-17)", planned: 425, estimate: true },
@@ -778,7 +783,7 @@ const TRIP = {
       ]}
     ],
     headroomOptions: [
-      "Planned now runs $5,052 against a $5,000 target, with Paddington and Reykjavík both booked at real numbers rather than placeholders. Dropping Stonehenge freed $220 and turning the horse ride into a farm visit freed $150; Hamilton put back $190 and Monday's two cathedrals $150. Net you are $52 over, which one small decision closes.",
+      "Planned now runs $5,128 against a $5,000 target. Every bed and every ticket is now booked, so this is close to the real number - the only estimate left is the south coast cabin. Dropping Stonehenge freed $220 and turning the horse ride into a farm visit freed $150; Hamilton put back $190 and Monday's two cathedrals $150. Grindavík came in at $256 against a $180 placeholder, which is most of the gap.",
       "Swap St Paul's for the British Museum or the National Gallery, both free: saves $70, and Westminster Abbey is still the centrepiece of the day",
       "Swap Secret Lagoon for a municipal pool like Laugardalslaug, about $12 for both: saves roughly $68, and Blue Lagoon already covers the tourist hot spring twice over",
       "Either of those on its own puts you under target. Both together lands you near $4,970",
@@ -787,7 +792,7 @@ const TRIP = {
       "Drop the nice dinner, $150 - last resort, not first",
       "Sarah's one-way airfares are still the least predictable number here and could move $300-400 in either direction on their own"
     ],
-    cutIfOver: "You are $52 over. Swapping St Paul's for the free British Museum covers it outright and barely changes Monday. After that, the Secret Lagoon swap (~$68). Do not cut Blue Lagoon, the rental car for the temple, Hamilton, or Westminster Abbey - those are the trip. If something still has to give, let it be the $5,000."
+    cutIfOver: "You are $128 over, and almost everything is now booked. Swapping St Paul's for the free British Museum covers it outright and barely changes Monday. After that, the Secret Lagoon swap (~$68). Do not cut Blue Lagoon, the rental car for the temple, Hamilton, or Westminster Abbey - those are the trip. If something still has to give, let it be the $5,000."
   },
 
   /* --- checklists ---------------------------------------------------------- */
@@ -800,7 +805,7 @@ const TRIP = {
       { id: "tw2", text: "Book Sarah MSN-LHR and KEF-MSN", budgetIds: ["flt-sarah"] },
       { id: "tw3", text: "Book LHR-KEF x2 (Play or Icelandair)", budgetIds: ["flt-lhrkef"] },
       { id: "tw4", text: "Reserve Iceland rental car - take gravel + sand/ash waiver", budgetIds: ["trn-car"] },
-      { id: "tw5", text: "Book Hamilton for Mon Oct 12, 7:30pm at the Victoria Palace Theatre. It runs about 93 percent full, Monday is the cheapest night in its October run, and the 55 GBP price is restricted view - budget 110-180 GBP for two decent seats", budgetIds: ["exc-westend"] },
+      { id: "tw5", text: "Done - Hamilton booked. Mon Oct 12, 7:30pm, Victoria Palace, Grand Circle Row B seats 10 and 11, Door 7. E-tickets email 24 hrs before", budgetIds: ["exc-westend"] },
       { id: "tw6", text: "Confirm both temple recommends are current - the 1:00pm endowment on Sat Oct 10 is booked and there is no second chance on this trip" },
       { id: "tw7", text: "Save the temple reservation confirmation somewhere offline. Session is booked: 1:00pm endowment, Sat Oct 10, London England Temple, Newchapel. Be at the recommend desk by 12:30", budgetIds: ["exc-temple"] },
       { id: "tw16", text: "Reserve a one-day rental car at Heathrow for the temple trip. Collect it Friday evening so Saturday morning has no desk queue in it; take the excess waiver and confirm it is ULEZ-compliant", budgetIds: ["exc-temple"], extra: true },
@@ -825,7 +830,7 @@ const TRIP = {
       { id: "fs4",  text: "Done - Tudor Court Hotel, 10-12 Norfolk Square, Paddington. Two nights Oct 11-13, triple room with garden view, GBP 262.75 paid in full. Non-refundable", budgetIds: ["lod-london"] },
       { id: "fs21", text: "Message the Tudor Court through the booking and ask which floor the room is on, and whether there is a lift. No lift is listed and it is a Victorian townhouse - if you are three floors up, ask to be moved lower. You carry the bags down at 4:55am", extra: true },
       { id: "fs20", text: "At Tudor Court check-in on Sunday: ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line and Heathrow Express platforms, book the 5:15am car, and set a 4:30am wake-up call. All four are things this hotel does", extra: true },
-      { id: "fs5",  text: "Book the last Iceland bed: Reykjanesbær x1 for Fri Oct 16. Reykjanesbær, NOT Grindavík, and book it refundable in case Svartsengi is erupting. See Where to book on the Info tab", budgetIds: ["lod-kef"] },
+      { id: "fs5",  text: "Done - all six paid nights are booked. Oct 16 went to Volcano Escape in Grindavík rather than Reykjanesbær, which needs the backup in fs27", budgetIds: ["lod-kef"] },
       { id: "fs24", text: "Done - Rauduskridur farm, the Green Cabin, Hvolsvöllur. Both nights Oct 14-16 in one place, entire cabin, 4.88 from 740 reviews", budgetIds: ["lod-south"] },
       { id: "fs25", text: "Resolve the cabin Plus code QQ2H+QMJ to latitude and longitude and save it offline. It is not a street address, it will not go into a car sat-nav, and you arrive in the dark at 8pm with no guarantee of signal", extra: true },
       { id: "fs26", text: "Message the cabin hosts: is there a yard light near the terrace and is it on all night, and is there any gas appliance or wood stove given there is no CO alarm reported", extra: true },
@@ -834,14 +839,16 @@ const TRIP = {
       { id: "fs6",  text: "Book a timed Westminster Abbey slot for 9:30am Mon Oct 12 - go at opening, the nave fills by eleven. About 30 GBP each", budgetIds: ["exc-monday"] },
       { id: "fs7",  text: "Book St Paul's for Mon Oct 12 afternoon, about 26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start", budgetIds: ["exc-monday"] },
       { id: "fs8",  text: "Reserve Dishoom Covent Garden for Sat Oct 10 evening - Saturday nights need booking, and it is cancellable if Sarah would rather eat near the hotel and sleep" },
-      { id: "fs18", text: "Done - Hamilton, Mon Oct 12, 7:30pm. Every other big title is dark Mondays and matinee-only Sundays, so this was the only evening show available all week. Still needs actually booking: see tw5", budgetIds: ["exc-westend"], extra: true },
+      { id: "fs18", text: "Done - Hamilton, Mon Oct 12, 7:30pm. Every other big title is dark Mondays and matinee-only Sundays, so this was the only evening show available all week", budgetIds: ["exc-westend"], extra: true },
       { id: "fs9",  text: "Notify banks of travel; confirm no foreign transaction fees" },
       { id: "fs19", text: "Sort international phone service for both phones, Oct 9-17. Check what your plan already covers in the UK and Iceland, then add a travel pass or an eSIM. You need data working for vedur.is cloud maps, road.is, offline-map fallback and Mom", extra: true },
       { id: "fs10", text: "Download offline maps for Iceland and southern England" },
       { id: "fs12", text: "Extend the Iceland rental car through Saturday afternoon - it is 5 days now, not 4", budgetIds: ["trn-car"], extra: true },
       { id: "fs13", text: "Book a minicab for 5:15am Tue Oct 13, Paddington to Terminal 5. Use a minicab firm, not a scheduled Uber - scheduling an Uber does not reserve a driver. Roughly 45-65 GBP; cancel free if the trains look clean on Monday", budgetIds: ["trn-lhrcar"], extra: true },
       { id: "fs14", text: "Book Blue Lagoon for Sat Oct 17 - Comfort x2, earliest timed slot, plus the luggage hold. Read the cancellation terms; an eruption closure should be refundable", budgetIds: ["exc-bluelagoon"], extra: true },
-      { id: "fs15", text: "Book Oct 16 in Reykjanesbær, NOT Grindavík - Grindavík is closer to Blue Lagoon but has been repeatedly evacuated for the eruptions since 2023. Reykjanesbær is 20 min from the lagoon and 5 from the airport", budgetIds: ["lod-kef"], extra: true },
+      { id: "fs15", text: "Contact the Volcano Escape host for key pickup and arrival time. The confirmation says to, and Grindavík is largely depopulated - not a town to improvise in after dark", extra: true },
+      { id: "fs27", text: "BOOK A REFUNDABLE REYKJANESBÆR BACKUP for Fri Oct 16. About $120-150, free to cancel, dropped in early October if Reykjanes is quiet. Grindavík sits inside the active Sundhnúkur zone and the Volcano Escape booking is non-refundable - this turns a possible evacuation from a scramble on your last night into a phone call", extra: true },
+      { id: "fs28", text: "Check almannavarnir.is weekly from late September. If Grindavík closes you need to know while you can still act, and the same closure very likely shuts Blue Lagoon - so it is one decision, not two", extra: true },
       { id: "fs16", text: "Write the week up for Mom: school runs, activities, bedtimes, pediatrician, insurance details, allergies, emergency contacts", extra: true },
       { id: "fs17", text: "Leave a signed medical-consent note so Mom can authorise treatment for the kids if she has to", extra: true }
     ]},
@@ -887,7 +894,8 @@ const TRIP = {
     { id: "cf-lod-london",    label: "Tudor Court, Paddington, Oct 11-13", fields: ["Booking no.", "PIN", "Room / floor", "Notes"] },
     { id: "cf-lod-rvk",       label: "Fosshotel Baron, Oct 13",   fields: ["Confirmation", "PIN", "Breakfast added?", "Bed type"] },
     { id: "cf-lod-south",     label: "Rauduskridur cabin, Oct 14-16",  fields: ["Airbnb code", "Lat / long", "Door code", "Host phone"] },
-    { id: "cf-lod-kef",       label: "Keflavík lodging x1",       fields: ["Name", "Address", "Confirmation", "Check-in / out"] },
+    { id: "cf-lod-kef",       label: "Volcano Escape, Grindavík, Oct 16", fields: ["Confirmation", "PIN", "Key pickup", "Host phone"] },
+    { id: "cf-lod-backup",    label: "Reykjanesbær backup, Oct 16", fields: ["Name", "Confirmation", "Free until", "Notes"] },
     { id: "cf-car",           label: "Iceland rental car",             fields: ["Company", "Confirmation", "Pickup / return", "Waiver taken?"] },
     { id: "cf-abbey",         label: "Westminster Abbey, Oct 12",      fields: ["Confirmation", "Entry time"] },
     { id: "cf-stpauls",       label: "St Paul's, Oct 12",              fields: ["Confirmation", "Entry time"] },
@@ -898,7 +906,7 @@ const TRIP = {
     { id: "cf-dishoom",       label: "Dishoom, Oct 10",                fields: ["Location", "Confirmation", "Time"] },
     { id: "cf-temple",        label: "Endowment, 1:00pm Sat Oct 10",   fields: ["Reservation", "Clothing rental?", "Notes"] },
     { id: "cf-templecar",     label: "Rental car, Heathrow, Oct 9-10", fields: ["Company", "Confirmation", "Reg / space", "Return by"] },
-    { id: "cf-westend",       label: "Hamilton, Mon Oct 12, 7:30pm",   fields: ["Confirmation", "Seats", "Booking ref", "Notes"] },
+    { id: "cf-westend",       label: "Hamilton, Mon Oct 12, 7:30pm",   fields: ["Order no.", "Seats / door", "Price paid", "Notes"] },
     { id: "cf-phone",         label: "International phone / eSIM",     fields: ["Carrier or eSIM", "Plan", "Dates", "Cost"] }
   ],
 
@@ -907,7 +915,7 @@ const TRIP = {
      filter on, the streets that qualify, what to rule out, and the one or two
      criteria that actually matter for that night. */
   lodging: {
-    lede: "Six paid nights. Five are booked. Only Reykjanesbær on Fri Oct 16 is still open. Oct 10 is work-paid at the Courtyard Heathrow and Oct 17 is spent on a plane. The unbooked entries below are search briefs - filter on the map, not on the hotel's name.",
+    lede: "All six paid nights are booked. The one that still needs work is Grindavík on Fri Oct 16 - not the booking, but the fallback behind it. Oct 10 is work-paid at the Courtyard Heathrow and Oct 17 is spent on a plane. The unbooked entries below are search briefs - filter on the map, not on the hotel's name.",
     stays: [
       { id: "lg-pad", label: "Paddington, London", nights: "Sun Oct 11 - Tue Oct 13 (2 nights)",
         budget: "$180-230 a night", budgetId: "lod-london",
@@ -1046,9 +1054,33 @@ const TRIP = {
         ],
         candidates: "Hótel Rangá, between Hella and Hvolsvöllur, is the famous aurora hotel - on-site observatory and a wake-up service - but it runs well above this budget. Stracta Hótel in Hella and Hótel Hvolsvöllur are the mainstream mid-range options, and the surrounding farm guesthouses are where the value is. Verify all of it yourself." },
 
-      { id: "lg-kef", label: "Reykjanesbær", nights: "Fri Oct 16 - Sat Oct 17 (1 night)",
-        budget: "$120-180, and likely the cheap end", budgetId: "lod-kef",
-        why: "Twenty minutes from Blue Lagoon for the 9am slot and five from the airport. That is the entire job of this bed.",
+      { id: "lg-kef", label: "Grindavík", nights: "Fri Oct 16 - Sat Oct 17 (1 night)",
+        budget: "$120-180 was the plan; came in at about $256", budgetId: "lod-kef",
+        why: "Ten minutes from Blue Lagoon for the 9am slot, with a hot tub for the last night in Iceland. The shortest possible last morning.",
+        booked: {
+          name: "Volcano Escape Grindavík with hot tub",
+          address: "Þórkötlustaðarvegur, 240 Grindavík",
+          phone: "+354 768 2110",
+          room: "One-Bedroom House, entire place, 2 adults",
+          paid: "EUR 233.10 all in, about $256 - VAT and city tax included, paid in full",
+          terms: "NON-REFUNDABLE. Dates cannot be changed.",
+          checkIn: "Fri Oct 16, 3:00pm to 11:00pm",
+          checkOut: "Sat Oct 17, any time from midnight to 11:00am",
+          maps: "Thorkotlustadarvegur, 240 Grindavik, Iceland", ll: "63.8424,-22.4340",
+          wins: [
+            "A hot tub on the last night in Iceland, which is the one thing the south coast cabin did not have.",
+            "Ten minutes to Blue Lagoon instead of twenty, so Saturday's 9am slot gets an even gentler start.",
+            "An entire one-bedroom house rather than a room, and a midnight-to-11am checkout window so nothing rushes you.",
+            "Grindavík sits inside the Reykjanes lava fields, which makes aurora night 4 a step outside the door rather than a drive."
+          ],
+          confirmOnArrival: [
+            "READ THIS FIRST: Grindavík is the town the plan told you to avoid. It has been repeatedly evacuated since the Sundhnúkur eruptions began in November 2023, fissures have opened inside the town itself, and the Met Office considers another intrusion the most likely outcome. This booking is non-refundable and already paid, so the money is committed - what is not committed is having a fallback.",
+            "BOOK A REFUNDABLE REYKJANESBÆR BACKUP. About $120-150, free to cancel, and you drop it in early October if Reykjanes is quiet. That turns a possible evacuation from a scramble on your last night into a phone call. This is the single most useful thing left on the whole trip.",
+            "Check almannavarnir.is weekly from late September, not just the day before. If Grindavík closes you need to know while you can still act, and the same closure very likely shuts Blue Lagoon - so it is one decision, not two.",
+            "Arrange key pickup with the host now. The confirmation says to contact them to find out where the keys are and what time to arrive, and Grindavík is largely depopulated - this is not somewhere to improvise at 8pm.",
+            "Do not count on fuel or food in Grindavík. Fill the tank in Reykjanesbær or on Route 41 on the way in, and bring dinner with you."
+          ]
+        },
         searchIn: [
           "Reykjanesbær - the municipality covering Keflavík and Njarðvík",
           "Keflavík harbour, which is the nicest part of it",
@@ -1066,7 +1098,7 @@ const TRIP = {
         ] }
     ],
     notes: [
-      "One left, and it is the easy one. Reykjanesbær has plenty of off-season supply, so this is a short job rather than a hunt - just book it refundable and do not book Grindavík.",
+      "Nothing left to book, but one thing left to do: a refundable Reykjanesbær bed behind the Grindavík night. See that entry for why.",
       "Refundable where the plan is still moving: Reykjanesbær because of the volcano, and Paddington if you are still weighing the Courtyard.",
       "Work covers Fri Oct 9 and Sat Oct 10 at the Courtyard Heathrow, and Sat Oct 17 is spent flying. Neither needs booking."
     ]
