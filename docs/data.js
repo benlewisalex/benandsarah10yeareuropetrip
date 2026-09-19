@@ -398,16 +398,17 @@ const TRIP = {
           detail: "2WD is fine for this route. Take the gravel and sand/ash damage waiver.",
           headsUp: "Hold car doors with both hands - wind rips them off and insurance does not cover it.",
           maps: "Keflavik International Airport, Iceland", ll: "63.9850,-22.6056" },
-        { time: "11:30am", name: "Sundhnúkur / Fagradalsfjall lava fields",
-          travel: "30-min drive from KEF, Route 43 then 427",
-          dur: "2-4 hrs round trip on foot, depending which trail is open",
-          detail: "Free. Rough, ankle-turning ground - boots with grip. Check safetravel.is and almannavarnir.is before driving out; exclusion zones move.",
+        { time: "11:30am", name: "Fagradalsfjall lava fields, Nátthagi trail",
+          travel: "30 min from KEF: Route 43 to Grindavík, then 427 east. P1 car park is 7 km along, on the left at the bottom of the hill",
+          dur: "1-1.5 hrs round trip on the Nátthagi trail, 2 km each way",
+          detail: "Parking 1,000 ISK for 24 hrs at parka.is - there is no meter on site. Boots with grip; the ground is rough. Cooled lava and craters, no active flow. Check safetravel.is before driving out.",
           headsUp: "Never approach a fresh flow from downwind; volcanic gas near the vents is lethal.",
-          maps: "Fagradalsfjall, Reykjanes, Iceland", ll: "63.8958,-22.2725",
+          maps: "Geldingadalir volcano car park P1, Route 427, Grindavík, Iceland", ll: "63.8586,-22.2896",
           image: "lava",
           links: [
-            { label: "safetravel.is", url: "https://safetravel.is/" },
-            { label: "almannavarnir.is", url: "https://www.almannavarnir.is/" }
+            { label: "Pay for P1 parking", url: "https://www.parka.is/pay/geldingadalir/" },
+            { label: "Trails and closures", url: "https://www.visitreykjanes.is/en/volcano-eruption/eruption-information-everything-you-need-to-know/hiking-and-parking" },
+            { label: "safetravel.is", url: "https://safetravel.is/" }
           ] },
         { time: "3:00pm", name: "Bridge Between Continents",
           travel: "25-min drive northwest on Route 425",
@@ -730,6 +731,7 @@ const TRIP = {
       { id: "fs14", text: "Book Blue Lagoon for Sat Oct 17 - Comfort x2, a 9:00am slot, plus the luggage hold. Read the cancellation terms; an eruption closure should be refundable. Leaving the water at 11:00 is what funds the coast drive afterwards", extra: true },
       { id: "fs15", text: "Contact the Volcano Escape host for key pickup and arrival time. The confirmation says to, and Grindavík is largely depopulated - not a town to improvise in after dark", extra: true },
       { id: "fs27", text: "Decided: no backup bed. The risk is accepted and you rebook on the day if Grindavík closes. Read the Plan B on the Info tab once so you are not composing it at 5pm on your last Friday - the short version is sleep in Reykjavík, swim at Sky Lagoon, drive to KEF", extra: true },
+      { id: "fs29", text: "Verify the coordinates for the Fagradalsfjall P1 (Geldingadalir) car park and save them offline. Searching \"Fagradalsfjall\" in a map app returns the mountain, which has no road access - you want the signed P1 car park 7 km east of Grindavík on Route 427", extra: true },
       { id: "fs28", text: "Check almannavarnir.is weekly from late September, then the night before and the morning of Oct 16. Since there is no backup booking, this check IS the plan - it is what turns an evacuation into a rebooking rather than a surprise at the door", extra: true },
       { id: "fs16", text: "Write the week up for Mom: school runs, activities, bedtimes, pediatrician, insurance details, allergies, emergency contacts", extra: true },
       { id: "fs17", text: "Leave a signed medical-consent note so Mom can authorise treatment for the kids if she has to", extra: true }
