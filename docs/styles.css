@@ -635,12 +635,23 @@ code { font-family: var(--mono); font-size: .92em; }
 .ag.is-open > .ag__body { display: block; }
 .ag__d { color: var(--ink-2); font-size: var(--t-15); line-height: 1.55; }
 
-/* travel is measured FROM THE PREVIOUS STOP */
+/* A leg of travel. "Getting there" opens the day's first entry; "Next" closes
+   every entry, because the thing you want at the bottom of a stop is how you
+   leave it. */
 .ag__tr {
   display: flex; gap: 7px; margin: 0 0 var(--s3);
   font-size: var(--t-13); color: var(--ink-2);
 }
 .ag__tr svg { flex: 0 0 auto; width: 13px; height: 13px; margin-top: 3px; color: var(--ink-3); }
+.ag__tr b { font-weight: 650; color: var(--ink); }
+
+/* the onward leg is a footer, so it gets a rule above it and no bottom margin */
+.ag__tr--next {
+  margin: var(--s4) 0 0;
+  padding-top: var(--s3);
+  border-top: 1px dashed var(--line);
+}
+.ag__tr--next svg { color: var(--ink-2); }
 
 /* Life-safety note, nested in its own event. One line, a thin rule, no fill
    and no title - it keeps the hazard colour because it still has to be read,
