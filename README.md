@@ -3,7 +3,7 @@
 A trip companion for Ben & Sarah Alexander. Plain HTML, CSS and vanilla JS - no
 build step, no framework, no bundler. Edit a file, commit, push, done.
 
-All content comes from `ITINERARY.md` and lives in one data file, `docs/data.js`.
+All content lives in one data file, `docs/data.js`. That is the source of truth.
 
 **Open `docs/index.html` in a browser right now** and it works, including from a
 `file://` URL. The only thing that needs a real web server is the service worker
@@ -15,7 +15,6 @@ put on your phones.
 ## What's in here
 
 ```
-ITINERARY.md              the source of truth for all content
 README.md                 this file
 .nojekyll                 belt and braces (the one that matters is in docs/)
 docs/                     <- this folder is what GitHub Pages serves
@@ -192,11 +191,11 @@ sun: { sunrise: "8:15am", sunset: "6:01pm" },
 
 Set `sun: null` for a day with no times, or `sunrise: null` if you only have one.
 The app says "not listed in the itinerary" rather than inventing a time - Oct 12
-and Oct 17 are in that state now because `ITINERARY.md` doesn't give them.
+and Oct 17 are in that state now because the times were never confirmed.
 
 ### Change the checklists
 
-Items live in `checklists`, grouped by the buckets from `ITINERARY.md`.
+Items live in `checklists`, grouped into urgency buckets.
 
 ```js
 { id: "tw4", text: "Reserve Iceland rental car - take gravel + sand/ash waiver" },
@@ -259,7 +258,7 @@ decoration posing as data. Every stop still deep-links to the real map, and
 `confirmations` defines the labels and which fields each booking gets. The values
 you type are never stored here - only on the device.
 
-### Items I added that are not in ITINERARY.md
+### Items flagged as "added"
 
 Two checklist items carry an **"added"** badge because they did not come from
 your itinerary:

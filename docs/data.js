@@ -1,7 +1,7 @@
 /* ============================================================================
    data.js  -  ALL trip content lives here.
 
-   Sourced from ITINERARY.md. Em-dashes normalized to hyphens. No trip facts
+   The single source of truth for trip content. Em-dashes normalized to hyphens. No trip facts
    added that aren't in the itinerary.
 
    To edit content later you should only ever need to touch THIS file.
@@ -127,7 +127,7 @@ const TRIP = {
 
   /* --- the nine days ------------------------------------------------------- */
   /* half:    "london" | "iceland"  -> drives the card's basalt spine colour
-     sun:     exactly as given in ITINERARY.md; null where not listed
+     sun:     null where the time is not known, rather than invented
      travel:  how you get there and how long, measured FROM THE PREVIOUS STOP
      dur:     how long you are actually there
      why:     what makes the place worth the time. Renders above the logistics.

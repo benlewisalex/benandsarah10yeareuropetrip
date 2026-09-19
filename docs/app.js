@@ -1379,7 +1379,7 @@
 
     var tags = [];
     if (!done && st && st.overdue) tags.push('<span class="tag tag--overdue">Overdue</span>');
-    if (item.extra) tags.push('<span class="tag tag--extra" title="Not from ITINERARY.md">added</span>');
+    if (item.extra) tags.push('<span class="tag tag--extra" title="Added while planning, not in the original brief">added</span>');
     if (compact && st) tags.push('<span class="tag">' + esc(st.group.label) + "</span>");
     if (tags.length) h.push('<div class="check__tags">' + tags.join("") + "</div>");
     h.push("</div>");
@@ -1445,6 +1445,28 @@
     return h.join("");
   }
 
+  /* The constraints that forced the running order. Collapsed, because you only
+     want it when you are tempted to move something. It lives here because it
+     was the one thing in data.js that nothing rendered, and the markdown copy
+     that used to carry it has been deleted - see git history if you want the
+     long-form version back. */
+  function infoWhy() {
+    if (!D.variant) return "";
+    var open = S.open.why === true;
+    var h = [];
+    h.push('<div class="section-head"><h2>Why the plan is shaped this way</h2></div>');
+    h.push('<section class="grp' + (open ? " is-open" : "") + '" data-grp="why">');
+    h.push('<button class="grp__h" data-toggle="why" aria-expanded="' + open + '">');
+    h.push('<span class="grp__chev">' + ICON.chev + "</span>");
+    h.push('<span class="grp__t"><b>' + esc(D.variant.title) + "</b>" +
+      '<span class="grp__hint">' + esc(D.variant.lede) + "</span></span>");
+    h.push("</button>");
+    h.push('<div class="grp__body"><div class="card__body"><ul class="tl__sub">');
+    D.variant.points.forEach(function (p) { h.push("<li>" + esc(p) + "</li>"); });
+    h.push("</ul></div></div></section>");
+    return h.join("");
+  }
+
   function infoRef() {
     var R = D.reference;
     var h = [];
@@ -1503,6 +1525,7 @@
     h.push("</ul></div></div>");
 
     if (D.workLeg) h.push(workLegBlock());
+    h.push(infoWhy());
 
     h.push('<div class="foot">');
     h.push("<p><b>" + esc(D.meta.who) + "</b> &middot; " + esc(D.meta.title) +
