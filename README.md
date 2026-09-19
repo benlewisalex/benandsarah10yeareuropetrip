@@ -240,82 +240,26 @@ The wiring is the `book` array on an itinerary item:
   the exception: it is on the Info tab, because it is neither a booking nor
   tied to a day.
 
-### Change the map
-
-The Map view has no configuration and no map library. It reads every itinerary
-item that has an `ll` and draws them in trip order. Add a stop with coordinates
-and it appears on the map automatically.
-
-It is a **schematic**, not a basemap: each region is projected at its own scale
-(England and Iceland are 1,900 km apart, so one shared scale collapses both into
-a blob), and stops are nudged apart so four London landmarks inside 3 km stay
-readable. Coastlines are deliberately not drawn - inventing them would be
-decoration posing as data. Every stop still deep-links to the real map, and
-"Open route in maps" builds a multi-waypoint driving route.
-
-### Change the confirmations locker
-
-`confirmations` defines the labels and which fields each booking gets. The values
-you type are never stored here - only on the device.
-
-### Items flagged as "added"
-
-Two checklist items carry an **"added"** badge because they did not come from
-your itinerary:
-
-- **UK ETA.** The UK has required an Electronic Travel Authorisation from US
-  citizens since January 2025, so you almost certainly need one for October
-  2026. I have not stated a fee, because it changed once already and my
-  information has a cutoff - confirm the current cost and processing time on
-  gov.uk.
-- **ETIAS** for Iceland (Schengen). Repeatedly delayed, and genuinely uncertain
-  for October 2026. The item asks you to check whether it is in force rather
-  than assuming.
-
-Both are in the "This week" bucket with links under Info. Delete them from
-`data.js` if you disagree - the badge exists so you can tell my additions from
-your own content.
-
-### Change the photos
-
-The site uses a mix of local `docs/img/` files and Wikimedia Commons image URLs.
-Each image still has a CSS gradient fallback. The fallback is intentional, not a
-broken-image placeholder - it is built as a sky/horizon/land abstraction of the
-location, so the layout and mood hold up with no network at all.
-
-To use your own photos instead, which is the better end state:
-
-1. Put `gullfoss.jpg` in `docs/img/`.
-2. In `data.js`, change that image's `src` to `"img/gullfoss.jpg"` and update the
-   `alt` text to describe your actual photo.
-3. Add `"img/gullfoss.jpg"` to the `PHOTOS` array in `docs/sw.js` so it gets
-   cached for offline use.
-4. Bump `CACHE` in `sw.js`.
-
-Every image keeps its `grad` as the fallback either way. For best offline
-behavior, prefer local files in `docs/img/` for your own photos.
-
----
-
 ## How it works, briefly
 
-- **One page.** Views switch on the URL hash (`#/today`, `#/agenda`). No
+- **One page.** Views switch on the URL hash (`#/agenda`, `#/info`). No
   router library. Hash routing is also why it works from `file://` - a path-based
   router would need a server.
-- **Today adapts to the date.** Before Oct 10 it's the prep dashboard: countdown,
-  overdue count, the next few unchecked items checkable in place. Oct 10-17 it's
-  that day's plan. After Oct 17 it's a farewell state. The date chip in the top
-  strip overrides "today" so you can preview any day.
+- **Three tabs: Agenda, Aurora, Info.** It started at seven. Today, Map, Days,
+  Book and Prep have all gone, each because it was either duplicating the Agenda
+  or not being opened. Their old hashes redirect rather than 404. The date chip
+  in the top strip still overrides "today" so the Agenda can be previewed on any
+  date.
 - **One Agenda, not three tabs.** Days, Book and Prep used to be the same
   information at three densities, and keeping them in sync by eye was the actual
   failure mode. The Agenda is a two-level accordion - day, then event - where
   each event carries only when it happens, what it is, how long it takes, and
-  whether it still needs booking. Old `#/days`, `#/book` and `#/prep` hashes
-  redirect to it.
+  whether it still needs booking, and ends with how you get to the next one.
 - **Offline** is a service worker that precaches the shell and assets. The dot in
   the top strip goes red and a banner appears when there's no connection.
 - **Dark mode** follows `prefers-color-scheme`; the sun button overrides it.
-  Image blocks are dimmed at night so a bright photo isn't glare in a dark car.
+  The one remaining photo, the Aurora hero, is dimmed at night so it is not
+  glare in a dark car.
 
 ### The design, in one paragraph
 

@@ -199,34 +199,18 @@ code { font-family: var(--mono); font-size: .92em; }
     linear-gradient(180deg, var(--london) 0 46%, var(--iceland) 46% 100%);
 }
 
-.meter {
-  display: block; position: relative; height: 10px;
-  background: var(--sunk); border-radius: var(--r-pill); overflow: hidden;
-  box-shadow: inset 0 0 0 1px rgba(15,21,24,.07);
-}
-.meter__fill, .meter__ghost {
   display: block; position: absolute; top: 0; bottom: 0; left: 0; width: 0;
   border-radius: var(--r-pill);
 }
-.meter__ghost {
-  background-color: var(--ink-3); opacity: .28;
-  background-image: repeating-linear-gradient(90deg, transparent 0 7px, rgba(0,0,0,.3) 7px 9px);
-}
-.meter__fill {
   z-index: 1; background-color: var(--meter-color, var(--moss));
   background-image:
     linear-gradient(180deg, rgba(255,255,255,.28) 0 3px, transparent 3px),
     repeating-linear-gradient(90deg, transparent 0 9px, rgba(0,0,0,.22) 9px 11px);
   transition: width var(--slow) var(--ease);
 }
-.meter--over .meter__fill { --meter-color: var(--hazard); }
-.meter--over .meter__ghost { background-color: var(--hazard); opacity: .38; }
-.meter__mark {
   position: absolute; top: -3px; bottom: -3px; width: 2px; z-index: 2;
   background: var(--ink); opacity: .8; border-radius: 1px;
 }
-.meter--onDark { background: rgba(255,255,255,.16); box-shadow: none; }
-.meter--onDark .meter__fill { --meter-color: #9FCB63; }
 
 /* ============================================================== 4. THE SHELL */
 
@@ -423,92 +407,8 @@ code { font-family: var(--mono); font-size: .92em; }
   font-size: 10px; letter-spacing: .04em; opacity: 0;
 }
 
-/* =============================================================== 8. HEROES */
-/* The one place boldness is spent. Deliberately dark in BOTH themes. */
-
-.hero {
-  position: relative; display: flex; gap: var(--s5);
-  border-radius: var(--r-lg); margin-bottom: var(--s6);
-  overflow: hidden; color: var(--on-dark);
-  background:
-    radial-gradient(120% 90% at 12% 8%, rgba(127,184,192,.22), transparent 58%),
-    linear-gradient(158deg, var(--hero-1) 0%, var(--hero-2) 52%, var(--hero-3) 100%);
-  box-shadow: var(--sh-3);
-}
-/* on the dark hero the half colours are too close to the background, so the
-   spine gets its own brighter pair */
-.hero__spine {
-  width: 11px;
-  --london: #4C6B84;
-  --iceland: #3D6E77;
-  background-image:
-    linear-gradient(90deg, rgba(255,255,255,.16) 0 2px, transparent 2px),
-    repeating-linear-gradient(180deg, transparent 0 36px, rgba(0,0,0,.22) 36px 38px),
-    linear-gradient(180deg, var(--london) 0 46%, var(--iceland) 46% 100%);
-}
-.hero__text { min-width: 0; }
-.heroprog { margin-top: var(--s5); }
-.heroprog__l {
-  display: flex; justify-content: space-between; gap: var(--s3); margin-bottom: 7px;
-  font-size: var(--t-11); font-weight: 700; letter-spacing: .1em;
-  text-transform: uppercase; color: rgba(242,247,248,.6);
-}
-.hero__b { flex: 1 1 auto; min-width: 0; padding: var(--s6) var(--s5) var(--s6) 0; }
-.hero .eyebrow { color: rgba(242,247,248,.62); }
-
-.countdown {
-  display: flex; align-items: baseline; gap: var(--s3); margin-top: var(--s2);
-  font-family: var(--mono); font-weight: 700; line-height: .95; letter-spacing: -.045em;
-}
-.countdown b { font-size: var(--t-60); }
-.countdown span {
-  font-family: var(--sans); font-size: var(--t-15); font-weight: 600;
-  letter-spacing: 0; color: rgba(242,247,248,.7);
-}
-.hero__title { font-size: var(--t-27); margin-top: var(--s4); color: #fff; }
-.hero__sub { color: rgba(242,247,248,.76); font-size: var(--t-15); margin-top: var(--s2); }
-
-.tally { display: flex; gap: var(--s2); flex-wrap: wrap; margin-top: var(--s5); }
-.tally__i {
-  flex: 1 1 92px; min-width: 92px; padding: var(--s3) var(--s4);
-  background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.13);
-  border-radius: var(--r-sm);
-}
-.tally__i b { display: block; font-family: var(--mono); font-size: var(--t-27); line-height: 1.05; letter-spacing: -.03em; }
-.tally__i span {
-  display: block; margin-top: 2px; font-size: var(--t-11); font-weight: 650;
-  letter-spacing: .1em; text-transform: uppercase; color: rgba(242,247,248,.62);
-}
-.tally__i--bad {
-  background: color-mix(in srgb, var(--hazard) 26%, transparent);
-  border-color: color-mix(in srgb, var(--hazard) 55%, transparent);
-}
-.tally__i--bad b { color: #FFC3AC; }
-
-.sunrow {
-  display: flex; gap: var(--s5); flex-wrap: wrap;
-  margin-top: var(--s4); padding-top: var(--s4);
-  border-top: 1px solid rgba(255,255,255,.15);
-  font-family: var(--mono); font-size: var(--t-15);
-}
-.sunrow div { display: flex; align-items: center; gap: 7px; }
-.sunrow svg { width: 17px; height: 17px; color: rgba(242,247,248,.6); }
-
 /* ============================================================ 9. DAY CARDS */
 
-
-.tl { padding: var(--s2) var(--s5) var(--s5); }
-.tl__intro { padding: var(--s4) 0 0; color: var(--ink-2); font-size: var(--t-15); }
-.tl__i { display: flex; gap: var(--s4); padding: var(--s4) 0; border-top: 1px solid var(--line-2); }
-.tl__i:first-of-type { border-top: 0; }
-.tl__t {
-  flex: 0 0 54px; padding-top: 2px;
-  font-family: var(--mono); font-size: var(--t-13); font-weight: 700;
-  color: var(--ink-3); letter-spacing: -.02em;
-}
-.tl__c { flex: 1 1 auto; min-width: 0; }
-.tl__n { font-size: var(--t-17); font-weight: 650; letter-spacing: -.01em; }
-.tl__d { color: var(--ink-2); font-size: var(--t-15); margin-top: 3px; }
 .tl__sub { margin-top: var(--s3); }
 .tl__sub li { position: relative; padding-left: var(--s4); font-size: var(--t-15); color: var(--ink-2); }
 .tl__sub li + li { margin-top: var(--s2); }
@@ -520,16 +420,10 @@ code { font-family: var(--mono); font-size: .92em; }
 .tl__sub--num li::before { display: none; }
 .tl__sub--num li b { position: absolute; left: 0; top: 0; font-family: var(--mono); color: var(--ink-3); }
 
-
-.mustdo { display: grid; gap: var(--s2); }
-.mustdo__i {
   display: flex; flex-direction: column; gap: 1px;
   padding: var(--s3) var(--s4); background: var(--card-2);
   border-radius: var(--r-sm); font-size: var(--t-15);
 }
-.mustdo__i b { font-weight: 650; }
-.mustdo__i span { color: var(--ink-3); font-family: var(--mono); font-size: var(--t-12); }
-
 
 /* ==================================================== 9b. DAY ACCORDION */
 /* Two collapsible levels so all eight days fit on one screen. A life-safety
@@ -688,189 +582,41 @@ code { font-family: var(--mono); font-size: .92em; }
   .ag__body { padding-left: calc(68px + var(--s3)); }
 }
 
-/* ============================================================== 10. THE MAP */
-/* A schematic route diagram, not a real basemap. Drawn from the same
-   coordinates the maps links use, projected to SVG. Zero dependencies, so it
-   works with no signal - which is the whole point. */
+/* ====================================================== 10b. INFO REFERENCE */
+/* Links first, because Info is the tab you open to check something. Each one
+   carries why you would open it and how often, so a bookmark has a cadence. */
 
-.mapwrap {
-  border-radius: var(--r-lg); overflow: hidden; margin-bottom: var(--s5);
-  background:
-    radial-gradient(100% 80% at 30% 10%, rgba(127,184,192,.16), transparent 60%),
-    linear-gradient(160deg, var(--hero-1) 0%, var(--hero-2) 55%, var(--hero-3) 100%);
-  box-shadow: var(--sh-3);
+.linkout--ref { align-items: flex-start; }
+.linkout--ref .linkout__t b { display: block; font-size: var(--t-17); font-weight: 650; }
+.linkout__host {
+  font-family: var(--mono); font-size: var(--t-12); font-weight: 400;
+  color: var(--ink-3); margin-left: 6px;
 }
-.mapwrap__head {
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: var(--s3); padding: var(--s5) var(--s5) 0; color: var(--on-dark);
+.linkout--ref .linkout__t span {
+  display: block; margin-top: 3px;
+  font-size: var(--t-14); line-height: 1.5; color: var(--ink-2);
 }
-.mapwrap__head .eyebrow { color: rgba(242,247,248,.6); }
-.mapwrap__head b { font-size: var(--t-19); color: #fff; font-weight: 680; }
-.mapwrap__legend { font-family: var(--mono); font-size: var(--t-12); color: rgba(242,247,248,.62); }
+.linkout__when {
+  display: block; margin-top: 6px;
+  font-style: normal; font-size: var(--t-12); font-weight: 650; color: var(--ink);
+}
 
-.panels { display: grid; gap: var(--s3); padding: var(--s3) var(--s3) 0; }
-.panel { min-width: 0; }
-.panel__t {
-  display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3);
-  padding: 0 var(--s3) 2px;
-  font-size: var(--t-12); font-weight: 700; letter-spacing: .12em;
-  text-transform: uppercase; color: rgba(242,247,248,.55);
-}
-.panel__t span { font-family: var(--mono); letter-spacing: 0; text-transform: none; }
-.mapwrap__note {
-  padding: 0 var(--s5) var(--s3);
-  font-size: var(--t-12); color: rgba(242,247,248,.5);
-}
-.routemap { display: block; width: 100%; height: auto; }
-/* real geography: basalt land, glacier ice, cold sea */
-.rm-sea  { fill: #05121A; }
-.rm-land { fill: #2A4A54; stroke: #7FB2BE; stroke-width: 1.1; stroke-linejoin: round; }
-.rm-ice  { fill: #C3E2EA; fill-opacity: .46; stroke: #DCF0F5; stroke-width: .9; stroke-opacity: .55; }
-.rm-grat { stroke: rgba(255,255,255,.09); stroke-width: 1; stroke-dasharray: 2 5; }
-.rm-gratT { font-family: var(--mono); font-size: 9px; fill: rgba(242,247,248,.34); }
-.rm-halo { fill: rgba(6,14,18,.55); }
-.rm-badge { fill: #F2F7F8; }
-.rm-badgeT {
-  font-family: var(--mono); font-size: 10px; font-weight: 700;
-  fill: #0A1418; text-anchor: middle;
-}
-.rm-dim { opacity: .32; }
-.rm-g { cursor: pointer; }
-.rm-n--on { fill: #08181C; }
-.routemap .rm-stop--dim { opacity: .3; }
-.stoplist__i.is-target { animation: flash 1.8s var(--ease); }
-.routemap .rm-grid { stroke: rgba(255,255,255,.07); stroke-width: 1; }
-.routemap .rm-leg {
-  fill: none; stroke: rgba(242,247,248,.34);
-  stroke-width: 2; stroke-linecap: round; stroke-dasharray: 5 5;
-}
-.routemap .rm-leg--active { stroke: #7FB8C0; stroke-width: 3; stroke-dasharray: none; }
-.routemap .rm-hop { fill: none; stroke: rgba(255,255,255,.2); stroke-width: 1.5; stroke-dasharray: 2 6; }
-.routemap .rm-stop { fill: #12222A; stroke: rgba(242,247,248,.5); stroke-width: 2; cursor: pointer; }
-.routemap .rm-stop--active { fill: #7FB8C0; stroke: #fff; stroke-width: 2.5; }
-.routemap .rm-stop--london { stroke: #8FB0CC; }
-.routemap .rm-stop--dim { opacity: .28; }
-.routemap .rm-n {
-  font-family: var(--mono); font-size: 11px; font-weight: 700;
-  fill: rgba(242,247,248,.9); text-anchor: middle; pointer-events: none;
-}
-.routemap .rm-stop--active + .rm-n { fill: #0A1418; }
-.routemap .rm-label {
-  font-family: var(--sans); font-size: 11px; font-weight: 650;
-  fill: #EAF4F7; pointer-events: none;
-  paint-order: stroke; stroke: rgba(4,12,16,.85); stroke-width: 3px; stroke-linejoin: round;
-}
-.routemap .rm-region {
-  font-family: var(--sans); font-size: 11px; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase;
-  fill: rgba(242,247,248,.4);
-}
-.routemap .rm-scale { stroke: rgba(242,247,248,.35); stroke-width: 1.5; }
-.routemap .rm-scaleT { font-family: var(--mono); font-size: 10px; fill: rgba(242,247,248,.5); }
-
-.mapfilter {
-  display: flex; gap: var(--s2); flex-wrap: wrap;
-  padding: 0 var(--s5) var(--s5);
-}
-.mapfilter button {
-  min-height: 40px; padding: 0 var(--s4);
-  background: rgba(255,255,255,.08); color: rgba(242,247,248,.82);
-  border: 1px solid rgba(255,255,255,.16); border-radius: var(--r-pill);
-  font-size: var(--t-13); font-weight: 650; cursor: pointer;
+/* Two countries, two numbers, both tap-to-call. */
+.emg { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
+.emg__i {
+  display: block; padding: var(--s4); text-align: center; text-decoration: none;
+  background: var(--card); border: 2px solid var(--hazard);
+  border-radius: var(--r-md); box-shadow: var(--sh-1);
   transition: all var(--fast) var(--ease);
 }
-.mapfilter button:hover { background: rgba(255,255,255,.16); color: #fff; }
-.mapfilter button[aria-pressed="true"] { background: #fff; color: #0F1518; border-color: #fff; }
-
-.stoplist { }
-.stoplist__i {
-  display: flex; gap: var(--s4); align-items: flex-start;
-  padding: var(--s4) var(--s5); border-top: 1px solid var(--line-2);
+.emg__i:hover { background: var(--hazard-wash); }
+.emg__i:active { transform: scale(.99); }
+.emg__i .eyebrow { color: var(--hazard); }
+.emg__n {
+  font-size: var(--t-44); font-weight: 700; line-height: 1.05;
+  color: var(--hazard); margin-top: 2px;
 }
-.stoplist__i:first-child { border-top: 0; }
-.stoplist__n {
-  flex: 0 0 30px; height: 30px; display: grid; place-items: center;
-  background: var(--sunk); color: var(--ink-2);
-  border-radius: var(--r-pill);
-  font-family: var(--mono); font-size: var(--t-12); font-weight: 700;
-}
-.stoplist__i--london .stoplist__n  { background: var(--london-wash);  color: var(--london); }
-.stoplist__i--iceland .stoplist__n { background: var(--iceland-wash); color: var(--iceland); }
-.stoplist__t { flex: 1 1 auto; min-width: 0; }
-.stoplist__t b { display: block; font-size: var(--t-15); font-weight: 650; }
-.stoplist__t span { display: block; font-family: var(--mono); font-size: var(--t-12); color: var(--ink-3); }
-.stoplist__t .maps { margin-top: var(--s2); }
-.approx--alt { background: var(--london-wash); color: var(--london); }
-.approx {
-  display: inline-block; margin-left: var(--s2); padding: 1px 6px;
-  background: var(--amber-wash); color: var(--amber);
-  border-radius: var(--r-pill); font-size: 10px; font-weight: 700;
-  letter-spacing: .06em; text-transform: uppercase;
-}
-
-
-/* ================================================== 10b. THE LIVE MAP */
-/* Real OpenStreetMap tiles via Leaflet. The vector map above is the
-   guaranteed-offline one; this is the one with roads and town names. */
-
-.mapmode { margin-bottom: var(--s4); }
-.seg--sm { margin-bottom: var(--s2); }
-.seg--sm button { min-height: 42px; font-size: var(--t-14); }
-.seg button:disabled { opacity: .45; cursor: not-allowed; }
-.mapmode .tiny { padding: 0 var(--s1); }
-
-.lpanels { display: grid; gap: var(--s4); margin-bottom: var(--s4); }
-.lwrap {
-  background: var(--card); border: 1px solid var(--line-2);
-  border-radius: var(--r-md); box-shadow: var(--sh-1); overflow: hidden;
-}
-.panel__t--light {
-  color: var(--ink-3); padding: var(--s3) var(--s4) var(--s2);
-  border-bottom: 1px solid var(--line-2);
-}
-.lmap {
-  height: 360px; width: 100%;
-  background: var(--sunk);
-  z-index: 0;                     /* keep tiles under the sticky topbar */
-}
-.lmap:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
-
-/* day-numbered pins */
-.lmkw { background: none; border: 0; }
-.lmk {
-  display: grid; place-items: center;
-  width: 28px; height: 28px;
-  border-radius: var(--r-pill);
-  font-family: var(--mono); font-size: 12px; font-weight: 700;
-  color: #fff; background: #1D3A42;
-  border: 2px solid #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,.45);
-}
-.lmk--london { background: #3F5D78; }
-.lmk--on { outline: 3px solid rgba(255,255,255,.65); }
-.lmkw--dim { opacity: .45; }
-
-.leaflet-popup-content-wrapper { border-radius: var(--r-sm); }
-.leaflet-popup-content { margin: var(--s3) var(--s4); font-family: var(--sans); }
-.lpop__n { display: block; font-size: var(--t-15); font-weight: 680; }
-.lpop__m { display: block; font-family: var(--mono); font-size: var(--t-12); color: #667; margin-top: 2px; }
-.lpop__a {
-  display: inline-flex; align-items: center; min-height: 38px;
-  margin-top: var(--s2); padding: 0 var(--s3);
-  background: #0F1518; color: #fff; border-radius: var(--r-sm);
-  font-size: var(--t-13); font-weight: 650; text-decoration: none;
-}
-.leaflet-container { font-family: var(--sans); }
-.leaflet-container a { color: #1273D4; }
-.mapfilter--light { padding: 0; }
-.mapfilter--light button {
-  background: var(--card); color: var(--ink-2);
-  border-color: var(--line); box-shadow: var(--sh-1);
-}
-.mapfilter--light button:hover { background: var(--card-2); color: var(--ink); }
-.mapfilter--light button[aria-pressed="true"] {
-  background: var(--ink); color: var(--page); border-color: var(--ink);
-}
+.emg__i .tiny { margin-top: 4px; }
 
 /* ============================================================= 11. AURORA */
 
@@ -891,7 +637,6 @@ code { font-family: var(--mono); font-size: .92em; }
 .aurora-hero__b .eyebrow { color: #45E8A0; }
 
 .tonight { border-color: color-mix(in srgb, var(--aurora) 45%, transparent); }
-.tonight__top { height: 4px; background: var(--aurora); }
 
 .kv { display: grid; }
 .kv__r { display: flex; gap: var(--s4); padding: var(--s4) 0; border-top: 1px solid var(--line-2); font-size: var(--t-15); }
@@ -1012,27 +757,7 @@ input:focus, textarea:focus { border-color: var(--focus); }
 /* the jump-to-day highlight on Agenda, and the map stop list */
 @keyframes flash { 0%,100% { background: transparent; } 15%,60% { background: var(--amber-wash); } }
 
-
-/* ======================================================== 15. CONFIRMATIONS */
-
-.privacy {
-  display: flex; gap: var(--s4); padding: var(--s5);
-  background: var(--amber-wash); border: 2px solid var(--amber);
-  border-radius: var(--r-md); margin-bottom: var(--s5); font-size: var(--t-15);
-}
-.privacy svg { width: 24px; height: 24px; flex: 0 0 auto; color: var(--amber); }
-.privacy b { color: var(--amber); }
-.locker { display: grid; gap: var(--s4); padding: 0 var(--s5) var(--s5); }
-
 /* ============================================================== 16. STATES */
-
-.seg { display: flex; margin-bottom: var(--s5); background: var(--sunk); border-radius: var(--r-md); padding: 4px; }
-.seg button {
-  flex: 1 1 0; min-height: 46px; background: none; border: 0; border-radius: var(--r-sm);
-  font-size: var(--t-15); font-weight: 650; color: var(--ink-2); cursor: pointer;
-  transition: all var(--fast) var(--ease);
-}
-.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: var(--sh-1); }
 
 .offline-banner {
   display: none; align-items: center; gap: var(--s2);
@@ -1040,19 +765,6 @@ input:focus, textarea:focus { border-color: var(--focus); }
   font-size: var(--t-13); font-weight: 600;
 }
 body.is-offline .offline-banner { display: flex; }
-
-.dialog-backdrop {
-  position: fixed; inset: 0; z-index: 120; background: rgba(5,9,11,.7);
-  display: grid; place-items: center; padding: var(--s5);
-}
-.dialog {
-  width: 100%; max-width: 460px; background: var(--card);
-  border: 1px solid var(--line); border-radius: var(--r-lg);
-  box-shadow: var(--sh-3); padding: var(--s6);
-}
-.dialog h2 { font-size: var(--t-22); margin-bottom: var(--s3); }
-.dialog__acts { display: flex; gap: var(--s3); margin-top: var(--s5); }
-.dialog__acts .btn { flex: 1 1 0; }
 
 .empty { padding: var(--s8) var(--s5); text-align: center; color: var(--ink-3); font-size: var(--t-15); }
 
@@ -1064,19 +776,12 @@ body.is-offline .offline-banner { display: flex; }
 
 @media (min-width: 560px) {
   .main { padding-left: var(--s6); padding-right: var(--s6); }
-  .mustdo { grid-template-columns: 1fr 1fr; }
-  .mustdo__i { flex-direction: row; justify-content: space-between; align-items: baseline; gap: var(--s3); }
-  .mustdo__i span { text-align: right; }
   .locker { grid-template-columns: 1fr 1fr; }
   .kv__k { flex-basis: 120px; }
-  .hero__b { padding: var(--s7) var(--s6) var(--s7) 0; }
-  .countdown b { font-size: 4.5rem; }
 }
 
 @media (min-width: 768px) {
   .main { max-width: 900px; }
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); align-items: start; }
-  .grid-2 > .card, .grid-2 > .grp { margin-bottom: 0; }
 }
 
 /* -- DESKTOP: nav becomes a rail, views become dashboards --------------- */
@@ -1110,10 +815,6 @@ body.is-offline .offline-banner { display: flex; }
   #datePanel > .card { max-width: 540px; }
 
   /* Today as a real dashboard */
-  .dash { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: var(--s6); align-items: start; }
-  .dash__wide { grid-column: 1 / -1; }
-  .dash__main, .dash__side { min-width: 0; }
-  .dash__main > .section-head:first-child, .dash__side > .section-head:first-child { margin-top: 0; }
 
   /* Days is a list now, so one readable column beats a card grid */
   .daylist { max-width: 880px; }
@@ -1122,32 +823,14 @@ body.is-offline .offline-banner { display: flex; }
   .card:hover, .day:hover { box-shadow: var(--sh-2); }
 
   /* text left, tally right - otherwise the hero is a wide empty band */
-  .hero__b {
-    padding: var(--s8) var(--s7) var(--s8) 0;
-    display: grid; grid-template-columns: minmax(0,1fr) 268px;
-    gap: var(--s7); align-items: start;
-  }
-  .hero__b .tally { flex-direction: column; margin-top: 0; }
-  .hero__b .tally__i { flex: 0 0 auto; }
-  .heroprog { grid-column: 1 / -1; margin-top: 0; }
-  .countdown b { font-size: 5.25rem; }
-  .hero__title { font-size: var(--t-34); }
   .aurora-hero { min-height: 320px; }
   .aurora-hero__b { padding: var(--s10) var(--s7) var(--s6); }
   .aurora-hero__b h1 { font-size: 2.75rem; }
   .locker { grid-template-columns: repeat(3, 1fr); }
-  .lpanels--two { grid-template-columns: 1fr 1fr; }
-  .lmap { height: 520px; }
-  .maplayout { display: grid; grid-template-columns: minmax(0,1.55fr) minmax(0,1fr); gap: var(--s6); align-items: start; }
-  .maplayout > * { min-width: 0; }
-  .panels--two { grid-template-columns: 1fr 1fr; align-items: stretch; }
-  .panels--two .panel { display: flex; flex-direction: column; }
-  .panels--two .routemap { flex: 1 1 auto; }
 }
 
 @media (min-width: 1440px) {
   .grid-days { gap: var(--s6); }
-  .dash { gap: var(--s7); }
 }
 
 /* ========================================================= 18. PREFERENCES */
@@ -1180,6 +863,4 @@ body.is-offline .offline-banner { display: flex; }
   .main { padding: 0; max-width: none; }
   .card, .day, .hazard { break-inside: avoid; box-shadow: none; border: 1px solid #999; }
   .ag, .dayx { break-inside: avoid; }
-  .hero, .mapwrap { color: #000; background: none; border: 1px solid #999; }
-  .hero .eyebrow, .hero__sub, .countdown span { color: #333; }
 }

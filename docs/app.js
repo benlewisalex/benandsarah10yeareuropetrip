@@ -49,12 +49,10 @@
   var K = {
     checks:  "et26.checks",     // { itemId: true }
     custom:  "et26.custom",     // { groupId: [ {id,text} ] }
-    conf:    "et26.conf",       // { "bookingId::Field": "value" }
     tonight: "et26.tonight",    // { cloud: true, ... }
     open:    "et26.open",       // { groupId: false }  (collapsed state)
     dayOpen: "et26.dayopen",    // { dayId: true }
     itemOpen:"et26.itemopen",   // { "dayId:index": true }
-    mapMode: "et26.mapmode",    // "live" | "vector"
     override:"et26.override",   // "2026-10-14"
     theme:   "et26.theme"       // "light" | "dark"
   };
@@ -73,12 +71,10 @@
   var S = {
     checks:  load(K.checks, {}),
     custom:  load(K.custom, {}),
-    conf:    load(K.conf, {}),
     tonight: load(K.tonight, {}),
     open:    load(K.open, {}),
     dayOpen: load(K.dayOpen, {}),
     itemOpen:load(K.itemOpen, {}),
-    mapMode: load(K.mapMode, "live"),
     override:load(K.override, null)
   };
 
@@ -149,15 +145,10 @@
   var ICON = {
     pin:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
     alert: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>',
-    info:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
-    lock:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>',
     chev:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',
     ext:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
-    sunup: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v4M5.6 9.6 4.2 8.2M18.4 9.6l1.4-1.4M2 18h20M6 18a6 6 0 0 1 12 0"/></svg>',
-    sundn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9V3M5.6 9.6 4.2 8.2M18.4 9.6l1.4-1.4M2 18h20M6 18a6 6 0 0 1 12 0"/><path d="M9 6l3 3 3-3"/></svg>',
     trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
     pencil:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4Z"/></svg>',
-    mapicon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3.5 3 6v15l6-2.5 6 2.5 6-2.5V3.5L15 6 9 3.5Z"/><path d="M9 3.5v15M15 6v15"/></svg>',
     route: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M9 19h6a3 3 0 0 0 3-3V8M15 5H9a3 3 0 0 0-3 3v8"/></svg>',
     /* One per travel mode. Which one to use is named in the data, not guessed
        from the prose - inference got the Hoppa and the tube legs wrong. */
@@ -187,31 +178,6 @@
   function dayForDate(s) {
     for (var i = 0; i < D.days.length; i++) if (D.days[i].date === s) return D.days[i];
     return null;
-  }
-
-  /* ------------------------------------------------------------ the stops */
-  /* Every itinerary item that has a coordinate, in trip order. This is the
-     single source for both the route map and the stop list. */
-  function allStops() {
-    var out = [];
-    D.days.forEach(function (day, di) {
-      (day.items || []).forEach(function (it) {
-        if (!it.ll) return;
-        out.push({
-          ll: it.ll, name: it.name, maps: it.maps, area: !!it.area,
-          alt: !!it.alt,          /* one of several options, not a stop on the route */
-          day: day, dayIndex: di, half: day.half, time: it.time || null
-        });
-      });
-      if (day.aurora && day.aurora.ll) {
-        out.push({
-          ll: day.aurora.ll, name: day.aurora.spot, maps: day.aurora.maps,
-          area: !!day.aurora.area, day: day, dayIndex: di, half: day.half,
-          time: "Night", aurora: day.aurora.night
-        });
-      }
-    });
-    return out;
   }
 
   /* ---------------------------------------------------- checklist urgency */
@@ -247,21 +213,6 @@
     return allGroupStates().reduce(function (n, st) {
       return n + (st.overdue ? st.left : 0);
     }, 0);
-  }
-
-  /* the "next up" list on the Today view */
-  function nextUp(limit) {
-    var out = [];
-    allGroupStates()
-      .slice()
-      .sort(function (a, b) { return a.rank - b.rank; })
-      .forEach(function (st) {
-        if (st.rank === 3) return;
-        st.items.forEach(function (it) {
-          if (!isDone(it.id)) out.push({ item: it, st: st });
-        });
-      });
-    return out.slice(0, limit);
   }
 
   /* --------------------------------------------------- booking, per stop */
@@ -305,17 +256,6 @@
 
   /* ------------------------------------------------------------- components */
 
-  /* pct = solid fill. ghost / mark are unused now that the budget bar is
-     gone, but the meter still takes them. */
-  function meter(pct, over, mark, ghost) {
-    var clamp = function (n) { return Math.max(0, Math.min(100, n)); };
-    return '<span class="meter' + (over ? " meter--over" : "") + '">' +
-      (ghost != null ? '<span class="meter__ghost" style="width:' + clamp(ghost) + '%"></span>' : "") +
-      '<span class="meter__fill" style="width:' + clamp(pct) + '%"></span>' +
-      (mark != null ? '<span class="meter__mark" style="left:' + clamp(mark) + '%"></span>' : "") +
-      "</span>";
-  }
-
   function hazardBlock(h) {
     return '<div class="hazard" role="note">' +
       '<div class="hazard__tape" aria-hidden="true"></div>' +
@@ -333,16 +273,32 @@
      builds its own figure. shot() / scene() / itemPhoto() went with the old
      picture-heavy day cards. */
 
-  /* cls lets the hero reuse this with light-on-dark styling */
-  function sunRow(day, cls) {
-    var k = cls || "day__sun";
-    if (!day.sun) {
-      return '<div class="' + k + '"><div class="tiny">Sunrise and sunset are not listed in the itinerary for this day.</div></div>';
+  /* ------------------------------------------------------------- CHECK ROW */
+  /* One tickable to-do. The not-tied-to-a-day bucket on the Agenda is the only
+     thing that renders these now. */
+
+  function checkRow(item, st) {
+    var done = isDone(item.id);
+    var h = [];
+    h.push('<div class="check' + (done ? " is-done" : "") + (!done && st && st.overdue ? " is-overdue" : "") + '">');
+    h.push('<input type="checkbox" id="ck-' + esc(item.id) + '" data-check="' + esc(item.id) + '"' +
+      (done ? " checked" : "") + ">");
+    h.push('<div class="check__t"><label for="ck-' + esc(item.id) + '">' + esc(item.text) + "</label>");
+
+    var tags = [];
+    if (!done && st && st.overdue) tags.push('<span class="tag tag--overdue">Overdue</span>');
+    if (item.extra) tags.push('<span class="tag tag--extra" title="Added while planning, not in the original brief">added</span>');
+    if (tags.length) h.push('<div class="check__tags">' + tags.join("") + "</div>");
+    h.push("</div>");
+
+    if (item.custom) {
+      h.push('<div class="check__acts">' +
+        '<button class="icon-btn" data-edit="' + esc(item.id) + '" aria-label="Edit item">' + ICON.pencil + "</button>" +
+        '<button class="icon-btn" data-del="' + esc(item.id) + '" aria-label="Delete item">' + ICON.trash + "</button>" +
+        "</div>");
     }
-    var parts = [];
-    if (day.sun.sunrise) parts.push("<div>" + ICON.sunup + "<span>" + esc(day.sun.sunrise) + "</span></div>");
-    if (day.sun.sunset)  parts.push("<div>" + ICON.sundn + "<span>" + esc(day.sun.sunset) + "</span></div>");
-    return '<div class="' + k + '">' + parts.join("") + "</div>";
+    h.push("</div>");
+    return h.join("");
   }
 
   /* ----------------------------------------------------------- AGENDA CARD */
@@ -464,7 +420,6 @@
         hot.push('<a class="hot" href="' + esc(mapsUrl(it.maps, it.ll)) + '" target="_blank" rel="noopener">' +
           ICON.pin + "<span>Maps</span></a>");
       }
-      if (it.ll) hot.push('<a class="hot" href="#/map/' + esc(day.id) + '">' + ICON.mapicon + "<span>Trip map</span></a>");
       (it.links || []).forEach(function (l) {
         hot.push('<a class="hot" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
           ICON.ext + "<span>" + esc(l.label) + "</span></a>");
@@ -535,156 +490,6 @@
     return h.join("");
   }
 
-  /* --------------------------------------------------------- VIEW: TODAY */
-
-  function viewToday() {
-    var c = clock();
-    if (c.phase === "before") return todayBefore(c);
-    if (c.phase === "during") return todayDuring(c);
-    return todayAfter(c);
-  }
-
-  /* The state that matters most right now: the prep dashboard. */
-  function todayBefore(c) {
-    var h = [];
-    var states = allGroupStates().slice().sort(function (a, b) { return a.rank - b.rank; });
-    var od = states.reduce(function (n, s) { return n + (s.overdue ? s.left : 0); }, 0);
-    var totalItems = 0, totalDone = 0;
-    states.forEach(function (s) { totalItems += s.total; totalDone += s.done; });
-
-    h.push('<div class="dash">');
-    h.push('<div class="dash__wide">');
-    h.push('<div class="hero">');
-    h.push('<div class="spine spine--both hero__spine" aria-hidden="true"></div>');
-    h.push('<div class="hero__b">');
-    h.push('<div class="hero__text">');
-    h.push('<p class="eyebrow">Countdown</p>');
-    h.push('<p class="countdown"><b>' + c.daysOut + "</b><span>day" + (c.daysOut === 1 ? "" : "s") +
-      " to London</span></p>");
-    h.push('<h1 class="hero__title">' + (od > 0 ? "You have overdue bookings." : "Booking phase.") + "</h1>");
-    h.push('<p class="hero__sub">' + esc(D.meta.structure) + "</p>");
-    h.push("</div>");
-
-    h.push('<div class="tally">');
-    h.push('<div class="tally__i' + (od > 0 ? " tally__i--bad" : "") + '"><b>' + od + "</b><span>Overdue</span></div>");
-    h.push('<div class="tally__i"><b>' + (totalItems - totalDone) + "</b><span>To do</span></div>");
-    h.push("</div>");
-
-    var pctAll = totalItems ? Math.round(totalDone / totalItems * 100) : 0;
-    h.push('<div class="heroprog">');
-    h.push('<p class="heroprog__l"><span>Prep progress</span><span class="num">' + pctAll + "%</span></p>");
-    h.push(meter(pctAll, false).replace('class="meter"', 'class="meter meter--onDark"'));
-    h.push("</div>");
-    h.push("</div></div>");
-    h.push("</div>");                      /* /dash__wide */
-    h.push('<div class="dash__main">');
-
-    /* Next few unchecked items, right here, checkable in place. */
-    var nu = nextUp(5);
-    h.push('<div class="section-head"><h2>Next up</h2>' +
-      '<a class="tiny" href="#/agenda">All ' + totalItems + " items</a></div>");
-    h.push('<div class="card">');
-    if (!nu.length) {
-      h.push('<p class="empty">Every item is checked. Go pack.</p>');
-    } else {
-      nu.forEach(function (row) { h.push(checkRow(row.item, row.st, true)); });
-    }
-    h.push("</div>");
-
-    h.push("</div>");                      /* /dash__main */
-    h.push('<div class="dash__side">');
-
-    /* Bucket status - shows which bucket is promoted and which is still shut */
-    h.push('<div class="section-head"><h2>Where things stand</h2></div>');
-    h.push('<div class="card"><div class="card__body stack">');
-    states.forEach(function (st) {
-      var pillCls = st.rank === 0 ? "overdue" : st.rank === 1 ? "now" : st.rank === 3 ? "done" : "later";
-      h.push('<div><div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">' +
-        "<b>" + esc(st.group.label) + "</b>" +
-        '<span class="pill pill--' + pillCls + '">' + st.label + "</span></div>" +
-        '<div style="margin-top:6px">' + meter(st.pct, st.overdue) + "</div>" +
-        '<p class="tiny muted" style="margin-top:4px">' + st.done + " of " + st.total +
-        (st.rank === 2 && st.opensIn > 0 ? " &middot; promotes in " + st.opensIn + " days" : "") +
-        "</p></div>");
-    });
-    h.push("</div></div>");
-
-    h.push("</div>");                      /* /dash__side  */
-    h.push('<div class="dash__wide">' + tripGlance() + "</div>");
-    h.push("</div>");                      /* /dash        */
-    return h.join("");
-  }
-
-  function todayDuring(c) {
-    var h = [];
-    var day = dayForDate(c.t);
-    var idx = D.days.indexOf(day);
-    var next = D.days[idx + 1] || null;
-
-    if (!day) return '<p class="empty">No plan on file for ' + esc(c.t) + ".</p>";
-
-    var half = day.half === "london" ? "var(--london)" : "var(--iceland)";
-    h.push('<div class="hero">');
-    h.push('<div class="spine hero__spine" style="--half:' + half + '" aria-hidden="true"></div>');
-    h.push('<div class="hero__b">');
-    h.push('<p class="eyebrow">' + esc(day.dow) + " &middot; " + esc(prettyDate(day.date)) +
-      " &middot; day " + (idx + 1) + " of " + D.days.length + "</p>");
-    h.push('<h1 class="hero__title" style="font-size:var(--t-32);margin-top:8px">' + esc(day.title) + "</h1>");
-    h.push(sunRow(day, "sunrow"));
-    h.push("</div></div>");
-
-    if (day.aurora) {
-      h.push('<a class="linkout" href="#/aurora" style="border-color:var(--aurora);border-left:4px solid var(--aurora);margin-bottom:16px">' +
-        '<div class="linkout__t"><b>Aurora night ' + day.aurora.night + " tonight</b><span>" +
-        esc(day.aurora.spot) + "</span></div>" +
-        '<span class="linkout__i">' + ICON.chev + "</span></a>");
-    }
-
-    h.push('<article class="dayx dayx--slim is-open dayx--bare" style="--half:' +
-      (day.half === "london" ? "var(--london)" : "var(--iceland)") + '">' +
-      '<div class="dayx__body">' + agendaDayBody(day) + "</div></article>");
-
-    if (next) {
-      h.push('<div class="section-head"><h2>Tomorrow</h2></div>');
-      h.push('<div class="card"><div class="card__body">' +
-        '<p class="eyebrow">' + esc(next.dow) + " &middot; " + esc(prettyDate(next.date)) + "</p>" +
-        '<p style="font-weight:700;font-size:var(--t-17);margin-top:4px">' + esc(next.title) + "</p>" +
-        '<a class="btn btn--block" style="margin-top:12px" href="#/agenda">Full agenda</a>' +
-        "</div></div>");
-    }
-    return h.join("");
-  }
-
-  function todayAfter(c) {
-    var h = [];
-    h.push('<div class="hero">');
-    h.push('<div class="spine hero__spine" style="--half:var(--iceland)" aria-hidden="true"></div>');
-    h.push('<div class="hero__b">');
-    h.push('<p class="eyebrow">Home</p>');
-    h.push('<h1 class="hero__title" style="font-size:var(--t-32)">That was the trip.</h1>');
-    h.push('<p class="hero__sub">London and Iceland, October 10 to 17, 2026. Seven nights, four aurora nights, one glacier.</p>');
-    h.push('<p class="hero__sub" style="margin-top:12px">' + c.daysBack + " day" + (c.daysBack === 1 ? "" : "s") + " ago.</p>");
-    h.push("</div></div>");
-
-    h.push('<div class="card"><div class="card__body stack">' +
-      "<p>The agenda, the aurora notes and every confirmation you entered are all still here.</p>" +
-      '<a class="btn btn--block" href="#/agenda">Read the agenda again</a>' +
-      "</div></div>");
-    return h.join("");
-  }
-
-  function tripGlance() {
-    var h = [];
-    h.push('<div class="section-head"><h2>The trip</h2><a class="tiny" href="#/agenda">Full agenda</a></div>');
-    h.push('<div class="card"><div class="card__body">');
-    h.push('<div class="mustdo">');
-    D.mustDo.forEach(function (m) {
-      h.push('<div class="mustdo__i"><b>' + esc(m.item) + "</b><span>" + esc(m.when) + "</span></div>");
-    });
-    h.push("</div></div></div>");
-    return h.join("");
-  }
-
   /* --------------------------------------------------------- VIEW: AGENDA */
   /* The whole plan on one tab. What used to be three - Days for the prose,
      Book for the booking grid, Prep for the checklists - is one scroll, because
@@ -738,7 +543,7 @@
     h.push('<div class="grp__body">');
     groups.forEach(function (g) {
       h.push('<p class="grp__sub">' + esc(g.st.group.label) + "</p>");
-      g.items.forEach(function (it) { h.push(checkRow(it, g.st, false)); });
+      g.items.forEach(function (it) { h.push(checkRow(it, g.st)); });
       h.push('<div class="addrow">' +
         '<input type="text" data-newitem="' + esc(g.st.group.id) +
         '" placeholder="Add your own" aria-label="Add an item to ' + esc(g.st.group.label) + '">' +
@@ -850,678 +655,43 @@
   }
 
 
-  /* ------------------------------------------------------- VIEW: THE MAP */
-  /* A real map, drawn from real geography.
-
-     geo.js carries Natural Earth 1:10m coastline and glacier outlines for the
-     two regions, clipped and simplified at build time to 19 KB. No tiles, no
-     map library, no network - which is the point, because the day you most
-     need to know where you are is the day you have no signal.
-
-     Two rules that came out of getting this wrong:
-     1. Each region is projected into its OWN fixed bounds. England and Iceland
-        are 1,900 km apart; one shared scale collapses both into a blob.
-     2. Stops are CLUSTERED, never moved. An earlier version nudged overlapping
-        dots apart, which was fine on a blank grid and became a lie the moment
-        there was a coastline - it put pins in the sea. Six London landmarks
-        inside 5 km are honestly one dot at this scale. */
-
-  var GEOD = (typeof window !== "undefined" && window.GEO) || {};
-
-  function regionFor(half) { return half === "london" ? GEOD.england : GEOD.iceland; }
-
-  /* A region projects into fixed bounds, so land fills the panel predictably
-     and the aspect ratio stays true. */
-  function projector(region, w) {
-    var b = region.bounds;                       /* [lat0, lat1, lng0, lng1] */
-    var kx = Math.cos((b[0] + b[1]) / 2 * Math.PI / 180);
-    var spanX = (b[3] - b[2]) * kx;
-    var sc = w / spanX;
-    var h = (b[1] - b[0]) * sc;
-    return {
-      w: w, h: h, sc: sc, kx: kx, b: b,
-      kmPerPx: 111 / sc,
-      xy: function (lng, lat) {
-        return [(lng - b[2]) * kx * sc, (b[1] - lat) * sc];
-      },
-      ll: function (str) {
-        var q = str.split(",");
-        return this.xy(+q[1], +q[0]);
-      }
-    };
-  }
-
-  function ringsToPath(rings, pr) {
-    var d = [];
-    rings.forEach(function (ring) {
-      for (var k = 0; k < ring.length; k++) {
-        var q = pr.xy(ring[k][0], ring[k][1]);
-        d.push((k ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1));
-      }
-      d.push("Z");
-    });
-    return d.join("");
-  }
-
-  function kmBetween(a, b) {
-    var p1 = a.split(",").map(Number), p2 = b.split(",").map(Number);
-    var R = 6371, toR = Math.PI / 180;
-    var dLa = (p2[0] - p1[0]) * toR, dLo = (p2[1] - p1[1]) * toR;
-    var x = Math.sin(dLa / 2) * Math.sin(dLa / 2) +
-      Math.cos(p1[0] * toR) * Math.cos(p2[0] * toR) * Math.sin(dLo / 2) * Math.sin(dLo / 2);
-    return 2 * R * Math.asin(Math.min(1, Math.sqrt(x)));
-  }
-
-  /* Same-day stops that land within CLUSTER_R of each other become one pin.
-     Honest at this scale, and it keeps every pin on dry land. */
-  var CLUSTER_R = 27;
-
-  function clusterStops(stops, pr) {
-    var out = [];
-    stops.forEach(function (st) {
-      var q = pr.ll(st.ll);
-      var hit = null;
-      for (var k = 0; k < out.length; k++) {
-        var c = out[k];
-        if (c.dayId !== st.day.id) continue;
-        if (Math.sqrt(Math.pow(c.x - q[0], 2) + Math.pow(c.y - q[1], 2)) < CLUSTER_R) { hit = c; break; }
-      }
-      if (hit) {
-        hit.x = (hit.x * hit.items.length + q[0]) / (hit.items.length + 1);
-        hit.y = (hit.y * hit.items.length + q[1]) / (hit.items.length + 1);
-        hit.items.push(st);
-      } else {
-        out.push({
-          dayId: st.day.id, day: st.day, dayIndex: st.dayIndex, half: st.half,
-          x: q[0], y: q[1], items: [st]
-        });
-      }
-    });
-    return out;
-  }
-
-  var MAX_NUDGE = 16;
-
-  /* Pins must not hide each other. This moves CLUSTERS only, never more than
-     MAX_NUDGE px from true position, so nothing lands on the wrong side of a
-     coastline. Anything further apart than that stays exactly where it is. */
-  function unhide(cl) {
-    cl.forEach(function (c) { c.x0 = c.x; c.y0 = c.y; });
-    var min = 30;
-    for (var pass = 0; pass < 60; pass++) {
-      var moved = false;
-      for (var a = 0; a < cl.length; a++) {
-        for (var b = a + 1; b < cl.length; b++) {
-          var dx = cl[b].x - cl[a].x, dy = cl[b].y - cl[a].y;
-          var d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 0.01) { dx = 0.7; dy = -0.7; d = 1; }
-          if (d < min) {
-            var push = (min - d) / 2, ux = dx / d, uy = dy / d;
-            cl[a].x -= ux * push; cl[a].y -= uy * push;
-            cl[b].x += ux * push; cl[b].y += uy * push;
-            moved = true;
-          }
-        }
-      }
-      cl.forEach(function (c) {
-        var ddx = c.x - c.x0, ddy = c.y - c.y0;
-        var dd = Math.sqrt(ddx * ddx + ddy * ddy);
-        if (dd > MAX_NUDGE) {
-          c.x = c.x0 + ddx / dd * MAX_NUDGE;
-          c.y = c.y0 + ddy / dd * MAX_NUDGE;
-        }
-      });
-      if (!moved) break;
-    }
-  }
-
-  function panel(regionStops, allStopsList, highlightDay, half) {
-    var region = regionFor(half);
-    if (!region || !regionStops.length) return "";
-    var w = 620;
-    var pr = projector(region, w);
-    var h = Math.round(pr.h);
-    var cl = clusterStops(regionStops, pr);
-    unhide(cl);
-    var label = cl.length <= 8;
-    var o = [];
-
-    o.push('<div class="panel">');
-    o.push('<p class="panel__t">' + esc(region.name) + "<span>" + regionStops.length +
-      " stop" + (regionStops.length === 1 ? "" : "s") + "</span></p>");
-    o.push('<svg class="routemap" viewBox="0 0 ' + w + " " + h +
-      '" role="img" aria-label="Map of ' + esc(region.name) + " showing " +
-      regionStops.length + ' trip stops">');
-
-    /* sea */
-    o.push('<rect class="rm-sea" x="0" y="0" width="' + w + '" height="' + h + '"/>');
-
-    /* graticule on whole degrees - reads as a map, not a chart */
-    var b = pr.b;
-    for (var la = Math.ceil(b[0]); la <= b[1]; la++) {
-      var y = pr.xy(b[2], la)[1];
-      o.push('<line class="rm-grat" x1="0" y1="' + y.toFixed(1) + '" x2="' + w + '" y2="' + y.toFixed(1) + '"/>');
-      o.push('<text class="rm-gratT" x="4" y="' + (y - 3).toFixed(1) + '">' + la + "°N</text>");
-    }
-    var step = (b[3] - b[2]) > 5 ? 2 : 1;
-    for (var lo = Math.ceil(b[2]); lo <= b[3]; lo += step) {
-      var x = pr.xy(lo, b[1])[0];
-      o.push('<line class="rm-grat" x1="' + x.toFixed(1) + '" y1="0" x2="' + x.toFixed(1) + '" y2="' + h + '"/>');
-      o.push('<text class="rm-gratT" x="' + (x + 3).toFixed(1) + '" y="' + (h - 4) + '">' +
-        Math.abs(lo) + "°" + (lo < 0 ? "W" : "E") + "</text>");
-    }
-
-    /* land, then glacier on top of it */
-    if (region.land && region.land.length) {
-      o.push('<path class="rm-land" d="' + ringsToPath(region.land, pr) + '"/>');
-    }
-    if (region.glacier && region.glacier.length) {
-      o.push('<path class="rm-ice" d="' + ringsToPath(region.glacier, pr) + '"/>');
-    }
-
-    /* route legs between consecutive pins, skipping pins that are only
-       "or do this instead" - you pick one, you do not drive to all three */
-    var route = cl.filter(function (c) {
-      return !c.items.every(function (x) { return x.alt; });
-    });
-    for (var n = 1; n < route.length; n++) {
-      var A = route[n - 1], B = route[n];
-      var live = highlightDay && A.dayId === highlightDay && B.dayId === highlightDay;
-      o.push('<line class="rm-leg' + (live ? " rm-leg--active" : "") +
-        '" x1="' + A.x.toFixed(1) + '" y1="' + A.y.toFixed(1) +
-        '" x2="' + B.x.toFixed(1) + '" y2="' + B.y.toFixed(1) + '"/>');
-    }
-
-    /* pins */
-    var placed = [];
-    cl.forEach(function (c) {
-      var on = highlightDay && c.dayId === highlightDay;
-      var dim = highlightDay && !on;
-      var many = c.items.length > 1;
-      var r = many ? 15 : 12;
-      var gi = allStopsList.indexOf(c.items[0]);
-      var names = c.items.map(function (x) { return x.name; }).join(", ");
-
-      o.push('<g class="rm-g' + (dim ? " rm-dim" : "") + '">');
-      o.push('<circle class="rm-halo" cx="' + c.x.toFixed(1) + '" cy="' + c.y.toFixed(1) +
-        '" r="' + (r + 3) + '"/>');
-      o.push('<circle class="rm-stop rm-stop--' + c.half + (on ? " rm-stop--active" : "") +
-        '" cx="' + c.x.toFixed(1) + '" cy="' + c.y.toFixed(1) + '" r="' + r +
-        '" tabindex="0" role="button" data-stop="' + gi + '">' +
-        "<title>Day " + (c.dayIndex + 1) + ", " + esc(prettyDate(c.day.date)) + ": " +
-        esc(names) + "</title></circle>");
-      o.push('<text class="rm-n' + (on ? " rm-n--on" : "") + '" x="' + c.x.toFixed(1) +
-        '" y="' + (c.y + 4).toFixed(1) + '">' + (c.dayIndex + 1) + "</text>");
-      if (many) {
-        o.push('<circle class="rm-badge" cx="' + (c.x + r - 2).toFixed(1) + '" cy="' + (c.y - r + 2).toFixed(1) + '" r="8"/>');
-        o.push('<text class="rm-badgeT" x="' + (c.x + r - 2).toFixed(1) + '" y="' + (c.y - r + 5).toFixed(1) + '">' +
-          c.items.length + "</text>");
-      }
-      if (label && !dim) {
-        var nm = c.items[0].name;
-        if (many) nm += " +" + (c.items.length - 1);
-        if (nm.length > 22) nm = nm.slice(0, 21) + "…";
-        var right = c.x < w * 0.6;
-        var lx = c.x + (right ? r + 7 : -(r + 7));
-        var wid = nm.length * 6.1;                    /* 11px sans, measured */
-        var x0 = right ? lx : lx - wid;
-        var x1 = x0 + wid;
-        var ly = c.y + 4;
-        /* real overlap test on the text box, and only the label moves */
-        for (var t = 0; t < placed.length; t++) {
-          var q = placed[t];
-          if (Math.abs(q.y - ly) < 14 && x0 < q.x1 + 6 && x1 + 6 > q.x0) {
-            ly = q.y + 15; t = -1;
-          }
-        }
-        if (ly > h - 8) ly = c.y - 12;
-        placed.push({ x0: x0, x1: x1, y: ly });
-        o.push('<text class="rm-label" x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) +
-          '" text-anchor="' + (right ? "start" : "end") + '">' + esc(nm) + "</text>");
-      }
-      o.push("</g>");
-    });
-
-    /* scale bar from the real projection */
-    var target = [5, 10, 25, 50, 100].reduce(function (best, v) {
-      return Math.abs(v / pr.kmPerPx - 95) < Math.abs(best / pr.kmPerPx - 95) ? v : best;
-    }, 50);
-    var barPx = target / pr.kmPerPx;
-    var by = h - 16, bx = w - barPx - 18;
-    o.push('<g class="rm-scaleG">');
-    o.push('<line class="rm-scale" x1="' + bx + '" y1="' + by + '" x2="' + (bx + barPx) + '" y2="' + by + '"/>');
-    o.push('<line class="rm-scale" x1="' + bx + '" y1="' + (by - 4) + '" x2="' + bx + '" y2="' + (by + 4) + '"/>');
-    o.push('<line class="rm-scale" x1="' + (bx + barPx) + '" y1="' + (by - 4) + '" x2="' + (bx + barPx) + '" y2="' + (by + 4) + '"/>');
-    o.push('<text class="rm-scaleT" x="' + (bx + barPx / 2).toFixed(1) + '" y="' + (by - 7) + '" text-anchor="middle">' +
-      target + " km</text>");
-    o.push("</g>");
-
-    o.push("</svg></div>");
-    return o.join("");
-  }
-
-  function dayForId(id) {
-    var f = null;
-    D.days.forEach(function (d) { if (d.id === id) f = d; });
-    return f;
-  }
-
-  /* ------------------------------------------------------- the live map */
-  /* Real OpenStreetMap tiles through Leaflet, vendored locally. This is the
-     "you have signal" map: actual roads, town names, the lot.
-
-     It cannot be made fully offline. OSM's tile policy forbids bulk
-     pre-downloading, and pre-scraping a region would be abusing a free
-     service. Tiles you have actually looked at are cached and will work
-     again without signal; everything else falls back to the built-in vector
-     map, which needs no network at all. That is why both exist. */
-
-  var LMAPS = [];
-
-  function teardownMaps() {
-    LMAPS.forEach(function (m) { try { m.remove(); } catch (e) {} });
-    LMAPS = [];
-  }
-
-  function wireMaps() {
-    if (typeof L === "undefined") return;
-    /* handy when debugging the map from the console */
-    if (typeof window !== "undefined") window.tripMaps = LMAPS;
-    Array.prototype.forEach.call(main.querySelectorAll("[data-leaflet]"), function (box) {
-      var cfg;
-      try { cfg = JSON.parse(box.getAttribute("data-leaflet")); } catch (e) { return; }
-      var stops = allStops().filter(function (x) { return x.half === cfg.half; });
-      if (!stops.length) return;
-
-      var map = L.map(box, {
-        scrollWheelZoom: false,          /* do not hijack the page scroll */
-        zoomControl: true,
-        attributionControl: true,
-        zoomSnap: 0.25,                  /* whole steps overshot the fit badly */
-        zoomDelta: 0.5
-      });
-      LMAPS.push(map);
-
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        minZoom: 5, maxZoom: 17,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
-      }).addTo(map);
-
-      /* route in trip order, alternatives excluded */
-      var line = stops.filter(function (x) { return !x.alt; })
-        .map(function (x) { return x.ll.split(",").map(Number); });
-      if (line.length > 1) {
-        L.polyline(line, { color: "#F2F7F8", weight: 2, opacity: .7, dashArray: "5 6" }).addTo(map);
-      }
-
-      var group = [];
-      stops.forEach(function (st) {
-        var dim = cfg.hi && st.day.id !== cfg.hi;
-        var ll = st.ll.split(",").map(Number);
-        var mk = L.marker(ll, {
-          keyboard: true,
-          title: st.name,
-          icon: L.divIcon({
-            className: "lmkw" + (dim ? " lmkw--dim" : ""),
-            html: '<span class="lmk lmk--' + st.half + (cfg.hi && !dim ? " lmk--on" : "") + '">' +
-                  (st.dayIndex + 1) + "</span>",
-            iconSize: [28, 28], iconAnchor: [14, 14], popupAnchor: [0, -14]
-          })
-        }).addTo(map);
-        mk.bindPopup(
-          '<b class="lpop__n">' + esc(st.name) + "</b>" +
-          '<span class="lpop__m">Day ' + (st.dayIndex + 1) + " &middot; " +
-          esc(st.day.dow.slice(0, 3) + " " + prettyDate(st.day.date)) +
-          (st.time ? " &middot; " + esc(st.time) : "") + "</span>" +
-          '<a class="lpop__a" href="' + esc(mapsUrl(st.maps, st.ll)) +
-          '" target="_blank" rel="noopener">Open in maps</a>'
-        );
-        group.push(ll);
-      });
-
-      var focus = cfg.hi
-        ? stops.filter(function (x) { return x.day.id === cfg.hi; }).map(function (x) { return x.ll.split(",").map(Number); })
-        : group;
-      var bounds = L.latLngBounds((focus.length ? focus : group));
-
-      function fit() {
-        map.invalidateSize({ animate: false });
-        map.fitBounds(bounds, { padding: [18, 18], animate: false });
-      }
-      fit();
-      requestAnimationFrame(fit);            /* after first layout */
-      setTimeout(fit, 220);                  /* after fonts/scrollbars settle */
-
-      /* a panel below the fold has no usable size until it is on screen */
-      if (typeof ResizeObserver !== "undefined") {
-        var seen = false;
-        var ro = new ResizeObserver(function () {
-          if (box.clientHeight > 0 && !seen) { seen = true; fit(); }
-        });
-        ro.observe(box);
-        map.on("unload", function () { ro.disconnect(); });
-      }
-
-      map.once("focus", function () { map.scrollWheelZoom.enable(); });
-      map.on("click", function () { map.scrollWheelZoom.enable(); });
-    });
-  }
-
-  function liveMapPanel(half, hi, label, count) {
-    return '<div class="lwrap"><p class="panel__t panel__t--light">' + esc(label) +
-      "<span>" + count + " stop" + (count === 1 ? "" : "s") + "</span></p>" +
-      '<div class="lmap" data-leaflet=\'{"half":"' + half + '","hi":' +
-      (hi ? '"' + hi + '"' : "null") + '}\'></div></div>';
-  }
-
-  function viewMap(sub) {
-    var stops = allStops();
-    var scope = sub || "all";
-    var dayId = /^oct\d+$/.test(scope) ? scope : null;
-    var h = [];
-
-    var shown = stops;
-    if (scope === "england") shown = stops.filter(function (x) { return x.half === "london"; });
-    else if (scope === "iceland") shown = stops.filter(function (x) { return x.half === "iceland"; });
-    else if (dayId) shown = stops.filter(function (x) { return x.day.id === dayId; });
-
-    /* one day alone has no context, so keep its region on screen and light up
-       just that day */
-    var drawn = shown, hi = null;
-    if (dayId && shown.length) {
-      var half = shown[0].half;
-      drawn = stops.filter(function (x) { return x.half === half; });
-      hi = dayId;
-    }
-
-    var eng = drawn.filter(function (x) { return x.half === "london"; });
-    var ice = drawn.filter(function (x) { return x.half === "iceland"; });
-
-    var heading = dayId
-      ? prettyDate(dayForId(dayId).date) + " · " + dayForId(dayId).title
-      : scope === "england" ? "England" : scope === "iceland" ? "Iceland" : "The whole trip";
-
-    var offline = !navigator.onLine;
-    var mode = (S.mapMode === "vector" || offline || typeof L === "undefined") ? "vector" : "live";
-
-    h.push('<h1 class="sr-only">Route map</h1>');
-
-    h.push('<div class="mapmode">');
-    h.push('<div class="seg seg--sm">' +
-      '<button data-mapmode="live" aria-pressed="' + (mode === "live") + '"' +
-      (offline ? " disabled" : "") + ">Real map</button>" +
-      '<button data-mapmode="vector" aria-pressed="' + (mode === "vector") + '">Offline map</button>' +
-      "</div>");
-    h.push('<p class="tiny">' + (mode === "live"
-      ? "OpenStreetMap tiles. Needs signal; areas you have already viewed stay cached."
-      : (offline
-        ? "No signal, so this is the built-in vector map. It always works."
-        : "Built-in vector map. No network needed, ever.")) + "</p>");
-    h.push("</div>");
-
-    if (mode === "live") {
-      h.push('<div class="lpanels' + (eng.length && ice.length ? " lpanels--two" : "") + '">');
-      if (eng.length) h.push(liveMapPanel("london", hi, "England", eng.length));
-      if (ice.length) h.push(liveMapPanel("iceland", hi, "Iceland", ice.length));
-      h.push("</div>");
-      h.push('<div class="mapfilter mapfilter--light">');
-      [["all", "Whole trip"], ["england", "England"], ["iceland", "Iceland"]].forEach(function (f) {
-        h.push('<button data-map="' + f[0] + '" aria-pressed="' + (scope === f[0]) + '">' + f[1] + "</button>");
-      });
-      D.days.forEach(function (d) {
-        if (!stops.filter(function (x) { return x.day.id === d.id; }).length) return;
-        h.push('<button data-map="' + d.id + '" aria-pressed="' + (scope === d.id) + '">' +
-          esc(d.dow.slice(0, 3) + " " + prettyDate(d.date)) + "</button>");
-      });
-      h.push("</div>");
-      h.push(mapTail(shown, stops, scope, dayId));
-      return h.join("");
-    }
-
-    h.push('<div class="mapwrap">');
-    h.push('<div class="mapwrap__head"><div><p class="eyebrow">Where, and when</p><b>' +
-      esc(heading) + "</b></div>" +
-      '<span class="mapwrap__legend">' + shown.length + " stop" + (shown.length === 1 ? "" : "s") +
-      "</span></div>");
-
-    h.push('<div class="panels' + (eng.length && ice.length ? " panels--two" : "") + '">');
-    h.push(panel(eng, stops, hi, "london"));
-    h.push(panel(ice, stops, hi, "iceland"));
-    h.push("</div>");
-
-    h.push('<p class="mapwrap__note">' +
-      (eng.length && ice.length
-        ? "Two regions at their own scales, 1,900 km apart. You fly between them on Tue Oct 13. "
-        : "") +
-      "Numbers are the day of the trip. A pin with a badge is several stops in one place, " +
-      "and pins that would hide each other are separated by a few pixels." +
-      (ice.length ? " Pale shapes are glaciers." : "") + "</p>");
-
-    h.push('<div class="mapfilter">');
-    [["all", "Whole trip"], ["england", "England"], ["iceland", "Iceland"]].forEach(function (f) {
-      h.push('<button data-map="' + f[0] + '" aria-pressed="' + (scope === f[0]) + '">' + f[1] + "</button>");
-    });
-    D.days.forEach(function (d) {
-      if (!stops.filter(function (x) { return x.day.id === d.id; }).length) return;
-      h.push('<button data-map="' + d.id + '" aria-pressed="' + (scope === d.id) + '">' +
-        esc(d.dow.slice(0, 3) + " " + prettyDate(d.date)) + "</button>");
-    });
-    h.push("</div></div>");
-
-    h.push(mapTail(shown, stops, scope, dayId));
-    return h.join("");
-  }
-
-  function mapTail(shown, stops, scope, dayId) {
-    var h = [];
-    h.push('<div class="maplayout"><div>');
-    h.push('<div class="section-head"><h2>Stops in order</h2>');
-    var rl = routeUrl(shown);
-    if (rl) h.push('<a href="' + esc(rl) + '" target="_blank" rel="noopener">Open route in maps</a>');
-    h.push("</div>");
-
-    h.push('<div class="card">');
-    if (!shown.length) {
-      h.push('<p class="empty">Nothing mapped for this selection.</p>');
-    } else {
-      shown.forEach(function (st) {
-        h.push('<div class="stoplist__i stoplist__i--' + st.half + '" id="stop-' + stops.indexOf(st) + '">');
-        h.push('<span class="stoplist__n">' + (st.dayIndex + 1) + "</span>");
-        h.push('<div class="stoplist__t"><b>' + esc(st.name) +
-          (st.area ? '<span class="approx">area</span>' : "") +
-          (st.alt ? '<span class="approx approx--alt">option</span>' : "") + "</b>");
-        h.push("<span>" + esc(st.day.dow.slice(0, 3) + " " + prettyDate(st.day.date)) +
-          (st.time ? " &middot; " + esc(st.time) : "") +
-          (st.aurora ? " &middot; aurora night " + st.aurora : "") + "</span>");
-        h.push(mapsChip(st.maps, "Open in maps", st.ll));
-        h.push("</div></div>");
-      });
-    }
-    h.push("</div></div><div>");
-
-    h.push('<div class="section-head"><h2>How far</h2></div>');
-    h.push('<div class="card"><div class="card__body"><div class="kv">');
-    [["london", "England"], ["iceland", "Iceland"]].forEach(function (pair) {
-      var seg = stops.filter(function (x) { return x.half === pair[0]; });
-      var km = 0;
-      for (var i3 = 1; i3 < seg.length; i3++) km += kmBetween(seg[i3 - 1].ll, seg[i3].ll);
-      h.push('<div class="kv__r"><div class="kv__k">' + pair[1] + "</div>" +
-        '<div class="kv__v"><b class="num">' + Math.round(km) + " km</b> " +
-        '<span class="tiny">(' + Math.round(km * 0.621) + " mi)</span><br>" +
-        '<span class="tiny">' + seg.length + " mapped stops</span></div></div>");
-    });
-    h.push("</div>");
-    h.push('<p class="tiny" style="margin-top:14px">Straight-line, so real road mileage runs higher - ' +
-      "the south coast road bends a long way around. Use <b>Open route in maps</b> for driving times.</p>");
-    h.push("</div></div>");
-
-    h.push('<div class="card"><div class="card__body">' +
-      '<p class="eyebrow">About this map</p>' +
-      '<p class="small muted" style="margin-top:6px">Coastlines and glaciers are real: ' +
-      "Natural Earth 1:10m data, clipped to these two regions and shipped inside " +
-      "the app, so the map works with no signal. Pins come from the coordinates in " +
-      "<code>data.js</code>: same-day stops closer than about 5 km are grouped " +
-      "into one pin, and a pin is never shifted more than a few pixels from its " +
-      "true position, so nothing ends up on the wrong side of a coastline. " +
-      'Stops marked <span class="approx">area</span> are a town centre, because ' +
-      "the itinerary only gives an area for those. Tap a pin to jump to it in the " +
-      "list.</p></div></div>");
-
-    h.push("</div></div>");
-    return h.join("");
-  }
-
-  /* ------------------------------------------------------------- CHECK ROW */
-  /* One tickable to-do. Used by the not-tied-to-a-day bucket on Agenda, by the
-     packing list on Info, and by "Next up" on Today. */
-
-  function checkRow(item, st, compact) {
-    var done = isDone(item.id);
-    var h = [];
-    h.push('<div class="check' + (done ? " is-done" : "") + (!done && st && st.overdue ? " is-overdue" : "") + '">');
-    h.push('<input type="checkbox" id="ck-' + esc(item.id) + '" data-check="' + esc(item.id) + '"' +
-      (done ? " checked" : "") + ">");
-    h.push('<div class="check__t"><label for="ck-' + esc(item.id) + '">' + esc(item.text) + "</label>");
-
-    var tags = [];
-    if (!done && st && st.overdue) tags.push('<span class="tag tag--overdue">Overdue</span>');
-    if (item.extra) tags.push('<span class="tag tag--extra" title="Added while planning, not in the original brief">added</span>');
-    if (compact && st) tags.push('<span class="tag">' + esc(st.group.label) + "</span>");
-    if (tags.length) h.push('<div class="check__tags">' + tags.join("") + "</div>");
-    h.push("</div>");
-
-    if (item.custom) {
-      h.push('<div class="check__acts">' +
-        '<button class="icon-btn" data-edit="' + esc(item.id) + '" aria-label="Edit item">' + ICON.pencil + "</button>" +
-        '<button class="icon-btn" data-del="' + esc(item.id) + '" aria-label="Delete item">' + ICON.trash + "</button>" +
-        "</div>");
-    }
-    h.push("</div>");
-    return h.join("");
-  }
-
   /* ---------------------------------------------------------- VIEW: INFO */
-  /* Reference only: the things you look up, not the things you do. Deliberately
-     short - every bed is booked now, so the old search-brief machinery (why
-     this area, what to rule out, candidate hotels) has done its job and is
-     gone. What is left is an address, a phone number, and what still needs
-     asking at the desk. */
+  /* Reference only, and only what gets used. Links first, because this is the
+     tab you open to check something. Then safety: the two emergency numbers,
+     the notes lifted off the events that carry them, and the embassies. */
 
-  function viewInfo(sub) {
-    var h = [];
-    h.push('<h1 class="sr-only">Reference and confirmations</h1>');
-    h.push('<div class="seg">' +
-      '<button aria-pressed="' + (sub !== "locker") + '" data-sub="ref">Reference</button>' +
-      '<button aria-pressed="' + (sub === "locker") + '" data-sub="locker">Confirmations</button>' +
-      "</div>");
-    h.push(sub === "locker" ? infoLocker() : infoRef());
-    return h.join("");
-  }
-
-  /* The packing list moved here from the old Prep tab. It is the one checklist
-     that is neither a booking nor tied to a day, and it resets - you pack
-     twice, once out and once home. */
-  function infoPacking() {
-    var g = null;
-    D.checklists.forEach(function (x) { if (x.id === "packing") g = x; });
-    if (!g) return "";
-    var items = itemsOf(g);
-    var done = items.filter(function (i) { return isDone(i.id); }).length;
-    var open = S.open.packing;
-    if (open === undefined) open = done < items.length;
-    var h = [];
-
-    h.push('<div class="section-head"><h2>Packing</h2></div>');
-    h.push('<section class="grp' + (open ? " is-open" : "") + '" data-grp="packing">');
-    h.push('<button class="grp__h" data-toggle="packing" aria-expanded="' + open + '">');
-    h.push('<span class="grp__chev">' + ICON.chev + "</span>");
-    h.push('<span class="grp__t"><b>' + esc(g.label) + "</b>" +
-      meter(items.length ? done / items.length * 100 : 0, false) + "</span>");
-    h.push('<span class="grp__n">' + done + "/" + items.length + "</span>");
-    h.push("</button>");
-    h.push('<div class="grp__body">');
-    items.forEach(function (it) { h.push(checkRow(it, null, false)); });
-    h.push('<div class="addrow">' +
-      '<input type="text" data-newitem="packing" placeholder="Add your own" aria-label="Add a packing item">' +
-      '<button class="btn btn--sm" data-add="packing">Add</button></div>');
-    h.push('<div style="padding:12px 16px">' +
-      '<button class="btn btn--block btn--danger" data-act="reset-group" data-grp="packing">' +
-      "Uncheck all (you pack twice)</button></div>");
-    h.push("</div></section>");
-    return h.join("");
-  }
-
-  /* The constraints that forced the running order. Collapsed, because you only
-     want it when you are tempted to move something. It lives here because it
-     was the one thing in data.js that nothing rendered, and the markdown copy
-     that used to carry it has been deleted - see git history if you want the
-     long-form version back. */
-  function infoWhy() {
-    if (!D.variant) return "";
-    var open = S.open.why === true;
-    var h = [];
-    h.push('<div class="section-head"><h2>Why the plan is shaped this way</h2></div>');
-    h.push('<section class="grp' + (open ? " is-open" : "") + '" data-grp="why">');
-    h.push('<button class="grp__h" data-toggle="why" aria-expanded="' + open + '">');
-    h.push('<span class="grp__chev">' + ICON.chev + "</span>");
-    h.push('<span class="grp__t"><b>' + esc(D.variant.title) + "</b>" +
-      '<span class="grp__hint">' + esc(D.variant.lede) + "</span></span>");
-    h.push("</button>");
-    h.push('<div class="grp__body"><div class="card__body"><ul class="tl__sub">');
-    D.variant.points.forEach(function (p) { h.push("<li>" + esc(p) + "</li>"); });
-    h.push("</ul></div></div></section>");
-    return h.join("");
-  }
-
-  function infoRef() {
+  function viewInfo() {
     var R = D.reference;
     var h = [];
+    h.push('<h1 class="sr-only">Reference</h1>');
 
-    h.push('<a class="card" href="tel:' + esc(R.emergency.tel) + '" style="display:block;text-decoration:none;' +
-      'border-color:var(--hazard);border-width:2px">' +
-      '<div class="card__body" style="text-align:center">' +
-      '<p class="eyebrow" style="color:var(--hazard)">' + esc(R.emergency.label) + "</p>" +
-      '<p class="num" style="font-size:var(--t-44);font-weight:700;line-height:1.1;color:var(--hazard)">' +
-      esc(R.emergency.value) + "</p>" +
-      '<p class="tiny muted">Tap to call. Police, fire and ambulance, everywhere in Iceland.</p>' +
-      "</div></a>");
-
-    h.push(infoPacking());
-
-    h.push('<div class="section-head"><h2>Beds</h2></div>');
-    h.push(lodgingBlock());
-
-    h.push('<div class="section-head"><h2>Addresses</h2></div>');
-    R.worship.forEach(function (w) {
-      h.push('<div class="card"><div class="card__body">');
-      h.push("<b>" + esc(w.label) + "</b>");
-      h.push('<p class="small muted" style="margin-top:2px;font-family:var(--mono)">' + esc(w.address) + "</p>");
-      h.push('<ul class="tl__sub" style="margin-top:8px">');
-      w.notes.forEach(function (n) { h.push("<li>" + esc(n) + "</li>"); });
-      h.push("</ul>");
-      h.push(mapsChip(w.maps, "Maps", w.ll));
-      h.push("</div></div>");
-    });
-    R.embassies.forEach(function (e) {
-      h.push('<div class="card"><div class="card__body">' +
-        "<b>" + esc(e.label) + "</b>" +
-        '<p class="small muted" style="margin-top:2px;font-family:var(--mono)">' + esc(e.address) + "</p>" +
-        mapsChip(e.maps, "Maps", e.ll) + "</div></div>");
-    });
-
-    h.push('<div class="section-head"><h2>Links</h2></div>');
+    h.push('<div class="section-head"><h2>Check these</h2></div>');
     h.push('<div class="stack">');
     R.links.forEach(function (l) {
-      h.push('<a class="linkout" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
-        '<div class="linkout__t"><b>' + esc(l.label) + "</b><span>" + esc(l.value) + "</span></div>" +
+      h.push('<a class="linkout linkout--ref" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
+        '<div class="linkout__t">' +
+          "<b>" + esc(l.label) + ' <span class="linkout__host">' + esc(l.value) + "</span></b>" +
+          "<span>" + esc(l.why) + "</span>" +
+          '<em class="linkout__when">' + esc(l.when) + "</em>" +
+        "</div>" +
         '<span class="linkout__i">' + ICON.ext + "</span></a>");
     });
     h.push("</div>");
 
-    /* The safety notes live on their own events in the Agenda. Collected here
-       as a plain list so there is one place to read them all, without
-       duplicating the text into a second data structure. */
     h.push('<div class="section-head"><h2>Safety</h2></div>');
+
+    /* Tap to call. Two countries, so two numbers side by side. */
+    h.push('<div class="emg">');
+    R.emergency.forEach(function (e) {
+      h.push('<a class="emg__i" href="tel:' + esc(e.tel) + '">' +
+        '<p class="eyebrow">' + esc(e.label) + "</p>" +
+        '<p class="emg__n num">' + esc(e.value) + "</p>" +
+        '<p class="tiny">' + esc(e.note) + "</p></a>");
+    });
+    h.push("</div>");
+
+    /* The same notes that sit on their own events, collected so there is one
+       place to read them all. */
     h.push('<div class="card"><div class="card__body"><ul class="tl__sub">');
     D.days.forEach(function (d) {
       (d.items || []).forEach(function (it) {
@@ -1530,105 +700,19 @@
     });
     h.push("</ul></div></div>");
 
-    if (D.workLeg) h.push(workLegBlock());
-    h.push(infoWhy());
+    R.embassies.forEach(function (e) {
+      h.push('<div class="card"><div class="card__body">' +
+        "<b>" + esc(e.label) + "</b>" +
+        '<p class="small muted" style="margin-top:2px;font-family:var(--mono)">' + esc(e.address) + "</p>" +
+        mapsChip(e.maps, "Maps", e.ll) + "</div></div>");
+    });
 
     h.push('<div class="foot">');
     h.push("<p><b>" + esc(D.meta.who) + "</b> &middot; " + esc(D.meta.title) +
       ", October 10 to 17, 2026 &middot; " + D.meta.nights + " nights.</p>");
-    h.push("<p><b>Storage.</b> Every checkbox and confirmation number lives in this browser&rsquo;s " +
-      "localStorage on this device only. Clearing site data clears all of it.</p>");
+    h.push("<p><b>Storage.</b> Every checkbox lives in this browser&rsquo;s localStorage on this " +
+      "device only. Clearing site data clears all of it.</p>");
     h.push("</div>");
-    return h.join("");
-  }
-
-  /* Every paid night is booked, so this is the reservation and what is still
-     worth asking at the desk. Nothing else. */
-  function lodgingBlock() {
-    var h = [];
-    D.lodging.stays.forEach(function (st) {
-      var bk = st.booked;
-      h.push('<div class="card"><div class="card__body">');
-      h.push('<p class="eyebrow">' + esc(st.nights) + "</p>");
-      h.push("<b>" + esc(bk ? bk.name : st.label) + "</b>");
-      if (!bk) {
-        h.push('<p class="tiny muted" style="margin-top:2px">Not booked yet &middot; budget ' +
-          esc(st.budget) + "</p>");
-        h.push("</div></div>");
-        return;
-      }
-      h.push('<p class="small muted" style="margin-top:4px;font-family:var(--mono)">' +
-        esc(bk.address) + "<br>" + esc(bk.phone) + "</p>");
-      h.push('<p class="tiny muted" style="margin-top:6px">' + esc(bk.paid) + " &middot; " + esc(bk.terms) + "</p>");
-      h.push('<p class="tiny muted" style="margin-top:2px">In ' + esc(bk.checkIn) +
-        " &middot; out " + esc(bk.checkOut) + "</p>");
-      if ((bk.confirmOnArrival || []).length) {
-        h.push('<p class="eyebrow" style="margin-top:12px;color:var(--hazard)">Ask at the desk</p>');
-        h.push('<ul class="tl__sub" style="margin-top:6px">');
-        bk.confirmOnArrival.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
-        h.push("</ul>");
-      }
-      h.push(mapsChip(bk.maps, "Maps", bk.ll));
-      h.push("</div></div>");
-    });
-    return h.join("");
-  }
-
-  /* Ben's work-booked leg. Reference, not a plan - the shared trip starts on
-     the 9th. */
-  function workLegBlock() {
-    var W = D.workLeg;
-    var h = [];
-    h.push('<div class="section-head"><h2>Ben&rsquo;s work leg, Oct 3-11</h2></div>');
-    h.push('<div class="card"><div class="card__body">');
-    h.push('<p class="eyebrow">Flights, booked by work</p>');
-    W.flights.forEach(function (f, i) {
-      h.push('<div style="margin-top:' + (i ? "10px" : "6px") + '">' +
-        "<b>" + esc(f.label) + "</b>" +
-        '<p class="tiny muted" style="margin-top:2px;font-family:var(--mono)">' + esc(f.route) +
-        " &middot; " + esc(f.meta) + "</p></div>");
-    });
-    h.push("</div></div>");
-
-    W.hotels.forEach(function (t) {
-      h.push('<div class="card"' + (t.key ? ' style="border-color:var(--london)"' : "") + '><div class="card__body">');
-      if (t.key) h.push('<p class="eyebrow" style="color:var(--london)">Both of you, Sat Oct 10</p>');
-      h.push("<b>" + esc(t.label) + "</b>");
-      h.push('<p class="tiny muted" style="margin-top:2px">' + esc(t.dates) + "</p>");
-      h.push('<p class="small muted" style="margin-top:4px;font-family:var(--mono)">' + esc(t.address) +
-        "<br>" + esc(t.phone) + "</p>");
-      h.push(mapsChip(t.maps, "Maps", t.ll));
-      h.push("</div></div>");
-    });
-    return h.join("");
-  }
-
-  function infoLocker() {
-    var h = [];
-    h.push('<div class="privacy">' + ICON.lock +
-      "<div><b>This data lives only on this device.</b> Confirmation numbers you type here are stored in this " +
-      "browser&rsquo;s localStorage. They are never written into the repository, never uploaded, and never leave " +
-      "the phone. They will not appear on your wife&rsquo;s phone. If you clear site data or reinstall, they are gone.</div></div>");
-
-    D.confirmations.forEach(function (bk) {
-      h.push('<div class="card"><div class="card__body"><b>' + esc(bk.label) + "</b></div>");
-      h.push('<div class="locker">');
-      bk.fields.forEach(function (f) {
-        var key = bk.id + "::" + f;
-        h.push('<label class="field"><span class="field__l">' + esc(f) + "</span>" +
-          '<input type="text" data-conf="' + esc(key) + '" value="' + esc(S.conf[key] || "") +
-          '" autocomplete="off" spellcheck="false"></label>');
-      });
-      h.push("</div></div>");
-    });
-
-    h.push('<div class="card"><div class="card__body stack">');
-    h.push('<p class="eyebrow">Danger zone</p>');
-    h.push('<button class="btn btn--block" data-act="export">Export everything as a text file</button>');
-    h.push('<p class="tiny muted">Read the warning first. Exporting puts your confirmation numbers into a plain, ' +
-      "unencrypted file in your Downloads folder.</p>");
-    h.push('<button class="btn btn--block btn--danger" data-act="wipe-conf">Erase all confirmations</button>');
-    h.push("</div></div>");
     return h.join("");
   }
 
@@ -1639,13 +723,15 @@
   function route() {
     var hash = location.hash.replace(/^#\/?/, "");
     var parts = hash.split("/");
-    var view = parts[0] || "today";
+    var view = parts[0] || "agenda";
     var sub = parts[1] || "";
     /* Days, Book and Prep merged into Agenda. Old hashes still land somewhere
        sensible rather than dumping you on Today - the app is installed as a
        PWA and those links are in people's home screens and in this repo. */
     if (view === "days" || view === "book" || view === "prep") { view = "agenda"; sub = ""; }
-    if (["today", "agenda", "map", "aurora", "info"].indexOf(view) === -1) { view = "today"; sub = ""; }
+    /* map and today are gone; their old hashes land on the agenda */
+    if (view === "map" || view === "today") { view = "agenda"; sub = ""; }
+    if (["agenda", "aurora", "info"].indexOf(view) === -1) { view = "agenda"; sub = ""; }
     return { view: view, sub: sub };
   }
 
@@ -1655,17 +741,13 @@
   function render() {
     var r = route();
     var html;
-    if (r.view === "agenda") html = viewAgenda();
-    else if (r.view === "map") html = viewMap(r.sub);
-    else if (r.view === "aurora") html = viewAurora();
-    else if (r.view === "info") html = viewInfo(r.sub);
-    else html = viewToday();
+    if (r.view === "aurora") html = viewAurora();
+    else if (r.view === "info") html = viewInfo();
+    else html = viewAgenda();
 
-    teardownMaps();          /* Leaflet keeps handlers on detached nodes */
     main.innerHTML = html;
     document.title = ({
-      today: "Today", agenda: "Agenda", map: "Map",
-      aurora: "Aurora", info: "Reference"
+      agenda: "Agenda", aurora: "Aurora", info: "Reference"
     }[r.view]) + " · London + Iceland";
 
     /* tab state */
@@ -1676,7 +758,6 @@
     paintBadge();
     paintDateChip();
     wireShots();
-    wireMaps();
     wireBook();
 
     if (pendingDay) {
@@ -1825,49 +906,6 @@
     var ed = t.closest && t.closest("[data-edit]");
     if (ed) { editCustom(ed.dataset.edit); return; }
 
-    var mm = t.closest && t.closest("[data-mapmode]");
-    if (mm) {
-      S.mapMode = mm.dataset.mapmode;
-      save(K.mapMode, S.mapMode);
-      render();
-      return;
-    }
-
-    var mf = t.closest && t.closest("[data-map]");
-    if (mf) { location.hash = "#/map/" + mf.dataset.map; return; }
-
-    var stopEl = t.closest && t.closest("[data-stop]");
-    if (stopEl) {
-      var row = document.getElementById("stop-" + stopEl.dataset.stop);
-      if (row) {
-        row.scrollIntoView({ block: "center", behavior: "smooth" });
-        row.classList.remove("is-target");
-        void row.offsetWidth;                 /* restart the flash */
-        row.classList.add("is-target");
-      }
-      return;
-    }
-
-    var gd = t.closest && t.closest("[data-godetail]");
-    if (gd) {
-      var gkey = gd.dataset.godetail;
-      var gday = gkey.split(":")[0];
-      S.dayOpen[gday] = true;      save(K.dayOpen, S.dayOpen);
-      S.itemOpen[gkey] = true;     save(K.itemOpen, S.itemOpen);
-      pendingDay = gday;
-      /* already on Agenda: the hash will not change, so no hashchange fires */
-      if (location.hash === "#/agenda") render();
-      else location.hash = "#/agenda";
-      return;
-    }
-
-    var sub = t.closest && t.closest("[data-sub]");
-    if (sub) {
-      var r = route();
-      location.hash = "#/" + r.view + "/" + sub.dataset.sub;
-      return;
-    }
-
     var jump = t.closest && t.closest("[data-jump]");
     if (jump) { setOverride(jump.dataset.jump); return; }
 
@@ -1909,13 +947,6 @@
       render();
       var reBox = document.querySelector('[data-book="' + el.dataset.book + '"]');
       if (reBox) reBox.focus({ preventScroll: true });
-      return;
-    }
-    if (el.dataset.conf !== undefined) {
-      var val = el.value;
-      if (val === "") delete S.conf[el.dataset.conf];
-      else S.conf[el.dataset.conf] = val;
-      save(K.conf, S.conf);
       return;
     }
     if (el.id === "dateInput") { setOverride(el.value); return; }
@@ -1985,72 +1016,6 @@
     if (name === "reset-tonight") {
       S.tonight = {}; save(K.tonight, S.tonight); render(); return;
     }
-    if (name === "reset-group") {
-      var gid = el.dataset.grp;
-      var g = null;
-      D.checklists.forEach(function (x) { if (x.id === gid) g = x; });
-      if (!g) return;
-      if (!window.confirm("Uncheck every item in “" + g.label + "”?")) return;
-      itemsOf(g).forEach(function (i) { delete S.checks[i.id]; });
-      save(K.checks, S.checks); render(); return;
-    }
-    if (name === "wipe-conf") {
-      if (!window.confirm("Erase every confirmation number, flight number and address you have entered? This cannot be undone.")) return;
-      S.conf = {}; save(K.conf, S.conf); render(); return;
-    }
-    if (name === "export") { exportDialog(); return; }
-  }
-
-  /* Export is deliberately gated behind an explicit warning. */
-  function exportDialog() {
-    var wrap = document.createElement("div");
-    wrap.className = "dialog-backdrop";
-    wrap.innerHTML =
-      '<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlgT">' +
-      '<h2 id="dlgT">Read this first</h2>' +
-      "<p class=\"small\">This writes a <b>plain, unencrypted text file</b> to your Downloads folder containing every " +
-      "confirmation number, flight number and address you have entered.</p>" +
-      "<p class=\"small\" style=\"margin-top:8px\">Anything in Downloads may be backed up to the cloud, synced to other " +
-      "devices, or picked up by another app. Only do this if you are about to move the file somewhere you trust, " +
-      "and delete it afterwards.</p>" +
-      '<div class="dialog__acts">' +
-      '<button class="btn" data-dlg="cancel">Cancel</button>' +
-      '<button class="btn btn--danger" data-dlg="go">I understand, export</button>' +
-      "</div></div>";
-    document.body.appendChild(wrap);
-    var first = wrap.querySelector("[data-dlg=cancel]");
-    if (first) first.focus();
-
-    wrap.addEventListener("click", function (e) {
-      var b = e.target.closest("[data-dlg]");
-      if (!b && e.target !== wrap) return;
-      if (!b || b.dataset.dlg === "cancel") { wrap.remove(); return; }
-      doExport();
-      wrap.remove();
-    });
-    wrap.addEventListener("keydown", function (e) { if (e.key === "Escape") wrap.remove(); });
-  }
-
-  function doExport() {
-    var lines = ["London + Iceland, Oct 10-17 2026", "Exported " + ymd(new Date()),
-      "UNENCRYPTED. Delete this file when you are done with it.", ""];
-    lines.push("== CONFIRMATIONS ==");
-    D.confirmations.forEach(function (bk) {
-      var any = bk.fields.some(function (f) { return S.conf[bk.id + "::" + f]; });
-      if (!any) return;
-      lines.push("", bk.label);
-      bk.fields.forEach(function (f) {
-        var v = S.conf[bk.id + "::" + f];
-        if (v) lines.push("  " + f + ": " + v);
-      });
-    });
-    var blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
-    var a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "london-iceland-2026-private.txt";
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
   }
 
   /* ------------------------------------------------------- CHROME WIRING */
@@ -2091,10 +1056,7 @@
     dot.className = "dot " + (off ? "dot--off" : "dot--on");
     dot.setAttribute("aria-label", off ? "Offline" : "Online");
   }
-  function netChanged() {
-    paintNet();
-    if (route().view === "map") render();   /* live map needs signal */
-  }
+  function netChanged() { paintNet(); }
   window.addEventListener("online", netChanged);
   window.addEventListener("offline", netChanged);
   paintNet();
@@ -2116,6 +1078,6 @@
   var lastSeenDay = ymd(new Date());
 
   /* go */
-  if (!location.hash) location.replace("#/today");
+  if (!location.hash) location.replace("#/agenda");
   render();
 })();

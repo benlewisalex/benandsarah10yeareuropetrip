@@ -8,14 +8,7 @@
    copy. That is the one maintenance chore this file has.
    ========================================================================== */
 
-var CACHE = "london-iceland-v32";
-
-/* Map tiles live in their own cache so they cannot crowd out the app shell,
-   and so clearing them is easy. Tiles are cached only as they are actually
-   viewed - OpenStreetMap's tile policy forbids bulk pre-downloading, so the
-   live map is a when-you-have-signal feature and the built-in vector map is
-   the guaranteed-offline one. */
-var TILES = "osm-tiles-v1";
+var CACHE = "london-iceland-v33";
 
 /* Same-origin. These MUST cache or the install fails - that is intentional,
    a half-installed offline app is worse than none. */
@@ -24,12 +17,6 @@ var CORE = [
   "./index.html",
   "./styles.css",
   "./data.js",
-  "./geo.js",
-  "./vendor/leaflet.js",
-  "./vendor/leaflet.css",
-  "./img/towerbridge.jpg",
-  "./img/seljalandsfoss.jpg",
-  "./img/skogafoss.jpg",
   "./app.js",
   "./manifest.webmanifest",
   "./favicon.svg",
@@ -77,7 +64,7 @@ self.addEventListener("activate", function (e) {
   e.waitUntil(
     caches.keys().then(function (keys) {
       return Promise.all(keys.map(function (k) {
-        return (k === CACHE || k === TILES) ? null : caches.delete(k);
+        return k === CACHE ? null : caches.delete(k);
       }));
     }).then(function () { return self.clients.claim(); })
   );
@@ -86,23 +73,6 @@ self.addEventListener("activate", function (e) {
 self.addEventListener("fetch", function (e) {
   var req = e.request;
   if (req.method !== "GET") return;
-
-  /* tiles: cache-first into their own bucket, so revisiting an area works
-     without signal even though we never bulk-download */
-  if (req.url.indexOf("tile.openstreetmap.org") !== -1) {
-    e.respondWith(
-      caches.open(TILES).then(function (c) {
-        return c.match(req).then(function (hit) {
-          if (hit) return hit;
-          return fetch(req).then(function (res) {
-            if (res && (res.ok || res.type === "opaque")) c.put(req, res.clone());
-            return res;
-          }).catch(function () { return Response.error(); });
-        });
-      })
-    );
-    return;
-  }
 
   /* Navigations: always hand back the shell so a cold offline launch works,
      including a deep link like #/aurora. */
