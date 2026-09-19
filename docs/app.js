@@ -422,9 +422,15 @@
        leg out of this stop is the next stop's travel, which is what you
        actually want at the bottom of an entry. The day's first stop is the
        exception: nothing precedes it, so its own travel is the arrival leg and
-       would otherwise never be shown at all. */
-    var onward = travelLine(items[idx + 1], "Next", "ag__tr ag__tr--next");
-    var arrival = idx === 0 ? travelLine(it, "Getting there", "ag__tr") : "";
+       would otherwise never be shown at all.
+
+       A day flagged `parallel` is not one route - Oct 9 has Ben crossing
+       England while Sarah crosses the Atlantic. Chaining those would tell Ben
+       to board Sarah's flight, so on those days every item just shows how it
+       is reached and nothing claims to follow on from anything. */
+    var parallel = !!day.parallel;
+    var onward = parallel ? "" : travelLine(items[idx + 1], "Next", "ag__tr ag__tr--next");
+    var arrival = (parallel || idx === 0) ? travelLine(it, "Getting there", "ag__tr") : "";
     var hasBody = it.detail || it.headsUp || it.maps || it.links || onward || arrival;
     var h = [];
 
