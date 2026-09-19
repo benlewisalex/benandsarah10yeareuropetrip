@@ -399,11 +399,13 @@ const TRIP = {
           travel: "Rental desks are in the terminal",
           dur: "30-45 min including the walk to the lot",
           detail: "2WD is fine for this route. Take the gravel and sand/ash damage waiver.",
+          headsUp: "Hold car doors with both hands - wind rips them off and insurance does not cover it.",
           maps: "Keflavik International Airport, Iceland", ll: "63.9850,-22.6056" },
         { time: "11:30am", name: "Sundhnúkur / Fagradalsfjall lava fields",
           travel: "30-min drive from KEF, Route 43 then 427",
           dur: "2-4 hrs round trip on foot, depending which trail is open",
           detail: "Free. Rough, ankle-turning ground - boots with grip. Check safetravel.is and almannavarnir.is before driving out; exclusion zones move.",
+          headsUp: "Never approach a fresh flow from downwind; volcanic gas near the vents is lethal.",
           maps: "Fagradalsfjall, Reykjanes, Iceland", ll: "63.8958,-22.2725",
           image: "lava",
           links: [
@@ -426,12 +428,6 @@ const TRIP = {
           dur: "One night, check-in from 3:00pm",
           detail: "Barónsstíg 2-4. Dinner: Messinn for fish, or Bæjarins Beztu for the hot dog, both a walk away. Buy breakfast tonight if it is not on the booking.",
           maps: "Fosshotel Baron, Baronsstigur 2-4, 101 Reykjavik, Iceland", ll: "64.1445,-21.9200" }
-      ],
-      hazards: [
-        { title: "Volcanic gas is what actually kills people here",
-          text: "Never approach a fresh flow from downwind. Volcanic gas concentrations near vents are lethal, and that is how people actually die at these sites." },
-        { title: "Hold car doors with both hands",
-          text: "Wind rips them off the hinges every year and rental insurance does not cover it. This starts the moment you pick up the car at KEF." }
       ],
       aurora: { night: 1, spot: "Grótta lighthouse, Seltjarnarnes",
         text: "Fifteen minutes from downtown, free parking, dark enough to work. The lighthouse sits on a tidal island - check the tide before you walk out to it, because the causeway floods and people do get cut off.",
@@ -516,6 +512,7 @@ const TRIP = {
           travel: "20-min drive around the headland to the Vík side",
           dur: "45 min-1 hr",
           detail: "Free car park with a cafe. The columns and the cave are at the western end.",
+          headsUp: "Sneaker waves arrive with no warning and the undertow is unsurvivable. Stay well up the beach and never turn your back on the water.",
           maps: "Reynisfjara beach, Vik, Iceland", ll: "63.4033,-19.0447", image: "reynisfjara",
           links: [{ label: "safetravel.is conditions", url: "https://safetravel.is/" }] },
         { time: "Evening", name: "Lava Show, Vík",
@@ -528,10 +525,6 @@ const TRIP = {
           travel: "1-hr drive west, about 75 km on Route 1, then 6 km on Route 250",
           dur: "Second of two nights",
           detail: "Nothing to check into." }
-      ],
-      hazards: [
-        { title: "Reynisfjara sneaker waves. Safety, not boilerplate.",
-          text: "Reynisfjara kills tourists every few years. Sneaker waves arrive with no warning and drag people out - the beach shelves steeply and the undertow is unsurvivable. Stay well up the beach, never turn your back on the water, and do not walk to the waterline for a photo." }
       ],
       aurora: { night: 3, spot: "The cabin terrace again",
         text: "Same dark skies as night 2, and the advantage of a second night in the same place: you already know where to stand and how long your eyes take. Even if the aurora does nothing, this is the Milky Way with no effort and no driving.",
@@ -609,7 +602,7 @@ const TRIP = {
           dur: "About 95 min with both stops, or 60 with one",
           detail: "Brimketill, 10 min west of Grindavík: roadside parking, five minutes to look. Then Valahnúkamöl and Reykjanesviti, 10 min on. North on 425 to Route 44 into KEF, about 30 minutes.",
           maps: "Valahnukamol, Reykjanes, Iceland", ll: "63.8130,-22.7060",
-          headsUp: "Do not go near the water at Valahnúkamöl. It is exposed Atlantic cliff and boulder beach and the same sneaker-wave physics that makes Reynisfjara lethal applies here - look from above and stay well back. This is also the coast where the wind takes car doors off their hinges, so two hands on the handle.",
+          headsUp: "Stay well back from the water at Valahnúkamöl - exposed Atlantic cliff, same sneaker waves as Reynisfjara.",
           sub: [
             "Route 425 runs through the Sundhnúkur zone and has closed during eruptions. It is the same almannavarnir.is check you are already doing for Grindavík and the lagoon - one look covers all three.",
             "If you only want one stop, take Valahnúkamöl. Brimketill is a pleasant five minutes; the lighthouse headland is the thing you will remember.",

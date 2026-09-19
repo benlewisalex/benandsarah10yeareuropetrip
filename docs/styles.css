@@ -7,7 +7,7 @@
    colour is information: it tells you which half a card belongs to.
 
    Aurora green is quarantined. It appears only on the aurora panel and the
-   aurora cue on a day card. If you see green, it means aurora.
+   aurora link at the foot of a day. If you see green, it means aurora.
 
    No webfonts. A font request is a network dependency and this has to work in a
    car in south Iceland. System stacks are genuinely good faces (SF on iOS,
@@ -16,8 +16,8 @@
 
    SIGNATURE
    The basalt column: a fill, vertical joints, one lit edge. It is the left edge
-   of every day card, the checklist progress meter and the budget spend bar.
-   One geological motif, three jobs, pure CSS.
+   of every day card and the checklist progress meter.
+   One geological motif, two jobs, pure CSS.
 
    LAYOUT
    Mobile-first. Bottom tab bar for thumb reach and gloves. At 1024px the nav
@@ -381,7 +381,10 @@ code { font-family: var(--mono); font-size: .92em; }
 .pill--extra   { background: var(--london-wash); color: var(--london); }
 
 /* ============================================================== 6. HAZARDS */
-/* Hatched. Life-safety only. Nothing else may borrow this treatment. */
+/* The hatched treatment is now reserved for ONE place: the volcano
+   contingency on the Aurora tab, which is a "what do I do right now" page
+   where a billboard is the right answer. Life-safety notes on the agenda are
+   quiet single lines instead - see .ag__note in section 9c. */
 
 .hazard {
   margin: var(--s4) 0; border: 2px solid var(--hazard);
@@ -401,14 +404,6 @@ code { font-family: var(--mono); font-size: .92em; }
 }
 .hazard__title svg { width: 22px; height: 22px; flex: 0 0 auto; margin-top: 3px; }
 .hazard__text { color: var(--ink); }
-
-.headsup {
-  display: flex; gap: var(--s3);
-  margin-top: var(--s3); padding: var(--s3) var(--s4);
-  background: var(--amber-wash); border-left: 4px solid var(--amber);
-  border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: var(--t-15);
-}
-.headsup svg { width: 18px; height: 18px; flex: 0 0 auto; margin-top: 4px; color: var(--amber); }
 
 /* ============================================================== 7. IMAGERY */
 /* One image left in the app: the Aurora hero. The gradient renders first and
@@ -581,13 +576,6 @@ code { font-family: var(--mono); font-size: .92em; }
   display: block; margin-top: 3px;
   font-family: var(--mono); font-size: var(--t-12); color: var(--ink-3);
 }
-.dayx__warn {
-  display: inline-flex; align-items: center; gap: 4px;
-  margin-left: var(--s1); padding: 1px 7px;
-  background: var(--hazard-wash); color: var(--hazard);
-  border-radius: var(--r-pill); font-weight: 700;
-}
-.dayx__warn svg { width: 12px; height: 12px; }
 .dayx__chev {
   flex: 0 0 46px; display: grid; place-items: center; color: var(--ink-3);
   transition: transform var(--fast) var(--ease);
@@ -596,7 +584,6 @@ code { font-family: var(--mono); font-size: .92em; }
 
 .dayx__body { display: none; border-top: 1px solid var(--line-2); }
 .dayx.is-open > .dayx__body { display: block; }
-.dayx__haz { padding: var(--s4) var(--s5) 0; }
 .dayx--bare .dayx__body { border-top: 0; }
 
 /* ---- level two: a single activity ---- */
@@ -654,6 +641,17 @@ code { font-family: var(--mono); font-size: .92em; }
   font-size: var(--t-13); color: var(--ink-2);
 }
 .ag__tr svg { flex: 0 0 auto; width: 13px; height: 13px; margin-top: 3px; color: var(--ink-3); }
+
+/* Life-safety note, nested in its own event. One line, a thin rule, no fill
+   and no title - it keeps the hazard colour because it still has to be read,
+   but it is a note, not a banner. */
+.ag__note {
+  display: flex; gap: 7px;
+  margin-top: var(--s3); padding-left: var(--s3);
+  border-left: 2px solid var(--hazard);
+  color: var(--ink-2); font-size: var(--t-13); line-height: 1.5;
+}
+.ag__note svg { flex: 0 0 auto; width: 13px; height: 13px; margin-top: 3px; color: var(--hazard); }
 
 .dayx--slim .dayx__body { padding-bottom: var(--s2); }
 .dayx__count { margin-right: auto; align-self: center; font-family: var(--mono); font-size: var(--t-12); color: var(--ink-3); }

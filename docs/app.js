@@ -420,7 +420,10 @@
          you need when the row is open */
       if (it.travel) h.push('<p class="ag__tr">' + ICON.route + "<span>" + esc(it.travel) + "</span></p>");
       if (it.detail) h.push('<p class="ag__d">' + esc(it.detail) + "</p>");
-      if (it.headsUp) h.push('<div class="headsup">' + ICON.alert + "<span>" + esc(it.headsUp) + "</span></div>");
+      /* Safety note, nested in the event and deliberately quiet: one line, a
+         thin rule, no banner. It keeps the hazard colour because it still has
+         to be read, but it is a note rather than a billboard. */
+      if (it.headsUp) h.push('<p class="ag__note">' + ICON.alert + "<span>" + esc(it.headsUp) + "</span></p>");
 
       var hot = [];
       if (it.maps) {
@@ -442,11 +445,6 @@
   /* the expanded content of a day, used by the accordion and by Today */
   function agendaDayBody(day) {
     var h = [];
-
-    /* hazards first, always, never collapsed */
-    (day.hazards || []).forEach(function (hz) {
-      h.push('<div class="dayx__haz">' + hazardBlock(hz) + "</div>");
-    });
 
     h.push('<div class="aglist">');
     (day.items || []).forEach(function (it, idx) { h.push(agendaItem(day, it, idx)); });
@@ -481,7 +479,6 @@
     var half = day.half === "london" ? "var(--london)" : "var(--iceland)";
     var open = S.dayOpen[day.id];
     if (open === undefined) open = !!isToday;      /* today opens itself */
-    var hz = (day.hazards || []).length;
     var h = [];
 
     h.push('<article class="dayx dayx--slim' + (open ? " is-open" : "") + '" id="day-' + day.id +
@@ -493,9 +490,7 @@
       " &middot; " + (day.half === "london" ? "England" : "Iceland") +
       (isToday ? ' <em class="dayx__today">Today</em>' : "") + "</span>");
     h.push("<b>" + esc(day.title) + "</b>");
-    h.push('<span class="dayx__sum">' + daySummary(day) +
-      (hz ? ' <span class="dayx__warn">' + ICON.alert + hz + " safety note" + (hz === 1 ? "" : "s") + "</span>" : "") +
-      "</span>");
+    h.push('<span class="dayx__sum">' + daySummary(day) + "</span>");
     h.push("</span>");
     h.push('<span class="dayx__chev">' + ICON.chev + "</span>");
     h.push("</button>");
@@ -1465,10 +1460,17 @@
     });
     h.push("</div>");
 
+    /* The safety notes live on their own events in the Agenda. Collected here
+       as a plain list so there is one place to read them all, without
+       duplicating the text into a second data structure. */
     h.push('<div class="section-head"><h2>Safety</h2></div>');
+    h.push('<div class="card"><div class="card__body"><ul class="tl__sub">');
     D.days.forEach(function (d) {
-      (d.hazards || []).forEach(function (x) { h.push(hazardBlock(x)); });
+      (d.items || []).forEach(function (it) {
+        if (it.headsUp) h.push("<li><b>" + esc(it.name) + ".</b> " + esc(it.headsUp) + "</li>");
+      });
     });
+    h.push("</ul></div></div>");
 
     if (D.workLeg) h.push(workLegBlock());
 
