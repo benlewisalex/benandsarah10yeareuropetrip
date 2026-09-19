@@ -194,29 +194,14 @@ Set `sun: null` for a day with no times, or `sunrise: null` if you only have one
 The app says "not listed in the itinerary" rather than inventing a time - Oct 12
 and Oct 17 are in that state now because `ITINERARY.md` doesn't give them.
 
-### Change the budget
-
-Edit `planned` in `budget.sections`. The totals, the variance against the $5,000
-ceiling and the meters all recompute themselves.
-
-**Keep the line `id` values stable.** Two other things point at them: the
-checklist items (via `budgetIds`) and anything already saved on your phone. If
-you rename `trn-car` to `car-rental`, the "Reserve Iceland rental car" checklist
-item stops linking to it and any actual cost you already entered for it is
-orphaned.
-
 ### Change the checklists
 
 Items live in `checklists`, grouped by the buckets from `ITINERARY.md`.
 
 ```js
-{ id: "tw4", text: "Reserve Iceland rental car - take gravel + sand/ash waiver",
-  budgetIds: ["trn-car"] },
+{ id: "tw4", text: "Reserve Iceland rental car - take gravel + sand/ash waiver" },
 ```
 
-- `budgetIds` is what wires a checklist item to a budget row. Checking the item
-  shows a chip you can tap to jump straight to that row with the cost field
-  focused, so you only update one place.
 - `promoteAt` / `overdueAt` on a group are **days before Oct 10**, and they are
   the whole urgency system. `four-six` has `promoteAt: 42`, so it goes from
   "Later" to "Now" 42 days out; `overdueAt: 7` means anything still unchecked
@@ -225,16 +210,16 @@ Items live in `checklists`, grouped by the buckets from `ITINERARY.md`.
 - Items you add in the app itself are stored per-device and don't need a code
   change. `data.js` items are the shared ones.
 - **Keep the item `id` values stable too.** The `book` array on an itinerary
-  item points at them, and that is what puts a booking checkbox on the Book tab.
-  Rename `tw4` and the "Pick up the rental car at KEF" row silently drops to
-  N/A, because a stale id is treated as "no such booking" rather than an
-  unbooked one.
+  item points at them, and that is what puts a booking checkbox on the event's
+  row in the Agenda. Rename `tw4` and the "Pick up the rental car at KEF" row
+  silently loses its checkbox, because a stale id is treated as "no such
+  booking" rather than an unbooked one.
 
-### Change what the Book tab asks you to book
+### Change what the Agenda asks you to book
 
-The Book tab is the whole trip on one scroll, and the checkbox on a row is the
-`checklists` to-do itself, not a copy of it - tick it on either tab and it is
-ticked on both. The wiring is the `book` array on an itinerary item:
+The checkbox on an Agenda row is the `checklists` to-do itself, not a copy of
+it - tick it on the event or in the bucket at the top and it is ticked in both.
+The wiring is the `book` array on an itinerary item:
 
 ```js
 { time: "10:30am", name: "Pick up the rental car at KEF",
@@ -242,16 +227,19 @@ ticked on both. The wiring is the `book` array on an itinerary item:
   travel: "Rental desks are in the terminal", ... },
 ```
 
-- Leave `book` off a stop that needs no reservation and the row shows **N/A**.
-  That is the default: 24 of the 47 stops are walk-up or free.
-- Several ids on one stop means the stop is not booked until all of them are.
-  A half-done stop shows a dashed box and "1 of 2" rather than looking empty.
-- The same id on several stops means one booking covers them all - `fs5` is the
-  Iceland lodging block, four nights in four places - so it ticks in all of
-  them at once. Those rows are marked *shared* so that is not a surprise.
-- Prep to-dos with no `book` reference anywhere (passports, the ETA, phones, the
-  handover to Mom) are not trip stops and only ever appear on Prep. The Book tab
-  counts them so the two tabs never look like they disagree.
+- Leave `book` off an event that needs no reservation and the row simply has no
+  checkbox. That is the default: most stops are walk-up or free.
+- Several ids on one event means it is not booked until all of them are. A
+  half-done event shows an indeterminate box and "1/2" rather than looking
+  empty, and the collapsed row says *needs booking*.
+- The same id on several events means one booking covers them all - `fs5` is the
+  Iceland lodging block, four nights in four places - so it ticks in all of them
+  at once.
+- To-dos with no `book` reference anywhere (passports, the ETA, phones, the
+  handover to Mom) have no event to hang on, so they collect in the **Not tied
+  to a day** bucket at the top of the Agenda, collapsed by default. Packing is
+  the exception: it is on the Info tab, because it is neither a booking nor
+  tied to a day.
 
 ### Change the map
 
@@ -312,17 +300,19 @@ behavior, prefer local files in `docs/img/` for your own photos.
 
 ## How it works, briefly
 
-- **One page.** Views switch on the URL hash (`#/today`, `#/prep/money`). No
+- **One page.** Views switch on the URL hash (`#/today`, `#/agenda`). No
   router library. Hash routing is also why it works from `file://` - a path-based
   router would need a server.
 - **Today adapts to the date.** Before Oct 10 it's the prep dashboard: countdown,
   overdue count, the next few unchecked items checkable in place. Oct 10-17 it's
   that day's plan. After Oct 17 it's a farewell state. The date chip in the top
   strip overrides "today" so you can preview any day.
-- **Days and Book are the same content at two densities.** Days is the
-  two-level accordion you read; Book is one row per stop - time, activity, how
-  long, how you got there - that you scan to find the gap. Every Book row taps
-  through to its full entry on Days and flashes it.
+- **One Agenda, not three tabs.** Days, Book and Prep used to be the same
+  information at three densities, and keeping them in sync by eye was the actual
+  failure mode. The Agenda is a two-level accordion - day, then event - where
+  each event carries only when it happens, what it is, how long it takes, and
+  whether it still needs booking. Old `#/days`, `#/book` and `#/prep` hashes
+  redirect to it.
 - **Offline** is a service worker that precaches the shell and assets. The dot in
   the top strip goes red and a banner appears when there's no connection.
 - **Dark mode** follows `prefers-color-scheme`; the sun button overrides it.
@@ -338,6 +328,6 @@ cue on a day card, so green always means aurora. No webfonts, because a font
 request is a network dependency and this has to work in a car in south Iceland;
 the discipline instead is that every number is monospace, which reads as a field
 instrument for zero bytes. The one bold element is the basalt column spine - the
-left edge of every day card, the checklist progress meter and the budget spend
+left edge of every day card and the checklist progress meter
 bar are the same geological motif doing three jobs, in pure CSS. Everything else
 stays flat and quiet.

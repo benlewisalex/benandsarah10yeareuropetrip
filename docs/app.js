@@ -49,7 +49,6 @@
   var K = {
     checks:  "et26.checks",     // { itemId: true }
     custom:  "et26.custom",     // { groupId: [ {id,text} ] }
-    actuals: "et26.actuals",    // { budgetLineId: "123.45" }
     conf:    "et26.conf",       // { "bookingId::Field": "value" }
     tonight: "et26.tonight",    // { cloud: true, ... }
     open:    "et26.open",       // { groupId: false }  (collapsed state)
@@ -74,7 +73,6 @@
   var S = {
     checks:  load(K.checks, {}),
     custom:  load(K.custom, {}),
-    actuals: load(K.actuals, {}),
     conf:    load(K.conf, {}),
     tonight: load(K.tonight, {}),
     open:    load(K.open, {}),
@@ -105,10 +103,6 @@
     var d = parseYMD(s);
     return MONTHS[d.getMonth()] + " " + d.getDate();
   }
-  function money(n) {
-    return "$" + Number(n || 0).toLocaleString("en-US", { maximumFractionDigits: 0 });
-  }
-
   function isApple() { return /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent); }
 
   /* Drop a pin at exact coordinates. A plain text query gets resolved against
@@ -164,9 +158,7 @@
     trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
     pencil:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4Z"/></svg>',
     mapicon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3.5 3 6v15l6-2.5 6 2.5 6-2.5V3.5L15 6 9 3.5Z"/><path d="M9 3.5v15M15 6v15"/></svg>',
-    money: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M12 3v18M8 7h6a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h7"/></svg>',
-    route: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M9 19h6a3 3 0 0 0 3-3V8M15 5H9a3 3 0 0 0-3 3v8"/></svg>',
-    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>'
+    route: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M9 19h6a3 3 0 0 0 3-3V8M15 5H9a3 3 0 0 0-3 3v8"/></svg>'
   };
 
   /* ------------------------------------------------------------ date + phase */
@@ -301,78 +293,10 @@
     };
   }
 
-  /* how many stops lean on the same booking - drives the "shared" marker, so
-     ticking one row and watching three others change is not a surprise */
-  function stopsUsing(id) {
-    var n = 0;
-    D.days.forEach(function (day) {
-      (day.items || []).forEach(function (it) {
-        if ((it.book || []).indexOf(id) !== -1) n++;
-      });
-    });
-    return n;
-  }
-
-  function bookTotals() {
-    var stops = 0, booked = 0, tied = {};
-    D.days.forEach(function (day) {
-      (day.items || []).forEach(function (it) {
-        var bs = bookState(it);
-        if (!bs) return;
-        stops++;
-        if (bs.all) booked++;
-        bs.ids.forEach(function (id) { tied[id] = true; });
-      });
-    });
-    var all = 0;
-    D.checklists.forEach(function (g) { all += itemsOf(g).length; });
-    return { stops: stops, booked: booked, untied: all - Object.keys(tied).length };
-  }
-
-  /* ------------------------------------------------------------- budget math */
-
-  function budgetLines() {
-    var out = [];
-    D.budget.sections.forEach(function (s) {
-      s.lines.forEach(function (l) { out.push({ section: s, line: l }); });
-    });
-    return out;
-  }
-  function actualOf(id) {
-    var v = S.actuals[id];
-    if (v === undefined || v === null || v === "") return null;
-    var n = parseFloat(v);
-    return isNaN(n) ? null : n;
-  }
-  function budgetTotals() {
-    var planned = 0, actual = 0, projected = 0, entered = 0, count = 0;
-    budgetLines().forEach(function (bl) {
-      var a = actualOf(bl.line.id);
-      planned += bl.line.planned;
-      projected += (a === null ? bl.line.planned : a);
-      if (a !== null) { actual += a; entered++; }
-      count++;
-    });
-    return {
-      planned: planned, actual: actual, projected: projected,
-      entered: entered, count: count,
-      ceiling: D.meta.budgetCeiling,
-      variance: D.meta.budgetCeiling - projected,
-      over: projected > D.meta.budgetCeiling
-    };
-  }
-  function lineById(id) {
-    var found = null;
-    budgetLines().forEach(function (bl) { if (bl.line.id === id) found = bl; });
-    return found;
-  }
-
   /* ------------------------------------------------------------- components */
 
-  /* pct   = solid fill (work actually done / money actually recorded)
-     ghost = hatched projection behind it, so a full bar never implies the
-             money has been spent when it is only planned
-     mark  = tick at the planned total                                      */
+  /* pct = solid fill. ghost / mark are unused now that the budget bar is
+     gone, but the meter still takes them. */
   function meter(pct, over, mark, ghost) {
     var clamp = function (n) { return Math.max(0, Math.min(100, n)); };
     return '<span class="meter' + (over ? " meter--over" : "") + '">' +
@@ -395,36 +319,9 @@
     return im.credit ? esc(im.credit) : "Photo";
   }
 
-  function imageStyle(im) {
-    return "--grad:" + im.grad +
-      (im.pos ? ";--pos:" + im.pos : "") +
-      (im.ratio ? ";--ratio:" + im.ratio : "");
-  }
-
-  function shot(key, cls) {
-    var im = D.images[key];
-    if (!im) return "";
-    return '<figure class="shot ' + (cls || "") + '" style="' + esc(imageStyle(im)) + '">' +
-      '<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy" decoding="async" data-shot>' +
-      '<figcaption class="shot__credit">' + photoCredit(im) + "</figcaption>" +
-      "</figure>";
-  }
-
-  function scene(key, cls) {
-    var im = D.images[key];
-    if (!im) return "";
-    return '<figure class="itx__scene ' + (cls || "") + '" style="' + esc(imageStyle(im)) + '">' +
-      '<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy" decoding="async" data-shot>' +
-      '<figcaption class="shot__credit">' + photoCredit(im) + "</figcaption>" +
-      "</figure>";
-  }
-
-  function itemPhoto(key) {
-    var im = D.images[key];
-    if (!im) return "";
-    return '<span class="itx__pic" style="' + esc(imageStyle(im)) + '" aria-hidden="true">' +
-      '<img src="' + esc(im.src) + '" alt="" loading="lazy" decoding="async" data-shot></span>';
-  }
+  /* The agenda carries no photography - only the Aurora hero still does, and it
+     builds its own figure. shot() / scene() / itemPhoto() went with the old
+     picture-heavy day cards. */
 
   /* cls lets the hero reuse this with light-on-dark styling */
   function sunRow(day, cls) {
@@ -438,170 +335,159 @@
     return '<div class="' + k + '">' + parts.join("") + "</div>";
   }
 
-  /* -------------------------------------------------------------- DAY CARD */
+  /* ----------------------------------------------------------- AGENDA CARD */
   /* Two levels, both collapsed by default. Level one is a day: date, title and
-     a one-line summary, so all eight days fit on one screen. Level two is a
-     single activity, opening to its detail plus hot buttons for maps and links.
+     a one-line summary, so all nine days fit on one screen. Level two is one
+     event, and it carries four things and no more - when it happens, what it
+     is, how long the travel and the stop take, and whether it still needs
+     booking. The long-form "why you would enjoy this" prose, the per-day
+     essays and the photography are all deliberately gone: this is the page you
+     read on the morning of, not the page you plan the trip with.
 
      One thing never collapses: a life-safety hazard. The collapsed day row
      carries a warning chip, and expanding the day shows the hazard in full
-     before any activity. Hiding a sneaker-wave warning behind two taps would
+     before any event. Hiding a sneaker-wave warning behind two taps would
      defeat the entire point of it. */
 
-  function itemFlags(it) {
-    var f = [];
-    if (it.headsUp) f.push('<span class="itx__flag itx__flag--warn" title="Heads up">' + ICON.alert + "</span>");
-    if (it.maps) f.push('<span class="itx__flag" title="Has a map location">' + ICON.pin + "</span>");
-    if (it.links) f.push('<span class="itx__flag" title="Has links">' + ICON.ext + "</span>");
-    return f.length ? '<span class="itx__flags">' + f.join("") + "</span>" : "";
+  /* The booking marker. It sits on the collapsed row so the agenda can be
+     scanned for gaps without opening anything, and it is tickable there.
+
+     It is NOT its own state. It IS the state of the checklist items named in
+     the event's `book` array, so ticking it here ticks the same to-do in the
+     not-tied-to-a-day bucket and the other way round. There is only ever one
+     copy - two copies of "have I booked the rental car" is how you end up in
+     Keflavik without a car.
+
+     One booking can cover several events, and one event can need several
+     bookings, which is why bookState() returns a part/all split. */
+  function agendaBook(it, key) {
+    var bs = bookState(it);
+    if (!bs) return '<span class="ag__bk" aria-hidden="true"></span>';
+    var label = bs.rows.map(function (r) { return r.text; }).join("; ");
+    if (label.length > 90) label = label.slice(0, 89) + "…";
+    return '<span class="ag__bk">' +
+      '<input type="checkbox" id="bk-' + esc(key) + '"' +
+      ' data-book="' + esc(bs.ids.join(",")) + '"' +
+      ' data-book-part="' + (bs.part ? "1" : "0") + '"' +
+      (bs.all ? " checked" : "") +
+      ' aria-label="Booked: ' + esc(label) + '">' +
+      /* Only the half-done case earns a number. "0 of 2" is a slower way of
+         saying the box is empty. */
+      (bs.part ? '<span class="ag__bkn num">' + bs.done + "/" + bs.total + "</span>" : "") +
+      "</span>";
   }
 
-  function itemRow(day, it, idx) {
+  /* The second line of a collapsed event: how long it takes, and whether it
+     still owes a booking. A booked event says nothing extra - the tick is the
+     whole message. */
+  function agendaCue(it) {
+    var bs = bookState(it);
+    var bits = [];
+    if (it.dur) bits.push(esc(it.dur));
+    if (bs && !bs.all) {
+      var left = bs.rows.filter(function (r) { return !r.done; });
+      bits.push('<em class="ag__todo">' +
+        (left.length === 1 ? "needs booking" : left.length + " to book") + "</em>");
+    }
+    return bits.length ? '<span class="ag__sub">' + bits.join(" &middot; ") + "</span>" : "";
+  }
+
+  function agendaItem(day, it, idx) {
     var key = day.id + ":" + idx;
     var open = !!S.itemOpen[key];
-    var hasBody = it.detail || it.sub || it.headsUp || it.maps || it.links || it.why || it.travel || it.dur;
+    var hasBody = it.detail || it.headsUp || it.maps || it.links || it.travel;
     var h = [];
 
-    if (!hasBody) {
-      /* nothing to expand into - render it as a plain line, not a dead button */
-      h.push('<div class="itx itx--flat">' + itemPhoto(it.image) + '<span class="itx__time">' +
-        (it.time ? esc(it.time) : "") + '</span><span class="itx__n">' + esc(it.name) + "</span></div>");
-      return h.join("");
+    h.push('<div class="ag' + (open ? " is-open" : "") + '">');
+    h.push('<div class="ag__row">');
+    h.push('<span class="ag__time num">' + esc(it.time || "") + "</span>");
+    if (hasBody) {
+      h.push('<button class="ag__t" data-itemopen="' + esc(key) + '" aria-expanded="' + open + '">');
+      h.push("<b>" + esc(it.name) + (it.alt ? ' <span class="pill pill--later">optional</span>' : "") + "</b>");
+      h.push(agendaCue(it));
+      h.push("</button>");
+    } else {
+      /* nothing to expand into - a plain line, not a dead button */
+      h.push('<span class="ag__t ag__t--flat"><b>' + esc(it.name) + "</b>" + agendaCue(it) + "</span>");
     }
+    h.push(agendaBook(it, key));
+    if (hasBody) h.push('<span class="ag__chev">' + ICON.chev + "</span>");
+    h.push("</div>");
 
-    h.push('<div class="itx' + (open ? " is-open" : "") + '">');
-    h.push('<button class="itx__h" data-itemopen="' + esc(key) + '" aria-expanded="' + open + '">');
-    h.push(itemPhoto(it.image));
-    h.push('<span class="itx__time">' + (it.time ? esc(it.time) : "") + "</span>");
-    h.push('<span class="itx__n">' + esc(it.name) + itemFlags(it) + "</span>");
-    h.push('<span class="itx__chev">' + ICON.chev + "</span>");
-    h.push("</button>");
+    if (hasBody) {
+      h.push('<div class="ag__body">');
+      /* travel is measured FROM THE PREVIOUS STOP, and it is the first thing
+         you need when the row is open */
+      if (it.travel) h.push('<p class="ag__tr">' + ICON.route + "<span>" + esc(it.travel) + "</span></p>");
+      if (it.detail) h.push('<p class="ag__d">' + esc(it.detail) + "</p>");
+      if (it.headsUp) h.push('<div class="headsup">' + ICON.alert + "<span>" + esc(it.headsUp) + "</span></div>");
 
-    h.push('<div class="itx__body">');
-    if (it.image) h.push(scene(it.image));
-
-    /* getting-there strip: how you arrive, and how long you stay. Two facts
-       that used to be buried mid-paragraph and are the two people scan for. */
-    if (it.travel || it.dur) {
-      var m = [];
-      if (it.travel) m.push('<span class="itx__meta-i">' + ICON.route + esc(it.travel) + "</span>");
-      if (it.dur) m.push('<span class="itx__meta-i">' + ICON.clock + esc(it.dur) + "</span>");
-      h.push('<div class="itx__meta">' + m.join("") + "</div>");
+      var hot = [];
+      if (it.maps) {
+        hot.push('<a class="hot" href="' + esc(mapsUrl(it.maps, it.ll)) + '" target="_blank" rel="noopener">' +
+          ICON.pin + "<span>Maps</span></a>");
+      }
+      if (it.ll) hot.push('<a class="hot" href="#/map/' + esc(day.id) + '">' + ICON.mapicon + "<span>Trip map</span></a>");
+      (it.links || []).forEach(function (l) {
+        hot.push('<a class="hot" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
+          ICON.ext + "<span>" + esc(l.label) + "</span></a>");
+      });
+      if (hot.length) h.push('<div class="hotrow">' + hot.join("") + "</div>");
+      h.push("</div>");
     }
-    /* why it is worth the time, before the logistics of doing it */
-    if (it.why) h.push('<p class="itx__why">' + esc(it.why) + "</p>");
-    if (it.detail) h.push('<p class="itx__d">' + esc(it.detail) + "</p>");
-    if (it.sub) {
-      h.push('<ul class="tl__sub">');
-      it.sub.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
-      h.push("</ul>");
-    }
-    if (it.headsUp) h.push('<div class="headsup">' + ICON.alert + "<span>" + esc(it.headsUp) + "</span></div>");
-
-    /* hot buttons: big, obvious, glove-sized */
-    var hot = [];
-    if (it.maps) {
-      hot.push('<a class="hot" href="' + esc(mapsUrl(it.maps, it.ll)) + '" target="_blank" rel="noopener">' +
-        ICON.pin + "<span>Open in maps</span></a>");
-    }
-    if (it.ll) {
-      hot.push('<a class="hot" href="#/map/' + esc(day.id) + '">' + ICON.mapicon + "<span>Show on trip map</span></a>");
-    }
-    (it.links || []).forEach(function (l) {
-      hot.push('<a class="hot" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
-        ICON.ext + "<span>" + esc(l.label) + "</span></a>");
-    });
-    if (hot.length) h.push('<div class="hotrow">' + hot.join("") + "</div>");
-    h.push("</div></div>");
+    h.push("</div>");
     return h.join("");
   }
 
   /* the expanded content of a day, used by the accordion and by Today */
-  function dayBody(day, withHero) {
+  function agendaDayBody(day) {
     var h = [];
-
-    if (withHero) {
-      var key = (day.images && day.images[0]) || null;
-      var im = key ? D.images[key] : null;
-      h.push('<div class="day__hero day__hero--band' + (im ? "" : " day__hero--" + day.half) + '"' +
-        (im ? ' style="--grad:' + im.grad + '"' : "") + ">");
-      if (im) {
-        h.push('<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy" decoding="async" data-shot>');
-        h.push('<figcaption class="shot__credit">' + photoCredit(im) + "</figcaption>");
-      }
-      h.push("</div>");
-    }
 
     /* hazards first, always, never collapsed */
     (day.hazards || []).forEach(function (hz) {
       h.push('<div class="dayx__haz">' + hazardBlock(hz) + "</div>");
     });
 
-    if ((day.intro || []).length) {
-      h.push('<div class="dayx__intro">');
-      day.intro.forEach(function (pp) { h.push("<p>" + esc(pp) + "</p>"); });
-      h.push("</div>");
-    }
-
-    h.push('<div class="itxlist">');
-    (day.items || []).forEach(function (it, idx) { h.push(itemRow(day, it, idx)); });
+    h.push('<div class="aglist">');
+    (day.items || []).forEach(function (it, idx) { h.push(agendaItem(day, it, idx)); });
     h.push("</div>");
 
-    if (day.images && day.images.length > 1) {
-      h.push('<div class="shot-strip">');
-      day.images.slice(1, 4).forEach(function (k) { h.push(shot(k, "shot--thumb")); });
-      h.push("</div>");
-    }
-
-    if ((day.notes || []).length) {
-      h.push('<div class="dayx__notes">');
-      day.notes.forEach(function (n) {
-        h.push('<div class="note"><b>' + esc(n.label) + "</b><span>" + esc(n.text) + "</span></div>");
-      });
-      h.push("</div>");
-    }
-
     if (day.aurora) {
-      h.push('<div class="aurora-cue">');
-      h.push("<b>Aurora night " + day.aurora.night + "</b>");
-      h.push("<p><strong>" + esc(day.aurora.spot) + "</strong> &middot; " + esc(day.aurora.text) + "</p>");
-      h.push('<div class="hotrow">');
-      if (day.aurora.maps) {
-        h.push('<a class="hot" href="' + esc(mapsUrl(day.aurora.maps, day.aurora.ll)) +
-          '" target="_blank" rel="noopener">' + ICON.pin + "<span>Directions</span></a>");
-      }
-      h.push('<a class="hot" href="#/aurora">' + ICON.info + "<span>Aurora plan</span></a>");
-      h.push("</div></div>");
+      h.push('<a class="linkout linkout--aurora" href="#/aurora">' +
+        '<div class="linkout__t"><b>Aurora night ' + day.aurora.night + "</b><span>" +
+        esc(day.aurora.spot) + "</span></div>" +
+        '<span class="linkout__i">' + ICON.chev + "</span></a>");
     }
     return h.join("");
   }
 
-  /* the one-line summary on a collapsed day */
+  /* the one-line summary on a collapsed day: how much is on it, and what it
+     still owes */
   function daySummary(day) {
     var bits = [];
     var n = (day.items || []).length;
     if (n) bits.push(n + " stop" + (n === 1 ? "" : "s"));
-    if (day.sun && (day.sun.sunrise || day.sun.sunset)) {
-      bits.push([day.sun.sunrise, day.sun.sunset].filter(Boolean).join(" to "));
-    }
+    var owed = 0;
+    (day.items || []).forEach(function (it) {
+      var bs = bookState(it);
+      if (bs && !bs.all) owed++;
+    });
+    if (owed) bits.push(owed + " to book");
     if (day.aurora) bits.push("aurora night " + day.aurora.night);
     return bits.join(" &middot; ");
   }
 
-  function dayAccordion(day, isToday) {
+  function agendaDay(day, isToday) {
     var half = day.half === "london" ? "var(--london)" : "var(--iceland)";
-    var im = (day.images && day.images[0]) ? D.images[day.images[0]] : null;
     var open = S.dayOpen[day.id];
     if (open === undefined) open = !!isToday;      /* today opens itself */
     var hz = (day.hazards || []).length;
     var h = [];
 
-    h.push('<article class="dayx' + (open ? " is-open" : "") + '" id="day-' + day.id +
+    h.push('<article class="dayx dayx--slim' + (open ? " is-open" : "") + '" id="day-' + day.id +
       '" style="--half:' + half + '">');
     h.push('<button class="dayx__h" data-dayopen="' + esc(day.id) + '" aria-expanded="' + open + '">');
     h.push('<span class="spine dayx__spine" aria-hidden="true"></span>');
-    h.push('<span class="dayx__thumb' + (im ? "" : " dayx__thumb--" + day.half) + '"' +
-      (im ? ' style="--grad:' + im.grad + '"' : "") + ' aria-hidden="true"></span>');
     h.push('<span class="dayx__t">');
     h.push('<span class="dayx__meta">' + esc(day.dow.slice(0, 3)) + " &middot; " + esc(prettyDate(day.date)) +
       " &middot; " + (day.half === "london" ? "England" : "Iceland") +
@@ -613,7 +499,7 @@
     h.push("</span>");
     h.push('<span class="dayx__chev">' + ICON.chev + "</span>");
     h.push("</button>");
-    h.push('<div class="dayx__body">' + dayBody(day, true) + "</div>");
+    h.push('<div class="dayx__body">' + agendaDayBody(day) + "</div>");
     h.push("</article>");
     return h.join("");
   }
@@ -634,7 +520,6 @@
     var od = states.reduce(function (n, s) { return n + (s.overdue ? s.left : 0); }, 0);
     var totalItems = 0, totalDone = 0;
     states.forEach(function (s) { totalItems += s.total; totalDone += s.done; });
-    var b = budgetTotals();
 
     h.push('<div class="dash">');
     h.push('<div class="dash__wide">');
@@ -652,7 +537,6 @@
     h.push('<div class="tally">');
     h.push('<div class="tally__i' + (od > 0 ? " tally__i--bad" : "") + '"><b>' + od + "</b><span>Overdue</span></div>");
     h.push('<div class="tally__i"><b>' + (totalItems - totalDone) + "</b><span>To do</span></div>");
-    h.push('<div class="tally__i"><b>' + b.entered + "/" + b.count + "</b><span>Costs logged</span></div>");
     h.push("</div>");
 
     var pctAll = totalItems ? Math.round(totalDone / totalItems * 100) : 0;
@@ -667,7 +551,7 @@
     /* Next few unchecked items, right here, checkable in place. */
     var nu = nextUp(5);
     h.push('<div class="section-head"><h2>Next up</h2>' +
-      '<a class="tiny" href="#/prep/lists">All ' + totalItems + " items</a></div>");
+      '<a class="tiny" href="#/agenda">All ' + totalItems + " items</a></div>");
     h.push('<div class="card">');
     if (!nu.length) {
       h.push('<p class="empty">Every item is checked. Go pack.</p>');
@@ -692,19 +576,6 @@
         (st.rank === 2 && st.opensIn > 0 ? " &middot; promotes in " + st.opensIn + " days" : "") +
         "</p></div>");
     });
-    h.push("</div></div>");
-
-    /* Budget at a glance */
-    h.push('<div class="section-head"><h2>Budget</h2><a class="tiny" href="#/prep/money">Enter actuals</a></div>');
-    h.push('<div class="card"><div class="budget-top">');
-    h.push('<div class="budget-fig"><b class="' + (b.over ? "is-over" : "") + '">' + money(b.projected) +
-      "</b><span>of " + money(b.ceiling) + "</span></div>");
-    h.push('<div style="margin-top:12px">' +
-      meter(b.actual / b.ceiling * 100, b.over, b.planned / b.ceiling * 100, b.projected / b.ceiling * 100) + "</div>");
-    h.push('<p class="budget-var">' + (b.over
-      ? '<span class="is-over">' + money(-b.variance) + " over the ceiling</span>"
-      : '<span class="is-under">' + money(b.variance) + " under the ceiling</span>") +
-      ' <span class="muted tiny">&middot; ' + money(b.actual) + " actually recorded</span></p>");
     h.push("</div></div>");
 
     h.push("</div>");                      /* /dash__side  */
@@ -738,16 +609,16 @@
         '<span class="linkout__i">' + ICON.chev + "</span></a>");
     }
 
-    h.push('<article class="dayx is-open dayx--bare" style="--half:' +
+    h.push('<article class="dayx dayx--slim is-open dayx--bare" style="--half:' +
       (day.half === "london" ? "var(--london)" : "var(--iceland)") + '">' +
-      '<div class="dayx__body">' + dayBody(day, false) + "</div></article>");
+      '<div class="dayx__body">' + agendaDayBody(day) + "</div></article>");
 
     if (next) {
       h.push('<div class="section-head"><h2>Tomorrow</h2></div>');
       h.push('<div class="card"><div class="card__body">' +
         '<p class="eyebrow">' + esc(next.dow) + " &middot; " + esc(prettyDate(next.date)) + "</p>" +
         '<p style="font-weight:700;font-size:var(--t-17);margin-top:4px">' + esc(next.title) + "</p>" +
-        '<a class="btn btn--block" style="margin-top:12px" href="#/days">Full itinerary</a>' +
+        '<a class="btn btn--block" style="margin-top:12px" href="#/agenda">Full agenda</a>' +
         "</div></div>");
     }
     return h.join("");
@@ -764,29 +635,16 @@
     h.push('<p class="hero__sub" style="margin-top:12px">' + c.daysBack + " day" + (c.daysBack === 1 ? "" : "s") + " ago.</p>");
     h.push("</div></div>");
 
-    var b = budgetTotals();
-    h.push('<div class="section-head"><h2>What it came to</h2></div>');
-    h.push('<div class="card"><div class="budget-top">');
-    h.push('<div class="budget-fig"><b class="' +
-      (b.entered === 0 ? "" : (b.over ? "is-over" : "is-under")) + '">' + money(b.projected) +
-      "</b><span>against " + money(b.ceiling) + "</span></div>");
-    h.push('<div style="margin-top:12px">' +
-      meter(b.actual / b.ceiling * 100, b.over, b.planned / b.ceiling * 100, b.projected / b.ceiling * 100) + "</div>");
-    h.push('<p class="budget-var muted">Planned ' + money(b.planned) + " &middot; " + b.entered +
-      " of " + b.count + " lines recorded</p>");
-    h.push("</div></div>");
-
     h.push('<div class="card"><div class="card__body stack">' +
-      "<p>The itinerary, the aurora notes and every number you entered are all still here.</p>" +
-      '<a class="btn btn--block" href="#/days">Read the itinerary again</a>' +
-      '<a class="btn btn--block" href="#/prep/money">Final budget</a>' +
+      "<p>The agenda, the aurora notes and every confirmation you entered are all still here.</p>" +
+      '<a class="btn btn--block" href="#/agenda">Read the agenda again</a>' +
       "</div></div>");
     return h.join("");
   }
 
   function tripGlance() {
     var h = [];
-    h.push('<div class="section-head"><h2>The trip</h2><a class="tiny" href="#/days">All 8 days</a></div>');
+    h.push('<div class="section-head"><h2>The trip</h2><a class="tiny" href="#/agenda">Full agenda</a></div>');
     h.push('<div class="card"><div class="card__body">');
     h.push('<div class="mustdo">');
     D.mustDo.forEach(function (m) {
@@ -796,176 +654,93 @@
     return h.join("");
   }
 
-  /* ---------------------------------------------------------- VIEW: DAYS */
+  /* --------------------------------------------------------- VIEW: AGENDA */
+  /* The whole plan on one tab. What used to be three - Days for the prose,
+     Book for the booking grid, Prep for the checklists - is one scroll, because
+     they were the same information at three different verbosities and keeping
+     them in sync by eye was the actual failure mode. */
 
-  function viewDays() {
-    var c = clock();
-    var h = [];
-    h.push('<div class="section-head"><h1>Full itinerary</h1>' +
-      '<a href="#/map">See it on the map</a></div>');
-    h.push('<div class="dayx__tools">' +
-      '<button class="chip" data-days="open">Expand all</button>' +
-      '<button class="chip" data-days="shut">Collapse all</button></div>');
-    h.push('<div class="daylist">');
-    D.days.forEach(function (day) { h.push(dayAccordion(day, day.date === c.t)); });
-    h.push("</div>");
-
-    h.push('<div class="section-head"><h2>Outside the main plan</h2></div>');
-    h.push('<div class="card"><div class="card__body stack">');
-    h.push('<p class="eyebrow">Appendix</p>');
-    h.push("<h3>" + esc(D.variant.title) + "</h3>");
-    h.push('<p class="small muted">' + esc(D.variant.lede) + "</p>");
-    h.push("<ul class=\"tl__sub\">");
-    D.variant.points.forEach(function (p) { h.push("<li>" + esc(p) + "</li>"); });
-    h.push("</ul></div></div>");
-    return h.join("");
-  }
-
-  /* ---------------------------------------------------------- VIEW: BOOK */
-  /* The whole trip on one scroll. Every stop: when, what, how long you are
-     there, how you got there from the last one, and whether the thing that
-     needs booking is booked. Nothing collapses - this is the page you scan
-     to find the gap, not the page you read. Days is where the detail lives,
-     and every row taps through to it. */
-
-  /* `travel` is measured FROM THE PREVIOUS STOP, so it renders above its own
-     row: read top to bottom and it is "travel, then do the thing". */
-  function bookTravel(it) {
-    if (!it.travel) return "";
-    return '<p class="cd__tr">' + ICON.route + "<span>" + esc(it.travel) + "</span></p>";
-  }
-
-  function bookCell(bs, key) {
-    if (!bs) {
-      return '<div class="cd__bk"><span class="cd__na" title="Nothing to book for this stop">N/A</span></div>';
-    }
-    var label = bs.rows.map(function (r) { return r.text; }).join("; ");
-    if (label.length > 90) label = label.slice(0, 89) + "…";
-    var h = '<div class="cd__bk">' +
-      '<input type="checkbox" id="bk-' + esc(key) + '"' +
-      ' data-book="' + esc(bs.ids.join(",")) + '"' +
-      ' data-book-part="' + (bs.part ? "1" : "0") + '"' +
-      (bs.all ? " checked" : "") +
-      ' aria-label="Booked: ' + esc(label) + '">';
-    /* Only the half-done case earns a number. "0 of 2" is just a slower way of
-       saying the box is empty, and the tag underneath already names both. */
-    if (bs.part) h += '<span class="cd__bkn num">' + bs.done + " of " + bs.total + "</span>";
-    return h + "</div>";
-  }
-
-  /* One line, always, on the rows that still owe something. A fully booked row
-     says nothing extra - the tick is the whole message. With one booking left
-     it names it; with several it counts them and the full list is the tooltip.
-     Either way it is a link to the same to-do on Prep. */
-  function bookTags(bs) {
-    if (!bs) return "";
-    var left = bs.rows.filter(function (r) { return !r.done; });
-    if (!left.length) return "";
-    var label, mark = "";
-    if (left.length === 1) {
-      /* Trimming is CSS's job here (.tag--book span ellipsizes), not a
-         character count - the pill has very different room on a phone and in
-         the desktop rail, and the "shared" marker eats into the same line. */
-      label = left[0].text;
-      if (stopsUsing(left[0].id) > 1) mark = "<em>shared</em>";
-    } else {
-      label = left.length + " still to book";
-    }
-    return '<span class="cd__tags"><a class="tag tag--book" href="#/prep/lists" title="' +
-      esc(left.map(function (r) { return r.text; }).join("\n\n")) + '"><span>' +
-      esc(label) + "</span>" + mark + "</a></span>";
-  }
-
-  function bookRow(day, it, idx) {
-    var key = day.id + ":" + idx;
-    var bs = bookState(it);
-    var h = [];
-    h.push('<div class="cdstop">');
-    h.push(bookTravel(it));
-    h.push('<div class="cd' + (bs && bs.all ? " is-booked" : "") + '">');
-    h.push('<span class="cd__time num">' + esc(it.time || "") + "</span>");
-    h.push('<div class="cd__m">');
-    h.push('<button class="cd__t" data-godetail="' + esc(key) + '">');
-    h.push("<b>" + esc(it.name) + (it.alt ? ' <span class="pill pill--later">optional</span>' : "") + "</b>");
-    if (it.dur) h.push('<span class="cd__dur">' + esc(it.dur) + "</span>");
-    h.push("</button>");
-    h.push(bookTags(bs));       /* outside the button: an <a> inside one is invalid */
-    h.push("</div>");
-    h.push(bookCell(bs, key));
-    h.push('<span class="cd__go" data-godetail="' + esc(key) + '" aria-hidden="true">' + ICON.chev + "</span>");
-    h.push("</div></div>");
-    return h.join("");
-  }
-
-  /* Aurora is a real thing you do that evening, so it gets a row. There is
-     nothing to book for it - the whole plan is "drive to wherever is clear". */
-  function bookAuroraRow(day) {
-    var a = day.aurora;
-    return '<div class="cdstop"><div class="cd cd--aurora">' +
-      '<span class="cd__time num">Night</span>' +
-      '<div class="cd__m"><a class="cd__t" href="#/aurora">' +
-      "<b>Aurora night " + a.night + "</b>" +
-      '<span class="cd__dur">' + esc(a.spot) + "</span></a></div>" +
-      '<div class="cd__bk"><span class="cd__na" title="Nothing to book for this stop">N/A</span></div>' +
-      '<span class="cd__go" aria-hidden="true">' + ICON.chev + "</span>" +
-      "</div></div>";
-  }
-
-  function bookDay(day, isToday) {
-    var stops = 0, booked = 0;
-    (day.items || []).forEach(function (it) {
-      var bs = bookState(it);
-      if (!bs) return;
-      stops++;
-      if (bs.all) booked++;
+  /* Which checklist to-dos have no event to hang on: the flights, the ETA, the
+     passports, the handover to Mom. Packing is excluded - it lives on Info. */
+  function untiedGroups() {
+    var tied = {};
+    D.days.forEach(function (day) {
+      (day.items || []).forEach(function (it) {
+        (it.book || []).forEach(function (id) { tied[id] = true; });
+      });
     });
-    var hz = (day.hazards || []).length;
+    var out = [];
+    allGroupStates().forEach(function (st) {
+      if (st.group.id === "packing") return;
+      var left = st.items.filter(function (i) { return !tied[i.id]; });
+      if (left.length) out.push({ st: st, items: left });
+    });
+    return out;
+  }
+
+  /* Collapsed by default: on any given day this is not what you opened the app
+     for. It is rendered at all only because these to-dos exist nowhere else. */
+  function agendaBucket() {
+    var groups = untiedGroups();
+    if (!groups.length) return "";
+    var total = 0, done = 0, overdue = false;
+    groups.forEach(function (g) {
+      g.items.forEach(function (i) {
+        total++;
+        if (isDone(i.id)) done++;
+        else if (g.st.overdue) overdue = true;
+      });
+    });
+    var open = S.open.untied === true;
     var h = [];
 
-    h.push('<section class="card cdday' + (isToday ? " is-today" : "") + '" style="--half:' +
-      (day.half === "london" ? "var(--london)" : "var(--iceland)") + '">');
-    h.push('<div class="sec-sum cdday__h">');
-    h.push("<span>" + esc(day.dow.slice(0, 3)) + " &middot; " + esc(prettyDate(day.date)) +
-      " &middot; " + esc(day.title) +
-      (isToday ? ' <em class="dayx__today">Today</em>' : "") + "</span>");
-    /* A safety note is never hidden behind a tap. The condensed view cannot
-       carry the full hazard, so it carries the flag and the way to it. */
-    h.push("<span>" + (stops ? booked + "/" + stops + " booked" : "nothing to book") +
-      (hz ? ' <a class="cdday__warn" href="#/days" title="' + hz + " safety note" +
-        (hz === 1 ? "" : "s") + ' on this day">' + ICON.alert + "</a>" : "") + "</span>");
-    h.push("</div>");
+    h.push('<section class="grp grp--bucket' + (overdue ? " grp--overdue" : "") +
+      (open ? " is-open" : "") + '" data-grp="untied">');
+    h.push('<button class="grp__h" data-toggle="untied" aria-expanded="' + open + '">');
+    h.push('<span class="grp__chev">' + ICON.chev + "</span>");
+    h.push('<span class="grp__t"><b>Not tied to a day' +
+      (overdue ? ' <span class="pill pill--overdue">Overdue</span>' : "") + "</b>" +
+      '<span class="grp__hint">Flights, the ETA, passports, the handover to Mom</span></span>');
+    h.push('<span class="grp__n">' + done + "/" + total + "</span>");
+    h.push("</button>");
 
-    h.push('<div class="cdlist">');
-    (day.items || []).forEach(function (it, idx) { h.push(bookRow(day, it, idx)); });
-    if (day.aurora) h.push(bookAuroraRow(day));
+    h.push('<div class="grp__body">');
+    groups.forEach(function (g) {
+      h.push('<p class="grp__sub">' + esc(g.st.group.label) + "</p>");
+      g.items.forEach(function (it) { h.push(checkRow(it, g.st, false)); });
+      h.push('<div class="addrow">' +
+        '<input type="text" data-newitem="' + esc(g.st.group.id) +
+        '" placeholder="Add your own" aria-label="Add an item to ' + esc(g.st.group.label) + '">' +
+        '<button class="btn btn--sm" data-add="' + esc(g.st.group.id) + '">Add</button></div>');
+    });
     h.push("</div></section>");
     return h.join("");
   }
 
-  function viewBook() {
+  function viewAgenda() {
     var c = clock();
-    var t = bookTotals();
+    var stops = 0, booked = 0;
+    D.days.forEach(function (day) {
+      (day.items || []).forEach(function (it) {
+        var bs = bookState(it);
+        if (!bs) return;
+        stops++;
+        if (bs.all) booked++;
+      });
+    });
     var h = [];
 
-    h.push('<div class="section-head"><h1>The trip, condensed</h1>' +
-      '<a href="#/days">Full detail</a></div>');
+    h.push('<div class="section-head"><h1>Agenda</h1><a href="#/map">On the map</a></div>');
+    h.push(agendaBucket());
 
-    h.push('<div class="card"><div class="card__body">');
-    h.push('<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">' +
-      '<p class="eyebrow">Stops that need booking</p>' +
-      '<p class="num" style="font-weight:700">' + t.booked + " / " + t.stops + "</p></div>");
-    h.push('<div style="margin-top:8px">' +
-      meter(t.stops ? t.booked / t.stops * 100 : 100, false) + "</div>");
-    h.push('<p class="tiny muted" style="margin-top:8px">Every checkbox here is the same to-do as on the ' +
-      '<a href="#/prep/lists">Prep tab</a>, not a copy of it - tick it either place and it is ticked in both. ' +
-      "<b>N/A</b> means that stop needs no reservation. A row marked <em>shared</em> is one booking " +
-      "covering several stops, so it ticks in all of them at once. " + t.untied +
-      " more prep to-dos are not tied to any stop (passports, the ETA, phones, the handover to Mom) " +
-      "and live only on Prep.</p>");
-    h.push("</div></div>");
+    h.push('<div class="dayx__tools">');
+    h.push('<span class="dayx__count num">' + booked + " / " + stops + " booked</span>");
+    h.push('<button class="chip" data-days="open">Expand all</button>');
+    h.push('<button class="chip" data-days="shut">Collapse all</button>');
+    h.push("</div>");
 
-    h.push('<div class="cddays">');
-    D.days.forEach(function (day) { h.push(bookDay(day, day.date === c.t)); });
+    h.push('<div class="daylist">');
+    D.days.forEach(function (day) { h.push(agendaDay(day, day.date === c.t)); });
     h.push("</div>");
     return h.join("");
   }
@@ -1565,7 +1340,9 @@
     return h.join("");
   }
 
-  /* ---------------------------------------------------------- VIEW: PREP */
+  /* ------------------------------------------------------------- CHECK ROW */
+  /* One tickable to-do. Used by the not-tied-to-a-day bucket on Agenda, by the
+     packing list on Info, and by "Next up" on Today. */
 
   function checkRow(item, st, compact) {
     var done = isDone(item.id);
@@ -1579,14 +1356,6 @@
     if (!done && st && st.overdue) tags.push('<span class="tag tag--overdue">Overdue</span>');
     if (item.extra) tags.push('<span class="tag tag--extra" title="Not from ITINERARY.md">added</span>');
     if (compact && st) tags.push('<span class="tag">' + esc(st.group.label) + "</span>");
-    (item.budgetIds || []).forEach(function (bid) {
-      var bl = lineById(bid);
-      if (!bl) return;
-      var a = actualOf(bid);
-      tags.push('<a class="tag tag--money" href="#/prep/money" data-focus="' + esc(bid) + '">' +
-        ICON.money + esc(bl.line.label.length > 20 ? bl.line.label.slice(0, 19) + "…" : bl.line.label) +
-        " &middot; " + (a === null ? "add actual" : money(a)) + "</a>");
-    });
     if (tags.length) h.push('<div class="check__tags">' + tags.join("") + "</div>");
     h.push("</div>");
 
@@ -1600,177 +1369,12 @@
     return h.join("");
   }
 
-  function viewPrep(sub) {
-    var h = [];
-    h.push('<h1 class="sr-only">Prep: checklists and budget</h1>');
-    h.push('<div class="seg">' +
-      '<button aria-pressed="' + (sub !== "money") + '" data-sub="lists">Checklists</button>' +
-      '<button aria-pressed="' + (sub === "money") + '" data-sub="money">Budget</button>' +
-      "</div>");
-    h.push(sub === "money" ? prepMoney() : prepLists());
-    return h.join("");
-  }
-
-  function prepLists() {
-    var c = clock();
-    var states = allGroupStates().slice().sort(function (a, b) { return a.rank - b.rank; });
-    var totalItems = 0, totalDone = 0;
-    states.forEach(function (s) { totalItems += s.total; totalDone += s.done; });
-    var h = [];
-
-    h.push('<div class="card"><div class="card__body">' +
-      '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">' +
-      "<p class=\"eyebrow\">Overall</p><p class=\"num\" style=\"font-weight:700\">" + totalDone + " / " + totalItems + "</p></div>" +
-      '<div style="margin-top:8px">' + meter(totalItems ? totalDone / totalItems * 100 : 0, false) + "</div>" +
-      '<p class="tiny muted" style="margin-top:8px">Urgency is computed from the trip date' +
-      (c.phase === "before" ? " &middot; " + c.daysOut + " days out" : "") + ", not from the bucket names.</p>" +
-      "</div></div>");
-
-    h.push('<div class="grid-2">');
-    states.forEach(function (st) {
-      var g = st.group;
-      /* default open: anything not finished and not "later" */
-      var isOpen = S.open[g.id];
-      if (isOpen === undefined) isOpen = st.rank !== 3;
-      var cls = st.rank === 0 ? "grp--overdue" : st.rank === 1 ? "grp--now" : st.rank === 2 ? "grp--later" : "";
-      var pillCls = st.rank === 0 ? "overdue" : st.rank === 1 ? "now" : st.rank === 3 ? "done" : "later";
-
-      h.push('<section class="grp ' + cls + (isOpen ? " is-open" : "") + '" data-grp="' + esc(g.id) + '">');
-      h.push('<button class="grp__h" data-toggle="' + esc(g.id) + '" aria-expanded="' + isOpen + '">');
-      h.push('<span class="grp__chev">' + ICON.chev + "</span>");
-      h.push('<span class="grp__t"><b>' + esc(g.label) + ' <span class="pill pill--' + pillCls + '">' + st.label + "</span></b>" +
-        meter(st.pct, st.overdue) + "</span>");
-      h.push('<span class="grp__n">' + st.done + "/" + st.total + "</span>");
-      h.push("</button>");
-
-      h.push('<div class="grp__body">');
-      if (st.rank === 2 && st.opensIn > 0) {
-        h.push('<p class="tiny muted" style="padding:12px 16px 0">Not urgent yet. Promotes in ' + st.opensIn + " days.</p>");
-      }
-      st.items.forEach(function (it) { h.push(checkRow(it, st, false)); });
-
-      h.push('<div class="addrow">' +
-        '<input type="text" data-newitem="' + esc(g.id) + '" placeholder="Add your own item" aria-label="Add an item to ' + esc(g.label) + '">' +
-        '<button class="btn btn--sm" data-add="' + esc(g.id) + '">Add</button></div>');
-
-      if (g.resettable) {
-        h.push('<div style="padding:12px 16px">' +
-          '<button class="btn btn--block btn--danger" data-act="reset-group" data-grp="' + esc(g.id) + '">' +
-          "Uncheck all " + esc(g.label.toLowerCase()) + " (you pack twice)</button></div>");
-      }
-      h.push("</div></section>");
-    });
-    h.push("</div>");
-    return h.join("");
-  }
-
-  /* The headline block. Kept separate so entering an actual can update it in
-     place instead of re-rendering the view out from under the input you are
-     still tabbing through. */
-  function moneySummary(b) {
-    var h = [];
-    h.push('<p class="eyebrow">Projected total</p>');
-    h.push('<div class="budget-fig" style="margin-top:4px"><b class="' + (b.over ? "is-over" : "") + '">' +
-      money(b.projected) + "</b><span>ceiling " + money(b.ceiling) + "</span></div>");
-    h.push('<div style="margin-top:12px">' +
-      meter(b.actual / b.ceiling * 100, b.over, b.planned / b.ceiling * 100, b.projected / b.ceiling * 100) + "</div>");
-    h.push('<p class="budget-var">' + (b.over
-      ? '<span class="is-over">' + money(-b.variance) + " OVER the " + money(b.ceiling) + " ceiling</span>"
-      : '<span class="is-under">' + money(b.variance) + " under the ceiling</span>") + "</p>");
-    h.push('<p class="tiny muted" style="margin-top:6px">Solid bar = recorded (' + money(b.actual) + " on " +
-      b.entered + " of " + b.count + " lines). Hatched = projection. Tick = planned total, " +
-      money(b.planned) + ".</p>");
-    if (b.over) {
-      h.push('<div style="margin-top:12px">' + hazardBlock({
-        title: "Over the " + money(b.ceiling) + " ceiling",
-        text: D.budget.cutIfOver
-      }) + "</div>");
-    }
-    return h.join("");
-  }
-
-  /* "planned $1,200" until you enter something, then "$980 of $1,200" */
-  function secSumText(sec) {
-    var sp = 0, proj = 0, any = false;
-    sec.lines.forEach(function (l) {
-      sp += l.planned;
-      var a = actualOf(l.id);
-      if (a !== null) any = true;
-      proj += (a === null ? l.planned : a);
-    });
-    if (!any) return "planned " + money(sp);
-    var cls = proj > sp ? "is-over" : (proj < sp ? "is-under" : "");
-    return '<span class="' + cls + '">' + money(proj) + "</span> of " + money(sp);
-  }
-
-  function refreshMoney() {
-    var box = document.getElementById("moneySummary");
-    if (!box) { render(); return; }
-    var b = budgetTotals();
-    box.innerHTML = moneySummary(b);
-    D.budget.sections.forEach(function (sec) {
-      var el = document.querySelector('[data-secsum="' + sec.id + '"]');
-      if (el) el.innerHTML = secSumText(sec);
-    });
-  }
-
-  function prepMoney() {
-    var b = budgetTotals();
-    var h = [];
-
-    h.push('<div class="card"><div class="budget-top" id="moneySummary">' + moneySummary(b) + "</div></div>");
-
-    D.budget.sections.forEach(function (sec) {
-      h.push('<div class="card">');
-      h.push('<div class="sec-sum"><span>' + esc(sec.label) + '</span><span data-secsum="' + esc(sec.id) + '">' +
-        secSumText(sec) + "</span></div>");
-      sec.lines.forEach(function (l) {
-        var a = S.actuals[l.id];
-        var av = actualOf(l.id);
-        h.push('<div class="bl' + (av !== null && av > l.planned ? " bl--over" : "") +
-          '" id="bl-' + esc(l.id) + '">');
-        var delta = "";
-        if (av !== null) {
-          var d = av - l.planned;
-          if (d > 0) delta = ' <span class="is-over">+' + money(d) + "</span>";
-          else if (d < 0) delta = ' <span class="is-under">' + money(d) + "</span>";
-          else delta = ' <span class="muted">on plan</span>';
-        }
-        h.push('<div class="bl__t"><label for="in-' + esc(l.id) + '">' + esc(l.label) +
-          (l.estimate ? '<span class="approx" title="My estimate, not from ITINERARY.md">est</span>' : "") +
-          "</label><span>planned " + (l.free ? "free" : money(l.planned)) + delta + "</span></div>");
-        h.push('<div class="bl__in"><input id="in-' + esc(l.id) + '" type="number" inputmode="decimal" min="0" step="1" ' +
-          'placeholder="actual" data-actual="' + esc(l.id) + '" value="' + esc(a == null ? "" : a) + '" ' +
-          'aria-label="Actual cost for ' + esc(l.label) + '"></div>');
-        h.push("</div>");
-      });
-      h.push("</div>");
-    });
-
-    h.push('<div class="card"><div class="card__body">' +
-      '<p class="eyebrow">What is not in these numbers</p>' +
-      '<p class="small muted" style="margin-top:4px">' + esc(D.meta.flightsNote) + "</p></div></div>");
-
-    h.push('<div class="section-head"><h2>Headroom</h2></div>');
-    h.push('<div class="card"><div class="card__body stack">');
-    var head = b.ceiling - b.planned;
-    h.push('<p class="small muted">' + (head < 0
-      ? "Planned is " + money(-head) + " past the " + money(b.ceiling) + " target. The trades:"
-      : "Planned leaves about " + money(head) + ". Options for it:") + "</p>");
-    h.push('<ul class="tl__sub">');
-    D.budget.headroomOptions.forEach(function (o) { h.push("<li>" + esc(o) + "</li>"); });
-    h.push("</ul>");
-    h.push('<p class="eyebrow" style="margin-top:8px">Cut if running over</p>');
-    h.push("<p class=\"small\">" + esc(D.budget.cutIfOver) + "</p>");
-    h.push("</div></div>");
-
-    h.push('<div class="card"><div class="card__body">' +
-      '<button class="btn btn--block btn--danger" data-act="reset-actuals">Clear every actual I have entered</button>' +
-      "</div></div>");
-    return h.join("");
-  }
-
   /* ---------------------------------------------------------- VIEW: INFO */
+  /* Reference only: the things you look up, not the things you do. Deliberately
+     short - every bed is booked now, so the old search-brief machinery (why
+     this area, what to rule out, candidate hotels) has done its job and is
+     gone. What is left is an address, a phone number, and what still needs
+     asking at the desk. */
 
   function viewInfo(sub) {
     var h = [];
@@ -1780,6 +1384,39 @@
       '<button aria-pressed="' + (sub === "locker") + '" data-sub="locker">Confirmations</button>' +
       "</div>");
     h.push(sub === "locker" ? infoLocker() : infoRef());
+    return h.join("");
+  }
+
+  /* The packing list moved here from the old Prep tab. It is the one checklist
+     that is neither a booking nor tied to a day, and it resets - you pack
+     twice, once out and once home. */
+  function infoPacking() {
+    var g = null;
+    D.checklists.forEach(function (x) { if (x.id === "packing") g = x; });
+    if (!g) return "";
+    var items = itemsOf(g);
+    var done = items.filter(function (i) { return isDone(i.id); }).length;
+    var open = S.open.packing;
+    if (open === undefined) open = done < items.length;
+    var h = [];
+
+    h.push('<div class="section-head"><h2>Packing</h2></div>');
+    h.push('<section class="grp' + (open ? " is-open" : "") + '" data-grp="packing">');
+    h.push('<button class="grp__h" data-toggle="packing" aria-expanded="' + open + '">');
+    h.push('<span class="grp__chev">' + ICON.chev + "</span>");
+    h.push('<span class="grp__t"><b>' + esc(g.label) + "</b>" +
+      meter(items.length ? done / items.length * 100 : 0, false) + "</span>");
+    h.push('<span class="grp__n">' + done + "/" + items.length + "</span>");
+    h.push("</button>");
+    h.push('<div class="grp__body">');
+    items.forEach(function (it) { h.push(checkRow(it, null, false)); });
+    h.push('<div class="addrow">' +
+      '<input type="text" data-newitem="packing" placeholder="Add your own" aria-label="Add a packing item">' +
+      '<button class="btn btn--sm" data-add="packing">Add</button></div>');
+    h.push('<div style="padding:12px 16px">' +
+      '<button class="btn btn--block btn--danger" data-act="reset-group" data-grp="packing">' +
+      "Uncheck all (you pack twice)</button></div>");
+    h.push("</div></section>");
     return h.join("");
   }
 
@@ -1796,7 +1433,30 @@
       '<p class="tiny muted">Tap to call. Police, fire and ambulance, everywhere in Iceland.</p>' +
       "</div></a>");
 
-    h.push('<div class="section-head"><h2>Key links</h2></div>');
+    h.push(infoPacking());
+
+    h.push('<div class="section-head"><h2>Beds</h2></div>');
+    h.push(lodgingBlock());
+
+    h.push('<div class="section-head"><h2>Addresses</h2></div>');
+    R.worship.forEach(function (w) {
+      h.push('<div class="card"><div class="card__body">');
+      h.push("<b>" + esc(w.label) + "</b>");
+      h.push('<p class="small muted" style="margin-top:2px;font-family:var(--mono)">' + esc(w.address) + "</p>");
+      h.push('<ul class="tl__sub" style="margin-top:8px">');
+      w.notes.forEach(function (n) { h.push("<li>" + esc(n) + "</li>"); });
+      h.push("</ul>");
+      h.push(mapsChip(w.maps, "Maps", w.ll));
+      h.push("</div></div>");
+    });
+    R.embassies.forEach(function (e) {
+      h.push('<div class="card"><div class="card__body">' +
+        "<b>" + esc(e.label) + "</b>" +
+        '<p class="small muted" style="margin-top:2px;font-family:var(--mono)">' + esc(e.address) + "</p>" +
+        mapsChip(e.maps, "Maps", e.ll) + "</div></div>");
+    });
+
+    h.push('<div class="section-head"><h2>Links</h2></div>');
     h.push('<div class="stack">');
     R.links.forEach(function (l) {
       h.push('<a class="linkout" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
@@ -1805,138 +1465,67 @@
     });
     h.push("</div>");
 
-    h.push('<div class="section-head"><h2>Embassies</h2></div>');
-    R.embassies.forEach(function (e) {
-      h.push('<div class="card"><div class="card__body">' +
-        "<b>" + esc(e.label) + "</b>" +
-        '<p class="small muted" style="margin-top:2px">' + esc(e.address) + "</p>" +
-        mapsChip(e.maps, "Open in maps", e.ll) + "</div></div>");
-    });
-
-    h.push('<div class="section-head"><h2>Temple and church</h2></div>');
-    R.worship.forEach(function (w) {
-      h.push('<div class="card"><div class="card__body">');
-      h.push('<p class="eyebrow">Address</p>');
-      h.push('<h3 style="margin-top:4px">' + esc(w.label) + "</h3>");
-      h.push('<p class="small" style="margin-top:4px;font-family:var(--mono)">' + esc(w.address) + "</p>");
-      h.push('<ul class="tl__sub" style="margin-top:12px">');
-      w.notes.forEach(function (n) { h.push("<li>" + esc(n) + "</li>"); });
-      h.push("</ul>");
-      h.push(mapsChip(w.maps, "Open in maps", w.ll));
-      h.push("</div></div>");
-    });
-
-    if (D.lodging) h.push(lodgingBlock());
-    if (D.workLeg) h.push(workLegBlock());
-
     h.push('<div class="section-head"><h2>Safety</h2></div>');
-    var hz = [];
-    D.days.forEach(function (d) { (d.hazards || []).forEach(function (x) { hz.push(x); }); });
-    hz.forEach(function (x) { h.push(hazardBlock(x)); });
+    D.days.forEach(function (d) {
+      (d.hazards || []).forEach(function (x) { h.push(hazardBlock(x)); });
+    });
+
+    if (D.workLeg) h.push(workLegBlock());
 
     h.push('<div class="foot">');
     h.push("<p><b>" + esc(D.meta.who) + "</b> &middot; " + esc(D.meta.title) +
       ", October 10 to 17, 2026 &middot; " + D.meta.nights + " nights.</p>");
-    h.push("<p><b>Photos</b> are local files where practical and Wikimedia Commons URLs elsewhere. Where a photo has not loaded you are seeing " +
-      "the card&rsquo;s own gradient, which is the intended fallback, not an error.</p>");
-    h.push("<p><b>Content</b> comes from ITINERARY.md by way of <code>data.js</code>. " +
-      "Sunrise and sunset times are shown only for the days the itinerary lists them.</p>");
-    h.push("<p><b>Storage.</b> Every checkbox, actual cost and confirmation number lives in this browser&rsquo;s " +
+    h.push("<p><b>Storage.</b> Every checkbox and confirmation number lives in this browser&rsquo;s " +
       "localStorage on this device only. Clearing site data clears all of it.</p>");
     h.push("</div>");
     return h.join("");
   }
 
-  /* A search brief per paid night. Deliberately not a booking - the streets to
-     filter on and the two or three criteria that actually matter for that bed. */
+  /* Every paid night is booked, so this is the reservation and what is still
+     worth asking at the desk. Nothing else. */
   function lodgingBlock() {
-    var L = D.lodging;
     var h = [];
-    h.push('<div class="section-head"><h2>Where to book</h2></div>');
-    h.push('<div class="card"><div class="card__body"><p class="small">' + esc(L.lede) + "</p></div></div>");
-
-    L.stays.forEach(function (st) {
-      var bl = lineById(st.budgetId);
+    D.lodging.stays.forEach(function (st) {
       var bk = st.booked;
-      h.push('<div class="card"' + (bk ? ' style="border-color:var(--london)"' : "") +
-        '><div class="card__body">');
-      h.push('<p class="eyebrow"' + (bk ? ' style="color:var(--london)"' : "") + ">" +
-        (bk ? "Booked &middot; " : "") + esc(st.nights) + "</p>");
-      h.push('<h3 style="margin-top:4px">' + esc(bk ? bk.name : st.label) + "</h3>");
-      h.push('<p class="tiny muted" style="margin-top:2px">' +
-        (bk ? esc(bk.paid) : "Budget " + esc(st.budget) +
-          (bl ? " &middot; planned " + money(bl.line.planned) : "")) + "</p>");
-
-      /* Booked: the brief has done its job, so show the reservation and what is
-         still worth asking. The search criteria would only be noise now. */
-      if (bk) {
-        h.push('<p class="small muted" style="margin-top:10px;font-family:var(--mono)">' +
-          esc(bk.address) + "<br>" + esc(bk.phone) + "</p>");
-        h.push('<p class="small" style="margin-top:10px">' + esc(bk.room) + "</p>");
-        h.push('<p class="tiny muted" style="margin-top:8px">In: ' + esc(bk.checkIn) +
-          "<br>Out: " + esc(bk.checkOut) + "<br>" + esc(bk.terms) + "</p>");
-
-        h.push('<p class="eyebrow" style="margin-top:14px">What this gets you</p>');
-        h.push('<ul class="tl__sub" style="margin-top:6px">');
-        bk.wins.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
-        h.push("</ul>");
-
-        h.push('<p class="eyebrow" style="margin-top:14px;color:var(--hazard)">Still to confirm</p>');
-        h.push('<ul class="tl__sub" style="margin-top:6px">');
-        bk.confirmOnArrival.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
-        h.push("</ul>");
-        h.push(mapsChip(bk.maps, "Open in maps", bk.ll));
+      h.push('<div class="card"><div class="card__body">');
+      h.push('<p class="eyebrow">' + esc(st.nights) + "</p>");
+      h.push("<b>" + esc(bk ? bk.name : st.label) + "</b>");
+      if (!bk) {
+        h.push('<p class="tiny muted" style="margin-top:2px">Not booked yet &middot; budget ' +
+          esc(st.budget) + "</p>");
         h.push("</div></div>");
         return;
       }
-
-      h.push('<p class="small" style="margin-top:10px">' + esc(st.why) + "</p>");
-
-      h.push('<p class="eyebrow" style="margin-top:14px">Search these</p>');
-      h.push('<ul class="tl__sub" style="margin-top:6px">');
-      st.searchIn.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
-      h.push("</ul>");
-
-      h.push('<p class="eyebrow" style="margin-top:14px;color:var(--hazard)">Rule out</p>');
-      h.push('<ul class="tl__sub" style="margin-top:6px">');
-      st.avoid.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
-      h.push("</ul>");
-
-      h.push('<p class="eyebrow" style="margin-top:14px">What actually matters</p>');
-      h.push('<ul class="tl__sub" style="margin-top:6px">');
-      st.criteria.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
-      h.push("</ul>");
-
-      if (st.candidates) {
-        h.push('<p class="tiny muted" style="margin-top:14px"><b>Starting points.</b> ' +
-          esc(st.candidates) + "</p>");
+      h.push('<p class="small muted" style="margin-top:4px;font-family:var(--mono)">' +
+        esc(bk.address) + "<br>" + esc(bk.phone) + "</p>");
+      h.push('<p class="tiny muted" style="margin-top:6px">' + esc(bk.paid) + " &middot; " + esc(bk.terms) + "</p>");
+      h.push('<p class="tiny muted" style="margin-top:2px">In ' + esc(bk.checkIn) +
+        " &middot; out " + esc(bk.checkOut) + "</p>");
+      if ((bk.confirmOnArrival || []).length) {
+        h.push('<p class="eyebrow" style="margin-top:12px;color:var(--hazard)">Ask at the desk</p>');
+        h.push('<ul class="tl__sub" style="margin-top:6px">');
+        bk.confirmOnArrival.forEach(function (x) { h.push("<li>" + esc(x) + "</li>"); });
+        h.push("</ul>");
       }
+      h.push(mapsChip(bk.maps, "Maps", bk.ll));
       h.push("</div></div>");
     });
-
-    h.push('<div class="card"><div class="card__body">');
-    h.push('<p class="eyebrow">Order of play</p>');
-    h.push('<ul class="tl__sub" style="margin-top:10px">');
-    L.notes.forEach(function (n) { h.push("<li>" + esc(n) + "</li>"); });
-    h.push("</ul></div></div>");
     return h.join("");
   }
 
-  /* Ben's work-booked leg. Real confirmation numbers, so unlike the locker these
-     are baked into data.js rather than typed in - they are already in his email. */
+  /* Ben's work-booked leg. Reference, not a plan - the shared trip starts on
+     the 9th. */
   function workLegBlock() {
     var W = D.workLeg;
     var h = [];
     h.push('<div class="section-head"><h2>Ben&rsquo;s work leg, Oct 3-11</h2></div>');
-    h.push('<div class="card"><div class="card__body"><p class="small">' + esc(W.lede) + "</p></div></div>");
-
     h.push('<div class="card"><div class="card__body">');
     h.push('<p class="eyebrow">Flights, booked by work</p>');
     W.flights.forEach(function (f, i) {
-      h.push('<div style="margin-top:' + (i ? "14px" : "8px") + '">' +
+      h.push('<div style="margin-top:' + (i ? "10px" : "6px") + '">' +
         "<b>" + esc(f.label) + "</b>" +
-        '<p class="small" style="margin-top:2px">' + esc(f.route) + "</p>" +
-        '<p class="tiny muted" style="margin-top:2px;font-family:var(--mono)">' + esc(f.meta) + "</p></div>");
+        '<p class="tiny muted" style="margin-top:2px;font-family:var(--mono)">' + esc(f.route) +
+        " &middot; " + esc(f.meta) + "</p></div>");
     });
     h.push("</div></div>");
 
@@ -1944,20 +1533,12 @@
       h.push('<div class="card"' + (t.key ? ' style="border-color:var(--london)"' : "") + '><div class="card__body">');
       if (t.key) h.push('<p class="eyebrow" style="color:var(--london)">Both of you, Sat Oct 10</p>');
       h.push("<b>" + esc(t.label) + "</b>");
-      h.push('<p class="small" style="margin-top:2px">' + esc(t.dates) + "</p>");
+      h.push('<p class="tiny muted" style="margin-top:2px">' + esc(t.dates) + "</p>");
       h.push('<p class="small muted" style="margin-top:4px;font-family:var(--mono)">' + esc(t.address) +
         "<br>" + esc(t.phone) + "</p>");
-      h.push('<p class="tiny muted" style="margin-top:6px">' + esc(t.rate) + "</p>");
-      h.push('<p class="tiny muted" style="margin-top:2px">' + esc(t.cxl) + "</p>");
-      h.push(mapsChip(t.maps, "Open in maps", t.ll));
+      h.push(mapsChip(t.maps, "Maps", t.ll));
       h.push("</div></div>");
     });
-
-    h.push('<div class="card"><div class="card__body">');
-    h.push('<p class="eyebrow">What this means for the shared trip</p>');
-    h.push('<ul class="tl__sub" style="margin-top:10px">');
-    W.notes.forEach(function (n) { h.push("<li>" + esc(n) + "</li>"); });
-    h.push("</ul></div></div>");
     return h.join("");
   }
 
@@ -1999,30 +1580,31 @@
     var parts = hash.split("/");
     var view = parts[0] || "today";
     var sub = parts[1] || "";
-    if (["today", "days", "map", "book", "aurora", "prep", "info"].indexOf(view) === -1) { view = "today"; sub = ""; }
+    /* Days, Book and Prep merged into Agenda. Old hashes still land somewhere
+       sensible rather than dumping you on Today - the app is installed as a
+       PWA and those links are in people's home screens and in this repo. */
+    if (view === "days" || view === "book" || view === "prep") { view = "agenda"; sub = ""; }
+    if (["today", "agenda", "map", "aurora", "info"].indexOf(view) === -1) { view = "today"; sub = ""; }
     return { view: view, sub: sub };
   }
 
-  var pendingFocus = null;
-  /* set by a Book-tab row tapping through to its full entry on Days */
+  /* set by a row tapping through to its own entry further down the agenda */
   var pendingDay = null;
 
   function render() {
     var r = route();
     var html;
-    if (r.view === "days") html = viewDays();
+    if (r.view === "agenda") html = viewAgenda();
     else if (r.view === "map") html = viewMap(r.sub);
     else if (r.view === "aurora") html = viewAurora();
-    else if (r.view === "prep") html = viewPrep(r.sub);
     else if (r.view === "info") html = viewInfo(r.sub);
-    else if (r.view === "book") html = viewBook();
     else html = viewToday();
 
     teardownMaps();          /* Leaflet keeps handlers on detached nodes */
     main.innerHTML = html;
     document.title = ({
-      today: "Today", days: "Itinerary", map: "Map", aurora: "Aurora",
-      book: "Book", prep: "Prep", info: "Reference"
+      today: "Today", agenda: "Agenda", map: "Map",
+      aurora: "Aurora", info: "Reference"
     }[r.view]) + " · London + Iceland";
 
     /* tab state */
@@ -2035,17 +1617,6 @@
     wireShots();
     wireMaps();
     wireBook();
-
-    if (pendingFocus) {
-      var el = document.getElementById("bl-" + pendingFocus);
-      var inp = document.querySelector('[data-actual="' + pendingFocus + '"]');
-      if (el) {
-        el.classList.add("is-target");
-        el.scrollIntoView({ block: "center", behavior: "smooth" });
-        if (inp) inp.focus();
-      }
-      pendingFocus = null;
-    }
 
     if (pendingDay) {
       var dEl = document.getElementById("day-" + pendingDay);
@@ -2082,7 +1653,8 @@
 
   function paintBadge() {
     var n = clock().phase === "before" ? overdueCount() : 0;
-    var tab = document.querySelector('.tab[data-view="prep"]');
+    var tab = document.querySelector('.tab[data-view="agenda"]');
+    if (!tab) return;
     var old = tab.querySelector(".tab__badge");
     if (old) old.remove();
     if (n > 0) {
@@ -2111,7 +1683,7 @@
   /* ------------------------------------------------------------- LISTENERS */
 
   window.addEventListener("hashchange", function () {
-    var jumping = pendingFocus !== null || pendingDay !== null;   // render() places it
+    var jumping = pendingDay !== null;   // render() places it
     render();
     if (!jumping) {
       window.scrollTo(0, 0);
@@ -2122,14 +1694,6 @@
   /* clicks - one delegated handler for the whole app */
   document.addEventListener("click", function (e) {
     var t = e.target;
-
-    var moneyLink = t.closest ? t.closest("[data-focus]") : null;
-    if (moneyLink) {
-      pendingFocus = moneyLink.dataset.focus;
-      /* if we are already on the budget view the hash will not change, so no
-         hashchange fires and nothing would scroll - do it ourselves */
-      if (location.hash === "#/prep/money") { e.preventDefault(); render(); }
-    }
 
     /* Tapping anywhere in a checklist row toggles it. The checkbox itself is
        26px; the row is 56px. Gloves need the row. */
@@ -2159,7 +1723,9 @@
     var itBtn = t.closest && t.closest("[data-itemopen]");
     if (itBtn) {
       var ik = itBtn.dataset.itemopen;
-      var box = itBtn.parentNode;
+      /* the toggle button is nested inside .ag__row, so the open class belongs
+         on the .ag ancestor, not on the button's parent */
+      var box = itBtn.closest(".ag") || itBtn.parentNode;
       var nowI = !box.classList.contains("is-open");
       box.classList.toggle("is-open", nowI);
       itBtn.setAttribute("aria-expanded", String(nowI));
@@ -2228,9 +1794,9 @@
       S.dayOpen[gday] = true;      save(K.dayOpen, S.dayOpen);
       S.itemOpen[gkey] = true;     save(K.itemOpen, S.itemOpen);
       pendingDay = gday;
-      /* already on Days: the hash will not change, so no hashchange fires */
-      if (location.hash === "#/days") render();
-      else location.hash = "#/days";
+      /* already on Agenda: the hash will not change, so no hashchange fires */
+      if (location.hash === "#/agenda") render();
+      else location.hash = "#/agenda";
       return;
     }
 
@@ -2269,9 +1835,9 @@
       return;
     }
     if (el.dataset.book) {
-      /* Writes straight into S.checks, the same store the Prep tab reads. A
-         partly-done stop completes on the first tap, which is what the native
-         indeterminate-to-checked transition already does for us. */
+      /* Writes straight into S.checks, the same store the not-tied-to-a-day
+         bucket reads. A partly-done event completes on the first tap, which is
+         what the native indeterminate-to-checked transition already does. */
       var bids = el.dataset.book.split(",");
       var want = el.checked;
       bids.forEach(function (id) {
@@ -2282,14 +1848,6 @@
       render();
       var reBox = document.querySelector('[data-book="' + el.dataset.book + '"]');
       if (reBox) reBox.focus({ preventScroll: true });
-      return;
-    }
-    if (el.dataset.actual !== undefined) {
-      var v = el.value.trim();
-      if (v === "") delete S.actuals[el.dataset.actual];
-      else S.actuals[el.dataset.actual] = v;
-      save(K.actuals, S.actuals);
-      refreshMoney();     /* in place - a full re-render would steal focus */
       return;
     }
     if (el.dataset.conf !== undefined) {
@@ -2375,10 +1933,6 @@
       itemsOf(g).forEach(function (i) { delete S.checks[i.id]; });
       save(K.checks, S.checks); render(); return;
     }
-    if (name === "reset-actuals") {
-      if (!window.confirm("Clear every actual cost you have entered? Planned amounts are not affected.")) return;
-      S.actuals = {}; save(K.actuals, S.actuals); render(); return;
-    }
     if (name === "wipe-conf") {
       if (!window.confirm("Erase every confirmation number, flight number and address you have entered? This cannot be undone.")) return;
       S.conf = {}; save(K.conf, S.conf); render(); return;
@@ -2394,7 +1948,7 @@
       '<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlgT">' +
       '<h2 id="dlgT">Read this first</h2>' +
       "<p class=\"small\">This writes a <b>plain, unencrypted text file</b> to your Downloads folder containing every " +
-      "confirmation number, flight number and address you have entered, plus your budget actuals.</p>" +
+      "confirmation number, flight number and address you have entered.</p>" +
       "<p class=\"small\" style=\"margin-top:8px\">Anything in Downloads may be backed up to the cloud, synced to other " +
       "devices, or picked up by another app. Only do this if you are about to move the file somewhere you trust, " +
       "and delete it afterwards.</p>" +
@@ -2429,15 +1983,6 @@
         if (v) lines.push("  " + f + ": " + v);
       });
     });
-    lines.push("", "== BUDGET ACTUALS ==");
-    budgetLines().forEach(function (bl) {
-      var a = actualOf(bl.line.id);
-      lines.push("  " + bl.line.label + ": planned " + money(bl.line.planned) +
-        (a === null ? "" : ", actual " + money(a)));
-    });
-    var b = budgetTotals();
-    lines.push("", "Projected " + money(b.projected) + " of " + money(b.ceiling));
-
     var blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);

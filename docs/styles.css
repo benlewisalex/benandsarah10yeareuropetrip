@@ -411,29 +411,22 @@ code { font-family: var(--mono); font-size: .92em; }
 .headsup svg { width: 18px; height: 18px; flex: 0 0 auto; margin-top: 4px; color: var(--amber); }
 
 /* ============================================================== 7. IMAGERY */
-/* The gradient renders first and always. A photo layers on top only when it
-   truly loads, so a dead network can never break the layout. */
+/* One image left in the app: the Aurora hero. The gradient renders first and
+   always, and the photo layers on top only when it truly loads, so a dead
+   network can never break the layout. The agenda carries no photography. */
 
-.shot {
-  position: relative; margin: 0; aspect-ratio: 16 / 9;
-  background-image: var(--grad); background-size: cover; background-position: var(--pos, center); overflow: hidden;
-}
-.shot--thumb { aspect-ratio: 4 / 3; border-radius: var(--r-sm); }
-.shot img, .day__hero img, .aurora-hero img, .itx__pic img, .itx__scene img {
+.aurora-hero img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: var(--pos, center);
   opacity: 0; transition: opacity var(--slow) var(--ease);
 }
-.shot.is-loaded img, .itx__scene.is-loaded img { opacity: 1; }
+.aurora-hero.is-loaded .shot__credit { opacity: 1; }
 .shot__credit {
   position: absolute; right: 6px; bottom: 6px; z-index: 3;
   padding: 2px 7px; border-radius: var(--r-pill);
   background: rgba(8,12,14,.6); color: #fff;
   font-size: 10px; letter-spacing: .04em; opacity: 0;
 }
-.shot.is-loaded .shot__credit, .day__hero.is-loaded .shot__credit,
-.aurora-hero.is-loaded .shot__credit, .itx__scene.is-loaded .shot__credit { opacity: 1; }
-.shot-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s2); padding: var(--s4) var(--s5) 0; }
 
 /* =============================================================== 8. HEROES */
 /* The one place boldness is spent. Deliberately dark in BOTH themes. */
@@ -508,46 +501,6 @@ code { font-family: var(--mono); font-size: .92em; }
 
 /* ============================================================ 9. DAY CARDS */
 
-.day { display: flex; align-items: stretch; }
-.day__spine { width: 10px; }
-.day__b { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
-
-/* the header band: a photo where we have one, the half's colour where we don't */
-.day__hero {
-  position: relative; min-height: 132px;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: var(--s5);
-  background-image: var(--grad, none);
-  background-size: cover; background-position: var(--pos, center);
-  color: #fff; overflow: hidden;
-}
-.day__hero--london  { background-image: linear-gradient(140deg,#5B7791 0%,#3F5D78 50%,#26394A 100%); }
-.day__hero--iceland { background-image: linear-gradient(140deg,#35606B 0%,#1D3A42 52%,#0E2026 100%); }
-.day__hero::after {
-  content: ""; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, rgba(6,12,15,.04) 0%, rgba(6,12,15,.44) 56%, rgba(6,12,15,.84) 100%);
-}
-.day__hero.is-loaded img { opacity: 1; }
-.day__heroT { position: relative; z-index: 2; }
-.day__date {
-  display: flex; align-items: center; gap: var(--s2); flex-wrap: wrap;
-  font-family: var(--mono); font-size: var(--t-12); font-weight: 700;
-  letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.84);
-}
-.day__title { font-size: var(--t-22); margin-top: var(--s1); color: #fff; }
-.day__is-today {
-  padding: 2px var(--s2); background: #fff; color: #10171B;
-  border-radius: var(--r-pill); font-size: var(--t-11); letter-spacing: .08em;
-}
-
-.day__sun {
-  display: flex; gap: var(--s5); flex-wrap: wrap;
-  padding: var(--s3) var(--s5);
-  background: var(--card-2); border-bottom: 1px solid var(--line-2);
-  font-family: var(--mono); font-size: var(--t-14); color: var(--ink-2);
-}
-.day__sun div { display: flex; align-items: center; gap: 7px; }
-.day__sun svg { width: 16px; height: 16px; color: var(--ink-3); }
 
 .tl { padding: var(--s2) var(--s5) var(--s5); }
 .tl__intro { padding: var(--s4) 0 0; color: var(--ink-2); font-size: var(--t-15); }
@@ -572,25 +525,6 @@ code { font-family: var(--mono); font-size: .92em; }
 .tl__sub--num li::before { display: none; }
 .tl__sub--num li b { position: absolute; left: 0; top: 0; font-family: var(--mono); color: var(--ink-3); }
 
-.note { margin-top: var(--s3); padding: var(--s4); background: var(--card-2); border-radius: var(--r-sm); font-size: var(--t-15); }
-.note b {
-  display: block; margin-bottom: 2px; font-size: var(--t-11); font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
-}
-
-.aurora-cue {
-  margin: 0 var(--s5) var(--s5); padding: var(--s4);
-  background: var(--aurora-wash);
-  border: 1px solid color-mix(in srgb, var(--aurora) 40%, transparent);
-  border-left: 4px solid var(--aurora);
-  border-radius: 0 var(--r-sm) var(--r-sm) 0;
-}
-.aurora-cue b {
-  color: var(--aurora); font-size: var(--t-11); font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-}
-.aurora-cue p { font-size: var(--t-15); margin-top: 3px; }
-.aurora-cue .maps { background: var(--card); }
 
 .mustdo { display: grid; gap: var(--s2); }
 .mustdo__i {
@@ -628,14 +562,6 @@ code { font-family: var(--mono); font-size: .92em; }
 }
 .dayx__h:hover { background: var(--card-2); }
 .dayx__spine { width: 8px; flex: 0 0 8px; }
-.dayx__thumb {
-  flex: 0 0 62px; align-self: stretch; min-height: 88px;
-  background-image: var(--grad, none);
-  background-size: cover; background-position: center;
-}
-.dayx__thumb--london  { background-image: linear-gradient(150deg,#5B7791,#26394A); }
-.dayx__thumb--iceland { background-image: linear-gradient(150deg,#35606B,#0E2026); }
-
 .dayx__t { flex: 1 1 auto; min-width: 0; display: block; padding: var(--s4); }
 .dayx__meta {
   display: block;
@@ -670,96 +596,68 @@ code { font-family: var(--mono); font-size: .92em; }
 
 .dayx__body { display: none; border-top: 1px solid var(--line-2); }
 .dayx.is-open > .dayx__body { display: block; }
-.day__hero--band { min-height: 118px; }
-.dayx__intro { padding: var(--s4) var(--s5) 0; color: var(--ink-2); font-size: var(--t-15); }
-.dayx__intro p + p { margin-top: var(--s2); }
 .dayx__haz { padding: var(--s4) var(--s5) 0; }
-.dayx__notes { padding: 0 var(--s5) var(--s4); }
 .dayx--bare .dayx__body { border-top: 0; }
 
 /* ---- level two: a single activity ---- */
-.itxlist { padding: var(--s3) var(--s5) var(--s4); }
-.itx { border-top: 1px solid var(--line-2); }
-.itx:first-child { border-top: 0; }
+/* ==================================================== 9c. AGENDA EVENTS */
+/* One event: when, what, how long, and whether it is booked. The booking box
+   sits on the collapsed row so the agenda can be scanned for gaps without
+   opening anything, and ticked from there. Deliberately flatter than the old
+   day cards - no photography, no per-day essay, no "why you would enjoy
+   this". */
 
-.itx__h {
-  width: 100%; display: flex; align-items: flex-start; gap: var(--s3);
-  min-height: 54px; padding: var(--s3) 0;
-  background: none; border: 0; cursor: pointer; text-align: left;
-}
-.itx--flat { display: flex; gap: var(--s3); padding: var(--s3) 0; align-items: flex-start; }
-.itx__pic {
-  position: relative; flex: 0 0 58px; width: 58px; height: 44px;
-  margin-top: -2px; overflow: hidden;
-  background-image: var(--grad); background-size: cover; background-position: var(--pos, center);
-  border-radius: var(--r-sm);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), var(--sh-1);
-}
-.itx__pic::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 42%, rgba(0,0,0,.34));
-}
-.itx__pic.is-loaded img { opacity: 1; }
-.itx__time {
-  flex: 0 0 52px; padding-top: 2px;
+.aglist { padding: var(--s2) 0; }
+.ag + .ag { border-top: 1px solid var(--line-2); }
+
+.ag__row { display: flex; align-items: flex-start; gap: var(--s3); padding: var(--s3) var(--s4); }
+.ag__time {
+  flex: 0 0 56px; padding-top: 3px;
   font-family: var(--mono); font-size: var(--t-12); font-weight: 700;
   color: var(--ink-3); letter-spacing: -.02em;
 }
-.itx__n {
-  flex: 1 1 auto; min-width: 0;
-  font-size: var(--t-17); font-weight: 620; letter-spacing: -.01em; line-height: 1.35;
+.ag__t {
+  flex: 1 1 auto; min-width: 0; display: block;
+  padding: 0; background: none; border: 0;
+  font: inherit; color: inherit; text-align: left; cursor: pointer;
 }
-.itx--flat .itx__n { font-weight: 550; color: var(--ink-2); }
-.itx__flags { display: inline-flex; gap: 5px; margin-left: var(--s2); vertical-align: 1px; }
-.itx__flag { display: inline-grid; place-items: center; color: var(--ink-3); }
-.itx__flag svg { width: 14px; height: 14px; }
-.itx__flag--warn { color: var(--amber); }
-.itx__chev {
-  flex: 0 0 26px; display: grid; place-items: center; color: var(--ink-3);
-  transition: transform var(--fast) var(--ease);
-}
-.itx__chev svg { width: 15px; height: 15px; }
-.itx.is-open .itx__chev { transform: rotate(90deg); }
+.ag__t b { display: block; font-size: var(--t-15); font-weight: 650; line-height: 1.4; }
+.ag__t:hover b { text-decoration: underline; }
+.ag__t--flat { cursor: default; }
+.ag__t--flat b { font-weight: 550; color: var(--ink-2); }
+.ag__t--flat:hover b { text-decoration: none; }
+.ag__sub { display: block; margin-top: 2px; font-size: var(--t-12); color: var(--ink-3); }
+/* the one thing on a collapsed row that is asking for something */
+.ag__todo { font-style: normal; font-weight: 650; color: var(--amber); }
 
-.itx__body { display: none; padding: 0 0 var(--s4) 64px; }
-.itx.is-open > .itx__body { display: block; }
-.itx__d { color: var(--ink-2); font-size: var(--t-15); }
+.ag__bk { flex: 0 0 34px; display: grid; justify-items: center; gap: 2px; padding-top: 2px; }
+.ag__bk input[type="checkbox"] {
+  width: 24px; height: 24px; margin: 0;
+  accent-color: var(--moss); cursor: pointer;
+}
+.ag__bkn { font-family: var(--mono); font-size: var(--t-11); color: var(--ink-3); }
 
-/* getting-there strip: the two facts people scan for before reading anything */
-.itx__meta {
-  display: flex; flex-wrap: wrap; gap: 6px;
-  margin: 0 0 var(--s3);
+.ag__chev {
+  flex: 0 0 18px; padding-top: 5px; color: var(--ink-3);
+  display: grid; transition: transform var(--fast) var(--ease);
 }
-.itx__meta-i {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 4px 9px 4px 8px;
-  border: 1px solid var(--line); border-radius: var(--r-pill);
-  background: var(--sunk);
-  color: var(--ink-2); font-size: var(--t-13); line-height: 1.35;
-}
-.itx__meta-i svg { flex: 0 0 auto; color: var(--ink-3); }
+.ag__chev svg { width: 15px; height: 15px; }
+.ag.is-open .ag__chev { transform: rotate(90deg); }
 
-/* why it is worth the time. Sits above the logistics and reads darker. */
-.itx__why {
-  color: var(--ink); font-size: var(--t-15); line-height: 1.55;
-  margin: 0 0 var(--s3); padding-left: var(--s3);
-  border-left: 2px solid var(--line);
+.ag__body { display: none; padding: 0 var(--s4) var(--s4) calc(56px + var(--s3)); }
+.ag.is-open > .ag__body { display: block; }
+.ag__d { color: var(--ink-2); font-size: var(--t-15); line-height: 1.55; }
+
+/* travel is measured FROM THE PREVIOUS STOP */
+.ag__tr {
+  display: flex; gap: 7px; margin: 0 0 var(--s3);
+  font-size: var(--t-13); color: var(--ink-2);
 }
-.itx__why + .itx__d { color: var(--ink-2); }
-.itx__scene {
-  position: relative; margin: 0 0 var(--s4);
-  aspect-ratio: var(--ratio, 16 / 9); overflow: hidden;
-  background-image: var(--grad); background-size: cover; background-position: var(--pos, center);
-  border-radius: var(--r-md);
-  box-shadow: var(--sh-2);
-}
-.itx__scene::after {
-  content: ""; position: absolute; inset: 0; z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(5,10,12,0) 42%, rgba(5,10,12,.42) 100%),
-    radial-gradient(80% 55% at 20% 10%, rgba(255,255,255,.16), transparent 60%);
-  pointer-events: none;
-}
+.ag__tr svg { flex: 0 0 auto; width: 13px; height: 13px; margin-top: 3px; color: var(--ink-3); }
+
+.dayx--slim .dayx__body { padding-bottom: var(--s2); }
+.dayx__count { margin-right: auto; align-self: center; font-family: var(--mono); font-size: var(--t-12); color: var(--ink-3); }
+.linkout--aurora { margin: var(--s3) var(--s4) var(--s4); border-left: 4px solid var(--aurora); }
 
 /* hot buttons: big, obvious, glove-sized */
 .hotrow { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
@@ -775,12 +673,10 @@ code { font-family: var(--mono); font-size: .92em; }
 .hot:active { transform: scale(.98); }
 .hot svg { width: 16px; height: 16px; flex: 0 0 auto; color: var(--ink-3); }
 .hot:hover svg { color: var(--ink); }
-.aurora-cue .hot { background: var(--card); }
 
 @media (min-width: 560px) {
-  .dayx__thumb { flex-basis: 84px; }
-  .itx__body { padding-left: 68px; }
-  .itx__pic { flex-basis: 72px; width: 72px; height: 52px; }
+  .ag__time { flex-basis: 68px; }
+  .ag__body { padding-left: calc(68px + var(--s3)); }
 }
 
 /* ============================================================== 10. THE MAP */
@@ -1043,7 +939,6 @@ code { font-family: var(--mono); font-size: .92em; }
 }
 .tag:hover { border-color: var(--ink-3); color: var(--ink); }
 .tag--overdue { background: var(--hazard); border-color: var(--hazard); color: var(--on-accent); }
-.tag--money { border-style: dashed; font-family: var(--mono); font-size: var(--t-11); }
 .tag--extra { background: var(--london-wash); color: var(--london); border-color: transparent; }
 
 .grp { margin-bottom: var(--s4); }
@@ -1073,91 +968,18 @@ code { font-family: var(--mono); font-size: .92em; }
 .grp--later .grp__h   { background: var(--card-2); }
 .grp--later .grp__t b { color: var(--ink-2); }
 
+/* the not-tied-to-a-day bucket at the top of Agenda */
+.grp__hint { display: block; margin-top: 2px; font-size: var(--t-12); font-weight: 400; color: var(--ink-3); }
+.grp__sub {
+  padding: var(--s4) var(--s5) 2px;
+  border-top: 1px solid var(--line-2);
+  font-size: var(--t-11); font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+.grp__body > .grp__sub:first-child { border-top: 0; }
+
 .addrow { display: flex; gap: var(--s2); padding: var(--s4) var(--s5); border-top: 1px solid var(--line-2); }
 .addrow input { flex: 1 1 auto; min-width: 0; }
-
-/* ================================================ 12b. CONDENSED ITINERARY */
-/* The Book tab. Every stop of the trip on one scroll: when, what, how long,
-   how you got there from the last one, and whether the booking is done.
-   Deliberately denser than the Day accordion in section 9b - this is the page
-   you scan to find the gap, not the page you read. Nothing collapses.
-
-   Row grid is: time | name + duration | booking | tap-through.
-   The travel line sits above its own row and inside the same .cdstop, so the
-   separator falls between stops rather than between a stop and its own
-   getting-there line. */
-
-.cddays { display: grid; gap: var(--s4); }
-
-.cdday { margin-bottom: 0; box-shadow: inset 6px 0 0 var(--half, var(--line-2)), var(--sh-1); }
-.cdday__h { align-items: baseline; }
-.cdday__h span:last-child { white-space: nowrap; }
-.cdday.is-today .cdday__h { background: var(--amber-wash); }
-.cdday__warn { color: var(--hazard); margin-left: var(--s1); vertical-align: -3px; }
-.cdday__warn svg { width: 16px; height: 16px; }
-
-.cdlist { padding: var(--s2) 0; }
-.cdstop + .cdstop { border-top: 1px solid var(--line-2); }
-
-.cd { display: flex; align-items: flex-start; gap: var(--s3); padding: var(--s3) var(--s4); }
-
-.cd__time {
-  flex: 0 0 56px; padding-top: 2px; text-align: right;
-  font-size: var(--t-12); font-weight: 700; color: var(--ink-2);
-}
-.cd__m { flex: 1 1 auto; min-width: 0; }
-
-/* both the <button> on a stop and the <a> on an aurora night */
-.cd__t {
-  display: block; width: 100%; padding: 0; margin: 0; text-align: left;
-  font: inherit; color: inherit; background: none; border: 0;
-  text-decoration: none; cursor: pointer;
-}
-.cd__t b { display: block; font-size: var(--t-15); font-weight: 650; }
-.cd__t:hover b { text-decoration: underline; }
-.cd__dur { display: block; margin-top: 1px; font-size: var(--t-12); color: var(--ink-3); }
-.cd.is-booked .cd__t b { color: var(--ink-2); }
-
-.cd__tags { display: flex; gap: var(--s2); flex-wrap: wrap; margin-top: var(--s2); }
-.tag--book {
-  min-height: 32px; max-width: 100%; border-style: dashed;
-  font-size: var(--t-11); font-weight: 600; white-space: nowrap;
-}
-.tag--book span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-.tag--book em { flex: 0 0 auto; font-style: normal; font-weight: 700; color: var(--ink-3); }
-
-.cd__bk { flex: 0 0 58px; display: grid; justify-items: center; gap: 2px; padding-top: 1px; }
-.cd__bk input[type="checkbox"] {
-  width: 24px; height: 24px; margin: 0;
-  accent-color: var(--moss); cursor: pointer;
-}
-.cd__bkn { font-size: var(--t-11); color: var(--ink-3); text-align: center; }
-.cd__na {
-  padding: 3px var(--s2); border-radius: var(--r-pill);
-  background: var(--sunk); color: var(--ink-3);
-  font-size: var(--t-11); font-weight: 700; letter-spacing: .06em;
-}
-
-.cd__go { flex: 0 0 18px; padding-top: 3px; color: var(--ink-3); cursor: pointer; }
-.cd__go svg { width: 16px; height: 16px; }
-.cd:hover .cd__go { color: var(--ink); }
-
-/* aligned under the name column, not the time column, so the eye reads
-   time-then-name straight down and the travel lines sit out of that path */
-.cd__tr {
-  display: flex; align-items: flex-start; gap: 6px;
-  padding: var(--s2) var(--s4) 0 calc(56px + var(--s3) + var(--s4));
-  font-size: var(--t-12); color: var(--ink-3);
-}
-.cd__tr svg { flex: 0 0 auto; width: 13px; height: 13px; margin-top: 2px; }
-
-/* flash the day a Book row just tapped through to */
-.dayx.is-target { animation: flash 1.8s var(--ease); }
-
-@media (min-width: 560px) {
-  .cd__time { flex-basis: 68px; }
-  .cd__tr { padding-left: calc(68px + var(--s3) + var(--s4)); }
-}
 
 /* =============================================================== 13. FORMS */
 
@@ -1178,40 +1000,9 @@ input::placeholder { color: var(--ink-3); }
 input:hover, textarea:hover { border-color: var(--ink-3); }
 input:focus, textarea:focus { border-color: var(--focus); }
 
-/* ============================================================== 14. BUDGET */
-
-.budget-top { padding: var(--s5); }
-.budget-fig { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s4); }
-.budget-fig b { font-family: var(--mono); font-size: var(--t-44); line-height: 1; letter-spacing: -.04em; }
-.budget-fig span { font-family: var(--mono); font-size: var(--t-14); color: var(--ink-2); }
-.budget-var { margin-top: var(--s4); font-size: var(--t-15); }
-.is-over  { color: var(--hazard); font-weight: 700; }
-.is-under { color: var(--moss); font-weight: 700; }
-
-.bl { display: flex; align-items: center; gap: var(--s4); padding: var(--s4) var(--s5); border-top: 1px solid var(--line-2); }
-.bl__t { flex: 1 1 auto; min-width: 0; font-size: var(--t-15); }
-.bl__t label { font-weight: 550; }
-.bl__t span { display: block; font-family: var(--mono); font-size: var(--t-12); color: var(--ink-3); }
-.bl--over { box-shadow: inset 4px 0 0 var(--hazard); }
-.bl__in { flex: 0 0 118px; position: relative; }
-.bl__in::before {
-  content: "$"; position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
-  font-family: var(--mono); font-size: var(--t-15); color: var(--ink-3); pointer-events: none;
-}
-.bl__in input { min-height: 46px; text-align: right; font-size: var(--t-15); padding-left: 24px; }
-.bl__in input::-webkit-outer-spin-button,
-.bl__in input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.bl__in input[type=number] { -moz-appearance: textfield; }
-.bl.is-target { animation: flash 1.8s var(--ease); }
+/* the jump-to-day highlight on Agenda, and the map stop list */
 @keyframes flash { 0%,100% { background: transparent; } 15%,60% { background: var(--amber-wash); } }
 
-.sec-sum {
-  display: flex; justify-content: space-between; gap: var(--s4);
-  padding: var(--s4) var(--s5); background: var(--card-2);
-  border-bottom: 1px solid var(--line-2);
-  font-size: var(--t-15); font-weight: 700;
-}
-.sec-sum span:last-child { font-family: var(--mono); }
 
 /* ======================================================== 15. CONFIRMATIONS */
 
@@ -1271,7 +1062,6 @@ body.is-offline .offline-banner { display: flex; }
   .kv__k { flex-basis: 120px; }
   .hero__b { padding: var(--s7) var(--s6) var(--s7) 0; }
   .countdown b { font-size: 4.5rem; }
-  .day__hero { min-height: 168px; }
 }
 
 @media (min-width: 768px) {
@@ -1333,11 +1123,9 @@ body.is-offline .offline-banner { display: flex; }
   .heroprog { grid-column: 1 / -1; margin-top: 0; }
   .countdown b { font-size: 5.25rem; }
   .hero__title { font-size: var(--t-34); }
-  .day__hero { min-height: 176px; }
   .aurora-hero { min-height: 320px; }
   .aurora-hero__b { padding: var(--s10) var(--s7) var(--s6); }
   .aurora-hero__b h1 { font-size: 2.75rem; }
-  .bl__in { flex-basis: 150px; }
   .locker { grid-template-columns: repeat(3, 1fr); }
   .lpanels--two { grid-template-columns: 1fr 1fr; }
   .lmap { height: 520px; }
@@ -1357,22 +1145,10 @@ body.is-offline .offline-banner { display: flex; }
 
 /* At night a bright image block is glare in a dark car. Dim scenery, not text. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .shot,
-  :root:not([data-theme="light"]) .day__hero,
-  :root:not([data-theme="light"]) .aurora-hero,
-  :root:not([data-theme="light"]) .itx__scene,
-  :root:not([data-theme="light"]) .itx__pic { filter: brightness(.8) saturate(.92); }
+  :root:not([data-theme="light"]) .aurora-hero { filter: brightness(.8) saturate(.92); }
 }
-:root[data-theme="dark"] .shot,
-:root[data-theme="dark"] .day__hero,
-:root[data-theme="dark"] .aurora-hero,
-:root[data-theme="dark"] .itx__scene,
-:root[data-theme="dark"] .itx__pic { filter: brightness(.8) saturate(.92); }
-:root[data-theme="light"] .shot,
-:root[data-theme="light"] .day__hero,
-:root[data-theme="light"] .aurora-hero,
-:root[data-theme="light"] .itx__scene,
-:root[data-theme="light"] .itx__pic { filter: none; }
+:root[data-theme="dark"] .aurora-hero { filter: brightness(.8) saturate(.92); }
+:root[data-theme="light"] .aurora-hero { filter: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -1381,8 +1157,7 @@ body.is-offline .offline-banner { display: flex; }
     animation-iteration-count: 1 !important;
     transition-duration: .001ms !important;
   }
-  .shot img, .aurora-hero img, .day__hero img, .itx__scene img, .itx__pic img { opacity: 1; }
-  .shot .shot__credit { opacity: 1; }
+  .aurora-hero img, .aurora-hero .shot__credit { opacity: 1; }
   .btn:active, .chip:active { transform: none; }
 }
 
@@ -1395,7 +1170,7 @@ body.is-offline .offline-banner { display: flex; }
   .tabs, .topbar, .chip, .seg, .addrow, .btn, .mapfilter { display: none !important; }
   .main { padding: 0; max-width: none; }
   .card, .day, .hazard { break-inside: avoid; box-shadow: none; border: 1px solid #999; }
-  .cdstop { break-inside: avoid; }
+  .ag, .dayx { break-inside: avoid; }
   .hero, .mapwrap { color: #000; background: none; border: 1px solid #999; }
   .hero .eyebrow, .hero__sub, .countdown span { color: #333; }
 }

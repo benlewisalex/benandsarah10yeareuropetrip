@@ -17,9 +17,7 @@ const TRIP = {
     start: "2026-10-09",              // Sarah's departure day
     end: "2026-10-17",                // last day (fly home)
     nights: 7,
-    budgetCeiling: 5000,
     structure: "Ben is already in England from Oct 3 on a work trip and moves to the Courtyard Heathrow on Fri Oct 9. Sarah flies Fri Oct 9, lands Sat Oct 10 and cabs straight to that hotel. 3 nights England (Oct 10, 11, 12): 1:00pm endowment session Saturday, church and the Thames walk Sunday, Westminster Abbey and Hamilton Monday. Saturday is at the work-paid Courtyard Heathrow with a one-day rental car; Sunday and Monday are in Paddington. Then 4 nights Iceland (Oct 13, 14, 15, 16), ending with Blue Lagoon on the way to the airport. Home late Saturday Oct 17.",
-    flightsNote: "Ben's MSN-ORD-LHR flights out, the KEF-ORD flight home, and every hotel night from Oct 3 through the morning of Oct 11 are booked and paid by work - including Sat Oct 10, which is a free night for both of you. Everything costed here is out of pocket: Sarah's airfare, London lodging from Oct 11, all of Iceland, getting to and from O'Hare, and covering the kids at home."
   },
 
   /* --- the must-do list, shown as a grid ----------------------------------- */
@@ -754,112 +752,59 @@ const TRIP = {
       text: "Volcanic gas concentrations near vents are lethal, and that's how people actually die at these sites." }
   },
 
-  /* --- budget -------------------------------------------------------------- */
-  /* Line ids are referenced by checklist items via budgetIds. Keep them stable. */
-  budget: {
-    sections: [
-      { id: "flights", label: "Flights", lines: [
-        { id: "flt-sarah",   label: "Sarah ORD-LHR + KEF-ORD",       planned: 900 },
-        { id: "flt-lhrkef",  label: "LHR-KEF x2",                    planned: 300 }
-      ]},
-      { id: "lodging", label: "Lodging (6 paid nights of 7)", lines: [
-        { id: "lod-london",  label: "Tudor Court, Paddington x2 (booked)", planned: 356 },
-        { id: "lod-rvk",     label: "Fosshotel Baron x1 (booked)", planned: 191 },
-        { id: "lod-south",   label: "Rauduskridur cabin x2 (booked)", planned: 340, estimate: true },
-        { id: "lod-kef",     label: "Volcano Escape, Grindavík x1 (booked)", planned: 256 }
-      ]},
-      { id: "transport", label: "Transport", lines: [
-        { id: "trn-car",     label: "Iceland rental car, 5 days (Oct 13-17)", planned: 425, estimate: true },
-        { id: "trn-parkord", label: "O'Hare parking, Oct 9-17",       planned: 170, estimate: true },
-        { id: "trn-msnord",  label: "Madison to O'Hare and back",     planned: 60,  estimate: true },
-        { id: "trn-lhrcar",  label: "5:15am car, Paddington to T5",   planned: 70,  estimate: true },
-        { id: "trn-fuel",    label: "Fuel",                          planned: 140 },
-        { id: "trn-london",  label: "London transit",                planned: 80 }
-      ]},
-      { id: "excursions", label: "Excursions (both)", lines: [
-        { id: "exc-monday",      label: "Westminster Abbey + St Paul's dome x2",    planned: 150 },
-        { id: "exc-glacier",     label: "Into the Glacier from Gullfoss",            planned: 190 },
-        { id: "exc-horses",      label: "Horse farm visit x2 (no riding)",           planned: 70 },
-        { id: "exc-bluelagoon",  label: "Blue Lagoon, Comfort x2 + luggage hold",     planned: 210, estimate: true },
-        { id: "exc-lagoon",      label: "Secret Lagoon",                             planned: 80 },
-        { id: "exc-lavashow",    label: "Lava Show, Vík",                       planned: 120 },
-        { id: "exc-thingvellir", label: "Þingvellir parking",                   planned: 10 },
-        { id: "exc-temple",      label: "Temple day: 1-day rental car + fuel",       planned: 150, estimate: true },
-        { id: "exc-westend",     label: "Hamilton x2, Mon Oct 12",                   planned: 190 },
-        { id: "exc-reykjadalur", label: "Reykjadalur",                               planned: 0, free: true }
-      ]},
-      { id: "home", label: "Home while you are away", lines: [
-        { id: "home-momflights", label: "Mom's round-trip flights to Madison", planned: 400, estimate: true },
-        { id: "home-momstay",    label: "Groceries and extras for her week",  planned: 120, estimate: true }
-      ]},
-      { id: "dinner", label: "One nice dinner", lines: [
-        { id: "din-nice",    label: "One nice dinner",               planned: 150 }
-      ]}
-    ],
-    headroomOptions: [
-      "Planned now runs $5,128 against a $5,000 target. Every bed and every ticket is now booked, so this is close to the real number - the only estimate left is the south coast cabin. Dropping Stonehenge freed $220 and turning the horse ride into a farm visit freed $150; Hamilton put back $190 and Monday's two cathedrals $150. Grindavík came in at $256 against a $180 placeholder, which is most of the gap.",
-      "Swap St Paul's for the British Museum or the National Gallery, both free: saves $70, and Westminster Abbey is still the centrepiece of the day",
-      "Swap Secret Lagoon for a municipal pool like Laugardalslaug, about $12 for both: saves roughly $68, and Blue Lagoon already covers the tourist hot spring twice over",
-      "Either of those on its own puts you under target. Both together lands you near $4,970",
-      "Trim the Oct 16 lodging - Reykjanesbaer guesthouses run well under the $180 placeholder off-season, and this is the line most likely to come in cheap",
-      "Take the Elizabeth line to Terminal 5 instead of the 5:15am car: saves about $55, at the cost of a first-train dependency on the morning of an international flight. Not worth it",
-      "Drop the nice dinner, $150 - last resort, not first",
-      "Sarah's one-way airfares are still the least predictable number here and could move $300-400 in either direction on their own"
-    ],
-    cutIfOver: "You are $128 over, and almost everything is now booked. Swapping St Paul's for the free British Museum covers it outright and barely changes Monday. After that, the Secret Lagoon swap (~$68). Do not cut Blue Lagoon, the rental car for the temple, Hamilton, or Westminster Abbey - those are the trip. If something still has to give, let it be the $5,000."
-  },
-
   /* --- checklists ---------------------------------------------------------- */
   /* promoteAt / overdueAt are in DAYS BEFORE Oct 10. Urgency is computed from
      the trip date, never from these labels.
-     budgetIds link an item to budget lines - checking it prompts for actuals.  */
+     An item referenced by a day item's `book` array shows up as that event's
+     booking checkbox on the Agenda; the rest collect in the not-tied-to-a-day
+     bucket at the top of that tab. Packing is rendered on Info.            */
   checklists: [
     { id: "this-week", label: "This week", promoteAt: 999, overdueAt: 42, items: [
-      { id: "tw1", text: "Price Sarah's flights three ways: two separate one-ways, multi-city, and open-jaw. They routinely differ by hundreds.", budgetIds: ["flt-sarah"] },
-      { id: "tw2", text: "Book Sarah MSN-LHR and KEF-MSN", budgetIds: ["flt-sarah"] },
-      { id: "tw3", text: "Book LHR-KEF x2 (Play or Icelandair)", budgetIds: ["flt-lhrkef"] },
-      { id: "tw4", text: "Reserve Iceland rental car - take gravel + sand/ash waiver", budgetIds: ["trn-car"] },
-      { id: "tw5", text: "Done - Hamilton booked. Mon Oct 12, 7:30pm, Victoria Palace, Grand Circle Row B seats 10 and 11, Door 7. E-tickets email 24 hrs before", budgetIds: ["exc-westend"] },
+      { id: "tw1", text: "Price Sarah's flights three ways: two separate one-ways, multi-city, and open-jaw. They routinely differ by hundreds." },
+      { id: "tw2", text: "Book Sarah MSN-LHR and KEF-MSN" },
+      { id: "tw3", text: "Book LHR-KEF x2 (Play or Icelandair)" },
+      { id: "tw4", text: "Reserve Iceland rental car - take gravel + sand/ash waiver" },
+      { id: "tw5", text: "Done - Hamilton booked. Mon Oct 12, 7:30pm, Victoria Palace, Grand Circle Row B seats 10 and 11, Door 7. E-tickets email 24 hrs before" },
       { id: "tw6", text: "Confirm both temple recommends are current - the 1:00pm endowment on Sat Oct 10 is booked and there is no second chance on this trip" },
-      { id: "tw7", text: "Save the temple reservation confirmation somewhere offline. Session is booked: 1:00pm endowment, Sat Oct 10, London England Temple, Newchapel. Be at the recommend desk by 12:30", budgetIds: ["exc-temple"] },
-      { id: "tw16", text: "Reserve a one-day rental car at Heathrow for the temple trip. Collect it Friday evening so Saturday morning has no desk queue in it; take the excess waiver and confirm it is ULEZ-compliant", budgetIds: ["exc-temple"], extra: true },
+      { id: "tw7", text: "Save the temple reservation confirmation somewhere offline. Session is booked: 1:00pm endowment, Sat Oct 10, London England Temple, Newchapel. Be at the recommend desk by 12:30" },
+      { id: "tw16", text: "Reserve a one-day rental car at Heathrow for the temple trip. Collect it Friday evening so Saturday morning has no desk queue in it; take the excess waiver and confirm it is ULEZ-compliant", extra: true },
       { id: "tw17", text: "Done - no suitcase problem. You sleep at the Courtyard both Friday and Saturday, so the bags never leave the room on temple day", extra: true },
       { id: "tw18", text: "Set up Sarah's ride from Heathrow T2 to the Courtyard for about 7:45am Sat Oct 10, and send her the address, the hotel confirmation number, the room number and a photo of the hotel entrance before she flies", extra: true },
       { id: "tw19", text: "Tell the Courtyard Heathrow that Sarah is on the room for both nights - the work reservation is written for 1 adult", extra: true },
       { id: "tw20", text: "Sort how Ben gets to Madison airport on Oct 3. He returns to O'Hare on the 17th, not Madison, so leaving his own car in the MSN lot does not work - get a drop-off from Sarah", extra: true },
-      { id: "tw21", text: "Book Sarah's O'Hare parking, Oct 9-17 (8 nights). Off-site lots run roughly $10-14 a day with a shuttle against $40+ a day in the terminal garage, and prepaying online is cheaper again - the usual names are The Parking Spot, WallyPark and SpotHero. Prepay a reservation rather than turning up, and check the shuttle runs late: you both land at 6:15pm on the 17th and will be collecting the car in the evening", budgetIds: ["trn-parkord"] },
+      { id: "tw21", text: "Book Sarah's O'Hare parking, Oct 9-17 (8 nights). Off-site lots run roughly $10-14 a day with a shuttle against $40+ a day in the terminal garage, and prepaying online is cheaper again - the usual names are The Parking Spot, WallyPark and SpotHero. Prepay a reservation rather than turning up, and check the shuttle runs late: you both land at 6:15pm on the 17th and will be collecting the car in the evening" },
       { id: "tw8", text: "Verify passports are valid at least 6 months past Oct 17, 2026" },
       { id: "tw9", text: "Apply for UK ETA for both of you - the UK has required an Electronic Travel Authorisation from US citizens since January 2025. Confirm the current fee and processing time on gov.uk before paying.", extra: true },
       { id: "tw10", text: "Check whether ETIAS is live for Iceland by October 2026 - the EU has delayed it repeatedly. If it is in force by then, both of you need one for the Schengen area.", extra: true },
       { id: "tw11", text: "Confirm with Mom which dates she can actually cover - ideally Oct 8 through Oct 18, so there is a day of overlap at each end", extra: true },
-      { id: "tw12", text: "Book Mom's round-trip flights to Madison", budgetIds: ["home-momflights"], extra: true },
-      { id: "tw13", text: "Sarah drives to O'Hare on Oct 9 and parks the full window - you both land back at ORD together on the 17th, so that car is the ride home for two. Book the lot", budgetIds: ["trn-parkord", "trn-msnord"], extra: true },
+      { id: "tw12", text: "Book Mom's round-trip flights to Madison", extra: true },
+      { id: "tw13", text: "Sarah drives to O'Hare on Oct 9 and parks the full window - you both land back at ORD together on the 17th, so that car is the ride home for two. Book the lot", extra: true },
       { id: "tw14", text: "Done - Ben is on FI853 KEF-ORD, 4:25pm Oct 17, same flight as Sarah, booked through Icelandair. One rental car return, one check-in", extra: true },
       { id: "tw15", text: "Done - work has Ben at the Courtyard Heathrow Marriott, 1 Nobel Drive, Hayes UB3 5EY, for Fri Oct 9 and Sat Oct 10", extra: true },
     ]},
     { id: "four-six", label: "Four to six weeks out", promoteAt: 42, overdueAt: 7, items: [
-      { id: "fs1",  text: "Book Into the Glacier - Gullfoss departure, not Reykjavík", budgetIds: ["exc-glacier"] },
-      { id: "fs2",  text: "Book a horse farm VISIT near Hveragerði or Selfoss for Fri Oct 16 - ask for a stable visit or 'meet the horses', not a riding tour. Roughly 3,000-6,000 ISK each. Small farms are not staffed for walk-ins in October", budgetIds: ["exc-horses"] },
-      { id: "fs3",  text: "Book Lava Show, Vík", budgetIds: ["exc-lavashow"] },
-      { id: "fs4",  text: "Done - Tudor Court Hotel, 10-12 Norfolk Square, Paddington. Two nights Oct 11-13, triple room with garden view, GBP 262.75 paid in full. Non-refundable", budgetIds: ["lod-london"] },
+      { id: "fs1",  text: "Book Into the Glacier - Gullfoss departure, not Reykjavík" },
+      { id: "fs2",  text: "Book a horse farm VISIT near Hveragerði or Selfoss for Fri Oct 16 - ask for a stable visit or 'meet the horses', not a riding tour. Roughly 3,000-6,000 ISK each. Small farms are not staffed for walk-ins in October" },
+      { id: "fs3",  text: "Book Lava Show, Vík" },
+      { id: "fs4",  text: "Done - Tudor Court Hotel, 10-12 Norfolk Square, Paddington. Two nights Oct 11-13, triple room with garden view, GBP 262.75 paid in full. Non-refundable" },
       { id: "fs21", text: "Message the Tudor Court through the booking and ask which floor the room is on, and whether there is a lift. No lift is listed and it is a Victorian townhouse - if you are three floors up, ask to be moved lower. You carry the bags down at 4:55am", extra: true },
       { id: "fs20", text: "At Tudor Court check-in on Sunday: ask about Elizabeth line engineering works for Tuesday, confirm the walk to the Elizabeth line and Heathrow Express platforms, book the 5:15am car, and set a 4:30am wake-up call. All four are things this hotel does", extra: true },
-      { id: "fs5",  text: "Done - all six paid nights are booked. Oct 16 went to Volcano Escape in Grindavík rather than Reykjanesbær, which needs the backup in fs27", budgetIds: ["lod-kef"] },
-      { id: "fs24", text: "Done - Rauduskridur farm, the Green Cabin, Hvolsvöllur. Both nights Oct 14-16 in one place, entire cabin, 4.88 from 740 reviews", budgetIds: ["lod-south"] },
+      { id: "fs5",  text: "Done - all six paid nights are booked. Oct 16 went to Volcano Escape in Grindavík rather than Reykjanesbær, which needs the backup in fs27" },
+      { id: "fs24", text: "Done - Rauduskridur farm, the Green Cabin, Hvolsvöllur. Both nights Oct 14-16 in one place, entire cabin, 4.88 from 740 reviews" },
       { id: "fs25", text: "Resolve the cabin Plus code QQ2H+QMJ to latitude and longitude and save it offline. It is not a street address, it will not go into a car sat-nav, and you arrive in the dark at 8pm with no guarantee of signal", extra: true },
       { id: "fs26", text: "Message the cabin hosts: is there a yard light near the terrace and is it on all night, and is there any gas appliance or wood stove given there is no CO alarm reported", extra: true },
-      { id: "fs22", text: "Done - Fosshotel Baron, Barónsstíg 2-4, 101 Reykjavík, Tue Oct 13. ISK 23,106, free to cancel until Oct 10", budgetIds: ["lod-rvk"] },
+      { id: "fs22", text: "Done - Fosshotel Baron, Barónsstíg 2-4, 101 Reykjavík, Tue Oct 13. ISK 23,106, free to cancel until Oct 10" },
       { id: "fs23", text: "Fosshotel Baron follow-ups before Oct 10: add breakfast or accept that Wednesday starts unfed, ask for the TWIN beds rather than the queen, and check whether the on-site parking is free or paid", extra: true },
-      { id: "fs6",  text: "Book a timed Westminster Abbey slot for 9:30am Mon Oct 12 - go at opening, the nave fills by eleven. About 30 GBP each", budgetIds: ["exc-monday"] },
-      { id: "fs7",  text: "Book St Paul's for Mon Oct 12 afternoon, about 26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start", budgetIds: ["exc-monday"] },
+      { id: "fs6",  text: "Book a timed Westminster Abbey slot for 9:30am Mon Oct 12 - go at opening, the nave fills by eleven. About 30 GBP each" },
+      { id: "fs7",  text: "Book St Paul's for Mon Oct 12 afternoon, about 26 GBP each - or swap it for the free British Museum and save $70. The dome is 528 one-way spiral steps, so decide before you start" },
       { id: "fs8",  text: "Reserve Dishoom Covent Garden for Sat Oct 10 evening - Saturday nights need booking, and it is cancellable if Sarah would rather eat near the hotel and sleep" },
-      { id: "fs18", text: "Done - Hamilton, Mon Oct 12, 7:30pm. Every other big title is dark Mondays and matinee-only Sundays, so this was the only evening show available all week", budgetIds: ["exc-westend"], extra: true },
+      { id: "fs18", text: "Done - Hamilton, Mon Oct 12, 7:30pm. Every other big title is dark Mondays and matinee-only Sundays, so this was the only evening show available all week", extra: true },
       { id: "fs9",  text: "Notify banks of travel; confirm no foreign transaction fees" },
       { id: "fs19", text: "Sort international phone service for both phones, Oct 9-17. Check what your plan already covers in the UK and Iceland, then add a travel pass or an eSIM. You need data working for vedur.is cloud maps, road.is, offline-map fallback and Mom", extra: true },
       { id: "fs10", text: "Download offline maps for Iceland and southern England" },
-      { id: "fs12", text: "Extend the Iceland rental car through Saturday afternoon - it is 5 days now, not 4", budgetIds: ["trn-car"], extra: true },
-      { id: "fs13", text: "Book a minicab for 5:15am Tue Oct 13, Paddington to Terminal 5. Use a minicab firm, not a scheduled Uber - scheduling an Uber does not reserve a driver. Roughly 45-65 GBP; cancel free if the trains look clean on Monday", budgetIds: ["trn-lhrcar"], extra: true },
-      { id: "fs14", text: "Book Blue Lagoon for Sat Oct 17 - Comfort x2, a 9:00am slot, plus the luggage hold. Read the cancellation terms; an eruption closure should be refundable. Leaving the water at 11:00 is what funds the coast drive afterwards", budgetIds: ["exc-bluelagoon"], extra: true },
+      { id: "fs12", text: "Extend the Iceland rental car through Saturday afternoon - it is 5 days now, not 4", extra: true },
+      { id: "fs13", text: "Book a minicab for 5:15am Tue Oct 13, Paddington to Terminal 5. Use a minicab firm, not a scheduled Uber - scheduling an Uber does not reserve a driver. Roughly 45-65 GBP; cancel free if the trains look clean on Monday", extra: true },
+      { id: "fs14", text: "Book Blue Lagoon for Sat Oct 17 - Comfort x2, a 9:00am slot, plus the luggage hold. Read the cancellation terms; an eruption closure should be refundable. Leaving the water at 11:00 is what funds the coast drive afterwards", extra: true },
       { id: "fs15", text: "Contact the Volcano Escape host for key pickup and arrival time. The confirmation says to, and Grindavík is largely depopulated - not a town to improvise in after dark", extra: true },
       { id: "fs27", text: "Decided: no backup bed. The risk is accepted and you rebook on the day if Grindavík closes. Read the Plan B on the Info tab once so you are not composing it at 5pm on your last Friday - the short version is sleep in Reykjavík, swim at Sky Lagoon, drive to KEF", extra: true },
       { id: "fs28", text: "Check almannavarnir.is weekly from late September, then the night before and the morning of Oct 16. Since there is no backup booking, this check IS the plan - it is what turns an evacuation into a rebooking rather than a surprise at the door", extra: true },
@@ -932,7 +877,7 @@ const TRIP = {
     lede: "All six paid nights are booked. Grindavík on Fri Oct 16 sits inside the active volcano zone and is non-refundable; that risk is accepted deliberately, with a same-day Plan B instead of a backup bed. Oct 10 is work-paid at the Courtyard Heathrow and Oct 17 is spent on a plane. The unbooked entries below are search briefs - filter on the map, not on the hotel's name.",
     stays: [
       { id: "lg-pad", label: "Paddington, London", nights: "Sun Oct 11 - Tue Oct 13 (2 nights)",
-        budget: "$180-230 a night", budgetId: "lod-london",
+        budget: "$180-230 a night",
         why: "The only London district that solves all three days at once: a direct Elizabeth line train in from Heathrow on Sunday, 12 minutes to church, 15 minutes to Hamilton, and the only station with trains reaching Terminal 5 early enough on Tuesday.",
         booked: {
           name: "Tudor Court Hotel",
@@ -979,7 +924,7 @@ const TRIP = {
         candidates: "The Hilton London Paddington is built into the station itself - the old Great Western Royal Hotel - which makes it the shortest possible walk at 5am, at a price. Hotel Indigo Paddington and the Premier Inn on the Praed Street side are the usual mid-range picks. Verify current locations and rates yourself; treat these as starting points, not recommendations." },
 
       { id: "lg-rvk", label: "Reykjavík", nights: "Tue Oct 13 - Wed Oct 14 (1 night)",
-        budget: "$180-210", budgetId: "lod-rvk",
+        budget: "$180-210",
         why: "You arrive about 5pm off the Reykjanes peninsula, want dinner downtown and aurora night 1 out at Grótta, and leave north-east on Route 36 for Þingvellir in the morning.",
         booked: {
           name: "Fosshotel Baron",
@@ -1022,7 +967,7 @@ const TRIP = {
         ] },
 
       { id: "lg-south", label: "South coast, Hvolsvöllur area", nights: "Wed Oct 14 - Fri Oct 16 (2 nights, same place)",
-        budget: "$160-180 a night", budgetId: "lod-south",
+        budget: "$160-180 a night",
         why: "This is the important one. Aurora nights 2 and 3 happen here, and it is statistically your best chance of the week. It is also the base for Thursday's entire south-coast run, all of which sits east along Route 1.",
         booked: {
           name: "Rauduskridur farm - The Green Cabin",
@@ -1069,7 +1014,7 @@ const TRIP = {
         candidates: "Hótel Rangá, between Hella and Hvolsvöllur, is the famous aurora hotel - on-site observatory and a wake-up service - but it runs well above this budget. Stracta Hótel in Hella and Hótel Hvolsvöllur are the mainstream mid-range options, and the surrounding farm guesthouses are where the value is. Verify all of it yourself." },
 
       { id: "lg-kef", label: "Grindavík", nights: "Fri Oct 16 - Sat Oct 17 (1 night)",
-        budget: "$120-180 was the plan; came in at about $256", budgetId: "lod-kef",
+        budget: "$120-180 was the plan; came in at about $256",
         why: "Ten minutes from Blue Lagoon for the 9am slot, with a hot tub for the last night in Iceland. The shortest possible last morning.",
         booked: {
           name: "Volcano Escape Grindavík with hot tub",
