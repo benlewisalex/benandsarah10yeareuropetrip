@@ -27,7 +27,7 @@ const TRIP = {
     { item: "LDS temple",                 when: "Sat Oct 10 - 1:00pm endowment, Newchapel (booked)" },
     { item: "Aurora hunting",             when: "All four Iceland nights" },
     { item: "Stargazing",                 when: "Wed-Fri, rural south Iceland" },
-    { item: "Icelandic horses",           when: "Fri Oct 16 - farm visit, no riding" },
+    { item: "Icelandic horses",           when: "All week - roadside, and at the Rauduskridur farm" },
     { item: "Volcano",                    when: "Tue Oct 13 lava fields + Thu Oct 15 Lava Show" },
     { item: "Geysers",                    when: "Wed Oct 14 (Strokkur)" },
     { item: "Blue Lagoon",                when: "Sat Oct 17 (booked morning slot)" },
@@ -91,13 +91,6 @@ const TRIP = {
       alt: "Reynisfjara black sand beach with the Reynisdrangar sea stacks offshore and white surf running up the dark sand.",
       credit: "miketnorton / Wikimedia Commons",
       grad: "linear-gradient(180deg,#9AA2AA 0%,#767F87 33%,#E6EAEC 36%,#CFD6DA 39%,#33393E 42%,#14171A 100%)"
-    },
-    horses: {
-      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Icelandic%20Horse%20Face.jpg?width=1600",
-      alt: "Close-up of an Icelandic horse with a thick mane.",
-      credit: "Carl Young / Wikimedia Commons",
-      pos: "center 45%",
-      grad: "radial-gradient(70% 40% at 25% 20%,rgba(255,235,200,.24),transparent 70%),linear-gradient(180deg,#A9B4BC 0%,#8D8064 38%,#6B5334 40%,#33291A 100%)"
     },
     aurora: {
       src: "https://commons.wikimedia.org/wiki/Special:FilePath/Aurora%20Iceland.jpg?width=1600",
@@ -589,11 +582,11 @@ const TRIP = {
     },
 
     { id: "oct16", date: "2026-10-16", dow: "Friday", half: "iceland",
-      title: "Hot river + horse farm",
+      title: "Hot river, then west to Grindavík",
       sun: { sunrise: "8:21am", sunset: "5:54pm" },
-      images: ["reykjadalur", "horses"],
+      images: ["reykjadalur"],
       intro: [
-        "A long soak in a river you hike to, an hour with the horses, and then a westward drive to set up Saturday morning.",
+        "A long soak in a river you hike to, then a westward drive to set up Saturday morning.",
         "Check out of the cabin first thing - you do not come back this way. Checkout is by 10:00am and you want to be rolling around 8:10 to make Reykjadalur for 9:00, so the deadline is not the thing pushing you."
       ],
       items: [
@@ -603,23 +596,12 @@ const TRIP = {
           dur: "3-4 hrs total: 45-60 min up, 1-1.5 hrs in the water, 40 min down",
           detail: "Park at the trailhead in Hveragerði. Uphill and muddy - waterproof boots. Bring your own towel; there is nowhere to rent one.",
           maps: "Reykjadalur trailhead, Hveragerdi, Iceland", ll: "64.0225,-21.2103", image: "reykjadalur" },
-        { time: "14:00", name: "Horse farm visit - meet them, don't ride them",
-          book: ["fs2"],
-          travel: "20 min to a farm near Hveragerði or Selfoss",
-          mode: "car",
-          dur: "About 1 hr on the ground",
-          detail: "Ask for a 'meet the horses' or 'horse farm visit', not a riding tour. Roughly 3,000-6,000 ISK each. Book ahead. Do not feed them - Iceland runs strict equine biosecurity.",
-          maps: "Selfoss, Iceland", ll: "63.9333,-21.0000", area: true, image: "horses",
-          sub: [
-            "Free fallback: Icelandic horses stand at roadside fences all along the south coast, and greeting them over a fence is normal and welcome. Pull fully off the road, never into a field, and the same no-feeding rule applies.",
-            "If you want something more structured, Friðheimar near Reykholt pairs a horse stable with a tomato-greenhouse restaurant and a short show about the breed. It is genuinely good, but it sits on Wednesday's Golden Circle route rather than today's, and Wednesday has no slack in it."
-          ] },
-        { time: "17:00", name: "Drive to Volcano Escape, Grindavík",
+        { time: "15:00", name: "Drive to Volcano Escape, Grindavík",
           book: ["fs15"],
-          travel: "1hr 15min drive, about 100 km on Routes 1 and 41, then Route 43 south",
+          travel: "1hr 15min, about 100 km on Routes 1 and 41, then Route 43 south",
           mode: "car",
           dur: "One night, the last one. Check-in 3:00pm to 11:00pm",
-          detail: "Fill the tank in Reykjanesbær or on Route 41 before turning south, and bring dinner. Contact the host for key pickup, and check almannavarnir.is before you drive down.",
+          detail: "Arrive about 16:15, before dark. Fill the tank in Reykjanesbær or on Route 41 before turning south, and bring dinner. Contact the host for key pickup, and check almannavarnir.is before you drive down.",
           maps: "Thorkotlustadarvegur, 240 Grindavik, Iceland", ll: "63.8424,-22.4340" }
       ],
       aurora: { night: 4, spot: "Straight out of the door, Grindavík",
@@ -759,7 +741,6 @@ const TRIP = {
     ]},
     { id: "four-six", label: "Four to six weeks out", promoteAt: 42, overdueAt: 7, items: [
       { id: "fs1",  text: "Book the Mountaineers of Iceland snowmobile tour on Langjökull for Wed Oct 14 - the 12:00 departure from the upper Gullfoss car park, 33,500 ISK each, 4 hrs. Take 12:00 and not 14:00, or Secret Lagoon does not fit. Note their snowmobile-plus-ice-cave version only runs November to June, so it is not available on the 14th", extra: true },
-      { id: "fs2",  text: "Book a horse farm VISIT near Hveragerði or Selfoss for Fri Oct 16 - ask for a stable visit or 'meet the horses', not a riding tour. Roughly 3,000-6,000 ISK each. Small farms are not staffed for walk-ins in October" },
       { id: "fs3",  text: "Book Lava Show, Vík" },
       { id: "fs4",  text: "Done - Tudor Court Hotel, 10-12 Norfolk Square, Paddington. Two nights Oct 11-13, triple room with garden view, GBP 262.75 paid in full. Non-refundable" },
       { id: "fs21", text: "Message the Tudor Court through the booking and ask which floor the room is on, and whether there is a lift. No lift is listed and it is a Victorian townhouse - if you are three floors up, ask to be moved lower. You carry the bags down at 4:55am", extra: true },
@@ -834,7 +815,6 @@ const TRIP = {
     { id: "cf-abbey",         label: "Westminster Abbey, Oct 12",      fields: ["Confirmation", "Entry time"] },
     { id: "cf-stpauls",       label: "St Paul's, Oct 12",              fields: ["Confirmation", "Entry time"] },
     { id: "cf-glacier",       label: "Into the Glacier (Gullfoss)",    fields: ["Confirmation", "Meeting point", "Time"] },
-    { id: "cf-horses",        label: "Horse farm visit, Oct 16",       fields: ["Farm", "Address", "Confirmation", "Time"] },
     { id: "cf-lavashow",      label: "Lava Show, Vík",            fields: ["Confirmation", "Time"] },
     { id: "cf-bluelagoon",    label: "Blue Lagoon, Oct 17",            fields: ["Confirmation", "Entry time", "Package", "Luggage hold?"] },
     { id: "cf-dishoom",       label: "Dishoom, Oct 10",                fields: ["Location", "Confirmation", "Time"] },
